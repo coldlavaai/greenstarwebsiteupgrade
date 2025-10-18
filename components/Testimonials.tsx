@@ -212,9 +212,9 @@ const Testimonials = () => {
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ delay: 0.7 + index * 0.1 }}
                 whileHover={{ y: -5, scale: 1.05 }}
-                className="text-center p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-primary/30 transition-all"
+                className="text-center p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-primary/30 transition-all overflow-hidden"
               >
-                <div className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent mb-3" style={{ fontFamily: 'var(--font-playfair)' }}>
+                <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent mb-4 leading-tight py-2" style={{ fontFamily: 'var(--font-playfair)' }}>
                   {stat.value}
                 </div>
                 <div className="text-white/70 text-sm md:text-base font-light">{stat.label}</div>
