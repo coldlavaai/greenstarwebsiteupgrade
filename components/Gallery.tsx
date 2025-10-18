@@ -4,13 +4,38 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { MapPin, Calendar, Zap } from 'lucide-react';
+import { urlFor } from '@/lib/sanity';
 
-const Gallery = () => {
+interface GalleryItem {
+  _id: string;
+  _type: string;
+  title: string;
+  location?: string;
+  systemSize?: string;
+  image?: any;
+  category?: string;
+  description?: string;
+}
+
+interface GalleryProps {
+  data?: GalleryItem[];
+}
+
+const Gallery = ({ data }: GalleryProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
-  const projects = [
+  // Map CMS data or use fallback
+  const projects = data?.map(item => ({
+    _id: item._id,
+    _type: item._type,
+    image: item.image ? urlFor(item.image).width(800).url() : '',
+    title: item.title,
+    location: item.location || '',
+    capacity: item.systemSize || '',
+    date: '2024',  // Default date
+  })) || [
     {
       image: 'https://irp.cdn-website.com/8f142869/dms3rep/multi/AdobeStock_855615596.jpeg',
       title: 'Residential Solar Installation',

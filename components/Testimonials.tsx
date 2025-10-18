@@ -4,13 +4,39 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { Star, ChevronLeft, ChevronRight, Quote } from 'lucide-react';
+import { urlFor } from '@/lib/sanity';
 
-const Testimonials = () => {
+interface Testimonial {
+  _id: string;
+  _type: string;
+  customerName: string;
+  location?: string;
+  rating: number;
+  testimonial: string;
+  serviceType?: string;
+  avatar?: any;
+}
+
+interface TestimonialsProps {
+  data?: Testimonial[];
+}
+
+const Testimonials = ({ data }: TestimonialsProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const testimonials = [
+  // Map CMS data or use fallback
+  const testimonials = data?.map(item => ({
+    _id: item._id,
+    _type: item._type,
+    name: item.customerName,
+    location: item.location || '',
+    rating: item.rating,
+    text: item.testimonial,
+    image: '👤',  // Default avatar
+    system: item.serviceType || 'Solar System',
+  })) || [
     {
       name: 'Sarah Johnson',
       location: 'Manchester',

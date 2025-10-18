@@ -16,7 +16,7 @@ export default async function Home() {
   const client = getClient(isDraftMode)
 
   // Fetch all section data
-  const [heroData, aboutData, contactData, navigationData, footerData] = await Promise.all([
+  const [heroData, aboutData, contactData, navigationData, footerData, systemsData, processData, galleryData, testimonialsData] = await Promise.all([
     client.fetch(`*[_type == "heroSection"][0]{
       _id,
       _type,
@@ -59,6 +59,45 @@ export default async function Home() {
       companyDescription,
       copyright,
       socialLinks
+    }`),
+    client.fetch(`*[_type == "service" && featured == true] | order(_createdAt asc){
+      _id,
+      _type,
+      title,
+      description,
+      features,
+      icon,
+      image,
+      category
+    }`),
+    client.fetch(`*[_type == "processStep"] | order(order asc){
+      _id,
+      _type,
+      order,
+      title,
+      description,
+      icon,
+      image
+    }`),
+    client.fetch(`*[_type == "galleryItem" && featured == true] | order(_createdAt desc){
+      _id,
+      _type,
+      title,
+      location,
+      systemSize,
+      image,
+      category,
+      description
+    }`),
+    client.fetch(`*[_type == "testimonial" && featured == true] | order(_createdAt desc){
+      _id,
+      _type,
+      customerName,
+      location,
+      rating,
+      testimonial,
+      serviceType,
+      avatar
     }`)
   ])
 
@@ -68,10 +107,10 @@ export default async function Home() {
       <Navigation data={navigationData} />
       <Hero data={heroData} />
       <About data={aboutData} />
-      <Systems />
-      <Process />
-      <Gallery />
-      <Testimonials />
+      <Systems data={systemsData} />
+      <Process data={processData} />
+      <Gallery data={galleryData} />
+      <Testimonials data={testimonialsData} />
       <Contact data={contactData} />
       <Footer data={footerData} />
     </div>

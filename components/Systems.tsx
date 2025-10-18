@@ -4,12 +4,47 @@ import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { Home, Building2, Battery, Sun, ArrowRight, Zap } from 'lucide-react';
+import { urlFor } from '@/lib/sanity';
 
-const Systems = () => {
+interface Service {
+  _id: string;
+  _type: string;
+  title: string;
+  description: string;
+  features?: string[];
+  icon?: string;
+  image?: any;
+  category?: string;
+}
+
+interface SystemsProps {
+  data?: Service[];
+}
+
+const Systems = ({ data }: SystemsProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
-  const services = [
+  // Icon mapping
+  const iconMap: Record<string, any> = {
+    Sun: Sun,
+    Battery: Battery,
+    Building2: Building2,
+    Zap: Zap,
+    Home: Home,
+  };
+
+  // Map CMS data to component format or use fallback
+  const services = data?.map(service => ({
+    _id: service._id,
+    _type: service._type,
+    icon: service.icon ? (iconMap[service.icon] || Sun) : Sun,
+    title: service.title,
+    description: service.description,
+    features: service.features || [],
+    image: service.image,
+    link: `/${service.category || 'services'}`,
+  })) || [
     {
       icon: Sun,
       title: 'Solar Panels for Home',

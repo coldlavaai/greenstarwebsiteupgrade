@@ -5,11 +5,42 @@ import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Search, Lightbulb, Wrench, HeartHandshake } from 'lucide-react';
 
-const Process = () => {
+interface ProcessStep {
+  _id: string;
+  _type: string;
+  order: number;
+  title: string;
+  description: string;
+  icon?: string;
+  image?: any;
+}
+
+interface ProcessProps {
+  data?: ProcessStep[];
+}
+
+const Process = ({ data }: ProcessProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
-  const steps = [
+  // Icon mapping
+  const iconMap: Record<string, any> = {
+    Search: Search,
+    Lightbulb: Lightbulb,
+    Wrench: Wrench,
+    HeartHandshake: HeartHandshake,
+  };
+
+  // Map CMS data or use fallback
+  const steps = data?.map((step, index) => ({
+    _id: step._id,
+    _type: step._type,
+    number: step.order.toString().padStart(2, '0'),
+    icon: step.icon ? (iconMap[step.icon] || Search) : Search,
+    title: step.title,
+    description: step.description,
+    features: [],  // Features not in current schema but kept for compatibility
+  })) || [
     {
       number: '01',
       icon: Search,
