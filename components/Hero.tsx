@@ -129,7 +129,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.8 }}
-              className="grid grid-cols-3 gap-6"
+              className="grid grid-cols-3 gap-4"
             >
               {features.map((feature, index) => (
                 <motion.div
@@ -138,22 +138,22 @@ const Hero = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.9 + index * 0.1 }}
                   whileHover={{
-                    y: -10,
-                    scale: 1.05,
+                    y: -6,
+                    scale: 1.03,
                     transition: { type: 'spring', stiffness: 300, damping: 20 }
                   }}
                   className="group relative cursor-pointer"
                 >
-                  <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-all duration-300 hover:shadow-[0_20px_60px_rgba(140,198,63,0.4)] hover:border-[#8cc63f]/50">
+                  <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 p-4 rounded-xl hover:bg-white/10 transition-all duration-300 hover:shadow-[0_15px_40px_rgba(140,198,63,0.3)] hover:border-[#8cc63f]/50">
                     {/* Gradient glow effect on hover */}
                     <motion.div
-                      className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-20 rounded-2xl blur-xl transition-opacity duration-300`}
+                      className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-20 rounded-xl blur-xl transition-opacity duration-300`}
                     />
 
-                    <div className={`relative bg-gradient-to-br ${feature.color} p-4 rounded-xl mb-3 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                      <feature.icon className="w-8 h-8 text-white" />
+                    <div className={`relative bg-gradient-to-br ${feature.color} p-2.5 rounded-lg mb-2 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                      <feature.icon className="w-6 h-6 text-white" />
                     </div>
-                    <span className="text-sm font-semibold text-white/90 group-hover:text-white transition-colors">
+                    <span className="text-xs font-semibold text-white/90 group-hover:text-white transition-colors">
                       {feature.text}
                     </span>
                   </div>
@@ -199,13 +199,13 @@ const Hero = () => {
                 animate={{ opacity: 1, scale: 1, rotateZ: 0 }}
                 transition={{ delay: 1.2, type: 'spring' }}
                 whileHover={{ scale: 1.1, rotateZ: 5, y: -10 }}
-                className="absolute top-10 -left-10 bg-gradient-to-br from-white/95 to-white/80 backdrop-blur-xl p-8 rounded-3xl border border-white/50 shadow-2xl hover:shadow-[0_20px_60px_rgba(140,198,63,0.4)] cursor-pointer"
+                className="absolute top-10 -left-10 bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-xl p-8 rounded-3xl border border-white/20 shadow-2xl hover:shadow-[0_20px_60px_rgba(140,198,63,0.4)] cursor-pointer"
                 style={{ transformStyle: 'preserve-3d' }}
               >
                 <div className="text-4xl font-bold bg-gradient-to-r from-[#8cc63f] to-[#7ab52f] bg-clip-text text-transparent mb-2">
                   15+
                 </div>
-                <div className="text-sm text-gray-700 font-semibold">Years Experience</div>
+                <div className="text-sm text-white font-semibold">Years Experience</div>
                 <div className="absolute -inset-1 bg-gradient-to-r from-[#8cc63f] to-[#7ab52f] opacity-0 hover:opacity-20 rounded-3xl blur transition-opacity" />
               </motion.div>
 
@@ -214,13 +214,13 @@ const Hero = () => {
                 animate={{ opacity: 1, scale: 1, rotateZ: 0 }}
                 transition={{ delay: 1.4, type: 'spring' }}
                 whileHover={{ scale: 1.1, rotateZ: -5, y: -10 }}
-                className="absolute bottom-10 -right-10 bg-gradient-to-br from-white/95 to-white/80 backdrop-blur-xl p-8 rounded-3xl border border-white/50 shadow-2xl hover:shadow-[0_20px_60px_rgba(140,198,63,0.4)] cursor-pointer"
+                className="absolute bottom-10 -right-10 bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-xl p-8 rounded-3xl border border-white/20 shadow-2xl hover:shadow-[0_20px_60px_rgba(140,198,63,0.4)] cursor-pointer"
                 style={{ transformStyle: 'preserve-3d' }}
               >
                 <div className="text-4xl font-bold bg-gradient-to-r from-[#8cc63f] to-[#7ab52f] bg-clip-text text-transparent mb-2">
                   500+
                 </div>
-                <div className="text-sm text-gray-700 font-semibold">Happy Customers</div>
+                <div className="text-sm text-white font-semibold">Happy Customers</div>
                 <div className="absolute -inset-1 bg-gradient-to-r from-[#8cc63f] to-[#7ab52f] opacity-0 hover:opacity-20 rounded-3xl blur transition-opacity" />
               </motion.div>
 
