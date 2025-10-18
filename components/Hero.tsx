@@ -167,7 +167,7 @@ const Hero = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1 }}
-            className="relative hidden lg:block max-w-lg mx-auto"
+            className="relative hidden lg:block"
           >
             <motion.div
               animate={{
@@ -180,10 +180,10 @@ const Hero = () => {
                 ease: 'easeInOut',
               }}
               style={{ transformStyle: 'preserve-3d' }}
-              className="relative"
+              className="relative w-[450px] mx-auto"
             >
               {/* Main Image Card with 3D effect */}
-              <div className="relative aspect-square rounded-3xl overflow-hidden shadow-2xl border border-white/20 backdrop-blur-xl bg-white/5">
+              <div className="relative aspect-square rounded-3xl overflow-hidden shadow-2xl border border-white/20 backdrop-blur-xl bg-white/5 w-full">
                 <div
                   className="absolute inset-0 bg-cover bg-center"
                   style={{
