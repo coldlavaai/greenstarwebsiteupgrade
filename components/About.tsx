@@ -61,7 +61,7 @@ const About = () => {
               transition={{ delay: 0.5 }}
               className="text-lg text-white/80 mb-8 leading-relaxed"
             >
-              Our goal is to design and install solar energy systems that perfectly match your unique energy needs, maximize efficiency, and deliver exceptional savings while minimizing environmental impact.
+              We take a highly personalised approach with face to face consultations and ongoing support. Our goal is to design and install solar energy systems that perfectly match your unique energy needs, maximise efficiency, and deliver exceptional savings while minimising environmental impact.
             </motion.p>
 
             <motion.div

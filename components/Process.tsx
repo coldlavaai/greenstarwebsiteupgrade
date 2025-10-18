@@ -13,30 +13,30 @@ const Process = () => {
     {
       number: '01',
       icon: Search,
-      title: 'Survey & Consultation',
-      description: 'We start with a face-to-face consultation to understand your energy needs and goals, followed by a thorough site assessment to optimize system design.',
-      features: ['Free home visit', 'Energy audit', 'Site analysis', 'Custom recommendations'],
+      title: 'Personal Consultation',
+      description: 'We begin with a thorough face to face consultation to understand your energy usage patterns, environmental goals, and budget. Our expert surveyors conduct a comprehensive site assessment, analysing roof orientation, shading, sunlight, cable runs, and optimal placement for inverters and batteries.',
+      features: ['Free home visit', 'Face to face meeting', 'Site survey', 'Personalised recommendations'],
     },
     {
       number: '02',
       icon: Lightbulb,
-      title: 'Design & Quotation',
-      description: 'Our expert designers create a tailored solar solution focused on maximizing efficiency and savings while minimizing cost.',
-      features: ['3D system design', 'ROI calculation', 'Transparent pricing', 'Financing options'],
+      title: 'Bespoke Design',
+      description: 'Using cutting edge technology and high quality products, we design a bespoke solution that maximises energy efficiency and cost savings tailored specifically to your unique requirements.',
+      features: ['Custom system design', 'ROI analysis', 'Transparent pricing', 'Product selection'],
     },
     {
       number: '03',
       icon: Wrench,
-      title: 'Installation',
-      description: 'Our certified installers expertly fit your solar system with minimal disruption, using premium equipment and following best practices.',
-      features: ['Professional team', 'Quality equipment', 'Fast installation', 'Clean workspace'],
+      title: 'Expert Installation',
+      description: 'Our skilled technicians handle the entire installation process with precision, ensuring your system is ready to perform reliably and efficiently for years to come.',
+      features: ['Expert team', 'Premium equipment', 'Minimal disruption', 'Quality assurance'],
     },
     {
       number: '04',
       icon: HeartHandshake,
-      title: 'Aftercare & Support',
-      description: 'We provide ongoing support, system monitoring, and maintenance to ensure your solar system performs optimally for years to come.',
-      features: ['25-year warranty', 'System monitoring', 'Regular maintenance', '24/7 support'],
+      title: 'Ongoing Support',
+      description: 'Our commitment continues with comprehensive aftercare appointments, app training, and ongoing system monitoring. We stay in close communication so you feel informed and confident at every step.',
+      features: ['Personal aftercare', 'App training', '5 year guarantee', 'System monitoring'],
     },
   ];
 
@@ -63,11 +63,11 @@ const Process = () => {
             <div className="h-px w-12 bg-gradient-to-l from-transparent to-accent"></div>
           </motion.div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
-            From Consultation to{' '}
-            <span className="bg-gradient-to-r from-accent via-primary-light to-accent bg-clip-text text-transparent">Installation</span>
+            We're With You{' '}
+            <span className="bg-gradient-to-r from-accent via-primary-light to-accent bg-clip-text text-transparent">Every Step</span>
           </h2>
           <p className="text-xl md:text-2xl text-white/60 max-w-3xl mx-auto font-light leading-relaxed">
-            Our streamlined 4-step process ensures a smooth transition to solar energy
+            A highly personalised approach with ongoing personal support throughout your solar journey
           </p>
         </motion.div>
 
