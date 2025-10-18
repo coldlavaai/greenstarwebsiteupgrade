@@ -27,9 +27,9 @@ const Hero = () => {
 
       {/* Content */}
       <motion.div style={{ y, opacity }} className="container mx-auto px-4 relative z-10 mt-8">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-20 items-center max-w-7xl mx-auto">
           {/* Left Content */}
-          <div className="text-white">
+          <div className="text-white max-w-xl">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -52,7 +52,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.8 }}
-              className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 leading-[1.1] tracking-tight"
+              className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 leading-[1.1] tracking-tight"
               style={{ fontFamily: 'var(--font-playfair)' }}
             >
               Power Your Future with{' '}
@@ -70,7 +70,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
-              className="text-xl md:text-2xl text-gray-200 mb-10 leading-relaxed max-w-2xl font-light"
+              className="text-lg md:text-xl text-gray-200 mb-8 leading-relaxed font-light"
             >
               Bespoke solar energy systems designed to perfectly match your unique requirements. Save money, reduce your carbon footprint, and achieve true energy independence.
             </motion.p>
@@ -79,13 +79,13 @@ const Hero = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.8 }}
-              className="flex flex-wrap gap-4 mb-12"
+              className="flex flex-wrap gap-4 mb-10"
             >
               <motion.a
                 whileHover={{ scale: 1.05, boxShadow: '0 20px 50px rgba(140,198,63,0.5)' }}
                 whileTap={{ scale: 0.95 }}
                 href="#contact"
-                className="group relative bg-gradient-to-r from-primary via-primary-dark to-primary text-white px-10 py-5 rounded-full font-semibold text-lg overflow-hidden shadow-2xl ring-2 ring-primary/30 ring-offset-2 ring-offset-transparent"
+                className="group relative bg-gradient-to-r from-primary via-primary-dark to-primary text-white px-8 py-4 rounded-full font-semibold text-base overflow-hidden shadow-2xl ring-2 ring-primary/30 ring-offset-2 ring-offset-transparent"
               >
                 <span className="relative z-10 flex items-center space-x-3">
                   <span className="tracking-wide">Get Free Survey</span>
@@ -110,7 +110,7 @@ const Hero = () => {
                 }}
                 whileTap={{ scale: 0.95 }}
                 href="#systems"
-                className="group relative backdrop-blur-xl bg-white/5 text-white px-10 py-5 rounded-full font-semibold text-lg border-2 border-white/20 transition-all shadow-xl"
+                className="group relative backdrop-blur-xl bg-white/5 text-white px-8 py-4 rounded-full font-semibold text-base border-2 border-white/20 transition-all shadow-xl"
               >
                 <span className="flex items-center space-x-3">
                   <span className="tracking-wide">Explore Systems</span>
@@ -167,7 +167,7 @@ const Hero = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1 }}
-            className="relative hidden lg:block"
+            className="relative hidden lg:block max-w-lg mx-auto"
           >
             <motion.div
               animate={{
@@ -199,13 +199,13 @@ const Hero = () => {
                 animate={{ opacity: 1, scale: 1, rotateZ: 0 }}
                 transition={{ delay: 1.2, type: 'spring' }}
                 whileHover={{ scale: 1.1, rotateZ: 5, y: -10 }}
-                className="absolute top-10 -left-10 bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-xl p-8 rounded-3xl border border-white/20 shadow-2xl hover:shadow-[0_20px_60px_rgba(140,198,63,0.4)] cursor-pointer"
+                className="absolute top-10 -left-10 bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/20 shadow-2xl hover:shadow-[0_20px_60px_rgba(140,198,63,0.4)] cursor-pointer"
                 style={{ transformStyle: 'preserve-3d' }}
               >
-                <div className="text-4xl font-bold bg-gradient-to-r from-[#8cc63f] to-[#7ab52f] bg-clip-text text-transparent mb-2">
+                <div className="text-3xl font-bold bg-gradient-to-r from-[#8cc63f] to-[#7ab52f] bg-clip-text text-transparent mb-1">
                   15+
                 </div>
-                <div className="text-sm text-white font-semibold">Years Experience</div>
+                <div className="text-xs text-white font-semibold">Years Experience</div>
                 <div className="absolute -inset-1 bg-gradient-to-r from-[#8cc63f] to-[#7ab52f] opacity-0 hover:opacity-20 rounded-3xl blur transition-opacity" />
               </motion.div>
 
@@ -214,13 +214,13 @@ const Hero = () => {
                 animate={{ opacity: 1, scale: 1, rotateZ: 0 }}
                 transition={{ delay: 1.4, type: 'spring' }}
                 whileHover={{ scale: 1.1, rotateZ: -5, y: -10 }}
-                className="absolute bottom-10 -right-10 bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-xl p-8 rounded-3xl border border-white/20 shadow-2xl hover:shadow-[0_20px_60px_rgba(140,198,63,0.4)] cursor-pointer"
+                className="absolute bottom-10 -right-10 bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/20 shadow-2xl hover:shadow-[0_20px_60px_rgba(140,198,63,0.4)] cursor-pointer"
                 style={{ transformStyle: 'preserve-3d' }}
               >
-                <div className="text-4xl font-bold bg-gradient-to-r from-[#8cc63f] to-[#7ab52f] bg-clip-text text-transparent mb-2">
+                <div className="text-3xl font-bold bg-gradient-to-r from-[#8cc63f] to-[#7ab52f] bg-clip-text text-transparent mb-1">
                   500+
                 </div>
-                <div className="text-sm text-white font-semibold">Happy Customers</div>
+                <div className="text-xs text-white font-semibold">Happy Customers</div>
                 <div className="absolute -inset-1 bg-gradient-to-r from-[#8cc63f] to-[#7ab52f] opacity-0 hover:opacity-20 rounded-3xl blur transition-opacity" />
               </motion.div>
 
