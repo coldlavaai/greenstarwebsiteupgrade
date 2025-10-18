@@ -3,5 +3,5 @@
 import { VisualEditing as VisualEditingComponent } from '@sanity/visual-editing/react'
 
 export function VisualEditing() {
-  return <VisualEditingComponent />
+  return <VisualEditingComponent portal />
 }
