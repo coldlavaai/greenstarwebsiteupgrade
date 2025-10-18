@@ -1,7 +1,6 @@
 import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
-import { presentationTool } from '@sanity/presentation'
 import { colorInput } from '@sanity/color-input'
 import { schemaTypes } from './sanity/schemas'
 
@@ -70,9 +69,6 @@ export default defineConfig({
             S.documentTypeListItem('galleryItem').title('🖼️ Gallery Items'),
             S.documentTypeListItem('processStep').title('📋 Process Steps'),
           ]),
-    }),
-    presentationTool({
-      previewUrl: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
     }),
     visionTool(),
     colorInput(),
