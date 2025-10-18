@@ -187,7 +187,7 @@ const Hero = () => {
                 <div
                   className="absolute inset-0 bg-cover bg-center"
                   style={{
-                    backgroundImage: `url('https://irp.cdn-website.com/8f142869/dms3rep/multi/AdobeStock_586564893-0f77e5a0-84f93a01.jpeg')`,
+                    backgroundImage: `url('/images/hero-house.png')`,
                   }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-br from-[#8cc63f]/30 via-transparent to-[#8cc63f]/30" />
