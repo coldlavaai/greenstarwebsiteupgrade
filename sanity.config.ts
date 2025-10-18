@@ -71,6 +71,12 @@ export default defineConfig({
             S.documentTypeListItem('galleryItem').title('🖼️ Gallery Items'),
             S.documentTypeListItem('processStep').title('📋 Process Steps'),
           ]),
+      defaultDocumentNode: (S) => {
+        return S.document().views([
+          S.view.form(),
+          S.view.component(() => null).title('Presentation').id('presentation')
+        ])
+      }
     }),
     presentationTool({
       resolve,
