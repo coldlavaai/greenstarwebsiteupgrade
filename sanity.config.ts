@@ -72,13 +72,7 @@ export default defineConfig({
           ]),
     }),
     presentationTool({
-      previewUrl: {
-        origin: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
-        preview: '/api/draft',
-        draftMode: {
-          enable: '/api/draft',
-        },
-      },
+      previewUrl: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
     }),
     visionTool(),
     colorInput(),
