@@ -4,7 +4,27 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, Sun, Battery, Zap, Sparkles } from 'lucide-react';
 import { useRef, useState, useEffect } from 'react';
 
-const Hero = () => {
+interface HeroData {
+  _id?: string;
+  _type?: string;
+  heading?: string;
+  subheading?: string;
+  ctaText?: string;
+  ctaLink?: string;
+  secondaryCtaText?: string;
+  secondaryCtaLink?: string;
+  backgroundImage?: any;
+  stats?: Array<{
+    value: string;
+    label: string;
+  }>;
+}
+
+interface HeroProps {
+  data?: HeroData;
+}
+
+const Hero = ({ data }: HeroProps) => {
   const ref = useRef(null);
   const [scrolled, setScrolled] = useState(false);
 
@@ -64,8 +84,9 @@ const Hero = () => {
               transition={{ delay: 0.2, duration: 0.8 }}
               className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-[1.1] tracking-tight"
               style={{ fontFamily: 'var(--font-playfair)' }}
+              data-sanity={data?._id ? `${data._id}.heading` : undefined}
             >
-              Power Your Future with{' '}
+              {data?.heading || 'Power Your Future with'}{' '}
               <motion.span
                 className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent bg-[length:200%_auto]"
                 animate={{ backgroundPosition: ['0% center', '200% center'] }}
@@ -81,8 +102,9 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
               className="text-base md:text-lg lg:text-xl text-gray-200 mb-6 md:mb-8 leading-relaxed font-light"
+              data-sanity={data?._id ? `${data._id}.subheading` : undefined}
             >
-              Bespoke solar energy systems designed to perfectly match your unique requirements. Save money, reduce your carbon footprint, and achieve true energy independence.
+              {data?.subheading || 'Bespoke solar energy systems designed to perfectly match your unique requirements. Save money, reduce your carbon footprint, and achieve true energy independence.'}
             </motion.p>
 
             <motion.div
@@ -94,11 +116,12 @@ const Hero = () => {
               <motion.a
                 whileHover={{ scale: 1.05, boxShadow: '0 20px 50px rgba(140,198,63,0.5)' }}
                 whileTap={{ scale: 0.95 }}
-                href="#contact"
+                href={data?.ctaLink || "#contact"}
                 className="group relative bg-gradient-to-r from-primary via-primary-dark to-primary text-white px-6 py-3 md:px-8 md:py-4 rounded-full font-semibold text-sm md:text-base overflow-hidden shadow-2xl ring-2 ring-primary/30 ring-offset-2 ring-offset-transparent"
+                data-sanity={data?._id ? `${data._id}.ctaText` : undefined}
               >
                 <span className="relative z-10 flex items-center space-x-2 md:space-x-3">
-                  <span className="tracking-wide">Get Free Survey</span>
+                  <span className="tracking-wide">{data?.ctaText || 'Get Free Survey'}</span>
                   <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-2 transition-transform duration-300" />
                 </span>
                 {/* Shine effect */}
@@ -119,11 +142,12 @@ const Hero = () => {
                   boxShadow: '0 20px 40px rgba(140,198,63,0.3)',
                 }}
                 whileTap={{ scale: 0.95 }}
-                href="#systems"
+                href={data?.secondaryCtaLink || "#systems"}
                 className="group relative backdrop-blur-xl bg-white/5 text-white px-6 py-3 md:px-8 md:py-4 rounded-full font-semibold text-sm md:text-base border-2 border-white/20 transition-all shadow-xl"
+                data-sanity={data?._id ? `${data._id}.secondaryCtaText` : undefined}
               >
                 <span className="flex items-center space-x-2 md:space-x-3">
-                  <span className="tracking-wide">Explore Systems</span>
+                  <span className="tracking-wide">{data?.secondaryCtaText || 'Explore Systems'}</span>
                   <motion.span
                     animate={{ rotate: [0, 360] }}
                     transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}

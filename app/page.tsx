@@ -8,13 +8,33 @@ import Testimonials from '@/components/Testimonials';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import DayNightBackground from '@/components/DayNightBackground';
+import { getHeroSection } from '@/lib/sanity';
+import { draftMode } from 'next/headers';
+import { getClient } from '@/lib/sanity';
 
-export default function Home() {
+export default async function Home() {
+  const isDraftMode = draftMode().isEnabled
+  const client = getClient(isDraftMode)
+
+  // Fetch hero section data
+  const heroData = await client.fetch(`*[_type == "heroSection"][0]{
+    _id,
+    _type,
+    heading,
+    subheading,
+    ctaText,
+    ctaLink,
+    secondaryCtaText,
+    secondaryCtaLink,
+    backgroundImage,
+    stats
+  }`)
+
   return (
     <div className="min-h-screen relative">
       <DayNightBackground />
       <Navigation />
-      <Hero />
+      <Hero data={heroData} />
       <About />
       <Systems />
       <Process />

@@ -6,7 +6,23 @@ export const client = createClient({
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
   apiVersion: '2024-01-01',
   useCdn: true, // Use CDN for faster response
+  perspective: 'published',
 })
+
+// Client for draft mode with token
+export const draftClient = createClient({
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
+  apiVersion: '2024-01-01',
+  useCdn: false, // Don't use CDN for draft content
+  token: process.env.SANITY_API_READ_TOKEN,
+  perspective: 'previewDrafts', // This allows seeing draft content
+})
+
+// Helper to get the right client based on draft mode
+export function getClient(preview = false) {
+  return preview ? draftClient : client
+}
 
 const builder = imageUrlBuilder(client)
 

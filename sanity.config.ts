@@ -1,8 +1,10 @@
 import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
+import { presentationTool } from 'sanity/presentation'
 import { colorInput } from '@sanity/color-input'
 import { schemaTypes } from './sanity/schemas'
+import { resolve } from './sanity/resolve'
 
 // Helper to create singleton document items
 const singletonItem = (S: any, typeName: string, title?: string) =>
@@ -69,6 +71,15 @@ export default defineConfig({
             S.documentTypeListItem('galleryItem').title('🖼️ Gallery Items'),
             S.documentTypeListItem('processStep').title('📋 Process Steps'),
           ]),
+    }),
+    presentationTool({
+      resolve,
+      previewUrl: {
+        origin: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001',
+        previewMode: {
+          enable: '/api/draft',
+        },
+      },
     }),
     visionTool(),
     colorInput(),
