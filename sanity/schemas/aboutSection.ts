@@ -4,6 +4,8 @@ export const aboutSection = defineType({
   name: 'aboutSection',
   title: 'About Section',
   type: 'document',
+  // @ts-ignore
+  __experimental_singleton: true,
   fields: [
     {
       name: 'heading',

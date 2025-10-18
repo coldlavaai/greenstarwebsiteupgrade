@@ -4,6 +4,8 @@ export const footerSection = defineType({
   name: 'footerSection',
   title: 'Footer',
   type: 'document',
+  // @ts-ignore
+  __experimental_singleton: true,
   fields: [
     {
       name: 'companyDescription',

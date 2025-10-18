@@ -12,6 +12,7 @@
     "@sanity/client": "^6.29.1",
     "@sanity/color-input": "^4.0.6",
     "@sanity/image-url": "^1.2.0",
+    "@sanity/presentation": "^2.0.0",
     "@sanity/vision": "^3.67.1",
     "framer-motion": "^11.5.4",
     "lucide-react": "^0.441.0",

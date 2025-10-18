@@ -4,6 +4,8 @@ export const contactSection = defineType({
   name: 'contactSection',
   title: 'Contact Section',
   type: 'document',
+  // @ts-ignore
+  __experimental_singleton: true,
   fields: [
     {
       name: 'title',

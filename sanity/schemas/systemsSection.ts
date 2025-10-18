@@ -4,6 +4,8 @@ export const systemsSection = defineType({
   name: 'systemsSection',
   title: 'Systems Section',
   type: 'document',
+  // @ts-ignore
+  __experimental_singleton: true,
   fields: [
     {
       name: 'sectionTitle',

@@ -4,6 +4,8 @@ export const navigationSection = defineType({
   name: 'navigationSection',
   title: 'Navigation',
   type: 'document',
+  // @ts-ignore
+  __experimental_singleton: true,
   fields: [
     {
       name: 'logo',

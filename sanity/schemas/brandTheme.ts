@@ -4,6 +4,8 @@ export const brandTheme = defineType({
   name: 'brandTheme',
   title: 'Brand & Theme Settings',
   type: 'document',
+  // @ts-ignore
+  __experimental_singleton: true,
   fields: [
     {
       name: 'colors',

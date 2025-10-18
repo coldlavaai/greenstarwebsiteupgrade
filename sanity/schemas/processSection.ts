@@ -4,6 +4,8 @@ export const processSection = defineType({
   name: 'processSection',
   title: 'Process Section',
   type: 'document',
+  // @ts-ignore
+  __experimental_singleton: true,
   fields: [
     {
       name: 'sectionTitle',

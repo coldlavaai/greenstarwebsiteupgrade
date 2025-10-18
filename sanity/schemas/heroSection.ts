@@ -4,6 +4,8 @@ export const heroSection = defineType({
   name: 'heroSection',
   title: 'Hero Section',
   type: 'document',
+  // @ts-ignore
+  __experimental_singleton: true,
   fields: [
     {
       name: 'heading',

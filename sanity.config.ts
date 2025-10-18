@@ -1,8 +1,20 @@
 import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
+import { presentationTool } from '@sanity/presentation'
 import { colorInput } from '@sanity/color-input'
 import { schemaTypes } from './sanity/schemas'
+
+// Helper to create singleton document items
+const singletonItem = (S: any, typeName: string, title?: string) =>
+  S.listItem()
+    .title(title || typeName)
+    .id(typeName)
+    .child(
+      S.document()
+        .schemaType(typeName)
+        .documentId(typeName)
+    )
 
 export default defineConfig({
   name: 'default',
@@ -19,17 +31,13 @@ export default defineConfig({
           .items([
             // Settings Group
             S.listItem()
-              .title('Settings')
+              .title('⚙️ Settings')
               .child(
                 S.list()
                   .title('Settings')
                   .items([
-                    S.documentListItem()
-                      .schemaType('siteSettings')
-                      .title('Site Settings'),
-                    S.documentListItem()
-                      .schemaType('brandTheme')
-                      .title('Brand & Theme'),
+                    singletonItem(S, 'siteSettings', 'Site Settings'),
+                    singletonItem(S, 'brandTheme', 'Brand & Theme'),
                   ])
               ),
 
@@ -37,49 +45,40 @@ export default defineConfig({
 
             // Page Sections Group
             S.listItem()
-              .title('Page Sections')
+              .title('📄 Page Sections')
               .child(
                 S.list()
                   .title('Page Sections')
                   .items([
-                    S.documentListItem()
-                      .schemaType('navigationSection')
-                      .title('Navigation'),
-                    S.documentListItem()
-                      .schemaType('heroSection')
-                      .title('Hero Section'),
-                    S.documentListItem()
-                      .schemaType('aboutSection')
-                      .title('About Section'),
-                    S.documentListItem()
-                      .schemaType('systemsSection')
-                      .title('Systems Section'),
-                    S.documentListItem()
-                      .schemaType('processSection')
-                      .title('Process Section'),
-                    S.documentListItem()
-                      .schemaType('testimonialsSection')
-                      .title('Testimonials Section'),
-                    S.documentListItem()
-                      .schemaType('gallerySection')
-                      .title('Gallery Section'),
-                    S.documentListItem()
-                      .schemaType('contactSection')
-                      .title('Contact Section'),
-                    S.documentListItem()
-                      .schemaType('footerSection')
-                      .title('Footer'),
+                    singletonItem(S, 'navigationSection', 'Navigation'),
+                    singletonItem(S, 'heroSection', 'Hero Section'),
+                    singletonItem(S, 'aboutSection', 'About Section'),
+                    singletonItem(S, 'systemsSection', 'Systems Section'),
+                    singletonItem(S, 'processSection', 'Process Section'),
+                    singletonItem(S, 'testimonialsSection', 'Testimonials Section'),
+                    singletonItem(S, 'gallerySection', 'Gallery Section'),
+                    singletonItem(S, 'contactSection', 'Contact Section'),
+                    singletonItem(S, 'footerSection', 'Footer'),
                   ])
               ),
 
             S.divider(),
 
             // Content Items
-            S.documentTypeListItem('service').title('Services/Systems'),
-            S.documentTypeListItem('testimonial').title('Testimonials'),
-            S.documentTypeListItem('galleryItem').title('Gallery Items'),
-            S.documentTypeListItem('processStep').title('Process Steps'),
+            S.documentTypeListItem('service').title('🔧 Services/Systems'),
+            S.documentTypeListItem('testimonial').title('⭐ Testimonials'),
+            S.documentTypeListItem('galleryItem').title('🖼️ Gallery Items'),
+            S.documentTypeListItem('processStep').title('📋 Process Steps'),
           ]),
+    }),
+    presentationTool({
+      previewUrl: {
+        origin: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
+        preview: '/api/draft',
+        draftMode: {
+          enable: '/api/draft',
+        },
+      },
     }),
     visionTool(),
     colorInput(),

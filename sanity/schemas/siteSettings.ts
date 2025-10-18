@@ -4,6 +4,8 @@ export const siteSettings = defineType({
   name: 'siteSettings',
   title: 'Site Settings',
   type: 'document',
+  // @ts-ignore
+  __experimental_singleton: true,
   fields: [
     {
       name: 'companyName',

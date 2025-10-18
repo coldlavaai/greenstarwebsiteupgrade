@@ -4,6 +4,8 @@ export const testimonialsSection = defineType({
   name: 'testimonialsSection',
   title: 'Testimonials Section',
   type: 'document',
+  // @ts-ignore
+  __experimental_singleton: true,
   fields: [
     {
       name: 'sectionTitle',
