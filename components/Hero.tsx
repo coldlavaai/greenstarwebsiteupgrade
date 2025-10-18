@@ -233,22 +233,6 @@ const Hero = () => {
                 <div className="text-xs text-white font-semibold">Happy Customers</div>
                 <div className="absolute -inset-1 bg-gradient-to-r from-[#8cc63f] to-[#7ab52f] opacity-0 hover:opacity-20 rounded-3xl blur transition-opacity" />
               </motion.div>
-
-              {/* Orbiting element */}
-              <motion.div
-                className="absolute top-1/2 left-1/2 w-20 h-20"
-                animate={{
-                  rotate: 360,
-                }}
-                transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-                style={{ marginLeft: '-40px', marginTop: '-40px' }}
-              >
-                <motion.div
-                  className="absolute top-0 left-0 w-4 h-4 bg-gradient-to-r from-[#8cc63f] to-yellow-400 rounded-full shadow-lg"
-                  animate={{ scale: [1, 1.5, 1] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                />
-              </motion.div>
             </motion.div>
           </motion.div>
         </div>
