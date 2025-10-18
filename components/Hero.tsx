@@ -21,12 +21,12 @@ const Hero = () => {
   ];
 
   return (
-    <section ref={ref} id="home" className="relative min-h-screen flex items-center overflow-hidden">
+    <section ref={ref} id="home" className="relative min-h-screen flex items-center overflow-hidden pt-24">
       {/* Very subtle text shadow overlay for readability */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-transparent pointer-events-none"></div>
 
       {/* Content */}
-      <motion.div style={{ y, opacity }} className="container mx-auto px-4 relative z-10">
+      <motion.div style={{ y, opacity }} className="container mx-auto px-4 relative z-10 mt-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div className="text-white">
@@ -39,11 +39,11 @@ const Hero = () => {
               <motion.div
                 animate={{ rotate: [0, 360] }}
                 transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-                className="w-8 h-8 rounded-full bg-gradient-to-br from-accent via-primary to-accent flex items-center justify-center"
+                className="w-8 h-8 rounded-full bg-gradient-to-br from-primary via-primary-light to-primary flex items-center justify-center"
               >
                 <Sparkles className="w-5 h-5 text-white" />
               </motion.div>
-              <span className="bg-gradient-to-r from-accent via-primary to-accent bg-clip-text text-transparent font-semibold text-sm uppercase tracking-[0.2em]">
+              <span className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent font-semibold text-sm uppercase tracking-[0.2em]">
                 Premium Solar Solutions
               </span>
             </motion.div>
@@ -52,15 +52,15 @@ const Hero = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.8 }}
-              className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 leading-[1.1] tracking-tight"
+              className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 leading-[1.1] tracking-tight"
               style={{ fontFamily: 'var(--font-playfair)' }}
             >
               Power Your Future with{' '}
               <motion.span
-                className="bg-gradient-to-r from-accent via-primary-light to-accent bg-clip-text text-transparent bg-[length:200%_auto]"
+                className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent bg-[length:200%_auto]"
                 animate={{ backgroundPosition: ['0% center', '200% center'] }}
                 transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
-                style={{ textShadow: '0 0 80px rgba(212, 175, 55, 0.3)' }}
+                style={{ textShadow: '0 0 80px rgba(140, 198, 63, 0.3)' }}
               >
                 Solar Energy
               </motion.span>
@@ -82,10 +82,10 @@ const Hero = () => {
               className="flex flex-wrap gap-4 mb-12"
             >
               <motion.a
-                whileHover={{ scale: 1.05, boxShadow: '0 20px 50px rgba(212,175,55,0.5)' }}
+                whileHover={{ scale: 1.05, boxShadow: '0 20px 50px rgba(140,198,63,0.5)' }}
                 whileTap={{ scale: 0.95 }}
                 href="#contact"
-                className="group relative bg-gradient-to-r from-accent via-accent-dark to-accent text-white px-10 py-5 rounded-full font-semibold text-lg overflow-hidden shadow-2xl ring-2 ring-accent/30 ring-offset-2 ring-offset-transparent"
+                className="group relative bg-gradient-to-r from-primary via-primary-dark to-primary text-white px-10 py-5 rounded-full font-semibold text-lg overflow-hidden shadow-2xl ring-2 ring-primary/30 ring-offset-2 ring-offset-transparent"
               >
                 <span className="relative z-10 flex items-center space-x-3">
                   <span className="tracking-wide">Get Free Survey</span>
@@ -98,15 +98,15 @@ const Hero = () => {
                   whileHover={{ x: '100%' }}
                   transition={{ duration: 0.6 }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-accent to-accent-dark opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary-dark opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </motion.a>
 
               <motion.a
                 whileHover={{
                   scale: 1.05,
                   backgroundColor: 'rgba(255,255,255,0.15)',
-                  borderColor: 'rgba(212,175,55,0.8)',
-                  boxShadow: '0 20px 40px rgba(212,175,55,0.3)',
+                  borderColor: 'rgba(140,198,63,0.8)',
+                  boxShadow: '0 20px 40px rgba(140,198,63,0.3)',
                 }}
                 whileTap={{ scale: 0.95 }}
                 href="#systems"
@@ -118,7 +118,7 @@ const Hero = () => {
                     animate={{ rotate: [0, 360] }}
                     transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
                   >
-                    <Sun className="w-5 h-5 text-accent" />
+                    <Sun className="w-5 h-5 text-primary" />
                   </motion.span>
                 </span>
               </motion.a>

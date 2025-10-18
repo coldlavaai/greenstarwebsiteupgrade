@@ -57,12 +57,12 @@ const Process = () => {
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
           >
             <div className="h-px w-12 bg-gradient-to-r from-transparent to-accent"></div>
-            <span className="bg-gradient-to-r from-accent via-primary to-accent bg-clip-text text-transparent font-semibold text-sm uppercase tracking-[0.2em]">
+            <span className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent font-semibold text-sm uppercase tracking-[0.2em]">
               Our Process
             </span>
             <div className="h-px w-12 bg-gradient-to-l from-transparent to-accent"></div>
           </motion.div>
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
             From Consultation to{' '}
             <span className="bg-gradient-to-r from-accent via-primary-light to-accent bg-clip-text text-transparent">Installation</span>
           </h2>
@@ -75,9 +75,9 @@ const Process = () => {
         <div className="relative">
           {/* Timeline Line - Premium gradient */}
           <div className="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full">
-            <div className="absolute inset-0 bg-gradient-to-b from-accent via-primary to-accent/30"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-primary via-primary-light to-primary/30"></div>
             <motion.div
-              className="absolute inset-0 bg-gradient-to-b from-accent to-primary"
+              className="absolute inset-0 bg-gradient-to-b from-primary to-primary-light"
               initial={{ scaleY: 0 }}
               animate={isInView ? { scaleY: 1 } : { scaleY: 0 }}
               transition={{ duration: 1.5, ease: "easeInOut" }}
@@ -101,7 +101,7 @@ const Process = () => {
                 <div className="flex-1 w-full">
                   <motion.div
                     whileHover={{ scale: 1.02, y: -8 }}
-                    className={`group bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl p-10 shadow-2xl hover:shadow-[0_25px_70px_rgba(212,175,55,0.3)] transition-all duration-500 border border-white/10 hover:border-accent/30 relative overflow-hidden ${
+                    className={`group bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl p-10 shadow-2xl hover:shadow-[0_25px_70px_rgba(140,198,63,0.3)] transition-all duration-500 border border-white/10 hover:border-primary/30 relative overflow-hidden ${
                       index % 2 === 0 ? 'lg:mr-8' : 'lg:ml-8'
                     }`}
                   >
@@ -113,7 +113,7 @@ const Process = () => {
                       <motion.div
                         whileHover={{ rotate: 360 }}
                         transition={{ duration: 0.6 }}
-                        className="bg-gradient-to-br from-accent to-accent-dark text-white text-2xl font-bold w-20 h-20 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-xl relative overflow-hidden"
+                        className="bg-gradient-to-br from-primary to-primary-dark text-white text-2xl font-bold w-20 h-20 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-xl relative overflow-hidden"
                         style={{ fontFamily: 'var(--font-playfair)' }}
                       >
                         <span className="relative z-10">{step.number}</span>
@@ -137,9 +137,9 @@ const Process = () => {
                           initial={{ opacity: 0, scale: 0.8 }}
                           animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
                           transition={{ delay: index * 0.2 + idx * 0.1 }}
-                          className="flex items-center space-x-3 text-sm text-white/90 bg-white/5 backdrop-blur-sm px-4 py-3 rounded-xl border border-white/10 hover:border-accent/30 hover:bg-white/10 transition-all group/feature"
+                          className="flex items-center space-x-3 text-sm text-white/90 bg-white/5 backdrop-blur-sm px-4 py-3 rounded-xl border border-white/10 hover:border-primary/30 hover:bg-white/10 transition-all group/feature"
                         >
-                          <div className="w-2 h-2 bg-gradient-to-r from-accent to-primary rounded-full flex-shrink-0"></div>
+                          <div className="w-2 h-2 bg-gradient-to-r from-primary to-primary-light rounded-full flex-shrink-0"></div>
                           <span className="font-medium">{feature}</span>
                         </motion.div>
                       ))}
@@ -158,9 +158,9 @@ const Process = () => {
                   whileHover={{ scale: 1.1, rotate: 360 }}
                   className="relative flex-shrink-0 z-20 group/icon"
                 >
-                  <div className="w-24 h-24 bg-gradient-to-br from-white via-white to-white/90 backdrop-blur-xl rounded-2xl flex items-center justify-center shadow-2xl border-4 border-accent relative overflow-hidden">
+                  <div className="w-24 h-24 bg-gradient-to-br from-white via-white to-white/90 backdrop-blur-xl rounded-2xl flex items-center justify-center shadow-2xl border-4 border-primary relative overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-primary/10"></div>
-                    <step.icon className="w-12 h-12 text-accent relative z-10" />
+                    <step.icon className="w-12 h-12 text-primary relative z-10" />
                   </div>
                   {/* Glow Effect */}
                   <motion.div
@@ -173,7 +173,7 @@ const Process = () => {
                       repeat: Infinity,
                       delay: index * 0.2,
                     }}
-                    className="absolute inset-0 bg-gradient-to-r from-accent to-primary rounded-2xl blur-md"
+                    className="absolute inset-0 bg-gradient-to-r from-primary to-primary-light rounded-2xl blur-md"
                   ></motion.div>
                 </motion.div>
 
@@ -195,10 +195,10 @@ const Process = () => {
             Ready to start your solar journey?
           </p>
           <motion.a
-            whileHover={{ scale: 1.05, boxShadow: '0 20px 50px rgba(212,175,55,0.4)' }}
+            whileHover={{ scale: 1.05, boxShadow: '0 20px 50px rgba(140,198,63,0.4)' }}
             whileTap={{ scale: 0.95 }}
             href="#contact"
-            className="inline-block bg-gradient-to-r from-accent via-accent-dark to-accent text-white px-12 py-5 rounded-full font-semibold text-lg hover:shadow-2xl transition-all relative overflow-hidden group"
+            className="inline-block bg-gradient-to-r from-primary via-primary-dark to-primary text-white px-12 py-5 rounded-full font-semibold text-lg hover:shadow-2xl transition-all relative overflow-hidden group"
           >
             <span className="relative z-10 tracking-wide">Book Your Free Survey</span>
             <motion.div

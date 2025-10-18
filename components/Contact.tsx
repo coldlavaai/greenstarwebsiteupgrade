@@ -72,12 +72,12 @@ const Contact = () => {
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
           >
             <div className="h-px w-12 bg-gradient-to-r from-transparent to-accent"></div>
-            <span className="bg-gradient-to-r from-accent via-primary to-accent bg-clip-text text-transparent font-semibold text-sm uppercase tracking-[0.2em]">
+            <span className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent font-semibold text-sm uppercase tracking-[0.2em]">
               Get In Touch
             </span>
             <div className="h-px w-12 bg-gradient-to-l from-transparent to-accent"></div>
           </motion.div>
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
             Book Your{' '}
             <span className="bg-gradient-to-r from-accent via-primary-light to-accent bg-clip-text text-transparent">Free Survey</span>
           </h2>
@@ -113,10 +113,10 @@ const Contact = () => {
                   animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
                   transition={{ delay: index * 0.1 + 0.3 }}
                   whileHover={{ x: 10, scale: 1.02 }}
-                  className="flex items-center space-x-5 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl p-6 rounded-2xl shadow-lg hover:shadow-[0_20px_60px_rgba(212,175,55,0.3)] hover:border-accent/50 transition-all border border-white/10"
+                  className="flex items-center space-x-5 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl p-6 rounded-2xl shadow-lg hover:shadow-[0_20px_60px_rgba(140,198,63,0.3)] hover:border-primary/50 transition-all border border-white/10"
                 >
                   <div className="bg-gradient-to-br from-accent/20 to-primary/20 w-16 h-16 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <info.icon className="w-7 h-7 text-accent" />
+                    <info.icon className="w-7 h-7 text-primary" />
                   </div>
                   <div>
                     <div className="text-sm text-white/50 font-medium uppercase tracking-wider">{info.title}</div>
@@ -131,7 +131,7 @@ const Contact = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ delay: 0.6 }}
-              className="bg-gradient-to-br from-accent via-accent-dark to-accent rounded-3xl p-8 text-white shadow-2xl relative overflow-hidden"
+              className="bg-gradient-to-br from-primary via-primary-dark to-primary rounded-3xl p-8 text-white shadow-2xl relative overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent"></div>
               <h4 className="text-3xl font-bold mb-6 relative z-10" style={{ fontFamily: 'var(--font-playfair)' }}>Why Choose Us?</h4>
@@ -240,10 +240,10 @@ const Contact = () => {
 
                   {/* Submit Button - Premium styling */}
                   <motion.button
-                    whileHover={{ scale: 1.02, boxShadow: '0 20px 50px rgba(212,175,55,0.4)' }}
+                    whileHover={{ scale: 1.02, boxShadow: '0 20px 50px rgba(140,198,63,0.4)' }}
                     whileTap={{ scale: 0.98 }}
                     type="submit"
-                    className="w-full bg-gradient-to-r from-accent via-accent-dark to-accent text-white py-5 rounded-xl font-semibold text-lg hover:shadow-2xl transition-all flex items-center justify-center space-x-3 relative overflow-hidden group"
+                    className="w-full bg-gradient-to-r from-primary via-primary-dark to-primary text-white py-5 rounded-xl font-semibold text-lg hover:shadow-2xl transition-all flex items-center justify-center space-x-3 relative overflow-hidden group"
                   >
                     <span className="relative z-10 tracking-wide">Send Message</span>
                     <Send className="w-5 h-5 relative z-10" />

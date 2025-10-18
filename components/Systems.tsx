@@ -57,12 +57,12 @@ const Systems = () => {
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
           >
             <div className="h-px w-12 bg-gradient-to-r from-transparent to-accent"></div>
-            <span className="bg-gradient-to-r from-accent via-primary to-accent bg-clip-text text-transparent font-semibold text-sm uppercase tracking-[0.2em]">
+            <span className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent font-semibold text-sm uppercase tracking-[0.2em]">
               Our Solutions
             </span>
             <div className="h-px w-12 bg-gradient-to-l from-transparent to-accent"></div>
           </motion.div>
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
             Tailored Solar & Storage{' '}
             <span className="bg-gradient-to-r from-accent via-primary-light to-accent bg-clip-text text-transparent">Systems</span>
           </h2>
@@ -89,10 +89,10 @@ const Systems = () => {
             Not sure which system is right for you?
           </p>
           <motion.a
-            whileHover={{ scale: 1.05, boxShadow: '0 20px 50px rgba(212,175,55,0.4)' }}
+            whileHover={{ scale: 1.05, boxShadow: '0 20px 50px rgba(140,198,63,0.4)' }}
             whileTap={{ scale: 0.95 }}
             href="#contact"
-            className="inline-block bg-gradient-to-r from-accent via-accent-dark to-accent text-white px-12 py-5 rounded-full font-semibold text-lg hover:shadow-2xl transition-all relative overflow-hidden group"
+            className="inline-block bg-gradient-to-r from-primary via-primary-dark to-primary text-white px-12 py-5 rounded-full font-semibold text-lg hover:shadow-2xl transition-all relative overflow-hidden group"
           >
             <span className="relative z-10 tracking-wide">Schedule Free Consultation</span>
             <motion.div
@@ -170,7 +170,7 @@ const ServiceCard = ({ service, index, isInView }: any) => {
         >
           <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-xl flex items-center justify-center border border-white/20 shadow-2xl relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            <service.icon className="w-10 h-10 text-accent relative z-10" />
+            <service.icon className="w-10 h-10 text-primary relative z-10" />
           </div>
         </motion.div>
 
@@ -207,7 +207,7 @@ const ServiceCard = ({ service, index, isInView }: any) => {
               className="flex items-center space-x-3 text-white/80 text-base group/item"
             >
               <motion.div
-                className="flex-shrink-0 w-2 h-2 rounded-full bg-gradient-to-r from-accent to-primary shadow-lg"
+                className="flex-shrink-0 w-2 h-2 rounded-full bg-gradient-to-r from-primary to-primary-light shadow-lg"
                 animate={{
                   scale: isHovered ? 1.3 : 1,
                 }}
@@ -227,7 +227,7 @@ const ServiceCard = ({ service, index, isInView }: any) => {
           }}
           transition={{ duration: 0.3 }}
         >
-          <span className="text-white font-semibold text-base border-b-2 border-accent/50 group-hover/btn:border-accent transition-colors pb-1">
+          <span className="text-white font-semibold text-base border-b-2 border-primary/50 group-hover/btn:border-primary transition-colors pb-1">
             Learn More
           </span>
           <motion.div
@@ -236,7 +236,7 @@ const ServiceCard = ({ service, index, isInView }: any) => {
             }}
             transition={{ duration: 0.3 }}
           >
-            <ArrowRight className="w-5 h-5 text-accent" />
+            <ArrowRight className="w-5 h-5 text-primary" />
           </motion.div>
         </motion.a>
       </div>

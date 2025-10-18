@@ -72,12 +72,12 @@ const Gallery = () => {
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
           >
             <div className="h-px w-12 bg-gradient-to-r from-transparent to-accent"></div>
-            <span className="bg-gradient-to-r from-accent via-primary to-accent bg-clip-text text-transparent font-semibold text-sm uppercase tracking-[0.2em]">
+            <span className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent font-semibold text-sm uppercase tracking-[0.2em]">
               Our Projects
             </span>
             <div className="h-px w-12 bg-gradient-to-l from-transparent to-accent"></div>
           </motion.div>
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
             Recent{' '}
             <span className="bg-gradient-to-r from-accent via-primary-light to-accent bg-clip-text text-transparent">Installations</span>
           </h2>
@@ -133,15 +133,15 @@ const Gallery = () => {
                   </h3>
                   <div className="space-y-2 text-white/90 text-sm font-light">
                     <div className="flex items-center space-x-2">
-                      <MapPin className="w-4 h-4 text-accent" />
+                      <MapPin className="w-4 h-4 text-primary" />
                       <span>{project.location}</span>
                     </div>
                     <div className="flex items-center space-x-2">
-                      <Zap className="w-4 h-4 text-accent" />
+                      <Zap className="w-4 h-4 text-primary" />
                       <span>{project.capacity}</span>
                     </div>
                     <div className="flex items-center space-x-2">
-                      <Calendar className="w-4 h-4 text-accent" />
+                      <Calendar className="w-4 h-4 text-primary" />
                       <span>{project.date}</span>
                     </div>
                   </div>
@@ -167,10 +167,10 @@ const Gallery = () => {
           className="text-center mt-20"
         >
           <motion.a
-            whileHover={{ scale: 1.05, boxShadow: '0 20px 50px rgba(212,175,55,0.4)' }}
+            whileHover={{ scale: 1.05, boxShadow: '0 20px 50px rgba(140,198,63,0.4)' }}
             whileTap={{ scale: 0.95 }}
             href="#contact"
-            className="inline-block bg-gradient-to-r from-accent via-accent-dark to-accent text-white px-12 py-5 rounded-full font-semibold text-lg shadow-xl relative overflow-hidden group"
+            className="inline-block bg-gradient-to-r from-primary via-primary-dark to-primary text-white px-12 py-5 rounded-full font-semibold text-lg shadow-xl relative overflow-hidden group"
           >
             <span className="relative z-10 tracking-wide">Start Your Project</span>
             <motion.div

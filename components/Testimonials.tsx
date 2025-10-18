@@ -79,12 +79,12 @@ const Testimonials = () => {
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
           >
             <div className="h-px w-12 bg-gradient-to-r from-transparent to-accent"></div>
-            <span className="bg-gradient-to-r from-accent via-primary to-accent bg-clip-text text-transparent font-semibold text-sm uppercase tracking-[0.2em]">
+            <span className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent font-semibold text-sm uppercase tracking-[0.2em]">
               Testimonials
             </span>
             <div className="h-px w-12 bg-gradient-to-l from-transparent to-accent"></div>
           </motion.div>
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
             What Our{' '}
             <span className="bg-gradient-to-r from-accent via-primary-light to-accent bg-clip-text text-transparent">Customers Say</span>
           </h2>
@@ -102,7 +102,7 @@ const Testimonials = () => {
             className="relative"
           >
             {/* Main Card - Premium glass morphism */}
-            <div className="bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-xl rounded-3xl p-10 md:p-16 border border-white/20 shadow-[0_25px_70px_rgba(212,175,55,0.3)] relative overflow-hidden">
+            <div className="bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-xl rounded-3xl p-10 md:p-16 border border-white/20 shadow-[0_25px_70px_rgba(140,198,63,0.3)] relative overflow-hidden">
               {/* Accent gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-primary/5 pointer-events-none"></div>
 
@@ -111,7 +111,7 @@ const Testimonials = () => {
                 initial={{ scale: 0, rotate: -180 }}
                 animate={isInView ? { scale: 1, rotate: 0 } : { scale: 0, rotate: -180 }}
                 transition={{ delay: 0.5, type: 'spring' }}
-                className="absolute -top-6 left-10 bg-gradient-to-br from-accent to-accent-dark w-16 h-16 rounded-2xl flex items-center justify-center shadow-2xl"
+                className="absolute -top-6 left-10 bg-gradient-to-br from-primary to-primary-dark w-16 h-16 rounded-2xl flex items-center justify-center shadow-2xl"
               >
                 <Quote className="w-8 h-8 text-white" />
                 <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-2xl"></div>
@@ -134,7 +134,7 @@ const Testimonials = () => {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: i * 0.1 }}
                       >
-                        <Star className="w-7 h-7 fill-accent text-accent drop-shadow-lg" />
+                        <Star className="w-7 h-7 fill-primary text-primary drop-shadow-lg" />
                       </motion.div>
                     ))}
                   </div>
@@ -146,7 +146,7 @@ const Testimonials = () => {
 
                   {/* Author Info */}
                   <div className="flex items-center space-x-5 relative z-10">
-                    <div className="w-20 h-20 bg-gradient-to-br from-accent via-accent-dark to-accent rounded-full flex items-center justify-center text-4xl shadow-xl relative overflow-hidden">
+                    <div className="w-20 h-20 bg-gradient-to-br from-primary via-primary-dark to-primary rounded-full flex items-center justify-center text-4xl shadow-xl relative overflow-hidden">
                       <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent"></div>
                       <span className="relative z-10">{testimonials[currentIndex].image}</span>
                     </div>
@@ -169,7 +169,7 @@ const Testimonials = () => {
                 whileHover={{ scale: 1.1, backgroundColor: 'rgba(212, 175, 55, 0.2)' }}
                 whileTap={{ scale: 0.9 }}
                 onClick={prevTestimonial}
-                className="bg-white/10 backdrop-blur-xl hover:bg-white/20 text-white w-14 h-14 rounded-full flex items-center justify-center transition-all border-2 border-white/20 hover:border-accent/50 shadow-lg"
+                className="bg-white/10 backdrop-blur-xl hover:bg-white/20 text-white w-14 h-14 rounded-full flex items-center justify-center transition-all border-2 border-white/20 hover:border-primary/50 shadow-lg"
               >
                 <ChevronLeft className="w-6 h-6" />
               </motion.button>
@@ -182,7 +182,7 @@ const Testimonials = () => {
                     onClick={() => setCurrentIndex(index)}
                     className={`transition-all ${
                       index === currentIndex
-                        ? 'w-10 h-2.5 bg-gradient-to-r from-accent to-primary shadow-lg'
+                        ? 'w-10 h-2.5 bg-gradient-to-r from-primary to-primary-light shadow-lg'
                         : 'w-2.5 h-2.5 bg-white/30 hover:bg-white/50'
                     } rounded-full`}
                   />
@@ -193,7 +193,7 @@ const Testimonials = () => {
                 whileHover={{ scale: 1.1, backgroundColor: 'rgba(212, 175, 55, 0.2)' }}
                 whileTap={{ scale: 0.9 }}
                 onClick={nextTestimonial}
-                className="bg-white/10 backdrop-blur-xl hover:bg-white/20 text-white w-14 h-14 rounded-full flex items-center justify-center transition-all border-2 border-white/20 hover:border-accent/50 shadow-lg"
+                className="bg-white/10 backdrop-blur-xl hover:bg-white/20 text-white w-14 h-14 rounded-full flex items-center justify-center transition-all border-2 border-white/20 hover:border-primary/50 shadow-lg"
               >
                 <ChevronRight className="w-6 h-6" />
               </motion.button>
@@ -218,9 +218,9 @@ const Testimonials = () => {
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ delay: 0.7 + index * 0.1 }}
                 whileHover={{ y: -5, scale: 1.05 }}
-                className="text-center p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-accent/30 transition-all"
+                className="text-center p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-primary/30 transition-all"
               >
-                <div className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-accent via-primary to-accent bg-clip-text text-transparent mb-3" style={{ fontFamily: 'var(--font-playfair)' }}>
+                <div className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent mb-3" style={{ fontFamily: 'var(--font-playfair)' }}>
                   {stat.value}
                 </div>
                 <div className="text-white/70 text-sm md:text-base font-light">{stat.label}</div>
