@@ -18,20 +18,20 @@ const Navigation = () => {
   }, []);
 
   const navItems = [
-    { name: 'Home', href: '#home' },
-    { name: 'About Us', href: '#about' },
+    { name: 'Home', href: '/' },
+    { name: 'About Us', href: '/#about' },
     {
       name: 'Systems',
-      href: '#systems',
+      href: '/#systems',
       submenu: [
-        { name: 'Solar Panels for Home', href: '#solar-home' },
-        { name: 'Battery Storage for Home', href: '#battery-home' },
-        { name: 'Solar Panels for Business', href: '#solar-business' },
-        { name: 'Battery Storage for Business', href: '#battery-business' },
+        { name: 'Solar Panels for Home', href: '/solar-panels-home' },
+        { name: 'Battery Storage for Home', href: '/battery-storage-home' },
+        { name: 'Solar Panels for Business', href: '/solar-panels-business' },
+        { name: 'Battery Storage for Business', href: '/battery-storage-business' },
       ],
     },
-    { name: 'Process', href: '#process' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Process', href: '/#process' },
+    { name: 'Contact', href: '/#contact' },
   ];
 
   return (
@@ -48,7 +48,7 @@ const Navigation = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <motion.a
-            href="#home"
+            href="/"
             whileHover={{ scale: 1.05 }}
             className="flex items-center"
           >
@@ -104,7 +104,7 @@ const Navigation = () => {
             <motion.a
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              href="#contact"
+              href="/#contact"
               className="bg-[#8cc63f] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#7ab52f] transition-colors shadow-lg"
             >
               Get Free Quote
@@ -156,7 +156,7 @@ const Navigation = () => {
               ))}
               <div className="p-4">
                 <a
-                  href="#contact"
+                  href="/#contact"
                   className="block w-full bg-[#8cc63f] text-white text-center px-6 py-3 rounded-full font-semibold hover:bg-[#7ab52f] transition-colors"
                   onClick={() => setIsOpen(false)}
                 >

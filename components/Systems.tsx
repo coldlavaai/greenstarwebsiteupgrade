@@ -117,13 +117,14 @@ const ServiceCard = ({ service, index, isInView }: any) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <motion.div
+    <motion.a
+      href={service.link}
       initial={{ opacity: 0, y: 30 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
       transition={{ delay: index * 0.1, duration: 0.5 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="group relative rounded-3xl overflow-hidden cursor-pointer h-full"
+      className="group relative rounded-3xl overflow-hidden cursor-pointer h-full block"
       style={{
         boxShadow: isHovered
           ? '0 25px 70px rgba(212, 175, 55, 0.3), 0 0 0 1px rgba(212, 175, 55, 0.2)'
@@ -223,8 +224,7 @@ const ServiceCard = ({ service, index, isInView }: any) => {
         </ul>
 
         {/* Glass morphism CTA button */}
-        <motion.a
-          href={service.link}
+        <motion.div
           className="inline-flex items-center space-x-3 self-start group/btn"
           animate={{
             x: isHovered ? 8 : 0,
@@ -242,7 +242,7 @@ const ServiceCard = ({ service, index, isInView }: any) => {
           >
             <ArrowRight className="w-5 h-5 text-primary" />
           </motion.div>
-        </motion.a>
+        </motion.div>
       </div>
 
       {/* Premium accent line on hover */}
@@ -264,7 +264,7 @@ const ServiceCard = ({ service, index, isInView }: any) => {
         }}
         transition={{ duration: 0.3 }}
       />
-    </motion.div>
+    </motion.a>
   );
 };
 
