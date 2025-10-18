@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin, ArrowUp } from 'lucide-react';
+import { Facebook, Instagram, Mail, Phone, MapPin, ArrowUp } from 'lucide-react';
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -31,22 +31,13 @@ const Footer = () => {
 
   const socialLinks = [
     { icon: Facebook, href: '#', label: 'Facebook' },
-    { icon: Twitter, href: '#', label: 'Twitter' },
     { icon: Instagram, href: '#', label: 'Instagram' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
   ];
 
   return (
-    <footer className="bg-gray-900 text-white relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }}
-        />
-      </div>
+    <footer className="bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white relative overflow-hidden">
+      {/* Subtle gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent"></div>
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Main Footer Content */}
@@ -59,9 +50,13 @@ const Footer = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <div className="text-2xl font-bold mb-4">
-                <span className="text-[#8cc63f]">Green</span>star Solar
-              </div>
+              <a href="#home" className="inline-block mb-6">
+                <img
+                  src="https://irp.cdn-website.com/8f142869/dms3rep/multi/Greenstar_Solar_Logo_WHITE.TAG_HZ-3x.png"
+                  alt="Greenstar Solar"
+                  className="h-12 w-auto"
+                />
+              </a>
               <p className="text-gray-400 mb-6 leading-relaxed">
                 Leading the way in renewable energy solutions. We help homes and businesses transition to clean, sustainable solar power.
               </p>
