@@ -39,7 +39,8 @@ const About = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ delay: 0.3 }}
-              className="text-4xl md:text-5xl font-bold text-white mt-4 mb-6"
+              className="text-4xl md:text-5xl font-bold text-white mt-4 mb-6 tracking-tight"
+              style={{ fontFamily: 'var(--font-playfair)' }}
             >
               Leading the Way in{' '}
               <span className="text-[#8cc63f]">Renewable Energy</span>
@@ -108,7 +109,7 @@ const About = () => {
                 <div className="bg-[#8cc63f]/20 w-14 h-14 rounded-xl flex items-center justify-center mb-4">
                   <stat.icon className="w-7 h-7 text-[#8cc63f]" />
                 </div>
-                <div className="text-4xl font-bold text-white mb-2">{stat.value}</div>
+                <div className="text-4xl font-bold text-white mb-2" style={{ fontFamily: 'var(--font-playfair)' }}>{stat.value}</div>
                 <div className="text-white/70 font-medium">{stat.label}</div>
               </motion.div>
             ))}

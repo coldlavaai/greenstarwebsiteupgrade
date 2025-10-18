@@ -269,7 +269,7 @@ const Contact = () => {
                   >
                     <CheckCircle className="w-12 h-12 text-white" />
                   </motion.div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Thank You!</h3>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2" style={{ fontFamily: 'var(--font-playfair)' }}>Thank You!</h3>
                   <p className="text-gray-600">
                     We've received your message and will get back to you soon.
                   </p>
