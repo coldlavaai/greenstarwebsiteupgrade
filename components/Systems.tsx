@@ -16,6 +16,7 @@ const Systems = () => {
       description: 'Transform your home with our premium residential solar panel installations. Reduce your electricity bills and increase your property value.',
       features: ['Free energy assessment', 'Custom system design', '25-year warranty', 'Smart monitoring'],
       image: 'https://irp.cdn-website.com/8f142869/dms3rep/multi/AdobeStock_855615596.jpeg',
+      link: '/solar-panels-home',
     },
     {
       icon: Battery,
@@ -23,6 +24,7 @@ const Systems = () => {
       description: 'Store excess solar energy and use it when you need it most. Achieve energy independence with our advanced battery solutions.',
       features: ['24/7 backup power', 'Peak shaving', 'Seamless integration', 'Smart controls'],
       image: 'https://irp.cdn-website.com/8f142869/dms3rep/multi/AdobeStock_553388506--281-29.jpeg',
+      link: '/battery-storage-home',
     },
     {
       icon: Building2,
@@ -30,6 +32,7 @@ const Systems = () => {
       description: 'Reduce operational costs and demonstrate environmental responsibility with commercial solar installations.',
       features: ['ROI analysis', 'Scalable solutions', 'Tax incentives', 'Minimal downtime'],
       image: 'https://irp.cdn-website.com/8f142869/dms3rep/multi/AdobeStock_586564893-0f77e5a0-84f93a01.jpeg',
+      link: '/solar-panels-business',
     },
     {
       icon: Zap,
@@ -37,6 +40,7 @@ const Systems = () => {
       description: 'Ensure business continuity and optimize energy costs with commercial-grade battery storage systems.',
       features: ['Demand response', 'Grid independence', 'Load management', 'Remote monitoring'],
       image: 'https://irp.cdn-website.com/8f142869/dms3rep/multi/Blog_image_2.webp',
+      link: '/battery-storage-business',
     },
   ];
 
@@ -220,7 +224,7 @@ const ServiceCard = ({ service, index, isInView }: any) => {
 
         {/* Glass morphism CTA button */}
         <motion.a
-          href="#contact"
+          href={service.link}
           className="inline-flex items-center space-x-3 self-start group/btn"
           animate={{
             x: isHovered ? 8 : 0,
