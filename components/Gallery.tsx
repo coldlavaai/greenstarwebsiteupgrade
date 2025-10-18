@@ -26,11 +26,21 @@ const Gallery = ({ data }: GalleryProps) => {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
+  // Hardcoded image URLs as fallbacks
+  const imageMap: Record<string, string> = {
+    'Residential Solar Installation': 'https://irp.cdn-website.com/8f142869/dms3rep/multi/AdobeStock_855615596.jpeg',
+    'Commercial Rooftop Array': 'https://irp.cdn-website.com/8f142869/dms3rep/multi/AdobeStock_586564893-0f77e5a0-84f93a01.jpeg',
+    'Home Battery Storage': 'https://irp.cdn-website.com/8f142869/dms3rep/multi/AdobeStock_553388506--281-29.jpeg',
+    'Office Building Solar': 'https://irp.cdn-website.com/8f142869/dms3rep/multi/Blog_image_2.webp',
+    'Warehouse Solar Installation': 'https://irp.cdn-website.com/8f142869/dms3rep/multi/AdobeStock_855615596.jpeg',
+    'Farm Solar Project': 'https://irp.cdn-website.com/8f142869/dms3rep/multi/AdobeStock_586564893-0f77e5a0-84f93a01.jpeg',
+  };
+
   // Map CMS data or use fallback
   const projects = data?.map(item => ({
     _id: item._id,
     _type: item._type,
-    image: item.image ? urlFor(item.image).width(800).url() : '',
+    image: item.image ? urlFor(item.image).width(800).url() : (imageMap[item.title] || ''),
     title: item.title,
     location: item.location || '',
     capacity: item.systemSize || '',

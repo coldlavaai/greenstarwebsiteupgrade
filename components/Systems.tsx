@@ -34,6 +34,21 @@ const Systems = ({ data }: SystemsProps) => {
     Home: Home,
   };
 
+  // Hardcoded image URLs as fallbacks
+  const imageMap: Record<string, string> = {
+    'Solar Panels for Home': 'https://irp.cdn-website.com/8f142869/dms3rep/multi/AdobeStock_855615596.jpeg',
+    'Battery Storage for Home': 'https://irp.cdn-website.com/8f142869/dms3rep/multi/AdobeStock_553388506--281-29.jpeg',
+    'Solar Panels for Business': 'https://irp.cdn-website.com/8f142869/dms3rep/multi/AdobeStock_586564893-0f77e5a0-84f93a01.jpeg',
+    'Battery Storage for Business': 'https://irp.cdn-website.com/8f142869/dms3rep/multi/Blog_image_2.webp',
+  };
+
+  const linkMap: Record<string, string> = {
+    'Solar Panels for Home': '/solar-panels-home',
+    'Battery Storage for Home': '/battery-storage-home',
+    'Solar Panels for Business': '/solar-panels-business',
+    'Battery Storage for Business': '/battery-storage-business',
+  };
+
   // Map CMS data to component format or use fallback
   const services = data?.map(service => ({
     _id: service._id,
@@ -42,8 +57,8 @@ const Systems = ({ data }: SystemsProps) => {
     title: service.title,
     description: service.description,
     features: service.features || [],
-    image: service.image,
-    link: `/${service.category || 'services'}`,
+    image: service.image ? urlFor(service.image).width(800).url() : (imageMap[service.title] || ''),
+    link: linkMap[service.title] || `/${service.category || 'services'}`,
   })) || [
     {
       icon: Sun,
