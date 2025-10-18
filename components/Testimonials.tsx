@@ -54,16 +54,9 @@ const Testimonials = () => {
   };
 
   return (
-    <section ref={ref} className="py-24 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }}
-        />
-      </div>
+    <section ref={ref} className="py-24 bg-transparent relative overflow-hidden">
+      {/* Subtle gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent"></div>
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
@@ -102,16 +95,16 @@ const Testimonials = () => {
             className="relative"
           >
             {/* Main Card - Premium glass morphism */}
-            <div className="bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-xl rounded-3xl p-10 md:p-16 border border-white/20 shadow-[0_25px_70px_rgba(140,198,63,0.3)] relative overflow-hidden">
+            <div className="bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-xl rounded-3xl p-10 md:p-16 border border-white/20 shadow-[0_25px_70px_rgba(140,198,63,0.3)] relative overflow-visible">
               {/* Accent gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-primary/5 pointer-events-none"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-primary/5 pointer-events-none rounded-3xl"></div>
 
               {/* Quote Icon - Premium styling */}
               <motion.div
                 initial={{ scale: 0, rotate: -180 }}
                 animate={isInView ? { scale: 1, rotate: 0 } : { scale: 0, rotate: -180 }}
                 transition={{ delay: 0.5, type: 'spring' }}
-                className="absolute -top-6 left-10 bg-gradient-to-br from-primary to-primary-dark w-16 h-16 rounded-2xl flex items-center justify-center shadow-2xl"
+                className="absolute top-8 left-10 bg-gradient-to-br from-primary to-primary-dark w-16 h-16 rounded-2xl flex items-center justify-center shadow-2xl z-10"
               >
                 <Quote className="w-8 h-8 text-white" />
                 <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-2xl"></div>
@@ -124,6 +117,7 @@ const Testimonials = () => {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -100 }}
                   transition={{ duration: 0.3 }}
+                  className="pt-12"
                 >
                   {/* Stars */}
                   <div className="flex space-x-1.5 mb-8 relative z-10">
