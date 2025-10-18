@@ -28,16 +28,10 @@ Once the documents are created (either automatically or by clicking Create):
 
 ### Step 4: See Your Changes Live
 
-#### Option 1: Using the Presentation Tab (LIVE PREVIEW)
-1. Click the **"Presentation"** tab at the top of the Studio
-2. You'll see your website on the right side
-3. Edit content on the left - see changes in real-time on the right!
-4. Click "Publish" to make changes permanent
-
-#### Option 2: Regular Refresh
-1. Make changes in Studio and click "Publish"
+1. Make changes in Studio and click **"Publish"**
 2. Wait 60 seconds for cache to clear
 3. Refresh your website to see changes
+4. For instant preview: Open your website in another browser tab and refresh after publishing
 
 ## Understanding the Structure
 
@@ -102,22 +96,6 @@ Once the documents are created (either automatically or by clicking Create):
    - Upload an image
 4. Publish
 
-## Live Preview (Presentation Tool)
-
-The **Presentation** tab shows your website in real-time:
-
-### How to Use It:
-1. Click **"Presentation"** at the top
-2. Select a section to edit on the left
-3. Make changes to text/images
-4. Watch them appear instantly on the right!
-5. Click "Publish" when happy
-
-### What You'll See:
-- **Left pane** = Editing interface
-- **Right pane** = Live website preview
-- Changes appear in real-time (no refresh needed!)
-
 ## Troubleshooting
 
 ### "Missing Document ID" Error
@@ -127,11 +105,6 @@ The **Presentation** tab shows your website in real-time:
 1. Make sure you clicked **"Publish"** (not just save)
 2. Wait 60 seconds for cache to clear
 3. Hard refresh: `Ctrl+Shift+R` (Windows) or `Cmd+Shift+R` (Mac)
-
-### Can't See Presentation Tab
-1. Make sure dev server is running (`npm run dev`)
-2. Refresh the Studio page
-3. Check that you're on http://localhost:3000/studio
 
 ### Images Not Uploading
 1. Check file size (max 10MB)
@@ -144,7 +117,7 @@ The **Presentation** tab shows your website in real-time:
 
 ✅ **Use Hotspots** - When uploading images, adjust the hotspot to choose the focal point
 
-✅ **Test Before Publishing** - Use the Presentation preview to see changes before publishing
+✅ **Preview Your Changes** - Open your website in another tab to preview changes after publishing
 
 ✅ **Save Frequently** - Studio auto-saves drafts as you type
 
