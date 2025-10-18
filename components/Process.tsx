@@ -49,23 +49,41 @@ const Process = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-24"
         >
-          <span className="text-[#8cc63f] font-semibold text-sm uppercase tracking-wider">
-            Our Process
-          </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-6">
-            From Consultation to <span className="text-[#8cc63f]">Installation</span>
+          <motion.div
+            className="inline-flex items-center space-x-2 mb-6"
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
+          >
+            <div className="h-px w-12 bg-gradient-to-r from-transparent to-accent"></div>
+            <span className="bg-gradient-to-r from-accent via-primary to-accent bg-clip-text text-transparent font-semibold text-sm uppercase tracking-[0.2em]">
+              Our Process
+            </span>
+            <div className="h-px w-12 bg-gradient-to-l from-transparent to-accent"></div>
+          </motion.div>
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
+            From Consultation to{' '}
+            <span className="bg-gradient-to-r from-accent via-primary-light to-accent bg-clip-text text-transparent">Installation</span>
           </h2>
-          <p className="text-xl text-white/70 max-w-3xl mx-auto">
+          <p className="text-xl md:text-2xl text-white/60 max-w-3xl mx-auto font-light leading-relaxed">
             Our streamlined 4-step process ensures a smooth transition to solar energy
           </p>
         </motion.div>
 
         {/* Timeline */}
         <div className="relative">
-          {/* Timeline Line */}
-          <div className="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-[#8cc63f] via-[#8cc63f]/50 to-[#8cc63f]/20"></div>
+          {/* Timeline Line - Premium gradient */}
+          <div className="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full">
+            <div className="absolute inset-0 bg-gradient-to-b from-accent via-primary to-accent/30"></div>
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-b from-accent to-primary"
+              initial={{ scaleY: 0 }}
+              animate={isInView ? { scaleY: 1 } : { scaleY: 0 }}
+              transition={{ duration: 1.5, ease: "easeInOut" }}
+              style={{ transformOrigin: "top" }}
+            />
+          </div>
 
           {/* Steps */}
           <div className="space-y-20">
@@ -82,66 +100,80 @@ const Process = () => {
                 {/* Content Card */}
                 <div className="flex-1 w-full">
                   <motion.div
-                    whileHover={{ scale: 1.02, y: -5 }}
-                    className={`bg-white/5 backdrop-blur-sm rounded-3xl p-8 shadow-lg hover:shadow-[0_20px_60px_rgba(140,198,63,0.4)] transition-all border border-white/10 hover:border-[#8cc63f]/50 ${
+                    whileHover={{ scale: 1.02, y: -8 }}
+                    className={`group bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl p-10 shadow-2xl hover:shadow-[0_25px_70px_rgba(212,175,55,0.3)] transition-all duration-500 border border-white/10 hover:border-accent/30 relative overflow-hidden ${
                       index % 2 === 0 ? 'lg:mr-8' : 'lg:ml-8'
                     }`}
                   >
-                    {/* Number Badge */}
-                    <div className="flex items-start gap-6 mb-6">
-                      <div className="bg-[#8cc63f] text-white text-2xl font-bold w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0">
-                        {step.number}
-                      </div>
+                    {/* Gradient overlay on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                    {/* Number Badge - Premium styling */}
+                    <div className="flex items-start gap-6 mb-8 relative z-10">
+                      <motion.div
+                        whileHover={{ rotate: 360 }}
+                        transition={{ duration: 0.6 }}
+                        className="bg-gradient-to-br from-accent to-accent-dark text-white text-2xl font-bold w-20 h-20 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-xl relative overflow-hidden"
+                        style={{ fontFamily: 'var(--font-playfair)' }}
+                      >
+                        <span className="relative z-10">{step.number}</span>
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                      </motion.div>
                       <div className="flex-1">
-                        <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
+                        <h3 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
                           {step.title}
                         </h3>
-                        <p className="text-white/70 leading-relaxed">
+                        <p className="text-white/70 leading-relaxed text-base font-light">
                           {step.description}
                         </p>
                       </div>
                     </div>
 
-                    {/* Features Grid */}
-                    <div className="grid grid-cols-2 gap-3 mt-6">
+                    {/* Features Grid - Premium styling */}
+                    <div className="grid grid-cols-2 gap-4 relative z-10">
                       {step.features.map((feature, idx) => (
                         <motion.div
                           key={feature}
                           initial={{ opacity: 0, scale: 0.8 }}
                           animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
                           transition={{ delay: index * 0.2 + idx * 0.1 }}
-                          className="flex items-center space-x-2 text-sm text-white bg-white/10 px-3 py-2 rounded-lg"
+                          className="flex items-center space-x-3 text-sm text-white/90 bg-white/5 backdrop-blur-sm px-4 py-3 rounded-xl border border-white/10 hover:border-accent/30 hover:bg-white/10 transition-all group/feature"
                         >
-                          <div className="w-1.5 h-1.5 bg-[#8cc63f] rounded-full"></div>
-                          <span>{feature}</span>
+                          <div className="w-2 h-2 bg-gradient-to-r from-accent to-primary rounded-full flex-shrink-0"></div>
+                          <span className="font-medium">{feature}</span>
                         </motion.div>
                       ))}
                     </div>
+
+                    {/* Corner accent */}
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-accent/5 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   </motion.div>
                 </div>
 
-                {/* Center Icon */}
+                {/* Center Icon - Premium glass morphism */}
                 <motion.div
                   initial={{ scale: 0, rotate: -180 }}
                   animate={isInView ? { scale: 1, rotate: 0 } : { scale: 0, rotate: -180 }}
                   transition={{ delay: index * 0.2 + 0.3, duration: 0.5, type: 'spring' }}
-                  className="relative flex-shrink-0 z-20"
+                  whileHover={{ scale: 1.1, rotate: 360 }}
+                  className="relative flex-shrink-0 z-20 group/icon"
                 >
-                  <div className="w-20 h-20 bg-white border-4 border-[#8cc63f] rounded-2xl flex items-center justify-center shadow-lg">
-                    <step.icon className="w-10 h-10 text-[#8cc63f]" />
+                  <div className="w-24 h-24 bg-gradient-to-br from-white via-white to-white/90 backdrop-blur-xl rounded-2xl flex items-center justify-center shadow-2xl border-4 border-accent relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-primary/10"></div>
+                    <step.icon className="w-12 h-12 text-accent relative z-10" />
                   </div>
-                  {/* Pulse Effect */}
+                  {/* Glow Effect */}
                   <motion.div
                     animate={{
-                      scale: [1, 1.2, 1],
-                      opacity: [0.5, 0, 0.5],
+                      scale: [1, 1.3, 1],
+                      opacity: [0.4, 0, 0.4],
                     }}
                     transition={{
-                      duration: 2,
+                      duration: 2.5,
                       repeat: Infinity,
                       delay: index * 0.2,
                     }}
-                    className="absolute inset-0 bg-[#8cc63f] rounded-2xl"
+                    className="absolute inset-0 bg-gradient-to-r from-accent to-primary rounded-2xl blur-md"
                   ></motion.div>
                 </motion.div>
 
@@ -157,18 +189,24 @@ const Process = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ delay: 1 }}
-          className="text-center mt-20"
+          className="text-center mt-24"
         >
-          <p className="text-white/70 mb-6 text-lg">
+          <p className="text-white/60 mb-8 text-xl font-light">
             Ready to start your solar journey?
           </p>
           <motion.a
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.05, boxShadow: '0 20px 50px rgba(212,175,55,0.4)' }}
             whileTap={{ scale: 0.95 }}
             href="#contact"
-            className="inline-block bg-gradient-to-r from-[#8cc63f] to-[#7ab52f] text-white px-10 py-4 rounded-full font-semibold text-lg hover:shadow-xl transition-all"
+            className="inline-block bg-gradient-to-r from-accent via-accent-dark to-accent text-white px-12 py-5 rounded-full font-semibold text-lg hover:shadow-2xl transition-all relative overflow-hidden group"
           >
-            Book Your Free Survey
+            <span className="relative z-10 tracking-wide">Book Your Free Survey</span>
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-white/30 to-transparent"
+              initial={{ x: '-100%' }}
+              whileHover={{ x: '100%' }}
+              transition={{ duration: 0.6 }}
+            />
           </motion.a>
         </motion.div>
       </div>

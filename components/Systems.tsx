@@ -49,19 +49,24 @@ const Systems = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <motion.span
-            className="inline-block text-[#8cc63f] font-semibold text-sm uppercase tracking-wider mb-4"
+          <motion.div
+            className="inline-flex items-center space-x-2 mb-6"
             initial={{ opacity: 0, scale: 0.5 }}
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
           >
-            Our Solutions
-          </motion.span>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-6">
-            Tailored Solar & Storage <span className="bg-gradient-to-r from-[#8cc63f] to-[#7ab52f] bg-clip-text text-transparent">Systems</span>
+            <div className="h-px w-12 bg-gradient-to-r from-transparent to-accent"></div>
+            <span className="bg-gradient-to-r from-accent via-primary to-accent bg-clip-text text-transparent font-semibold text-sm uppercase tracking-[0.2em]">
+              Our Solutions
+            </span>
+            <div className="h-px w-12 bg-gradient-to-l from-transparent to-accent"></div>
+          </motion.div>
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
+            Tailored Solar & Storage{' '}
+            <span className="bg-gradient-to-r from-accent via-primary-light to-accent bg-clip-text text-transparent">Systems</span>
           </h2>
-          <p className="text-xl text-white/70 max-w-3xl mx-auto">
+          <p className="text-xl md:text-2xl text-white/60 max-w-3xl mx-auto font-light leading-relaxed">
             Whether you're a homeowner or business owner, we have the perfect renewable energy solution for your needs
           </p>
         </motion.div>
@@ -78,20 +83,20 @@ const Systems = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ delay: 0.8 }}
-          className="text-center mt-16"
+          className="text-center mt-20"
         >
-          <p className="text-gray-600 mb-6 text-lg">
+          <p className="text-white/60 mb-8 text-xl font-light">
             Not sure which system is right for you?
           </p>
           <motion.a
-            whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(140,198,63,0.3)' }}
+            whileHover={{ scale: 1.05, boxShadow: '0 20px 50px rgba(212,175,55,0.4)' }}
             whileTap={{ scale: 0.95 }}
             href="#contact"
-            className="inline-block bg-gradient-to-r from-[#8cc63f] to-[#7ab52f] text-white px-10 py-4 rounded-full font-semibold text-lg hover:shadow-2xl transition-all relative overflow-hidden group"
+            className="inline-block bg-gradient-to-r from-accent via-accent-dark to-accent text-white px-12 py-5 rounded-full font-semibold text-lg hover:shadow-2xl transition-all relative overflow-hidden group"
           >
-            <span className="relative z-10">Schedule Free Consultation</span>
+            <span className="relative z-10 tracking-wide">Schedule Free Consultation</span>
             <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent"
+              className="absolute inset-0 bg-gradient-to-r from-white/30 to-transparent"
               initial={{ x: '-100%' }}
               whileHover={{ x: '100%' }}
               transition={{ duration: 0.6 }}
@@ -114,9 +119,11 @@ const ServiceCard = ({ service, index, isInView }: any) => {
       transition={{ delay: index * 0.1, duration: 0.5 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="group relative rounded-2xl overflow-hidden cursor-pointer h-full"
+      className="group relative rounded-3xl overflow-hidden cursor-pointer h-full"
       style={{
-        boxShadow: isHovered ? '0 20px 60px rgba(140, 198, 63, 0.4)' : '0 4px 6px rgba(0, 0, 0, 0.1)',
+        boxShadow: isHovered
+          ? '0 25px 70px rgba(212, 175, 55, 0.3), 0 0 0 1px rgba(212, 175, 55, 0.2)'
+          : '0 8px 30px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.05)',
         transition: 'box-shadow 0.4s ease',
       }}
     >
@@ -128,63 +135,63 @@ const ServiceCard = ({ service, index, isInView }: any) => {
             backgroundImage: `url('${service.image}')`,
           }}
           animate={{
-            scale: isHovered ? 1.05 : 1,
+            scale: isHovered ? 1.08 : 1,
           }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         />
-        {/* Black overlay - lighter on hover */}
+        {/* Gradient overlay - creates depth */}
         <motion.div
-          className="absolute inset-0 bg-black"
+          className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/70 to-black/60"
           animate={{
-            opacity: isHovered ? 0.5 : 0.7,
+            opacity: isHovered ? 0.85 : 0.95,
           }}
           transition={{ duration: 0.4 }}
         />
-        {/* Subtle green accent border on hover */}
+        {/* Accent gradient on hover */}
         <motion.div
-          className="absolute inset-0"
-          style={{
-            border: '2px solid rgba(140, 198, 63, 0)',
-          }}
+          className="absolute inset-0 bg-gradient-to-tr from-accent/20 via-primary/20 to-transparent"
           animate={{
-            borderColor: isHovered ? 'rgba(140, 198, 63, 0.5)' : 'rgba(140, 198, 63, 0)',
+            opacity: isHovered ? 1 : 0,
           }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.4 }}
         />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 p-8 h-full min-h-[480px] flex flex-col">
-        {/* Icon - Subtle scale on hover */}
+      <div className="relative z-10 p-10 h-full min-h-[520px] flex flex-col">
+        {/* Glass morphism icon container */}
         <motion.div
-          className="mb-6"
+          className="mb-8"
           animate={{
             scale: isHovered ? 1.1 : 1,
+            y: isHovered ? -4 : 0,
           }}
           transition={{ duration: 0.3 }}
         >
-          <div className="w-16 h-16 rounded-xl bg-white/10 backdrop-blur-sm flex items-center justify-center border border-white/20">
-            <service.icon className="w-8 h-8 text-[#8cc63f]" />
+          <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-xl flex items-center justify-center border border-white/20 shadow-2xl relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <service.icon className="w-10 h-10 text-accent relative z-10" />
           </div>
         </motion.div>
 
-        {/* Title - Subtle lift on hover */}
+        {/* Title with premium typography */}
         <motion.h3
-          className="text-2xl font-bold text-white mb-3"
+          className="text-3xl font-bold text-white mb-4 tracking-tight leading-tight"
+          style={{ fontFamily: 'var(--font-playfair)' }}
           animate={{
-            y: isHovered ? -2 : 0,
+            y: isHovered ? -4 : 0,
           }}
           transition={{ duration: 0.3 }}
         >
           {service.title}
         </motion.h3>
 
-        <p className="text-white/80 mb-6 leading-relaxed text-sm">
+        <p className="text-white/70 mb-8 leading-relaxed text-base font-light">
           {service.description}
         </p>
 
-        {/* Features List - Stagger animation on hover */}
-        <ul className="space-y-2.5 mb-6 flex-grow">
+        {/* Features List with premium styling */}
+        <ul className="space-y-3.5 mb-8 flex-grow">
           {service.features.map((feature: string, idx: number) => (
             <motion.li
               key={feature}
@@ -197,39 +204,56 @@ const ServiceCard = ({ service, index, isInView }: any) => {
                 delay: index * 0.1 + idx * 0.05,
                 duration: 0.3,
               }}
-              className="flex items-center space-x-2 text-white/70 text-sm"
+              className="flex items-center space-x-3 text-white/80 text-base group/item"
             >
               <motion.div
-                className="w-1.5 h-1.5 rounded-full bg-[#8cc63f]"
+                className="flex-shrink-0 w-2 h-2 rounded-full bg-gradient-to-r from-accent to-primary shadow-lg"
                 animate={{
                   scale: isHovered ? 1.3 : 1,
                 }}
                 transition={{ duration: 0.2, delay: idx * 0.05 }}
               />
-              <span>{feature}</span>
+              <span className="group-hover/item:text-white transition-colors">{feature}</span>
             </motion.li>
           ))}
         </ul>
 
-        {/* CTA Button - Minimal hover effect */}
+        {/* Glass morphism CTA button */}
         <motion.a
           href="#contact"
-          className="inline-flex items-center space-x-2 text-white font-medium text-sm self-start group/btn"
+          className="inline-flex items-center space-x-3 self-start group/btn"
           animate={{
-            x: isHovered ? 5 : 0,
+            x: isHovered ? 8 : 0,
           }}
-          transition={{ duration: 0.2 }}
+          transition={{ duration: 0.3 }}
         >
-          <span className="border-b border-white/30 group-hover/btn:border-[#8cc63f] transition-colors">
+          <span className="text-white font-semibold text-base border-b-2 border-accent/50 group-hover/btn:border-accent transition-colors pb-1">
             Learn More
           </span>
-          <ArrowRight className="w-4 h-4 text-[#8cc63f]" />
+          <motion.div
+            animate={{
+              x: isHovered ? 4 : 0,
+            }}
+            transition={{ duration: 0.3 }}
+          >
+            <ArrowRight className="w-5 h-5 text-accent" />
+          </motion.div>
         </motion.a>
       </div>
 
-      {/* Subtle green glow on hover - bottom accent */}
+      {/* Premium accent line on hover */}
       <motion.div
-        className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#8cc63f] to-transparent"
+        className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent to-transparent"
+        initial={{ opacity: 0 }}
+        animate={{
+          opacity: isHovered ? 1 : 0,
+        }}
+        transition={{ duration: 0.3 }}
+      />
+
+      {/* Corner accent */}
+      <motion.div
+        className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-accent/10 to-transparent rounded-bl-full"
         initial={{ opacity: 0 }}
         animate={{
           opacity: isHovered ? 1 : 0,

@@ -64,15 +64,24 @@ const Contact = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <span className="text-[#8cc63f] font-semibold text-sm uppercase tracking-wider">
-            Get In Touch
-          </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-6">
-            Book Your <span className="text-[#8cc63f]">Free Survey</span>
+          <motion.div
+            className="inline-flex items-center space-x-2 mb-6"
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
+          >
+            <div className="h-px w-12 bg-gradient-to-r from-transparent to-accent"></div>
+            <span className="bg-gradient-to-r from-accent via-primary to-accent bg-clip-text text-transparent font-semibold text-sm uppercase tracking-[0.2em]">
+              Get In Touch
+            </span>
+            <div className="h-px w-12 bg-gradient-to-l from-transparent to-accent"></div>
+          </motion.div>
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
+            Book Your{' '}
+            <span className="bg-gradient-to-r from-accent via-primary-light to-accent bg-clip-text text-transparent">Free Survey</span>
           </h2>
-          <p className="text-xl text-white/70 max-w-3xl mx-auto">
+          <p className="text-xl md:text-2xl text-white/60 max-w-3xl mx-auto font-light leading-relaxed">
             Ready to make the switch to solar? Contact us today for a free consultation and site assessment
           </p>
         </motion.div>
@@ -86,15 +95,15 @@ const Contact = () => {
             className="space-y-8"
           >
             <div>
-              <h3 className="text-3xl font-bold text-white mb-4">
+              <h3 className="text-4xl font-bold text-white mb-6 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
                 Let's Start Your Solar Journey
               </h3>
-              <p className="text-white/70 text-lg leading-relaxed mb-8">
+              <p className="text-white/70 text-lg leading-relaxed mb-8 font-light">
                 Our team of experts is ready to help you transition to clean, renewable energy. Get in touch for a free, no-obligation consultation.
               </p>
             </div>
 
-            {/* Contact Cards */}
+            {/* Contact Cards - Premium styling */}
             <div className="space-y-4">
               {contactInfo.map((info, index) => (
                 <motion.a
@@ -104,28 +113,29 @@ const Contact = () => {
                   animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
                   transition={{ delay: index * 0.1 + 0.3 }}
                   whileHover={{ x: 10, scale: 1.02 }}
-                  className="flex items-center space-x-4 bg-white/5 backdrop-blur-sm p-6 rounded-2xl shadow-md hover:shadow-[0_20px_60px_rgba(140,198,63,0.4)] hover:border-[#8cc63f]/50 transition-all border border-white/10"
+                  className="flex items-center space-x-5 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl p-6 rounded-2xl shadow-lg hover:shadow-[0_20px_60px_rgba(212,175,55,0.3)] hover:border-accent/50 transition-all border border-white/10"
                 >
-                  <div className="bg-[#8cc63f]/20 w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <info.icon className="w-6 h-6 text-[#8cc63f]" />
+                  <div className="bg-gradient-to-br from-accent/20 to-primary/20 w-16 h-16 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <info.icon className="w-7 h-7 text-accent" />
                   </div>
                   <div>
-                    <div className="text-sm text-white/60 font-medium">{info.title}</div>
+                    <div className="text-sm text-white/50 font-medium uppercase tracking-wider">{info.title}</div>
                     <div className="text-white font-semibold text-lg">{info.content}</div>
                   </div>
                 </motion.a>
               ))}
             </div>
 
-            {/* Benefits List */}
+            {/* Benefits List - Premium styling */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ delay: 0.6 }}
-              className="bg-gradient-to-br from-[#8cc63f] to-[#7ab52f] rounded-3xl p-8 text-white"
+              className="bg-gradient-to-br from-accent via-accent-dark to-accent rounded-3xl p-8 text-white shadow-2xl relative overflow-hidden"
             >
-              <h4 className="text-2xl font-bold mb-4">Why Choose Us?</h4>
-              <ul className="space-y-3">
+              <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent"></div>
+              <h4 className="text-3xl font-bold mb-6 relative z-10" style={{ fontFamily: 'var(--font-playfair)' }}>Why Choose Us?</h4>
+              <ul className="space-y-4 relative z-10">
                 {[
                   'Free site assessment & consultation',
                   'Transparent pricing with no hidden costs',
@@ -138,9 +148,9 @@ const Contact = () => {
                     initial={{ opacity: 0, x: -20 }}
                     animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
                     transition={{ delay: 0.7 + idx * 0.1 }}
-                    className="flex items-start space-x-3"
+                    className="flex items-start space-x-3 text-base font-light"
                   >
-                    <CheckCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                    <CheckCircle className="w-6 h-6 flex-shrink-0 mt-0.5" />
                     <span>{benefit}</span>
                   </motion.li>
                 ))}
@@ -228,15 +238,21 @@ const Contact = () => {
                     />
                   </div>
 
-                  {/* Submit Button */}
+                  {/* Submit Button - Premium styling */}
                   <motion.button
-                    whileHover={{ scale: 1.02 }}
+                    whileHover={{ scale: 1.02, boxShadow: '0 20px 50px rgba(212,175,55,0.4)' }}
                     whileTap={{ scale: 0.98 }}
                     type="submit"
-                    className="w-full bg-gradient-to-r from-[#8cc63f] to-[#7ab52f] text-white py-4 rounded-xl font-semibold text-lg hover:shadow-xl transition-all flex items-center justify-center space-x-2"
+                    className="w-full bg-gradient-to-r from-accent via-accent-dark to-accent text-white py-5 rounded-xl font-semibold text-lg hover:shadow-2xl transition-all flex items-center justify-center space-x-3 relative overflow-hidden group"
                   >
-                    <span>Send Message</span>
-                    <Send className="w-5 h-5" />
+                    <span className="relative z-10 tracking-wide">Send Message</span>
+                    <Send className="w-5 h-5 relative z-10" />
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent"
+                      initial={{ x: '-100%' }}
+                      whileHover={{ x: '100%' }}
+                      transition={{ duration: 0.6 }}
+                    />
                   </motion.button>
                 </form>
               ) : (

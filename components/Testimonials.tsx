@@ -71,15 +71,24 @@ const Testimonials = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <span className="text-[#8cc63f] font-semibold text-sm uppercase tracking-wider">
-            Testimonials
-          </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-6">
-            What Our <span className="text-[#8cc63f]">Customers Say</span>
+          <motion.div
+            className="inline-flex items-center space-x-2 mb-6"
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
+          >
+            <div className="h-px w-12 bg-gradient-to-r from-transparent to-accent"></div>
+            <span className="bg-gradient-to-r from-accent via-primary to-accent bg-clip-text text-transparent font-semibold text-sm uppercase tracking-[0.2em]">
+              Testimonials
+            </span>
+            <div className="h-px w-12 bg-gradient-to-l from-transparent to-accent"></div>
+          </motion.div>
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
+            What Our{' '}
+            <span className="bg-gradient-to-r from-accent via-primary-light to-accent bg-clip-text text-transparent">Customers Say</span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl md:text-2xl text-white/60 max-w-3xl mx-auto font-light leading-relaxed">
             Join hundreds of satisfied customers who have made the switch to solar energy
           </p>
         </motion.div>
@@ -92,16 +101,20 @@ const Testimonials = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="relative"
           >
-            {/* Main Card */}
-            <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 md:p-12 border border-white/20 shadow-[0_20px_60px_rgba(140,198,63,0.3)]">
-              {/* Quote Icon */}
+            {/* Main Card - Premium glass morphism */}
+            <div className="bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-xl rounded-3xl p-10 md:p-16 border border-white/20 shadow-[0_25px_70px_rgba(212,175,55,0.3)] relative overflow-hidden">
+              {/* Accent gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-primary/5 pointer-events-none"></div>
+
+              {/* Quote Icon - Premium styling */}
               <motion.div
                 initial={{ scale: 0, rotate: -180 }}
                 animate={isInView ? { scale: 1, rotate: 0 } : { scale: 0, rotate: -180 }}
                 transition={{ delay: 0.5, type: 'spring' }}
-                className="absolute -top-6 left-8 bg-[#8cc63f] w-12 h-12 rounded-2xl flex items-center justify-center shadow-xl"
+                className="absolute -top-6 left-10 bg-gradient-to-br from-accent to-accent-dark w-16 h-16 rounded-2xl flex items-center justify-center shadow-2xl"
               >
-                <Quote className="w-6 h-6 text-white" />
+                <Quote className="w-8 h-8 text-white" />
+                <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-2xl"></div>
               </motion.div>
 
               <AnimatePresence mode="wait">
@@ -113,27 +126,35 @@ const Testimonials = () => {
                   transition={{ duration: 0.3 }}
                 >
                   {/* Stars */}
-                  <div className="flex space-x-1 mb-6">
+                  <div className="flex space-x-1.5 mb-8 relative z-10">
                     {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
-                      <Star key={i} className="w-6 h-6 fill-[#8cc63f] text-[#8cc63f]" />
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0, scale: 0 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: i * 0.1 }}
+                      >
+                        <Star className="w-7 h-7 fill-accent text-accent drop-shadow-lg" />
+                      </motion.div>
                     ))}
                   </div>
 
                   {/* Testimonial Text */}
-                  <p className="text-white text-xl md:text-2xl leading-relaxed mb-8 font-light">
+                  <p className="text-white text-xl md:text-3xl leading-relaxed mb-10 font-light relative z-10" style={{ fontFamily: 'var(--font-playfair)', fontStyle: 'italic' }}>
                     "{testimonials[currentIndex].text}"
                   </p>
 
                   {/* Author Info */}
-                  <div className="flex items-center space-x-4">
-                    <div className="w-16 h-16 bg-gradient-to-br from-[#8cc63f] to-[#7ab52f] rounded-full flex items-center justify-center text-3xl">
-                      {testimonials[currentIndex].image}
+                  <div className="flex items-center space-x-5 relative z-10">
+                    <div className="w-20 h-20 bg-gradient-to-br from-accent via-accent-dark to-accent rounded-full flex items-center justify-center text-4xl shadow-xl relative overflow-hidden">
+                      <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent"></div>
+                      <span className="relative z-10">{testimonials[currentIndex].image}</span>
                     </div>
                     <div>
-                      <div className="text-white font-bold text-lg">
+                      <div className="text-white font-bold text-xl mb-1" style={{ fontFamily: 'var(--font-playfair)' }}>
                         {testimonials[currentIndex].name}
                       </div>
-                      <div className="text-gray-300 text-sm">
+                      <div className="text-white/60 text-sm font-light">
                         {testimonials[currentIndex].location} · {testimonials[currentIndex].system}
                       </div>
                     </div>
@@ -142,49 +163,49 @@ const Testimonials = () => {
               </AnimatePresence>
             </div>
 
-            {/* Navigation Buttons */}
-            <div className="flex items-center justify-center space-x-4 mt-8">
+            {/* Navigation Buttons - Premium styling */}
+            <div className="flex items-center justify-center space-x-6 mt-10">
               <motion.button
-                whileHover={{ scale: 1.1 }}
+                whileHover={{ scale: 1.1, backgroundColor: 'rgba(212, 175, 55, 0.2)' }}
                 whileTap={{ scale: 0.9 }}
                 onClick={prevTestimonial}
-                className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white w-12 h-12 rounded-full flex items-center justify-center transition-all border border-white/20"
+                className="bg-white/10 backdrop-blur-xl hover:bg-white/20 text-white w-14 h-14 rounded-full flex items-center justify-center transition-all border-2 border-white/20 hover:border-accent/50 shadow-lg"
               >
                 <ChevronLeft className="w-6 h-6" />
               </motion.button>
 
               {/* Dots Indicator */}
-              <div className="flex space-x-2">
+              <div className="flex space-x-3">
                 {testimonials.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => setCurrentIndex(index)}
                     className={`transition-all ${
                       index === currentIndex
-                        ? 'w-8 h-2 bg-[#8cc63f]'
-                        : 'w-2 h-2 bg-white/30 hover:bg-white/50'
+                        ? 'w-10 h-2.5 bg-gradient-to-r from-accent to-primary shadow-lg'
+                        : 'w-2.5 h-2.5 bg-white/30 hover:bg-white/50'
                     } rounded-full`}
                   />
                 ))}
               </div>
 
               <motion.button
-                whileHover={{ scale: 1.1 }}
+                whileHover={{ scale: 1.1, backgroundColor: 'rgba(212, 175, 55, 0.2)' }}
                 whileTap={{ scale: 0.9 }}
                 onClick={nextTestimonial}
-                className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white w-12 h-12 rounded-full flex items-center justify-center transition-all border border-white/20"
+                className="bg-white/10 backdrop-blur-xl hover:bg-white/20 text-white w-14 h-14 rounded-full flex items-center justify-center transition-all border-2 border-white/20 hover:border-accent/50 shadow-lg"
               >
                 <ChevronRight className="w-6 h-6" />
               </motion.button>
             </div>
           </motion.div>
 
-          {/* Stats Row */}
+          {/* Stats Row - Premium styling */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ delay: 0.6 }}
-            className="grid grid-cols-3 gap-8 mt-16"
+            className="grid grid-cols-3 gap-8 mt-20"
           >
             {[
               { value: '500+', label: 'Happy Customers' },
@@ -196,12 +217,13 @@ const Testimonials = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ delay: 0.7 + index * 0.1 }}
-                className="text-center"
+                whileHover={{ y: -5, scale: 1.05 }}
+                className="text-center p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-accent/30 transition-all"
               >
-                <div className="text-4xl md:text-5xl font-bold text-[#8cc63f] mb-2">
+                <div className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-accent via-primary to-accent bg-clip-text text-transparent mb-3" style={{ fontFamily: 'var(--font-playfair)' }}>
                   {stat.value}
                 </div>
-                <div className="text-gray-300 text-sm md:text-base">{stat.label}</div>
+                <div className="text-white/70 text-sm md:text-base font-light">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>
