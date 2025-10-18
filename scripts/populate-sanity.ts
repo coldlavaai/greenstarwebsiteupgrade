@@ -16,15 +16,15 @@ async function populateSanity() {
     await client.createOrReplace({
       _id: 'heroSection',
       _type: 'heroSection',
-      heading: 'Power Your Home with Clean Energy',
-      subheading: 'Join thousands of UK homeowners saving money and the planet with solar energy. Get a free quote today.',
-      ctaText: 'Get Free Quote',
+      heading: 'Power Your Home with Clean',
+      subheading: 'Bespoke solar energy systems designed to perfectly match your unique requirements. Save money, reduce your carbon footprint, and achieve true energy independence.',
+      ctaText: 'Get Free Survey',
       ctaLink: '#contact',
-      secondaryCtaText: 'Learn More',
-      secondaryCtaLink: '#about',
+      secondaryCtaText: 'Explore Systems',
+      secondaryCtaLink: '#systems',
       stats: [
-        { value: '15+', label: 'Years Experience' },
-        { value: '500+', label: 'Happy Customers' }
+        { _key: 'stat-1', value: '15+', label: 'Years Experience' },
+        { _key: 'stat-2', value: '500+', label: 'Happy Customers' }
       ]
     })
     console.log('✅ Hero Section created')
@@ -125,7 +125,209 @@ async function populateSanity() {
     })
     console.log('✅ Footer Section created')
 
-    console.log('🎉 All sections populated successfully!')
+    // Create Individual Services/Systems
+    const services = [
+      {
+        _id: 'service-solar-home',
+        _type: 'service',
+        title: 'Solar Panels for Home',
+        category: 'solar-panels',
+        description: 'Transform your home with our premium residential solar panel installations. Reduce your electricity bills and increase your property value.',
+        features: ['Free energy assessment', 'Custom system design', '25-year warranty', 'Smart monitoring'],
+        icon: 'Sun',
+        featured: true,
+      },
+      {
+        _id: 'service-battery-home',
+        _type: 'service',
+        title: 'Battery Storage for Home',
+        category: 'battery-storage',
+        description: 'Store excess solar energy and use it when you need it most. Achieve energy independence with our advanced battery solutions.',
+        features: ['24/7 backup power', 'Peak shaving', 'Seamless integration', 'Smart controls'],
+        icon: 'Battery',
+        featured: true,
+      },
+      {
+        _id: 'service-solar-business',
+        _type: 'service',
+        title: 'Solar Panels for Business',
+        category: 'solar-panels',
+        description: 'Reduce operational costs and demonstrate environmental responsibility with commercial solar installations.',
+        features: ['ROI analysis', 'Scalable solutions', 'Tax incentives', 'Minimal downtime'],
+        icon: 'Building2',
+        featured: true,
+      },
+      {
+        _id: 'service-battery-business',
+        _type: 'service',
+        title: 'Battery Storage for Business',
+        category: 'battery-storage',
+        description: 'Ensure business continuity and optimize energy costs with commercial-grade battery storage systems.',
+        features: ['Demand response', 'Grid independence', 'Load management', 'Remote monitoring'],
+        icon: 'Zap',
+        featured: true,
+      },
+    ]
+
+    for (const service of services) {
+      await client.createOrReplace(service)
+      console.log(`✅ Service created: ${service.title}`)
+    }
+
+    // Create Process Steps
+    const processSteps = [
+      {
+        _id: 'process-step-1',
+        _type: 'processStep',
+        order: 1,
+        title: 'Personal Consultation',
+        description: 'We begin with a thorough face to face consultation to understand your energy usage patterns, environmental goals, and budget. Our expert surveyors conduct a comprehensive site assessment, analysing roof orientation, shading, sunlight, cable runs, and optimal placement for inverters and batteries.',
+        icon: 'Search',
+      },
+      {
+        _id: 'process-step-2',
+        _type: 'processStep',
+        order: 2,
+        title: 'Bespoke Design',
+        description: 'Using cutting edge technology and high quality products, we design a bespoke solution that maximises energy efficiency and cost savings tailored specifically to your unique requirements.',
+        icon: 'Lightbulb',
+      },
+      {
+        _id: 'process-step-3',
+        _type: 'processStep',
+        order: 3,
+        title: 'Expert Installation',
+        description: 'Our skilled technicians handle the entire installation process with precision, ensuring your system is ready to perform reliably and efficiently for years to come.',
+        icon: 'Wrench',
+      },
+      {
+        _id: 'process-step-4',
+        _type: 'processStep',
+        order: 4,
+        title: 'Ongoing Support',
+        description: 'Our commitment continues with comprehensive aftercare appointments, app training, and ongoing system monitoring. We stay in close communication so you feel informed and confident at every step.',
+        icon: 'HeartHandshake',
+      },
+    ]
+
+    for (const step of processSteps) {
+      await client.createOrReplace(step)
+      console.log(`✅ Process step created: Step ${step.order}`)
+    }
+
+    // Create Gallery Items
+    const galleryItems = [
+      {
+        _id: 'gallery-1',
+        _type: 'galleryItem',
+        title: 'Residential Solar Installation',
+        location: 'Manchester, UK',
+        systemSize: '8kW System',
+        category: 'residential',
+        featured: true,
+      },
+      {
+        _id: 'gallery-2',
+        _type: 'galleryItem',
+        title: 'Commercial Rooftop Array',
+        location: 'Birmingham, UK',
+        systemSize: '45kW System',
+        category: 'commercial',
+        featured: true,
+      },
+      {
+        _id: 'gallery-3',
+        _type: 'galleryItem',
+        title: 'Home Battery Storage',
+        location: 'London, UK',
+        systemSize: '13.5kWh Battery',
+        category: 'battery',
+        featured: true,
+      },
+      {
+        _id: 'gallery-4',
+        _type: 'galleryItem',
+        title: 'Office Building Solar',
+        location: 'Leeds, UK',
+        systemSize: '65kW System',
+        category: 'commercial',
+        featured: true,
+      },
+      {
+        _id: 'gallery-5',
+        _type: 'galleryItem',
+        title: 'Warehouse Solar Installation',
+        location: 'Liverpool, UK',
+        systemSize: '120kW System',
+        category: 'commercial',
+        featured: true,
+      },
+      {
+        _id: 'gallery-6',
+        _type: 'galleryItem',
+        title: 'Farm Solar Project',
+        location: 'Bristol, UK',
+        systemSize: '95kW System',
+        category: 'commercial',
+        featured: true,
+      },
+    ]
+
+    for (const item of galleryItems) {
+      await client.createOrReplace(item)
+      console.log(`✅ Gallery item created: ${item.title}`)
+    }
+
+    // Create Testimonials
+    const testimonials = [
+      {
+        _id: 'testimonial-1',
+        _type: 'testimonial',
+        customerName: 'Sarah Johnson',
+        location: 'Manchester',
+        rating: 5,
+        testimonial: "Greenstar Solar transformed our home! The installation was seamless, and we're already seeing significant savings on our energy bills. The team was professional, knowledgeable, and incredibly helpful throughout the entire process.",
+        serviceType: 'solar-panels',
+        featured: true,
+      },
+      {
+        _id: 'testimonial-2',
+        _type: 'testimonial',
+        customerName: 'Michael Davies',
+        location: 'Birmingham',
+        rating: 5,
+        testimonial: 'Outstanding service from start to finish. The consultation was thorough, the installation was quick and clean, and the aftercare support has been excellent. Our business is now saving thousands on energy costs.',
+        serviceType: 'solar-panels',
+        featured: true,
+      },
+      {
+        _id: 'testimonial-3',
+        _type: 'testimonial',
+        customerName: 'Emma Wilson',
+        location: 'London',
+        rating: 5,
+        testimonial: 'We were nervous about making the switch to solar, but Greenstar made it so easy. They explained everything clearly, handled all the paperwork, and the system has been performing brilliantly. Highly recommend!',
+        serviceType: 'battery-storage',
+        featured: true,
+      },
+      {
+        _id: 'testimonial-4',
+        _type: 'testimonial',
+        customerName: 'James Thompson',
+        location: 'Leeds',
+        rating: 5,
+        testimonial: "Excellent company! Professional installation, great communication, and the solar panels look fantastic on our roof. The monitoring app is brilliant - we can see exactly how much energy we're generating in real-time.",
+        serviceType: 'solar-panels',
+        featured: true,
+      },
+    ]
+
+    for (const testimonial of testimonials) {
+      await client.createOrReplace(testimonial)
+      console.log(`✅ Testimonial created: ${testimonial.customerName}`)
+    }
+
+    console.log('🎉 All sections and content populated successfully!')
 
   } catch (error) {
     console.error('❌ Error populating Sanity:', error)
