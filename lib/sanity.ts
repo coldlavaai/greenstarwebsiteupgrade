@@ -5,18 +5,22 @@ export const client = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
   apiVersion: '2024-01-01',
-  useCdn: true, // Use CDN for faster response
+  useCdn: true,
   perspective: 'published',
 })
 
-// Client for draft mode with token
+// Client for draft mode with token and stega encoding
 export const draftClient = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
   apiVersion: '2024-01-01',
-  useCdn: false, // Don't use CDN for draft content
+  useCdn: false,
   token: process.env.SANITY_API_READ_TOKEN,
-  perspective: 'previewDrafts', // This allows seeing draft content
+  perspective: 'previewDrafts',
+  stega: {
+    enabled: true,
+    studioUrl: '/studio',
+  },
 })
 
 // Helper to get the right client based on draft mode
