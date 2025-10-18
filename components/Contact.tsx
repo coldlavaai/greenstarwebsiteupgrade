@@ -57,54 +57,54 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" ref={ref} className="py-24 bg-transparent">
+    <section id="contact" ref={ref} className="py-16 md:py-24 bg-transparent">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-12 md:mb-20"
         >
           <motion.div
-            className="inline-flex items-center space-x-2 mb-6"
+            className="inline-flex items-center space-x-2 mb-4 md:mb-6"
             initial={{ opacity: 0, scale: 0.5 }}
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
           >
-            <div className="h-px w-12 bg-gradient-to-r from-transparent to-accent"></div>
-            <span className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent font-semibold text-sm uppercase tracking-[0.2em]">
+            <div className="h-px w-8 md:w-12 bg-gradient-to-r from-transparent to-accent"></div>
+            <span className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent font-semibold text-xs md:text-sm uppercase tracking-[0.15em] md:tracking-[0.2em]">
               Get In Touch
             </span>
-            <div className="h-px w-12 bg-gradient-to-l from-transparent to-accent"></div>
+            <div className="h-px w-8 md:w-12 bg-gradient-to-l from-transparent to-accent"></div>
           </motion.div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4 md:mb-6 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
             Book Your{' '}
             <span className="bg-gradient-to-r from-accent via-primary-light to-accent bg-clip-text text-transparent">Free Survey</span>
           </h2>
-          <p className="text-xl md:text-2xl text-white/60 max-w-3xl mx-auto font-light leading-relaxed">
+          <p className="text-base md:text-xl lg:text-2xl text-white/60 max-w-3xl mx-auto font-light leading-relaxed px-4">
             Ready to make the switch to solar? Contact us today for a free consultation and site assessment
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-12 max-w-6xl mx-auto">
           {/* Contact Information */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
             transition={{ duration: 0.6 }}
-            className="space-y-8"
+            className="space-y-6 md:space-y-8"
           >
             <div>
-              <h3 className="text-4xl font-bold text-white mb-6 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
+              <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4 md:mb-6 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
                 Let's Start Your Solar Journey
               </h3>
-              <p className="text-white/70 text-lg leading-relaxed mb-8 font-light">
+              <p className="text-white/70 text-base md:text-lg leading-relaxed mb-6 md:mb-8 font-light">
                 Our team of experts is ready to help you transition to clean, renewable energy. Get in touch for a free, no-obligation consultation.
               </p>
             </div>
 
             {/* Contact Cards - Premium styling */}
-            <div className="space-y-4">
+            <div className="space-y-3 md:space-y-4">
               {contactInfo.map((info, index) => (
                 <motion.a
                   key={info.title}
@@ -113,14 +113,14 @@ const Contact = () => {
                   animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
                   transition={{ delay: index * 0.1 + 0.3 }}
                   whileHover={{ x: 10, scale: 1.02 }}
-                  className="flex items-center space-x-5 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl p-6 rounded-2xl shadow-lg hover:shadow-[0_20px_60px_rgba(140,198,63,0.3)] hover:border-primary/50 transition-all border border-white/10"
+                  className="flex items-center space-x-3 md:space-x-5 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl p-4 md:p-6 rounded-xl md:rounded-2xl shadow-lg hover:shadow-[0_20px_60px_rgba(140,198,63,0.3)] hover:border-primary/50 transition-all border border-white/10"
                 >
-                  <div className="bg-gradient-to-br from-accent/20 to-primary/20 w-16 h-16 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <info.icon className="w-7 h-7 text-primary" />
+                  <div className="bg-gradient-to-br from-accent/20 to-primary/20 w-12 h-12 md:w-16 md:h-16 rounded-lg md:rounded-xl flex items-center justify-center flex-shrink-0">
+                    <info.icon className="w-5 h-5 md:w-7 md:h-7 text-primary" />
                   </div>
                   <div>
-                    <div className="text-sm text-white/50 font-medium uppercase tracking-wider">{info.title}</div>
-                    <div className="text-white font-semibold text-lg">{info.content}</div>
+                    <div className="text-xs md:text-sm text-white/50 font-medium uppercase tracking-wider">{info.title}</div>
+                    <div className="text-white font-semibold text-base md:text-lg">{info.content}</div>
                   </div>
                 </motion.a>
               ))}
@@ -131,15 +131,15 @@ const Contact = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ delay: 0.6 }}
-              className="bg-gradient-to-br from-primary via-primary-dark to-primary rounded-3xl p-8 text-white shadow-2xl relative overflow-hidden"
+              className="bg-gradient-to-br from-primary via-primary-dark to-primary rounded-2xl md:rounded-3xl p-6 md:p-8 text-white shadow-2xl relative overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent"></div>
-              <h4 className="text-3xl font-bold mb-6 relative z-10" style={{ fontFamily: 'var(--font-playfair)' }}>Why Choose Us?</h4>
-              <ul className="space-y-4 relative z-10">
+              <h4 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6 relative z-10" style={{ fontFamily: 'var(--font-playfair)' }}>Why Choose Us?</h4>
+              <ul className="space-y-3 md:space-y-4 relative z-10">
                 {[
                   'Free site assessment & consultation',
                   'Transparent pricing with no hidden costs',
-                  '25-year warranty on all installations',
+                  '25 year warranty on all installations',
                   'MCS certified installers',
                   'Expert advice & ongoing support',
                 ].map((benefit, idx) => (
@@ -148,9 +148,9 @@ const Contact = () => {
                     initial={{ opacity: 0, x: -20 }}
                     animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
                     transition={{ delay: 0.7 + idx * 0.1 }}
-                    className="flex items-start space-x-3 text-base font-light"
+                    className="flex items-start space-x-2 md:space-x-3 text-sm md:text-base font-light"
                   >
-                    <CheckCircle className="w-6 h-6 flex-shrink-0 mt-0.5" />
+                    <CheckCircle className="w-5 h-5 md:w-6 md:h-6 flex-shrink-0 mt-0.5" />
                     <span>{benefit}</span>
                   </motion.li>
                 ))}
@@ -164,9 +164,9 @@ const Contact = () => {
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="bg-white rounded-3xl shadow-xl p-8 border border-gray-100">
+            <div className="bg-white rounded-2xl md:rounded-3xl shadow-xl p-6 md:p-8 border border-gray-100">
               {!isSubmitted ? (
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 md:space-y-6">
                   {/* Name Field */}
                   <div>
                     <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
@@ -243,10 +243,10 @@ const Contact = () => {
                     whileHover={{ scale: 1.02, boxShadow: '0 20px 50px rgba(140,198,63,0.4)' }}
                     whileTap={{ scale: 0.98 }}
                     type="submit"
-                    className="w-full bg-gradient-to-r from-primary via-primary-dark to-primary text-white py-5 rounded-xl font-semibold text-lg hover:shadow-2xl transition-all flex items-center justify-center space-x-3 relative overflow-hidden group"
+                    className="w-full bg-gradient-to-r from-primary via-primary-dark to-primary text-white py-4 md:py-5 rounded-xl font-semibold text-base md:text-lg hover:shadow-2xl transition-all flex items-center justify-center space-x-2 md:space-x-3 relative overflow-hidden group"
                   >
                     <span className="relative z-10 tracking-wide">Send Message</span>
-                    <Send className="w-5 h-5 relative z-10" />
+                    <Send className="w-4 h-4 md:w-5 md:h-5 relative z-10" />
                     <motion.div
                       className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent"
                       initial={{ x: '-100%' }}

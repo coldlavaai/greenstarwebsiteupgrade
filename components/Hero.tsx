@@ -2,10 +2,12 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, Sun, Battery, Zap, Sparkles } from 'lucide-react';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 const Hero = () => {
   const ref = useRef(null);
+  const [scrolled, setScrolled] = useState(false);
+
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start start', 'end start'],
@@ -14,6 +16,14 @@ const Hero = () => {
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 100);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const features = [
     { icon: Sun, text: 'Solar Panels', color: 'from-orange-400 to-yellow-500' },
     { icon: Battery, text: 'Battery Storage', color: 'from-[#8cc63f] to-[#7ab52f]' },
@@ -21,29 +31,29 @@ const Hero = () => {
   ];
 
   return (
-    <section ref={ref} id="home" className="relative min-h-screen flex items-center overflow-hidden pt-24">
+    <section ref={ref} id="home" className="relative min-h-screen flex items-center overflow-hidden pt-20 md:pt-24">
       {/* Very subtle text shadow overlay for readability */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-transparent pointer-events-none"></div>
 
       {/* Content */}
-      <motion.div style={{ y, opacity }} className="container mx-auto px-4 relative z-10 mt-8">
-        <div className="grid lg:grid-cols-2 gap-20 items-center max-w-7xl mx-auto">
+      <motion.div style={{ y, opacity }} className="container mx-auto px-4 relative z-10 mt-4 md:mt-8">
+        <div className="grid lg:grid-cols-2 gap-12 md:gap-20 items-center max-w-7xl mx-auto">
           {/* Left Content */}
           <div className="text-white max-w-xl">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="inline-flex items-center space-x-3 mb-8"
+              className="inline-flex items-center space-x-2 md:space-x-3 mb-6 md:mb-8"
             >
               <motion.div
                 animate={{ rotate: [0, 360] }}
                 transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-                className="w-8 h-8 rounded-full bg-gradient-to-br from-primary via-primary-light to-primary flex items-center justify-center"
+                className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-gradient-to-br from-primary via-primary-light to-primary flex items-center justify-center"
               >
-                <Sparkles className="w-5 h-5 text-white" />
+                <Sparkles className="w-4 h-4 md:w-5 md:h-5 text-white" />
               </motion.div>
-              <span className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent font-semibold text-sm uppercase tracking-[0.2em]">
+              <span className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent font-semibold text-xs md:text-sm uppercase tracking-[0.15em] md:tracking-[0.2em]">
                 Premium Solar Solutions
               </span>
             </motion.div>
@@ -52,7 +62,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.8 }}
-              className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 leading-[1.1] tracking-tight"
+              className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-[1.1] tracking-tight"
               style={{ fontFamily: 'var(--font-playfair)' }}
             >
               Power Your Future with{' '}
@@ -70,7 +80,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
-              className="text-lg md:text-xl text-gray-200 mb-8 leading-relaxed font-light"
+              className="text-base md:text-lg lg:text-xl text-gray-200 mb-6 md:mb-8 leading-relaxed font-light"
             >
               Bespoke solar energy systems designed to perfectly match your unique requirements. Save money, reduce your carbon footprint, and achieve true energy independence.
             </motion.p>
@@ -79,17 +89,17 @@ const Hero = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.8 }}
-              className="flex flex-wrap gap-4 mb-10"
+              className="flex flex-wrap gap-3 md:gap-4 mb-8 md:mb-10"
             >
               <motion.a
                 whileHover={{ scale: 1.05, boxShadow: '0 20px 50px rgba(140,198,63,0.5)' }}
                 whileTap={{ scale: 0.95 }}
                 href="#contact"
-                className="group relative bg-gradient-to-r from-primary via-primary-dark to-primary text-white px-8 py-4 rounded-full font-semibold text-base overflow-hidden shadow-2xl ring-2 ring-primary/30 ring-offset-2 ring-offset-transparent"
+                className="group relative bg-gradient-to-r from-primary via-primary-dark to-primary text-white px-6 py-3 md:px-8 md:py-4 rounded-full font-semibold text-sm md:text-base overflow-hidden shadow-2xl ring-2 ring-primary/30 ring-offset-2 ring-offset-transparent"
               >
-                <span className="relative z-10 flex items-center space-x-3">
+                <span className="relative z-10 flex items-center space-x-2 md:space-x-3">
                   <span className="tracking-wide">Get Free Survey</span>
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
+                  <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-2 transition-transform duration-300" />
                 </span>
                 {/* Shine effect */}
                 <motion.div
@@ -110,15 +120,15 @@ const Hero = () => {
                 }}
                 whileTap={{ scale: 0.95 }}
                 href="#systems"
-                className="group relative backdrop-blur-xl bg-white/5 text-white px-8 py-4 rounded-full font-semibold text-base border-2 border-white/20 transition-all shadow-xl"
+                className="group relative backdrop-blur-xl bg-white/5 text-white px-6 py-3 md:px-8 md:py-4 rounded-full font-semibold text-sm md:text-base border-2 border-white/20 transition-all shadow-xl"
               >
-                <span className="flex items-center space-x-3">
+                <span className="flex items-center space-x-2 md:space-x-3">
                   <span className="tracking-wide">Explore Systems</span>
                   <motion.span
                     animate={{ rotate: [0, 360] }}
                     transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
                   >
-                    <Sun className="w-5 h-5 text-primary" />
+                    <Sun className="w-4 h-4 md:w-5 md:h-5 text-primary" />
                   </motion.span>
                 </span>
               </motion.a>
@@ -129,7 +139,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.8 }}
-              className="grid grid-cols-3 gap-4"
+              className="grid grid-cols-3 gap-2 md:gap-4"
             >
               {features.map((feature, index) => (
                 <motion.div
@@ -144,16 +154,16 @@ const Hero = () => {
                   }}
                   className="group relative cursor-pointer"
                 >
-                  <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 p-4 rounded-xl hover:bg-white/10 transition-all duration-300 hover:shadow-[0_15px_40px_rgba(140,198,63,0.3)] hover:border-[#8cc63f]/50">
+                  <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 p-2 md:p-4 rounded-lg md:rounded-xl hover:bg-white/10 transition-all duration-300 hover:shadow-[0_15px_40px_rgba(140,198,63,0.3)] hover:border-[#8cc63f]/50">
                     {/* Gradient glow effect on hover */}
                     <motion.div
-                      className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-20 rounded-xl blur-xl transition-opacity duration-300`}
+                      className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-20 rounded-lg md:rounded-xl blur-xl transition-opacity duration-300`}
                     />
 
-                    <div className={`relative bg-gradient-to-br ${feature.color} p-2.5 rounded-lg mb-2 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                      <feature.icon className="w-6 h-6 text-white" />
+                    <div className={`relative bg-gradient-to-br ${feature.color} p-1.5 md:p-2.5 rounded-md md:rounded-lg mb-1 md:mb-2 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                      <feature.icon className="w-4 h-4 md:w-6 md:h-6 text-white" />
                     </div>
-                    <span className="text-xs font-semibold text-white/90 group-hover:text-white transition-colors">
+                    <span className="text-[10px] md:text-xs font-semibold text-white/90 group-hover:text-white transition-colors">
                       {feature.text}
                     </span>
                   </div>
@@ -244,28 +254,31 @@ const Hero = () => {
         </div>
       </motion.div>
 
-      {/* Premium Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
-      >
+      {/* Premium Scroll Indicator - hides when scrolled */}
+      {!scrolled && (
         <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="relative"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ delay: 2 }}
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
         >
-          <div className="w-8 h-12 border-2 border-white/50 rounded-full flex items-start justify-center p-2 backdrop-blur-sm bg-white/5">
-            <motion.div
-              className="w-1.5 h-3 bg-gradient-to-b from-[#8cc63f] to-white rounded-full"
-              animate={{ y: [0, 16, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            />
-          </div>
-          <div className="absolute -inset-2 bg-gradient-to-r from-[#8cc63f] to-[#7ab52f] opacity-50 blur-xl animate-pulse" />
+          <motion.div
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            className="relative"
+          >
+            <div className="w-8 h-12 border-2 border-white/50 rounded-full flex items-start justify-center p-2 backdrop-blur-sm bg-white/5">
+              <motion.div
+                className="w-1.5 h-3 bg-gradient-to-b from-[#8cc63f] to-white rounded-full"
+                animate={{ y: [0, 16, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              />
+            </div>
+            <div className="absolute -inset-2 bg-gradient-to-r from-[#8cc63f] to-[#7ab52f] opacity-50 blur-xl animate-pulse" />
+          </motion.div>
         </motion.div>
-      </motion.div>
+      )}
     </section>
   );
 };

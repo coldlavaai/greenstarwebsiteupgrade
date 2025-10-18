@@ -41,7 +41,7 @@ const Process = () => {
   ];
 
   return (
-    <section id="process" ref={ref} className="py-24 bg-transparent relative overflow-hidden">
+    <section id="process" ref={ref} className="py-16 md:py-24 bg-transparent relative overflow-hidden">
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
@@ -49,24 +49,24 @@ const Process = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-24"
+          className="text-center mb-12 md:mb-20"
         >
           <motion.div
-            className="inline-flex items-center space-x-2 mb-6"
+            className="inline-flex items-center space-x-2 mb-4 md:mb-6"
             initial={{ opacity: 0, scale: 0.5 }}
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
           >
-            <div className="h-px w-12 bg-gradient-to-r from-transparent to-accent"></div>
-            <span className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent font-semibold text-sm uppercase tracking-[0.2em]">
+            <div className="h-px w-8 md:w-12 bg-gradient-to-r from-transparent to-accent"></div>
+            <span className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent font-semibold text-xs md:text-sm uppercase tracking-[0.15em] md:tracking-[0.2em]">
               Our Process
             </span>
-            <div className="h-px w-12 bg-gradient-to-l from-transparent to-accent"></div>
+            <div className="h-px w-8 md:w-12 bg-gradient-to-l from-transparent to-accent"></div>
           </motion.div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4 md:mb-6 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
             We're With You{' '}
             <span className="bg-gradient-to-r from-accent via-primary-light to-accent bg-clip-text text-transparent">Every Step</span>
           </h2>
-          <p className="text-xl md:text-2xl text-white/60 max-w-3xl mx-auto font-light leading-relaxed">
+          <p className="text-base md:text-xl lg:text-2xl text-white/60 max-w-3xl mx-auto font-light leading-relaxed">
             A highly personalised approach with ongoing personal support throughout your solar journey
           </p>
         </motion.div>
@@ -86,7 +86,7 @@ const Process = () => {
           </div>
 
           {/* Steps */}
-          <div className="space-y-20">
+          <div className="space-y-10 md:space-y-16 lg:space-y-20">
             {steps.map((step, index) => (
               <motion.div
                 key={step.number}
@@ -101,45 +101,45 @@ const Process = () => {
                 <div className="flex-1 w-full">
                   <motion.div
                     whileHover={{ scale: 1.02, y: -8 }}
-                    className={`group bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl p-10 shadow-2xl hover:shadow-[0_25px_70px_rgba(140,198,63,0.3)] transition-all duration-500 border border-white/10 hover:border-primary/30 relative overflow-hidden ${
+                    className={`group bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-2xl hover:shadow-[0_25px_70px_rgba(140,198,63,0.3)] transition-all duration-500 border border-white/10 hover:border-primary/30 relative overflow-hidden ${
                       index % 2 === 0 ? 'lg:mr-8' : 'lg:ml-8'
                     }`}
                   >
                     {/* Gradient overlay on hover */}
                     <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-                    {/* Number Badge - Premium styling */}
-                    <div className="flex items-start gap-6 mb-8 relative z-10">
-                      <motion.div
-                        whileHover={{ rotate: 360 }}
-                        transition={{ duration: 0.6 }}
-                        className="bg-gradient-to-br from-primary to-primary-dark text-white text-2xl font-bold w-20 h-20 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-xl relative overflow-hidden"
-                        style={{ fontFamily: 'var(--font-playfair)' }}
-                      >
-                        <span className="relative z-10">{step.number}</span>
-                        <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                      </motion.div>
-                      <div className="flex-1">
-                        <h3 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
+                    {/* Number Badge - Compact styling */}
+                    <div className="relative z-10 mb-5">
+                      <div className="flex items-start gap-4 mb-4">
+                        <motion.div
+                          whileHover={{ rotate: 360 }}
+                          transition={{ duration: 0.6 }}
+                          className="bg-gradient-to-br from-primary to-primary-dark text-white text-lg md:text-xl font-bold w-12 h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center flex-shrink-0 shadow-xl relative overflow-hidden"
+                          style={{ fontFamily: 'var(--font-playfair)' }}
+                        >
+                          <span className="relative z-10">{step.number}</span>
+                          <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        </motion.div>
+                        <h3 className="text-2xl md:text-3xl font-bold text-white tracking-tight pt-2" style={{ fontFamily: 'var(--font-playfair)' }}>
                           {step.title}
                         </h3>
-                        <p className="text-white/70 leading-relaxed text-base font-light">
-                          {step.description}
-                        </p>
                       </div>
+                      <p className="text-white/70 leading-relaxed text-sm md:text-base font-light">
+                        {step.description}
+                      </p>
                     </div>
 
-                    {/* Features Grid - Premium styling */}
-                    <div className="grid grid-cols-2 gap-4 relative z-10">
+                    {/* Features Grid - Compact styling */}
+                    <div className="grid grid-cols-2 gap-2 md:gap-3 relative z-10">
                       {step.features.map((feature, idx) => (
                         <motion.div
                           key={feature}
                           initial={{ opacity: 0, scale: 0.8 }}
                           animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
                           transition={{ delay: index * 0.2 + idx * 0.1 }}
-                          className="flex items-center space-x-3 text-sm text-white/90 bg-white/5 backdrop-blur-sm px-4 py-3 rounded-xl border border-white/10 hover:border-primary/30 hover:bg-white/10 transition-all group/feature"
+                          className="flex items-center space-x-2 text-xs md:text-sm text-white/90 bg-white/5 backdrop-blur-sm px-3 py-2 md:px-4 md:py-2.5 rounded-lg md:rounded-xl border border-white/10 hover:border-primary/30 hover:bg-white/10 transition-all group/feature"
                         >
-                          <div className="w-2 h-2 bg-gradient-to-r from-primary to-primary-light rounded-full flex-shrink-0"></div>
+                          <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-gradient-to-r from-primary to-primary-light rounded-full flex-shrink-0"></div>
                           <span className="font-medium">{feature}</span>
                         </motion.div>
                       ))}
@@ -156,11 +156,11 @@ const Process = () => {
                   animate={isInView ? { scale: 1, rotate: 0 } : { scale: 0, rotate: -180 }}
                   transition={{ delay: index * 0.2 + 0.3, duration: 0.5, type: 'spring' }}
                   whileHover={{ scale: 1.1, rotate: 360 }}
-                  className="relative flex-shrink-0 z-20 group/icon"
+                  className="relative flex-shrink-0 z-20 group/icon hidden lg:block"
                 >
-                  <div className="w-24 h-24 bg-gradient-to-br from-white via-white to-white/90 backdrop-blur-xl rounded-2xl flex items-center justify-center shadow-2xl border-4 border-primary relative overflow-hidden">
+                  <div className="w-20 h-20 lg:w-24 lg:h-24 bg-gradient-to-br from-white via-white to-white/90 backdrop-blur-xl rounded-xl lg:rounded-2xl flex items-center justify-center shadow-2xl border-4 border-primary relative overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-primary/10"></div>
-                    <step.icon className="w-12 h-12 text-primary relative z-10" />
+                    <step.icon className="w-10 h-10 lg:w-12 lg:h-12 text-primary relative z-10" />
                   </div>
                   {/* Glow Effect */}
                   <motion.div
@@ -173,7 +173,7 @@ const Process = () => {
                       repeat: Infinity,
                       delay: index * 0.2,
                     }}
-                    className="absolute inset-0 bg-gradient-to-r from-primary to-primary-light rounded-2xl blur-md"
+                    className="absolute inset-0 bg-gradient-to-r from-primary to-primary-light rounded-xl lg:rounded-2xl blur-md"
                   ></motion.div>
                 </motion.div>
 
