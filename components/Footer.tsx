@@ -3,7 +3,23 @@
 import { motion } from 'framer-motion';
 import { Facebook, Instagram, Mail, Phone, MapPin, ArrowUp } from 'lucide-react';
 
-const Footer = () => {
+interface FooterData {
+  _id?: string;
+  _type?: string;
+  title?: string;
+  companyDescription?: string;
+  copyright?: string;
+  socialLinks?: Array<{
+    platform: string;
+    url: string;
+  }>;
+}
+
+interface FooterProps {
+  data?: FooterData;
+}
+
+const Footer = ({ data }: FooterProps) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -29,7 +45,19 @@ const Footer = () => {
     ],
   };
 
-  const socialLinks = [
+  // Icon mapping for social platforms
+  const iconMap: Record<string, any> = {
+    Facebook: Facebook,
+    Instagram: Instagram,
+    Twitter: Instagram, // fallback
+    LinkedIn: Instagram, // fallback
+  };
+
+  const socialLinks = data?.socialLinks?.map(link => ({
+    icon: iconMap[link.platform] || Facebook,
+    href: link.url,
+    label: link.platform,
+  })) || [
     { icon: Facebook, href: '#', label: 'Facebook' },
     { icon: Instagram, href: '#', label: 'Instagram' },
   ];
@@ -57,8 +85,11 @@ const Footer = () => {
                   className="h-12 w-auto"
                 />
               </a>
-              <p className="text-gray-400 mb-6 leading-relaxed text-left">
-                Leading the way in renewable energy solutions. We help homes and businesses transition to clean, sustainable solar power.
+              <p
+                className="text-gray-400 mb-6 leading-relaxed text-left"
+                data-sanity={data?._id ? `${data._id}.companyDescription` : undefined}
+              >
+                {data?.companyDescription || 'Leading the way in renewable energy solutions. We help homes and businesses transition to clean, sustainable solar power.'}
               </p>
 
               {/* Contact Info */}
@@ -168,8 +199,11 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-white/10 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="text-gray-400 text-sm text-center md:text-left">
-              © {new Date().getFullYear()} Greenstar Solar. All rights reserved. | MCS Certified Installer
+            <div
+              className="text-gray-400 text-sm text-center md:text-left"
+              data-sanity={data?._id ? `${data._id}.copyright` : undefined}
+            >
+              {data?.copyright || `© ${new Date().getFullYear()} Greenstar Solar. All rights reserved. | MCS Certified Installer`}
             </div>
             <div className="flex flex-wrap justify-center md:justify-end gap-6 text-sm text-center md:text-left">
               <a href="#" className="text-gray-400 hover:text-[#8cc63f] transition-colors">

@@ -4,7 +4,26 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronDown } from 'lucide-react';
 
-const Navigation = () => {
+interface NavigationData {
+  _id?: string;
+  _type?: string;
+  title?: string;
+  navItems?: Array<{
+    label: string;
+    href: string;
+    order: number;
+  }>;
+  ctaButton?: {
+    text: string;
+    href: string;
+  };
+}
+
+interface NavigationProps {
+  data?: NavigationData;
+}
+
+const Navigation = ({ data }: NavigationProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
@@ -17,7 +36,20 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navItems = [
+  // Map Sanity navItems to component structure, or use fallback
+  const navItems = data?.navItems?.map(item => ({
+    name: item.label,
+    href: item.href,
+    // Add submenu for Systems if this is the Systems item
+    ...(item.label === 'Systems' && {
+      submenu: [
+        { name: 'Solar Panels for Home', href: '/solar-panels-home' },
+        { name: 'Battery Storage for Home', href: '/battery-storage-home' },
+        { name: 'Solar Panels for Business', href: '/solar-panels-business' },
+        { name: 'Battery Storage for Business', href: '/battery-storage-business' },
+      ],
+    }),
+  })) || [
     { name: 'Home', href: '/' },
     { name: 'About Us', href: '/#about' },
     {
@@ -33,6 +65,8 @@ const Navigation = () => {
     { name: 'Process', href: '/#process' },
     { name: 'Contact', href: '/#contact' },
   ];
+
+  const ctaButton = data?.ctaButton || { text: 'Get Free Quote', href: '/#contact' };
 
   return (
     <motion.nav
@@ -104,10 +138,10 @@ const Navigation = () => {
             <motion.a
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              href="/#contact"
+              href={ctaButton.href}
               className="bg-[#8cc63f] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#7ab52f] transition-colors shadow-lg"
             >
-              Get Free Quote
+              {ctaButton.text}
             </motion.a>
           </div>
 
@@ -156,11 +190,11 @@ const Navigation = () => {
               ))}
               <div className="p-4">
                 <a
-                  href="/#contact"
+                  href={ctaButton.href}
                   className="block w-full bg-[#8cc63f] text-white text-center px-6 py-3 rounded-full font-semibold hover:bg-[#7ab52f] transition-colors"
                   onClick={() => setIsOpen(false)}
                 >
-                  Get Free Quote
+                  {ctaButton.text}
                 </a>
               </div>
             </motion.div>

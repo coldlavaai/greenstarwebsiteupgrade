@@ -5,11 +5,38 @@ import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Award, Users, TrendingUp, Shield } from 'lucide-react';
 
-const About = () => {
+interface AboutData {
+  _id?: string;
+  _type?: string;
+  heading?: string;
+  content?: string;
+  stats?: Array<{
+    value: string;
+    label: string;
+    icon: string;
+  }>;
+}
+
+interface AboutProps {
+  data?: AboutData;
+}
+
+const About = ({ data }: AboutProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
-  const stats = [
+  const iconMap: Record<string, any> = {
+    award: Award,
+    users: Users,
+    trending: TrendingUp,
+    shield: Shield,
+  };
+
+  const stats = data?.stats?.map(stat => ({
+    icon: iconMap[stat.icon] || Award,
+    value: stat.value,
+    label: stat.label,
+  })) || [
     { icon: Award, value: '15+', label: 'Years Experience' },
     { icon: Users, value: '500+', label: 'Happy Customers' },
     { icon: TrendingUp, value: '95%', label: 'Energy Savings' },
@@ -41,8 +68,9 @@ const About = () => {
               transition={{ delay: 0.3 }}
               className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mt-3 md:mt-4 mb-4 md:mb-6 tracking-tight"
               style={{ fontFamily: 'var(--font-playfair)' }}
+              data-sanity={data?._id ? `${data._id}.heading` : undefined}
             >
-              Leading the Way in{' '}
+              {data?.heading || 'Leading the Way in'}{' '}
               <span className="text-[#8cc63f]">Renewable Energy</span>
             </motion.h2>
 
@@ -51,8 +79,9 @@ const About = () => {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ delay: 0.4 }}
               className="text-base md:text-lg text-white/80 mb-4 md:mb-6 leading-relaxed"
+              data-sanity={data?._id ? `${data._id}.content` : undefined}
             >
-              At Greenstar Solar, we&apos;re committed to making solar energy accessible and affordable for everyone. With over 15 years of experience, we&apos;ve helped hundreds of homes and businesses transition to clean, renewable energy.
+              {data?.content || "At Greenstar Solar, we're committed to making solar energy accessible and affordable for everyone. With over 15 years of experience, we've helped hundreds of homes and businesses transition to clean, renewable energy."}
             </motion.p>
 
             <motion.p

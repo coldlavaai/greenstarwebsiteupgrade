@@ -13,7 +13,21 @@ interface FormData {
   message: string;
 }
 
-const Contact = () => {
+interface ContactData {
+  _id?: string;
+  _type?: string;
+  heading?: string;
+  subheading?: string;
+  email?: string;
+  phone?: string;
+  address?: string;
+}
+
+interface ContactProps {
+  data?: ContactData;
+}
+
+const Contact = ({ data }: ContactProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -39,19 +53,19 @@ const Contact = () => {
     {
       icon: Phone,
       title: 'Phone',
-      content: '0800 123 4567',
-      link: 'tel:08001234567',
+      content: data?.phone || '0800 123 4567',
+      link: `tel:${(data?.phone || '08001234567').replace(/\s/g, '')}`,
     },
     {
       icon: Mail,
       title: 'Email',
-      content: 'info@greenstarsolar.co.uk',
-      link: 'mailto:info@greenstarsolar.co.uk',
+      content: data?.email || 'info@greenstarsolar.co.uk',
+      link: `mailto:${data?.email || 'info@greenstarsolar.co.uk'}`,
     },
     {
       icon: MapPin,
       title: 'Location',
-      content: 'United Kingdom',
+      content: data?.address || 'United Kingdom',
       link: '#',
     },
   ];
@@ -77,12 +91,19 @@ const Contact = () => {
             </span>
             <div className="h-px w-8 md:w-12 bg-gradient-to-l from-transparent to-accent"></div>
           </motion.div>
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4 md:mb-6 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
-            Book Your{' '}
+          <h2
+            className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4 md:mb-6 tracking-tight"
+            style={{ fontFamily: 'var(--font-playfair)' }}
+            data-sanity={data?._id ? `${data._id}.heading` : undefined}
+          >
+            {data?.heading || 'Book Your'}{' '}
             <span className="bg-gradient-to-r from-accent via-primary-light to-accent bg-clip-text text-transparent">Free Survey</span>
           </h2>
-          <p className="text-base md:text-xl lg:text-2xl text-white/60 max-w-3xl mx-auto font-light leading-relaxed px-4">
-            Ready to make the switch to solar? Contact us today for a free consultation and site assessment
+          <p
+            className="text-base md:text-xl lg:text-2xl text-white/60 max-w-3xl mx-auto font-light leading-relaxed px-4"
+            data-sanity={data?._id ? `${data._id}.subheading` : undefined}
+          >
+            {data?.subheading || 'Ready to make the switch to solar? Contact us today for a free consultation and site assessment'}
           </p>
         </motion.div>
 

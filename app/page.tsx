@@ -16,7 +16,7 @@ export default async function Home() {
   const client = getClient(isDraftMode)
 
   // Fetch all section data
-  const [heroData, aboutData, contactData] = await Promise.all([
+  const [heroData, aboutData, contactData, navigationData, footerData] = await Promise.all([
     client.fetch(`*[_type == "heroSection"][0]{
       _id,
       _type,
@@ -44,13 +44,28 @@ export default async function Home() {
       email,
       phone,
       address
+    }`),
+    client.fetch(`*[_type == "navigationSection"][0]{
+      _id,
+      _type,
+      title,
+      navItems,
+      ctaButton
+    }`),
+    client.fetch(`*[_type == "footerSection"][0]{
+      _id,
+      _type,
+      title,
+      companyDescription,
+      copyright,
+      socialLinks
     }`)
   ])
 
   return (
     <div className="min-h-screen relative">
       <DayNightBackground />
-      <Navigation />
+      <Navigation data={navigationData} />
       <Hero data={heroData} />
       <About data={aboutData} />
       <Systems />
@@ -58,7 +73,7 @@ export default async function Home() {
       <Gallery />
       <Testimonials />
       <Contact data={contactData} />
-      <Footer />
+      <Footer data={footerData} />
     </div>
   );
 }
