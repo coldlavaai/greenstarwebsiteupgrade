@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, Sun, Battery, Zap, Sparkles } from 'lucide-react';
 import { useRef, useState, useEffect } from 'react';
+import { urlFor } from '@/lib/sanity';
 
 interface HeroData {
   _id?: string;
@@ -15,6 +16,7 @@ interface HeroData {
   secondaryCtaLink?: string;
   backgroundImage?: any;
   stats?: Array<{
+    _key?: string;
     value: string;
     label: string;
   }>;
@@ -48,6 +50,12 @@ const Hero = ({ data }: HeroProps) => {
     { icon: Sun, text: 'Solar Panels', color: 'from-orange-400 to-yellow-500' },
     { icon: Battery, text: 'Battery Storage', color: 'from-[#8cc63f] to-[#7ab52f]' },
     { icon: Zap, text: 'Energy Savings', color: 'from-green-400 to-emerald-500' },
+  ];
+
+  // Use stats from CMS or fallback to default
+  const stats = data?.stats || [
+    { value: '15+', label: 'Years Experience' },
+    { value: '500+', label: 'Happy Customers' },
   ];
 
   return (
@@ -217,46 +225,40 @@ const Hero = ({ data }: HeroProps) => {
               className="relative w-[450px] mx-auto"
             >
               {/* Main Image Card with 3D effect */}
-              <div className="relative aspect-square rounded-3xl overflow-hidden shadow-2xl border border-white/20 backdrop-blur-xl bg-white/5 w-full">
+              <div
+                className="relative aspect-square rounded-3xl overflow-hidden shadow-2xl border border-white/20 backdrop-blur-xl bg-white/5 w-full"
+                data-sanity={data?._id ? `${data._id}.backgroundImage` : undefined}
+              >
                 <div
                   className="absolute inset-0 bg-cover bg-center"
                   style={{
-                    backgroundImage: `url('/images/hero-house.png')`,
+                    backgroundImage: data?.backgroundImage
+                      ? `url('${urlFor(data.backgroundImage).width(800).url()}')`
+                      : `url('/images/hero-house.png')`,
                   }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-br from-[#8cc63f]/30 via-transparent to-[#8cc63f]/30" />
               </div>
 
               {/* Floating Stats Cards with premium effects */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0, rotateZ: -10 }}
-                animate={{ opacity: 1, scale: 1, rotateZ: 0 }}
-                transition={{ delay: 1.2, type: 'spring' }}
-                whileHover={{ scale: 1.1, rotateZ: 5, y: -10 }}
-                className="absolute top-10 -left-10 bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/20 shadow-2xl hover:shadow-[0_20px_60px_rgba(140,198,63,0.4)] cursor-pointer"
-                style={{ transformStyle: 'preserve-3d' }}
-              >
-                <div className="text-3xl font-bold bg-gradient-to-r from-[#8cc63f] to-[#7ab52f] bg-clip-text text-transparent mb-1">
-                  15+
-                </div>
-                <div className="text-xs text-white font-semibold">Years Experience</div>
-                <div className="absolute -inset-1 bg-gradient-to-r from-[#8cc63f] to-[#7ab52f] opacity-0 hover:opacity-20 rounded-3xl blur transition-opacity" />
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, scale: 0, rotateZ: 10 }}
-                animate={{ opacity: 1, scale: 1, rotateZ: 0 }}
-                transition={{ delay: 1.4, type: 'spring' }}
-                whileHover={{ scale: 1.1, rotateZ: -5, y: -10 }}
-                className="absolute bottom-10 -right-10 bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/20 shadow-2xl hover:shadow-[0_20px_60px_rgba(140,198,63,0.4)] cursor-pointer"
-                style={{ transformStyle: 'preserve-3d' }}
-              >
-                <div className="text-3xl font-bold bg-gradient-to-r from-[#8cc63f] to-[#7ab52f] bg-clip-text text-transparent mb-1">
-                  500+
-                </div>
-                <div className="text-xs text-white font-semibold">Happy Customers</div>
-                <div className="absolute -inset-1 bg-gradient-to-r from-[#8cc63f] to-[#7ab52f] opacity-0 hover:opacity-20 rounded-3xl blur transition-opacity" />
-              </motion.div>
+              {stats.map((stat, index) => (
+                <motion.div
+                  key={stat._key || index}
+                  initial={{ opacity: 0, scale: 0, rotateZ: index === 0 ? -10 : 10 }}
+                  animate={{ opacity: 1, scale: 1, rotateZ: 0 }}
+                  transition={{ delay: 1.2 + index * 0.2, type: 'spring' }}
+                  whileHover={{ scale: 1.1, rotateZ: index === 0 ? 5 : -5, y: -10 }}
+                  className={`absolute ${index === 0 ? 'top-10 -left-10' : 'bottom-10 -right-10'} bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/20 shadow-2xl hover:shadow-[0_20px_60px_rgba(140,198,63,0.4)] cursor-pointer`}
+                  style={{ transformStyle: 'preserve-3d' }}
+                  data-sanity={data?._id && stat._key ? `${data._id}.stats[_key=="${stat._key}"]` : undefined}
+                >
+                  <div className="text-3xl font-bold bg-gradient-to-r from-[#8cc63f] to-[#7ab52f] bg-clip-text text-transparent mb-1">
+                    {stat.value}
+                  </div>
+                  <div className="text-xs text-white font-semibold">{stat.label}</div>
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#8cc63f] to-[#7ab52f] opacity-0 hover:opacity-20 rounded-3xl blur transition-opacity" />
+                </motion.div>
+              ))}
             </motion.div>
           </motion.div>
         </div>
