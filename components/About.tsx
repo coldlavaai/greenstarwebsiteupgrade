@@ -95,7 +95,7 @@ const About = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
             transition={{ duration: 0.6 }}
-            className="grid grid-cols-2 gap-3 md:gap-6"
+            className="grid grid-cols-2 gap-4 md:gap-6 max-w-full overflow-hidden"
           >
             {stats.map((stat, index) => (
               <motion.div
@@ -104,7 +104,7 @@ const About = () => {
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
                 transition={{ delay: 0.3 + index * 0.1, duration: 0.5 }}
                 whileHover={{ scale: 1.05, y: -5 }}
-                className="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-xl p-4 md:p-8 rounded-xl md:rounded-2xl border border-white/10 shadow-lg hover:shadow-[0_20px_60px_rgba(140,198,63,0.4)] hover:border-[#8cc63f]/50 transition-all"
+                className="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-xl p-4 md:p-8 rounded-xl md:rounded-2xl border border-white/10 shadow-lg hover:shadow-[0_20px_60px_rgba(140,198,63,0.4)] hover:border-[#8cc63f]/50 transition-all w-full max-w-full overflow-hidden"
               >
                 <div className="bg-[#8cc63f]/20 w-10 h-10 md:w-14 md:h-14 rounded-lg md:rounded-xl flex items-center justify-center mb-2 md:mb-4">
                   <stat.icon className="w-5 h-5 md:w-7 md:h-7 text-[#8cc63f]" />

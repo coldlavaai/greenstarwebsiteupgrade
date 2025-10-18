@@ -57,12 +57,12 @@ const Footer = () => {
                   className="h-12 w-auto"
                 />
               </a>
-              <p className="text-gray-400 mb-6 leading-relaxed">
+              <p className="text-gray-400 mb-6 leading-relaxed text-left">
                 Leading the way in renewable energy solutions. We help homes and businesses transition to clean, sustainable solar power.
               </p>
 
               {/* Contact Info */}
-              <div className="space-y-3">
+              <div className="space-y-3 text-left">
                 <a href="tel:08001234567" className="flex items-center space-x-3 text-gray-400 hover:text-[#8cc63f] transition-colors">
                   <Phone className="w-5 h-5" />
                   <span>0800 123 4567</span>
@@ -101,6 +101,7 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-left"
           >
             <h3 className="text-lg font-bold mb-4">Company</h3>
             <ul className="space-y-3">
@@ -123,6 +124,7 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-left"
           >
             <h3 className="text-lg font-bold mb-4">Systems</h3>
             <ul className="space-y-3">
@@ -145,6 +147,7 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
+            className="text-left"
           >
             <h3 className="text-lg font-bold mb-4">Resources</h3>
             <ul className="space-y-3">
@@ -168,7 +171,7 @@ const Footer = () => {
             <div className="text-gray-400 text-sm text-center md:text-left">
               © {new Date().getFullYear()} Greenstar Solar. All rights reserved. | MCS Certified Installer
             </div>
-            <div className="flex flex-wrap justify-center gap-6 text-sm">
+            <div className="flex flex-wrap justify-center md:justify-end gap-6 text-sm text-center md:text-left">
               <a href="#" className="text-gray-400 hover:text-[#8cc63f] transition-colors">
                 Privacy Policy
               </a>
