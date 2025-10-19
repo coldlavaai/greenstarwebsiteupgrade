@@ -60,9 +60,10 @@ export default async function Home() {
       copyright,
       socialLinks
     }`),
-    client.fetch(`*[_type == "service" && featured == true] | order(_createdAt asc){
+    client.fetch(`*[_type == "service" && featured == true] | order(position asc){
       _id,
       _type,
+      position,
       title,
       description,
       features,
@@ -79,9 +80,10 @@ export default async function Home() {
       icon,
       image
     }`),
-    client.fetch(`*[_type == "galleryItem" && featured == true] | order(_createdAt desc){
+    client.fetch(`*[_type == "galleryItem" && featured == true] | order(position asc){
       _id,
       _type,
+      position,
       title,
       location,
       systemSize,
@@ -89,9 +91,10 @@ export default async function Home() {
       category,
       description
     }`),
-    client.fetch(`*[_type == "testimonial" && featured == true] | order(_createdAt desc){
+    client.fetch(`*[_type == "testimonial" && featured == true] | order(position asc){
       _id,
       _type,
+      position,
       customerName,
       location,
       rating,

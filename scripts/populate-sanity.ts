@@ -130,6 +130,7 @@ async function populateSanity() {
       {
         _id: 'service-solar-home',
         _type: 'service',
+        position: 1,
         title: 'Solar Panels for Home',
         category: 'solar-panels',
         description: 'Transform your home with our premium residential solar panel installations. Reduce your electricity bills and increase your property value.',
@@ -140,6 +141,7 @@ async function populateSanity() {
       {
         _id: 'service-battery-home',
         _type: 'service',
+        position: 2,
         title: 'Battery Storage for Home',
         category: 'battery-storage',
         description: 'Store excess solar energy and use it when you need it most. Achieve energy independence with our advanced battery solutions.',
@@ -150,6 +152,7 @@ async function populateSanity() {
       {
         _id: 'service-solar-business',
         _type: 'service',
+        position: 3,
         title: 'Solar Panels for Business',
         category: 'solar-panels',
         description: 'Reduce operational costs and demonstrate environmental responsibility with commercial solar installations.',
@@ -160,6 +163,7 @@ async function populateSanity() {
       {
         _id: 'service-battery-business',
         _type: 'service',
+        position: 4,
         title: 'Battery Storage for Business',
         category: 'battery-storage',
         description: 'Ensure business continuity and optimize energy costs with commercial-grade battery storage systems.',
@@ -220,6 +224,7 @@ async function populateSanity() {
       {
         _id: 'gallery-1',
         _type: 'galleryItem',
+        position: 1,
         title: 'Residential Solar Installation',
         location: 'Manchester, UK',
         systemSize: '8kW System',
@@ -229,6 +234,7 @@ async function populateSanity() {
       {
         _id: 'gallery-2',
         _type: 'galleryItem',
+        position: 2,
         title: 'Commercial Rooftop Array',
         location: 'Birmingham, UK',
         systemSize: '45kW System',
@@ -238,6 +244,7 @@ async function populateSanity() {
       {
         _id: 'gallery-3',
         _type: 'galleryItem',
+        position: 3,
         title: 'Home Battery Storage',
         location: 'London, UK',
         systemSize: '13.5kWh Battery',
@@ -247,6 +254,7 @@ async function populateSanity() {
       {
         _id: 'gallery-4',
         _type: 'galleryItem',
+        position: 4,
         title: 'Office Building Solar',
         location: 'Leeds, UK',
         systemSize: '65kW System',
@@ -256,6 +264,7 @@ async function populateSanity() {
       {
         _id: 'gallery-5',
         _type: 'galleryItem',
+        position: 5,
         title: 'Warehouse Solar Installation',
         location: 'Liverpool, UK',
         systemSize: '120kW System',
@@ -265,6 +274,7 @@ async function populateSanity() {
       {
         _id: 'gallery-6',
         _type: 'galleryItem',
+        position: 6,
         title: 'Farm Solar Project',
         location: 'Bristol, UK',
         systemSize: '95kW System',
@@ -283,6 +293,7 @@ async function populateSanity() {
       {
         _id: 'testimonial-1',
         _type: 'testimonial',
+        position: 1,
         customerName: 'Sarah Johnson',
         location: 'Manchester',
         rating: 5,
@@ -293,6 +304,7 @@ async function populateSanity() {
       {
         _id: 'testimonial-2',
         _type: 'testimonial',
+        position: 2,
         customerName: 'Michael Davies',
         location: 'Birmingham',
         rating: 5,
@@ -303,6 +315,7 @@ async function populateSanity() {
       {
         _id: 'testimonial-3',
         _type: 'testimonial',
+        position: 3,
         customerName: 'Emma Wilson',
         location: 'London',
         rating: 5,
@@ -313,6 +326,7 @@ async function populateSanity() {
       {
         _id: 'testimonial-4',
         _type: 'testimonial',
+        position: 4,
         customerName: 'James Thompson',
         location: 'Leeds',
         rating: 5,

@@ -65,11 +65,43 @@ export default defineConfig({
 
             S.divider(),
 
-            // Content Items
-            S.documentTypeListItem('service').title('🔧 Services/Systems'),
-            S.documentTypeListItem('testimonial').title('⭐ Testimonials'),
-            S.documentTypeListItem('galleryItem').title('🖼️ Gallery Items'),
-            S.documentTypeListItem('processStep').title('📋 Process Steps'),
+            // Website Content Group
+            S.listItem()
+              .title('🌐 Website Content')
+              .child(
+                S.list()
+                  .title('Website Content')
+                  .items([
+                    S.listItem()
+                      .title('☀️ Systems & Services')
+                      .child(
+                        S.documentTypeList('service')
+                          .title('Systems & Services')
+                          .defaultOrdering([{ field: 'position', direction: 'asc' }])
+                      ),
+                    S.listItem()
+                      .title('🖼️ Gallery Projects')
+                      .child(
+                        S.documentTypeList('galleryItem')
+                          .title('Gallery Projects (Positions 1-6)')
+                          .defaultOrdering([{ field: 'position', direction: 'asc' }])
+                      ),
+                    S.listItem()
+                      .title('⭐ Customer Testimonials')
+                      .child(
+                        S.documentTypeList('testimonial')
+                          .title('Customer Testimonials')
+                          .defaultOrdering([{ field: 'position', direction: 'asc' }])
+                      ),
+                    S.listItem()
+                      .title('📋 Process Steps')
+                      .child(
+                        S.documentTypeList('processStep')
+                          .title('Process Steps')
+                          .defaultOrdering([{ field: 'order', direction: 'asc' }])
+                      ),
+                  ])
+              ),
           ]),
       defaultDocumentNode: (S) => {
         return S.document().views([
