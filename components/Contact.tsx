@@ -197,7 +197,7 @@ const Contact = ({ data }: ContactProps) => {
                       {...register('name', { required: 'Name is required' })}
                       type="text"
                       id="name"
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#8cc63f] focus:ring-2 focus:ring-[#8cc63f]/20 outline-none transition-all"
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#8cc63f] focus:ring-2 focus:ring-[#8cc63f]/20 outline-none transition-all text-gray-900"
                       placeholder="John Smith"
                     />
                     {errors.name && (
@@ -220,7 +220,7 @@ const Contact = ({ data }: ContactProps) => {
                       })}
                       type="email"
                       id="email"
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#8cc63f] focus:ring-2 focus:ring-[#8cc63f]/20 outline-none transition-all"
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#8cc63f] focus:ring-2 focus:ring-[#8cc63f]/20 outline-none transition-all text-gray-900"
                       placeholder="john@example.com"
                     />
                     {errors.email && (
@@ -237,7 +237,7 @@ const Contact = ({ data }: ContactProps) => {
                       {...register('phone', { required: 'Phone number is required' })}
                       type="tel"
                       id="phone"
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#8cc63f] focus:ring-2 focus:ring-[#8cc63f]/20 outline-none transition-all"
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#8cc63f] focus:ring-2 focus:ring-[#8cc63f]/20 outline-none transition-all text-gray-900"
                       placeholder="07123 456789"
                     />
                     {errors.phone && (
@@ -254,7 +254,7 @@ const Contact = ({ data }: ContactProps) => {
                       {...register('message')}
                       id="message"
                       rows={4}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#8cc63f] focus:ring-2 focus:ring-[#8cc63f]/20 outline-none transition-all resize-none"
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#8cc63f] focus:ring-2 focus:ring-[#8cc63f]/20 outline-none transition-all resize-none text-gray-900"
                       placeholder="Tell us about your project..."
                     />
                   </div>
