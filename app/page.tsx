@@ -116,7 +116,7 @@ export default async function Home() {
       <Systems data={systemsData} />
       <Process data={processData} />
       <Gallery data={galleryData} />
-      <Testimonials testimonials={testimonialsData} />
+      <Testimonials data={testimonialsData} />
       <Contact data={contactData} />
       <Footer data={footerData} />
     </div>

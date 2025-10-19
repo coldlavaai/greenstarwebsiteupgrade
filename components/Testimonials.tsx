@@ -15,11 +15,10 @@ interface Testimonial {
 }
 
 interface TestimonialsProps {
-  sectionData?: any;
-  testimonials?: any[];
+  data?: any[];
 }
 
-const Testimonials = ({ sectionData, testimonials: cmsTestimonials }: TestimonialsProps) => {
+const Testimonials = ({ data }: TestimonialsProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
   const [currentPage, setCurrentPage] = useState(0);
