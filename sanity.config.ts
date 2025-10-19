@@ -115,7 +115,7 @@ export default defineConfig({
       previewUrl: {
         origin: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001',
         previewMode: {
-          enable: '/api/draft',
+          enable: '/api/draft?secret=greenstar-preview-2024-secure-token',
         },
       },
     }),
