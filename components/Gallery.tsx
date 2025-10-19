@@ -37,15 +37,28 @@ const Gallery = ({ data }: GalleryProps) => {
   };
 
   // Map CMS data or use fallback
-  const projects = data?.map(item => ({
-    _id: item._id,
-    _type: item._type,
-    image: item.image ? urlFor(item.image).width(800).url() : (imageMap[item.title] || ''),
-    title: item.title,
-    location: item.location || '',
-    capacity: item.systemSize || '',
-    date: '2024',  // Default date
-  })) || [
+  const projects = data?.map(item => {
+    // Safely get image URL - check if image exists and has asset reference
+    let imageUrl = imageMap[item.title] || '';
+    if (item.image && item.image.asset) {
+      try {
+        imageUrl = urlFor(item.image).width(800).url();
+      } catch (e) {
+        // If URL building fails, use fallback
+        imageUrl = imageMap[item.title] || '';
+      }
+    }
+
+    return {
+      _id: item._id,
+      _type: item._type,
+      image: imageUrl,
+      title: item.title,
+      location: item.location || '',
+      capacity: item.systemSize || '',
+      date: '2024',  // Default date
+    };
+  }) || [
     {
       image: 'https://irp.cdn-website.com/8f142869/dms3rep/multi/AdobeStock_855615596.jpeg',
       title: 'Residential Solar Installation',

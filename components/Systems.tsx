@@ -50,16 +50,29 @@ const Systems = ({ data }: SystemsProps) => {
   };
 
   // Map CMS data to component format or use fallback
-  const services = data?.map(service => ({
-    _id: service._id,
-    _type: service._type,
-    icon: service.icon ? (iconMap[service.icon] || Sun) : Sun,
-    title: service.title,
-    description: service.description,
-    features: service.features || [],
-    image: service.image ? urlFor(service.image).width(800).url() : (imageMap[service.title] || ''),
-    link: linkMap[service.title] || `/${service.category || 'services'}`,
-  })) || [
+  const services = data?.map(service => {
+    // Safely get image URL - check if image exists and has asset reference
+    let imageUrl = imageMap[service.title] || '';
+    if (service.image && service.image.asset) {
+      try {
+        imageUrl = urlFor(service.image).width(800).url();
+      } catch (e) {
+        // If URL building fails, use fallback
+        imageUrl = imageMap[service.title] || '';
+      }
+    }
+
+    return {
+      _id: service._id,
+      _type: service._type,
+      icon: service.icon ? (iconMap[service.icon] || Sun) : Sun,
+      title: service.title,
+      description: service.description,
+      features: service.features || [],
+      image: imageUrl,
+      link: linkMap[service.title] || `/${service.category || 'services'}`,
+    };
+  }) || [
     {
       icon: Sun,
       title: 'Solar Panels for Home',
