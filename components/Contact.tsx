@@ -282,20 +282,39 @@ const Contact = ({ data }: ContactProps) => {
                     />
                   </div>
 
-                  {/* Submit Button - Premium styling */}
+                  {/* Submit Button - Premium styling with instant feedback */}
                   <motion.button
                     whileHover={!isSubmitting ? { scale: 1.02, boxShadow: '0 20px 50px rgba(140,198,63,0.4)' } : {}}
-                    whileTap={!isSubmitting ? { scale: 0.98 } : {}}
+                    whileTap={{ scale: 0.95 }}
                     type="submit"
                     disabled={isSubmitting}
-                    className={`w-full bg-gradient-to-r from-primary via-primary-dark to-primary text-white py-4 md:py-5 rounded-xl font-semibold text-base md:text-lg hover:shadow-2xl transition-all flex items-center justify-center space-x-2 md:space-x-3 relative overflow-hidden group ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
+                    className={`w-full bg-gradient-to-r from-primary via-primary-dark to-primary text-white py-4 md:py-5 rounded-xl font-semibold text-base md:text-lg hover:shadow-2xl transition-all duration-150 flex items-center justify-center space-x-2 md:space-x-3 relative overflow-hidden group active:scale-95 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : 'active:opacity-90'}`}
                   >
-                    <span className="relative z-10 tracking-wide">
+                    <motion.span
+                      className="relative z-10 tracking-wide"
+                      initial={false}
+                      animate={{ opacity: isSubmitting ? 0.7 : 1 }}
+                      transition={{ duration: 0.15 }}
+                    >
                       {isSubmitting ? 'Sending...' : 'Send Message'}
-                    </span>
-                    {!isSubmitting && <Send className="w-4 h-4 md:w-5 md:h-5 relative z-10" />}
+                    </motion.span>
+                    {!isSubmitting && (
+                      <motion.div
+                        initial={{ opacity: 1 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.15 }}
+                      >
+                        <Send className="w-4 h-4 md:w-5 md:h-5 relative z-10" />
+                      </motion.div>
+                    )}
                     {isSubmitting && (
-                      <div className="w-4 h-4 md:w-5 md:h-5 border-2 border-white border-t-transparent rounded-full animate-spin relative z-10" />
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.15 }}
+                        className="w-4 h-4 md:w-5 md:h-5 border-2 border-white border-t-transparent rounded-full animate-spin relative z-10"
+                      />
                     )}
                     {!isSubmitting && (
                       <motion.div
