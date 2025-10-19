@@ -1,79 +1,48 @@
-# Green Star Solar - Website Redesign
+# Green Star Solar - Website
 
-A modern, fully customizable website for Green Star Solar built with **Next.js 14** and **Sanity.io CMS**. This template is designed for web developers building client websites with a beautiful admin panel for easy content management.
+A modern, fully customizable website for Green Star Solar built with **Next.js 14** and **Sanity.io CMS**.
 
 ## ✨ Features
 
 - 🎨 **Modern, Responsive Design** - Beautiful animations with Framer Motion
-- 🔧 **Fully Editable** - Clients can manage all content through the admin panel
+- 🔧 **Fully Editable** - All content managed through Sanity CMS
 - 🚀 **Built with Next.js 14** - Fast, SEO-friendly, production-ready
-- 📝 **Sanity.io CMS** - Professional Studio interface (no coding required for updates)
+- 📝 **Sanity.io CMS** - Professional Studio interface at `/studio`
 - 🎯 **Type-Safe** - Built with TypeScript
-- 📱 **Mobile-First** - Looks great on all devices
-- 🎭 **Tailwind CSS 4** - Easy to customize and extend
+- 📱 **Mobile-First** - Optimized for all devices
+- 🎭 **Tailwind CSS** - Modern styling
 
-## 📋 What Clients Can Edit
-
-Through the Sanity Studio at `/studio`, clients can update:
-
-- ✅ Company information & contact details
-- ✅ Logo, colors, and branding
-- ✅ Hero section headlines and CTAs
-- ✅ Services and pricing
-- ✅ Customer testimonials
-- ✅ Project gallery
-- ✅ Installation process steps
-- ✅ Social media links
-- ✅ Business hours
-
-## 🚀 Quick Start Guide
+## 🚀 Quick Start
 
 ### Prerequisites
 
 - Node.js 18+ installed
 - A Sanity account (free at [sanity.io](https://sanity.io))
-- Git installed
 
-### Step 1: Clone & Install
+### Installation
 
 ```bash
 # Clone the repository
-git clone <your-repo-url>
+git clone https://github.com/coldlavaai/greenstarwebsiteupgrade.git
 cd greenstar-solar-redesign
 
 # Install dependencies
 npm install
 ```
 
-### Step 2: Sanity Project Setup
-
-1. Go to [sanity.io](https://sanity.io) and create a free account
-2. Create a new project named "Green Star Solar"
-3. Choose the "Production" dataset
-4. Copy your **Project ID** (looks like: `kpz3fwyf`)
-
-### Step 3: Environment Variables
+### Environment Variables
 
 Create a `.env.local` file in the root directory:
 
 ```env
 NEXT_PUBLIC_SANITY_PROJECT_ID=your-project-id-here
 NEXT_PUBLIC_SANITY_DATASET=production
+SANITY_API_WRITE_TOKEN=your-token-here
 ```
 
-Replace `your-project-id-here` with your actual Sanity Project ID.
+See `.env.example` for a template.
 
-### Step 4: Configure CORS
-
-1. Go to [sanity.io/manage](https://sanity.io/manage)
-2. Select your project
-3. Go to **API** → **CORS Origins**
-4. Click **Add CORS origin**
-5. Add: `http://localhost:3000` (and `http://localhost:3001` if needed)
-6. Check "Allow credentials"
-7. Save
-
-### Step 5: Run the Development Server
+### Running Locally
 
 ```bash
 npm run dev
@@ -83,88 +52,57 @@ Visit:
 - **Website:** http://localhost:3000
 - **Sanity Studio:** http://localhost:3000/studio
 
-### Step 6: Log In to Sanity Studio
-
-1. Go to http://localhost:3000/studio
-2. Log in with Google, GitHub, or email/password (same account used to create the Sanity project)
-3. You're in! Start editing content
-
 ## 📁 Project Structure
 
 ```
 greenstar-solar-redesign/
 ├── app/                    # Next.js app directory
 │   ├── studio/            # Sanity Studio route
-│   │   └── [[...index]]/page.tsx
 │   ├── page.tsx           # Homepage
 │   └── layout.tsx         # Root layout
 ├── components/            # React components
-│   ├── Hero.tsx          # Homepage hero section
-│   ├── Navigation.tsx    # Site navigation
+│   ├── Hero.tsx          # Hero section
+│   ├── Navigation.tsx    # Navigation
 │   ├── About.tsx         # About section
-│   ├── Services.tsx      # Services display
+│   ├── Systems.tsx       # Solar systems display
+│   ├── Process.tsx       # Installation process
 │   ├── Testimonials.tsx  # Customer reviews
 │   ├── Gallery.tsx       # Project gallery
 │   ├── Contact.tsx       # Contact form
 │   └── Footer.tsx        # Site footer
 ├── sanity/               # Sanity configuration
-│   └── schemas/          # Content type schemas
-│       ├── service.ts
-│       ├── testimonial.ts
-│       ├── galleryItem.ts
-│       ├── processStep.ts
-│       ├── siteSettings.ts
-│       ├── heroSection.ts
-│       ├── aboutSection.ts
-│       └── index.ts
-├── sanity.config.ts      # Sanity Studio configuration
-└── .env.local           # Environment variables
+│   └── schemas/          # Content schemas
+├── lib/                  # Utilities
+│   ├── sanity.ts        # Sanity client
+│   └── colorUtils.ts    # Color utilities
+├── scripts/             # Utility scripts
+│   └── populate-sanity.ts # Populate CMS with initial data
+└── .env.local           # Environment variables (not in git)
 ```
 
-## 🎯 Using This Template for Client Projects
+## 🎯 Content Management
 
-### Customization Workflow
+### Accessing Sanity Studio
 
-1. **Initial Setup**
-   - Update company name in `src/payload/payload.config.ts`
-   - Change brand colors in components (search for `#8cc63f`)
-   - Add client's logo to `public/`
+1. Go to `https://your-domain.com/studio` (or `http://localhost:3000/studio` locally)
+2. Log in with your Sanity credentials
+3. Edit content and click "Publish"
+4. Changes appear on the live site within 60 seconds
 
-2. **Content Population**
-   - Log into `/admin`
-   - Update Site Settings with client info
-   - Add services, testimonials, gallery images
-   - Customize hero and about sections
+### What Can Be Edited
 
-3. **Deploy**
-   - Push to GitHub
-   - Deploy to Vercel (recommended) or any Node.js host
-   - Update environment variables in production
+Through the Sanity Studio, you can manage:
 
-### Handing Off to Clients
-
-Send them this guide:
-
-**For Your Client:**
-```
-# How to Update Your Website
-
-1. Go to yourwebsite.com/studio
-2. Log in with your credentials (Google, GitHub, or email)
-3. Click on what you want to edit in the left sidebar:
-   - "Site Settings" - Company info, contact details
-   - "Services" - Add/edit solar services
-   - "Testimonials" - Manage customer reviews
-   - "Gallery Items" - Upload project photos
-   - "Hero Section" - Change homepage headline
-   - "About Section" - Update about us content
-   - "Process Steps" - Edit installation process
-
-4. Make your changes and click "Publish"
-5. Changes appear on the live site immediately!
-
-No coding required. User-friendly interface!
-```
+- ✅ Navigation menu and logo
+- ✅ Hero section headlines and CTAs
+- ✅ About section content and stats
+- ✅ Solar systems and services
+- ✅ Installation process steps
+- ✅ Customer testimonials and reviews
+- ✅ Project gallery images
+- ✅ Contact information
+- ✅ Footer content and links
+- ✅ Brand colors and theme
 
 ## 🔧 Development Commands
 
@@ -179,119 +117,89 @@ npm run lint     # Run linting
 
 - **Framework:** Next.js 14.2.13 (App Router)
 - **CMS:** Sanity.io v3.67.1
-- **Styling:** Tailwind CSS 4
+- **Styling:** Tailwind CSS
 - **Animations:** Framer Motion 11.5.4
-- **Forms:** React Hook Form
 - **Icons:** Lucide React
 - **Language:** TypeScript
-- **Deployment:** Vercel (recommended)
+- **Deployment:** Vercel
 
 ## 🌐 Deployment
 
 ### Vercel (Recommended)
 
-1. Push your code to GitHub
+1. Push code to GitHub
 2. Import project in Vercel
-3. Add environment variables
-4. Deploy!
-
-Vercel automatically handles:
-- Serverless functions
-- Image optimization
-- Automatic builds
-
-### Environment Variables for Production
-
-Add these in your Vercel project settings:
-
-```env
-NEXT_PUBLIC_SANITY_PROJECT_ID=kpz3fwyf
-NEXT_PUBLIC_SANITY_DATASET=production
-```
+3. Add environment variables:
+   - `NEXT_PUBLIC_SANITY_PROJECT_ID`
+   - `NEXT_PUBLIC_SANITY_DATASET`
+   - `SANITY_API_WRITE_TOKEN` (for write operations)
+4. Deploy
 
 ### CORS Setup for Production
 
-After deploying, add your production domain to Sanity CORS origins:
+After deploying, configure CORS in Sanity:
 
 1. Go to [sanity.io/manage](https://sanity.io/manage)
-2. Select your project "Green Star Solar"
+2. Select your project
 3. Go to **API** → **CORS Origins**
-4. Click **Add CORS origin**
-5. Enter your production URL (e.g., `https://greenstarsolar.vercel.app`)
-6. Check "Allow credentials"
-7. Save
+4. Add your production URL (e.g., `https://greenstarwebsiteupgrade.vercel.app`)
+5. Check "Allow credentials"
+6. Save
 
-Your Studio will be accessible at `https://your-domain.com/studio`
-
-## 🔐 Security Notes
+## 🔐 Security
 
 - Never commit `.env.local` (already in `.gitignore`)
 - Configure CORS origins properly in Sanity
-- Use Sanity's built-in authentication (Google/GitHub/email)
-- Regularly update dependencies with `npm update`
-- Sanity handles all backend security automatically
+- Sanity handles authentication and security
+- Regularly update dependencies
 
-## 📝 Content Types Explained
+## 📝 Components
 
-### Document Types (Multiple Items)
+### Page Sections
 
-- **Services** - Solar panels, batteries, EV charging, etc.
-  - Title, category, description, features, pricing
-  - Featured toggle for homepage display
+- **Hero** - Main landing section with stats
+- **About** - Company information with stats grid
+- **Systems** - Solar system offerings
+- **Process** - Installation process timeline
+- **Gallery** - Project showcase
+- **Testimonials** - Customer reviews with pagination
+- **Contact** - Contact form
+- **Footer** - Site footer with links
 
-- **Testimonials** - Customer reviews and ratings
-  - Customer name, company, rating (1-5 stars)
-  - Review text, optional photo
+### Sanity Schemas
 
-- **Gallery Items** - Project photos with categories
-  - Image upload, project title, description
-  - Category (Residential, Commercial, Industrial)
+- **Site Settings** - Global settings
+- **Navigation** - Menu configuration
+- **Hero Section** - Hero content
+- **About Section** - About content
+- **Systems Section** - Systems configuration
+- **Process Section** - Process steps
+- **Testimonials Section** - Reviews settings
+- **Gallery Section** - Gallery settings
+- **Contact Section** - Contact form settings
+- **Footer Section** - Footer content
+- **Service** - Individual solar services
+- **Testimonial** - Individual reviews
+- **Gallery Item** - Individual projects
+- **Process Step** - Individual process steps
 
-- **Process Steps** - Installation process breakdown
-  - Step number, title, description, icon
+## 🎨 Customization
 
-### Singleton Types (Single Instance)
+### Brand Colors
 
-- **Site Settings** - Global company settings
-  - Company name, contact info, business hours
-  - Social media links, branding colors, logo
+The site uses CSS variables defined in Tailwind config:
 
-- **Hero Section** - Homepage hero content
-  - Main heading, subheading, CTA buttons, stats
+- Primary: `#8cc63f` (Green Star green)
+- Primary Light: `#9dd350`
+- Primary Dark: `#7ab52f`
+- Accent: `#d4af37` (Gold)
 
-- **About Section** - About us content
-  - Heading, description, mission, values
+Update colors in the Sanity Studio under "Brand Theme" or directly in component files.
 
-## 🎨 Customization Guide
+### Fonts
 
-### Changing Brand Colors
-
-Search and replace `#8cc63f` with your brand color in:
-- `components/*.tsx`
-- `app/globals.css`
-
-Or create a theme config file for easier management.
-
-### Adding New Sections
-
-1. Create component in `components/`
-2. Import in `app/page.tsx`
-3. (Optional) Create a Global or Collection for it
-
-### Adding New Content Types
-
-To add a new schema (e.g., "Blog Posts"):
-
-1. Create a new file in `sanity/schemas/blogPost.ts`
-2. Define your schema using Sanity's syntax
-3. Import and add to `sanity/schemas/index.ts`
-4. Restart the dev server
-
-## 🤝 Support & Documentation
-
-- **Sanity Docs:** https://sanity.io/docs
-- **Next.js Docs:** https://nextjs.org/docs
-- **Tailwind CSS:** https://tailwindcss.com/docs
+- **Headings:** Playfair Display (serif)
+- **Body & Numbers:** Inter (sans-serif)
 
 ## 📄 License
 
@@ -299,4 +207,5 @@ Private - All rights reserved to Green Star Solar
 
 ---
 
-**Powered by Sanity.io & Next.js**
+**Live Site:** https://greenstarwebsiteupgrade.vercel.app
+**GitHub:** https://github.com/coldlavaai/greenstarwebsiteupgrade
