@@ -41,6 +41,7 @@ export const service = defineType({
       name: 'image',
       title: 'Service Image',
       type: 'image',
+      description: 'Upload a custom image here. If not uploaded, a default placeholder image will be used based on the service name.',
       options: {
         hotspot: true,
       },

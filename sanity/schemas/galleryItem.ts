@@ -15,10 +15,10 @@ export const galleryItem = defineType({
       name: 'image',
       title: 'Project Image',
       type: 'image',
+      description: 'Upload a custom project image here. If not uploaded, a default placeholder will be used based on the project title.',
       options: {
         hotspot: true,
       },
-      validation: (Rule) => Rule.required(),
     },
     {
       name: 'category',
