@@ -138,7 +138,7 @@ const About = ({ data }: AboutProps) => {
                 <div className="bg-[#8cc63f]/20 w-10 h-10 md:w-14 md:h-14 rounded-lg md:rounded-xl flex items-center justify-center mb-2 md:mb-4">
                   <stat.icon className="w-5 h-5 md:w-7 md:h-7 text-[#8cc63f]" />
                 </div>
-                <div className="text-2xl md:text-4xl font-bold text-white mb-1 md:mb-2" style={{ fontFamily: 'var(--font-playfair)' }}>{stat.value}</div>
+                <div className="text-2xl md:text-4xl font-bold text-white mb-1 md:mb-2">{stat.value}</div>
                 <div className="text-white/70 font-medium text-xs md:text-base">{stat.label}</div>
               </motion.div>
             ))}

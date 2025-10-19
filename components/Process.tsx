@@ -146,7 +146,6 @@ const Process = ({ data }: ProcessProps) => {
                           whileHover={{ rotate: 360 }}
                           transition={{ duration: 0.6 }}
                           className="bg-gradient-to-br from-primary to-primary-dark text-white text-lg md:text-xl font-bold w-12 h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center flex-shrink-0 shadow-xl relative overflow-hidden"
-                          style={{ fontFamily: 'var(--font-playfair)' }}
                         >
                           <span className="relative z-10">{step.number}</span>
                           <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>

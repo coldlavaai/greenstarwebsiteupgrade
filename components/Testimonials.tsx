@@ -474,7 +474,7 @@ const Testimonials = ({ data }: TestimonialsProps) => {
               whileHover={{ y: -5, scale: 1.05 }}
               className="text-center p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-primary/30 transition-all"
             >
-              <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent mb-3" style={{ fontFamily: 'var(--font-playfair)' }}>
+              <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent mb-3">
                 {stat.value}
               </div>
               <div className="text-white/70 text-sm md:text-base font-light">{stat.label}</div>
