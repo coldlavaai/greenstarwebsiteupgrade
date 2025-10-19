@@ -11,6 +11,9 @@ import DayNightBackground from '@/components/DayNightBackground';
 import { draftMode } from 'next/headers';
 import { getClient } from '@/lib/sanity';
 
+// Revalidate every 60 seconds - this ensures content updates appear quickly
+export const revalidate = 60;
+
 export default async function Home() {
   const isDraftMode = draftMode().isEnabled
   const client = getClient(isDraftMode)
