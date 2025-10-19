@@ -24,7 +24,19 @@ const Testimonials = ({ sectionData, testimonials: cmsTestimonials }: Testimonia
   const isInView = useInView(ref, { once: true, margin: '-100px' });
   const [currentPage, setCurrentPage] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-  const reviewsPerPage = 9;
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile screen size
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const reviewsPerPage = isMobile ? 4 : 9;
 
   // All reviews from your markdown file
   const allReviews: Testimonial[] = [
@@ -324,8 +336,8 @@ const Testimonials = ({ sectionData, testimonials: cmsTestimonials }: Testimonia
           </div>
         </motion.div>
 
-        {/* Reviews Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        {/* Reviews Grid - 2x2 on mobile, 3x3 on desktop */}
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-12">
           {currentReviews.map((review, index) => (
             <motion.div
               key={`${currentPage}-${index}`}
@@ -340,43 +352,42 @@ const Testimonials = ({ sectionData, testimonials: cmsTestimonials }: Testimonia
               className="group relative"
             >
               {/* Glassmorphism Card */}
-              <div className="relative h-full bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/20 shadow-lg hover:shadow-[0_20px_50px_rgba(140,198,63,0.4)] transition-all duration-300 overflow-hidden">
+              <div className="relative h-full bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-xl rounded-xl md:rounded-2xl p-4 md:p-6 border border-white/20 shadow-lg hover:shadow-[0_20px_50px_rgba(140,198,63,0.4)] transition-all duration-300 overflow-hidden">
                 {/* Gradient overlay on hover */}
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none"></div>
 
-                {/* Quote icon */}
-                <div className="absolute top-4 right-4 w-10 h-10 bg-gradient-to-br from-primary/20 to-primary/10 rounded-lg flex items-center justify-center opacity-50 group-hover:opacity-100 transition-opacity">
-                  <Quote className="w-5 h-5 text-primary" />
+                {/* Quote icon - hidden on mobile for space */}
+                <div className="absolute top-3 right-3 md:top-4 md:right-4 w-8 h-8 md:w-10 md:h-10 bg-gradient-to-br from-primary/20 to-primary/10 rounded-lg flex items-center justify-center opacity-50 group-hover:opacity-100 transition-opacity hidden md:flex">
+                  <Quote className="w-4 h-4 md:w-5 md:h-5 text-primary" />
                 </div>
 
                 {/* Content */}
                 <div className="relative z-10">
                   {/* Stars */}
-                  <div className="flex space-x-1 mb-3">
+                  <div className="flex space-x-0.5 md:space-x-1 mb-2 md:mb-3">
                     {[...Array(review.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-primary text-primary" />
+                      <Star key={i} className="w-3 h-3 md:w-4 md:h-4 fill-primary text-primary" />
                     ))}
                   </div>
 
                   {/* Review Text */}
-                  <p className="text-white/90 text-sm leading-relaxed mb-4 line-clamp-4 group-hover:text-white transition-colors">
+                  <p className="text-white/90 text-xs md:text-sm leading-relaxed mb-3 md:mb-4 line-clamp-3 md:line-clamp-4 group-hover:text-white transition-colors">
                     "{review.text}"
                   </p>
 
                   {/* Author */}
-                  <div className="pt-4 border-t border-white/10">
-                    <div className="font-semibold text-white text-sm mb-1">
+                  <div className="pt-3 md:pt-4 border-t border-white/10">
+                    <div className="font-semibold text-white text-xs md:text-sm mb-1">
                       {review.name}
                     </div>
-                    <div className="text-xs text-white/60 flex items-center gap-2">
-                      <span className={`px-2 py-0.5 rounded-full text-[10px] font-medium ${
+                    <div className="text-[10px] md:text-xs text-white/60 flex items-center gap-1 md:gap-2 flex-wrap">
+                      <span className={`px-1.5 md:px-2 py-0.5 rounded-full text-[9px] md:text-[10px] font-medium ${
                         review.platform === 'Google'
                           ? 'bg-blue-500/20 text-blue-300'
                           : 'bg-green-500/20 text-green-300'
                       }`}>
                         {review.platform}
                       </span>
-                      {review.location && <span>• {review.location}</span>}
                     </div>
                   </div>
                 </div>
