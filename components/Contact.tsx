@@ -31,6 +31,7 @@ const Contact = ({ data }: ContactProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const {
     register,
@@ -40,6 +41,11 @@ const Contact = ({ data }: ContactProps) => {
   } = useForm<FormData>();
 
   const onSubmit = async (data: FormData) => {
+    // Prevent double submissions
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
+
     try {
       const response = await fetch('/api/submit-contact', {
         method: 'POST',
@@ -61,6 +67,8 @@ const Contact = ({ data }: ContactProps) => {
     } catch (error) {
       console.error('Error submitting form:', error);
       alert('Sorry, there was an error submitting your form. Please try again or contact us directly.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -276,19 +284,27 @@ const Contact = ({ data }: ContactProps) => {
 
                   {/* Submit Button - Premium styling */}
                   <motion.button
-                    whileHover={{ scale: 1.02, boxShadow: '0 20px 50px rgba(140,198,63,0.4)' }}
-                    whileTap={{ scale: 0.98 }}
+                    whileHover={!isSubmitting ? { scale: 1.02, boxShadow: '0 20px 50px rgba(140,198,63,0.4)' } : {}}
+                    whileTap={!isSubmitting ? { scale: 0.98 } : {}}
                     type="submit"
-                    className="w-full bg-gradient-to-r from-primary via-primary-dark to-primary text-white py-4 md:py-5 rounded-xl font-semibold text-base md:text-lg hover:shadow-2xl transition-all flex items-center justify-center space-x-2 md:space-x-3 relative overflow-hidden group"
+                    disabled={isSubmitting}
+                    className={`w-full bg-gradient-to-r from-primary via-primary-dark to-primary text-white py-4 md:py-5 rounded-xl font-semibold text-base md:text-lg hover:shadow-2xl transition-all flex items-center justify-center space-x-2 md:space-x-3 relative overflow-hidden group ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
                   >
-                    <span className="relative z-10 tracking-wide">Send Message</span>
-                    <Send className="w-4 h-4 md:w-5 md:h-5 relative z-10" />
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent"
-                      initial={{ x: '-100%' }}
-                      whileHover={{ x: '100%' }}
-                      transition={{ duration: 0.6 }}
-                    />
+                    <span className="relative z-10 tracking-wide">
+                      {isSubmitting ? 'Sending...' : 'Send Message'}
+                    </span>
+                    {!isSubmitting && <Send className="w-4 h-4 md:w-5 md:h-5 relative z-10" />}
+                    {isSubmitting && (
+                      <div className="w-4 h-4 md:w-5 md:h-5 border-2 border-white border-t-transparent rounded-full animate-spin relative z-10" />
+                    )}
+                    {!isSubmitting && (
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent"
+                        initial={{ x: '-100%' }}
+                        whileHover={{ x: '100%' }}
+                        transition={{ duration: 0.6 }}
+                      />
+                    )}
                   </motion.button>
                 </form>
               ) : (
