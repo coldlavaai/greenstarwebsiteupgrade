@@ -39,6 +39,7 @@ export default defineConfig({
                   .items([
                     singletonItem(S, 'siteSettings', 'Site Settings'),
                     singletonItem(S, 'brandTheme', 'Brand & Theme'),
+                    singletonItem(S, 'emailSettings', 'Email Notifications'),
                   ])
               ),
 
@@ -61,6 +62,17 @@ export default defineConfig({
                     singletonItem(S, 'contactSection', 'Contact Section'),
                     singletonItem(S, 'footerSection', 'Footer'),
                   ])
+              ),
+
+            S.divider(),
+
+            // Form Submissions
+            S.listItem()
+              .title('📬 Form Submissions')
+              .child(
+                S.documentTypeList('formSubmission')
+                  .title('Contact Form Leads')
+                  .defaultOrdering([{ field: 'submittedAt', direction: 'desc' }])
               ),
 
             S.divider(),

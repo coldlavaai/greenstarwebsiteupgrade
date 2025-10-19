@@ -3,10 +3,12 @@ import { service } from './service'
 import { testimonial } from './testimonial'
 import { galleryItem } from './galleryItem'
 import { processStep } from './processStep'
+import { formSubmission } from './formSubmission'
 
 // Settings
 import { siteSettings } from './siteSettings'
 import { brandTheme } from './brandTheme'
+import { emailSettings } from './emailSettings'
 
 // Section Schemas
 import { heroSection } from './heroSection'
@@ -23,6 +25,7 @@ export const schemaTypes = [
   // Settings (singleton documents)
   siteSettings,
   brandTheme,
+  emailSettings,
 
   // Section Configurations (singleton documents)
   heroSection,
@@ -40,4 +43,7 @@ export const schemaTypes = [
   testimonial,
   galleryItem,
   processStep,
+
+  // Form Submissions
+  formSubmission,
 ]
