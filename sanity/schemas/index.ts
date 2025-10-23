@@ -4,6 +4,15 @@ import { testimonial } from './testimonial'
 import { galleryItem } from './galleryItem'
 import { processStep } from './processStep'
 import { formSubmission } from './formSubmission'
+import { dbrLead } from './dbrLead'
+
+// Knowledge Base Types
+import productCategory from './productCategory'
+import product from './product'
+import knowledgeBase from './knowledgeBase'
+import faq from './faq'
+import review from './review'
+import companyInfo from './companyInfo'
 
 // Settings
 import { siteSettings } from './siteSettings'
@@ -46,4 +55,15 @@ export const schemaTypes = [
 
   // Form Submissions
   formSubmission,
+
+  // DBR (Database Recovery) Leads
+  dbrLead,
+
+  // Knowledge Base
+  productCategory,
+  product,
+  knowledgeBase,
+  faq,
+  review,
+  companyInfo,
 ]

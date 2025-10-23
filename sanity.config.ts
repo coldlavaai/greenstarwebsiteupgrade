@@ -77,6 +77,113 @@ export default defineConfig({
 
             S.divider(),
 
+            // DBR Dashboard
+            S.listItem()
+              .title('🔥 DBR Dashboard (Database Recovery)')
+              .child(
+                S.list()
+                  .title('DBR Leads Dashboard')
+                  .items([
+                    // Analytics Link
+                    S.listItem()
+                      .title('📊 View Analytics Dashboard')
+                      .icon(() => '📊')
+                      .child(
+                        S.component(() => (
+                          <div style={{ padding: '2rem', textAlign: 'center' }}>
+                            <h2 style={{ fontSize: '2rem', marginBottom: '1rem' }}>DBR Analytics Dashboard</h2>
+                            <p style={{ marginBottom: '2rem', color: '#666' }}>
+                              View detailed analytics, metrics, and charts for your DBR campaigns
+                            </p>
+                            <a
+                              href="/dbr-analytics"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              style={{
+                                display: 'inline-block',
+                                padding: '1rem 2rem',
+                                background: '#2563eb',
+                                color: 'white',
+                                borderRadius: '0.5rem',
+                                textDecoration: 'none',
+                                fontWeight: '600',
+                              }}
+                            >
+                              Open Analytics Dashboard →
+                            </a>
+                          </div>
+                        )).title('Analytics Dashboard')
+                      ),
+
+                    S.divider(),
+
+                    // Hot Leads
+                    S.listItem()
+                      .title('🔥 HOT LEADS - Ready to Convert')
+                      .child(
+                        S.documentTypeList('dbrLead')
+                          .title('Hot Leads')
+                          .filter('contactStatus == "HOT"')
+                          .defaultOrdering([{ field: 'replyReceived', direction: 'desc' }])
+                      ),
+
+                    // Positive Leads
+                    S.listItem()
+                      .title('✅ POSITIVE - Interested')
+                      .child(
+                        S.documentTypeList('dbrLead')
+                          .title('Positive Leads')
+                          .filter('contactStatus == "POSITIVE"')
+                          .defaultOrdering([{ field: 'replyReceived', direction: 'desc' }])
+                      ),
+
+                    // Awaiting Reply
+                    S.listItem()
+                      .title('⏳ AWAITING REPLY - Messages Sent')
+                      .child(
+                        S.documentTypeList('dbrLead')
+                          .title('Awaiting Reply')
+                          .filter('contactStatus in ["Sent_1", "Sent_2", "Sent_3"]')
+                          .defaultOrdering([{ field: 'm1Sent', direction: 'desc' }])
+                      ),
+
+                    // Scheduled/Converted
+                    S.listItem()
+                      .title('📅 SCHEDULED & CONVERTED')
+                      .child(
+                        S.documentTypeList('dbrLead')
+                          .title('Scheduled & Converted')
+                          .filter('contactStatus in ["SCHEDULED", "CONVERTED"]')
+                          .defaultOrdering([{ field: 'installDate', direction: 'asc' }])
+                      ),
+
+                    S.divider(),
+
+                    // Negative/Removed
+                    S.listItem()
+                      .title('❌ NEGATIVE & REMOVED')
+                      .child(
+                        S.documentTypeList('dbrLead')
+                          .title('Negative & Removed')
+                          .filter('contactStatus in ["NEGATIVE", "REMOVED"]')
+                          .defaultOrdering([{ field: 'replyReceived', direction: 'desc' }])
+                      ),
+
+                    S.divider(),
+
+                    // All DBR Leads
+                    S.listItem()
+                      .title('📊 ALL DBR LEADS')
+                      .child(
+                        S.documentTypeList('dbrLead')
+                          .title('All DBR Leads')
+                          .defaultOrdering([{ field: 'replyReceived', direction: 'desc' }])
+                      ),
+                  ])
+              ),
+
+            S.divider(),
+
             // Website Content Group
             S.listItem()
               .title('🌐 Website Content')
