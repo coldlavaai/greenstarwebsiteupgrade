@@ -22,7 +22,7 @@ const DayNightBackground = () => {
   // Combine rotations
   const combinedRotation = useTransform(
     [baseRotation, scrollRotation],
-    ([base, scroll]) => base + scroll
+    ([base, scroll]: [number, number]) => base + scroll
   );
 
   // Logo opacity - starts at 0, fades to bright, then dims smoothly as content loads
