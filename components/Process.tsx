@@ -74,7 +74,7 @@ const Process = ({ data }: ProcessProps) => {
   return (
     <section id="process" ref={ref} className="py-16 md:py-24 bg-transparent relative overflow-hidden">
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-8 md:px-12 relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -88,16 +88,16 @@ const Process = ({ data }: ProcessProps) => {
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
           >
             <div className="h-px w-8 md:w-12 bg-gradient-to-r from-transparent to-accent"></div>
-            <span className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent font-semibold text-xs md:text-sm uppercase tracking-[0.15em] md:tracking-[0.2em]">
+            <span className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent font-semibold text-[10px] md:text-xs uppercase tracking-[0.15em] md:tracking-[0.2em]">
               Our Process
             </span>
             <div className="h-px w-8 md:w-12 bg-gradient-to-l from-transparent to-accent"></div>
           </motion.div>
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4 md:mb-6 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
+          <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-4 md:mb-6 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
             We're With You{' '}
             <span className="bg-gradient-to-r from-accent via-primary-light to-accent bg-clip-text text-transparent">Every Step</span>
           </h2>
-          <p className="text-base md:text-xl lg:text-2xl text-white/60 max-w-3xl mx-auto font-light leading-relaxed">
+          <p className="text-xs md:text-sm lg:text-base text-white/60 max-w-3xl mx-auto font-light leading-relaxed">
             A highly personalised approach with ongoing personal support throughout your solar journey
           </p>
         </motion.div>
@@ -150,11 +150,11 @@ const Process = ({ data }: ProcessProps) => {
                           <span className="relative z-10">{step.number}</span>
                           <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                         </motion.div>
-                        <h3 className="text-2xl md:text-3xl font-bold text-white tracking-tight pt-2" style={{ fontFamily: 'var(--font-playfair)' }}>
+                        <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight pt-2" style={{ fontFamily: 'var(--font-playfair)' }}>
                           {step.title}
                         </h3>
                       </div>
-                      <p className="text-white/70 leading-relaxed text-sm md:text-base font-light">
+                      <p className="text-white/70 leading-relaxed text-xs md:text-sm font-light">
                         {step.description}
                       </p>
                     </div>

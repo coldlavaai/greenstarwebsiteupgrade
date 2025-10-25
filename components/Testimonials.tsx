@@ -286,7 +286,7 @@ const Testimonials = ({ data }: TestimonialsProps) => {
       {/* Subtle gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent"></div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-8 md:px-12 relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -477,7 +477,7 @@ const Testimonials = ({ data }: TestimonialsProps) => {
               <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent mb-3">
                 {stat.value}
               </div>
-              <div className="text-white/70 text-sm md:text-base font-light">{stat.label}</div>
+              <div className="text-white/70 text-xs md:text-sm font-light">{stat.label}</div>
             </motion.div>
           ))}
         </motion.div>

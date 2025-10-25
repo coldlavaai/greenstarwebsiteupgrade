@@ -106,7 +106,7 @@ const Gallery = ({ data }: GalleryProps) => {
   return (
     <section ref={ref} className="py-24 bg-transparent relative overflow-hidden">
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-8 md:px-12 relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

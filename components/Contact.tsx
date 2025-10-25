@@ -109,13 +109,13 @@ const Contact = ({ data }: ContactProps) => {
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
           >
             <div className="h-px w-8 md:w-12 bg-gradient-to-r from-transparent to-accent"></div>
-            <span className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent font-semibold text-xs md:text-sm uppercase tracking-[0.15em] md:tracking-[0.2em]">
+            <span className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent font-semibold text-[10px] md:text-xs uppercase tracking-[0.15em] md:tracking-[0.2em]">
               Get In Touch
             </span>
             <div className="h-px w-8 md:w-12 bg-gradient-to-l from-transparent to-accent"></div>
           </motion.div>
           <h2
-            className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4 md:mb-6 tracking-tight"
+            className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-4 md:mb-6 tracking-tight"
             style={{ fontFamily: 'var(--font-playfair)' }}
             data-sanity={data?._id ? `${data._id}.heading` : undefined}
           >
@@ -123,7 +123,7 @@ const Contact = ({ data }: ContactProps) => {
             <span className="bg-gradient-to-r from-accent via-primary-light to-accent bg-clip-text text-transparent">Free Survey</span>
           </h2>
           <p
-            className="text-base md:text-xl lg:text-2xl text-white/60 max-w-3xl mx-auto font-light leading-relaxed px-4"
+            className="text-xs md:text-sm lg:text-base text-white/60 max-w-3xl mx-auto font-light leading-relaxed px-4"
             data-sanity={data?._id ? `${data._id}.subheading` : undefined}
           >
             {data?.subheading || 'Ready to make the switch to solar? Contact us today for a free consultation and site assessment'}
@@ -139,10 +139,10 @@ const Contact = ({ data }: ContactProps) => {
             className="space-y-6 md:space-y-8"
           >
             <div>
-              <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4 md:mb-6 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
+              <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-4 md:mb-6 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
                 Let's Start Your Solar Journey
               </h3>
-              <p className="text-white/70 text-base md:text-lg leading-relaxed mb-6 md:mb-8 font-light">
+              <p className="text-white/70 text-xs md:text-sm leading-relaxed mb-6 md:mb-8 font-light">
                 Our team of experts is ready to help you transition to clean, renewable energy. Get in touch for a free, no-obligation consultation.
               </p>
             </div>
@@ -164,7 +164,7 @@ const Contact = ({ data }: ContactProps) => {
                   </div>
                   <div>
                     <div className="text-xs md:text-sm text-white/50 font-medium uppercase tracking-wider">{info.title}</div>
-                    <div className="text-white font-semibold text-base md:text-lg">{info.content}</div>
+                    <div className="text-white font-semibold text-xs md:text-sm">{info.content}</div>
                   </div>
                 </motion.a>
               ))}
@@ -178,7 +178,7 @@ const Contact = ({ data }: ContactProps) => {
               className="bg-gradient-to-br from-primary via-primary-dark to-primary rounded-2xl md:rounded-3xl p-6 md:p-8 text-white shadow-2xl relative overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent"></div>
-              <h4 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6 relative z-10" style={{ fontFamily: 'var(--font-playfair)' }}>Why Choose Us?</h4>
+              <h4 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 relative z-10" style={{ fontFamily: 'var(--font-playfair)' }}>Why Choose Us?</h4>
               <ul className="space-y-3 md:space-y-4 relative z-10">
                 {[
                   'Free site assessment & consultation',
@@ -192,7 +192,7 @@ const Contact = ({ data }: ContactProps) => {
                     initial={{ opacity: 0, x: -20 }}
                     animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
                     transition={{ delay: 0.7 + idx * 0.1 }}
-                    className="flex items-start space-x-2 md:space-x-3 text-sm md:text-base font-light"
+                    className="flex items-start space-x-2 md:space-x-3 text-xs md:text-sm font-light"
                   >
                     <CheckCircle className="w-5 h-5 md:w-6 md:h-6 flex-shrink-0 mt-0.5" />
                     <span>{benefit}</span>
@@ -288,7 +288,7 @@ const Contact = ({ data }: ContactProps) => {
                     whileTap={{ scale: 0.95 }}
                     type="submit"
                     disabled={isSubmitting}
-                    className={`w-full bg-gradient-to-r from-primary via-primary-dark to-primary text-white py-4 md:py-5 rounded-xl font-semibold text-base md:text-lg hover:shadow-2xl transition-all duration-150 flex items-center justify-center space-x-2 md:space-x-3 relative overflow-hidden group active:scale-95 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : 'active:opacity-90'}`}
+                    className={`w-full bg-gradient-to-r from-primary via-primary-dark to-primary text-white py-3 md:py-4 rounded-xl font-semibold text-xs md:text-sm hover:shadow-2xl transition-all duration-150 flex items-center justify-center space-x-2 md:space-x-3 relative overflow-hidden group active:scale-95 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : 'active:opacity-90'}`}
                   >
                     <motion.span
                       className="relative z-10 tracking-wide"
