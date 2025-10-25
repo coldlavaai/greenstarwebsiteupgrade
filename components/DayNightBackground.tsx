@@ -73,8 +73,8 @@ const DayNightBackground = () => {
           className="absolute inset-0"
           style={{
             backgroundImage: `
-              linear-gradient(rgba(140, 198, 63, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(140, 198, 63, 0.1) 1px, transparent 1px)
+              linear-gradient(rgba(140, 199, 64, 0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(140, 199, 64, 0.1) 1px, transparent 1px)
             `,
             backgroundSize: '100px 100px',
           }}
@@ -89,7 +89,7 @@ const DayNightBackground = () => {
         <div
           className="w-full h-full"
           style={{
-            background: 'radial-gradient(ellipse at center, rgba(140, 198, 63, 0.15) 0%, transparent 70%)',
+            background: 'radial-gradient(ellipse at center, rgba(140, 199, 64, 0.15) 0%, transparent 70%)',
             filter: 'blur(60px)',
           }}
         />
@@ -111,8 +111,8 @@ const DayNightBackground = () => {
               top: `${yStart}%`,
               width: '2px',
               height: '2px',
-              background: 'rgba(140, 198, 63, 0.6)',
-              boxShadow: '0 0 10px rgba(140, 198, 63, 0.4)',
+              background: 'rgba(140, 199, 64, 0.6)',
+              boxShadow: '0 0 10px rgba(140, 199, 64, 0.4)',
             }}
             animate={{
               y: [0, -200, -400],
@@ -161,7 +161,7 @@ const DayNightBackground = () => {
             }}
             style={{
               filter: 'blur(30px)',
-              background: 'radial-gradient(circle, rgba(140, 198, 63, 0.25) 0%, transparent 70%)',
+              background: 'radial-gradient(circle, rgba(140, 199, 64, 0.25) 0%, transparent 70%)',
             }}
           />
 
@@ -173,13 +173,13 @@ const DayNightBackground = () => {
             style={{
               width: '500px',
               height: '500px',
-              filter: 'drop-shadow(0 0 15px rgba(140, 198, 63, 0.25))',
+              filter: 'drop-shadow(0 0 15px rgba(140, 199, 64, 0.25))',
             }}
             animate={{
               filter: [
-                'drop-shadow(0 0 15px rgba(140, 198, 63, 0.25))',
-                'drop-shadow(0 0 22px rgba(140, 198, 63, 0.35))',
-                'drop-shadow(0 0 15px rgba(140, 198, 63, 0.25))',
+                'drop-shadow(0 0 15px rgba(140, 199, 64, 0.25))',
+                'drop-shadow(0 0 22px rgba(140, 199, 64, 0.35))',
+                'drop-shadow(0 0 15px rgba(140, 199, 64, 0.25))',
               ],
             }}
             transition={{

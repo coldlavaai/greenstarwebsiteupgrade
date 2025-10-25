@@ -1,9 +1,17 @@
 @import "tailwindcss";
 
 @font-face {
-  font-family: 'Eurostile Extended';
-  src: url('/fonts/EurostileExtendedBlack.ttf') format('truetype');
-  font-weight: 900;
+  font-family: 'Microgramma D Extended';
+  src: url('/fonts/MicrogrammaDMediumExtended.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Microgramma D Extended';
+  src: url('/fonts/MicrogrammaDBoldExtended.ttf') format('truetype');
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
@@ -11,10 +19,10 @@
 :root {
   --background: #ffffff;
   --foreground: #1a1a1a;
-  --primary: #8cc63f;
+  --primary: #8cc740;
   --primary-dark: #6fa32e;
   --primary-light: #a8d96e;
-  --accent: #8cc63f;
+  --accent: #8cc740;
   --accent-dark: #6fa32e;
   --muted: #f8f9fa;
   --muted-dark: #e9ecef;
@@ -33,7 +41,7 @@
 
   --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-serif: var(--font-playfair), Georgia, serif;
-  --font-heading: 'Eurostile Extended', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-heading: 'Microgramma D Extended', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 @theme inline {

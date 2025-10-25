@@ -83,7 +83,7 @@ const Hero = ({ data }: HeroProps) => {
                   src="/images/greenstar-logo-dots.png"
                   alt="Greenstar"
                   className="w-full h-full"
-                  style={{ filter: 'drop-shadow(0 0 8px rgba(140, 198, 63, 0.4))' }}
+                  style={{ filter: 'drop-shadow(0 0 8px rgba(140, 199, 64, 0.4))' }}
                 />
               </motion.div>
               <span className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent font-semibold text-[9px] md:text-[10px] uppercase tracking-[0.15em] md:tracking-[0.2em]">
@@ -103,7 +103,7 @@ const Hero = ({ data }: HeroProps) => {
                 className="bg-gradient-to-r from-primary via-primary to-primary bg-clip-text text-transparent bg-[length:200%_auto]"
                 animate={{ backgroundPosition: ['0% center', '200% center'] }}
                 transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
-                style={{ textShadow: '0 0 80px rgba(140, 198, 63, 0.3)' }}
+                style={{ textShadow: '0 0 80px rgba(140, 199, 64, 0.3)' }}
               >
                 with Solar Energy
               </motion.span>
@@ -169,7 +169,7 @@ const Hero = ({ data }: HeroProps) => {
                       src="/images/greenstar-logo-dots.png"
                       alt="Greenstar"
                       className="w-full h-full"
-                      style={{ filter: 'drop-shadow(0 0 6px rgba(140, 198, 63, 0.4))' }}
+                      style={{ filter: 'drop-shadow(0 0 6px rgba(140, 199, 64, 0.4))' }}
                     />
                   </motion.span>
                 </span>
