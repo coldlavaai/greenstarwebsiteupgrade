@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, BatteryFull, Zap } from 'lucide-react';
+import { ArrowRight, Sun, BatteryFull, Zap } from 'lucide-react';
 import { useRef, useState, useEffect } from 'react';
 import { urlFor } from '@/lib/sanity';
 
