@@ -7,7 +7,7 @@ import Gallery from '@/components/Gallery';
 import Testimonials from '@/components/Testimonials';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
-import DayNightBackground from '@/components/DayNightBackground';
+import PageWrapper from '@/components/PageWrapper';
 import { draftMode } from 'next/headers';
 import { getClient } from '@/lib/sanity';
 
@@ -108,8 +108,7 @@ export default async function Home() {
   ])
 
   return (
-    <div className="min-h-screen relative">
-      <DayNightBackground />
+    <PageWrapper>
       <Navigation data={navigationData} />
       <Hero data={heroData} />
       <About data={aboutData} />
@@ -119,6 +118,6 @@ export default async function Home() {
       <Testimonials data={testimonialsData} />
       <Contact data={contactData} />
       <Footer data={footerData} />
-    </div>
+    </PageWrapper>
   );
 }
