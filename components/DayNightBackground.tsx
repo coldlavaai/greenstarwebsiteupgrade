@@ -171,8 +171,8 @@ const DayNightBackground = () => {
             alt="Greenstar Logo"
             className="relative z-10"
             style={{
-              width: '600px',
-              height: '600px',
+              width: '500px',
+              height: '500px',
               filter: 'drop-shadow(0 0 15px rgba(140, 198, 63, 0.25))',
             }}
             animate={{

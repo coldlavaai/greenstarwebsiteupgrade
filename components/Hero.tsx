@@ -90,7 +90,7 @@ const Hero = ({ data }: HeroProps) => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.8 }}
-              className="text-xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6 leading-[1.1] tracking-tight"
+              className="text-lg md:text-2xl lg:text-3xl font-bold mb-3 md:mb-5 leading-[1.1] tracking-tight"
               style={{ fontFamily: 'var(--font-playfair)' }}
               data-sanity={data?._id ? `${data._id}.heading` : undefined}
             >
@@ -109,7 +109,7 @@ const Hero = ({ data }: HeroProps) => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
-              className="text-xs md:text-sm lg:text-base text-gray-200 mb-6 md:mb-8 leading-relaxed font-light"
+              className="text-[11px] md:text-xs lg:text-sm text-gray-200 mb-5 md:mb-7 leading-relaxed font-light"
               data-sanity={data?._id ? `${data._id}.subheading` : undefined}
             >
               {data?.subheading || 'Bespoke solar energy systems designed to perfectly match your unique requirements. Save money, reduce your carbon footprint, and achieve true energy independence.'}
@@ -125,7 +125,7 @@ const Hero = ({ data }: HeroProps) => {
                 whileHover={{ scale: 1.05, boxShadow: '0 20px 50px rgba(140,198,63,0.5)' }}
                 whileTap={{ scale: 0.95 }}
                 href={data?.ctaLink || "#contact"}
-                className="group relative bg-gradient-to-r from-primary via-primary-dark to-primary text-white px-4 py-2 md:px-5 md:py-2.5 rounded-full font-semibold text-[11px] md:text-xs overflow-hidden shadow-2xl ring-2 ring-primary/30 ring-offset-2 ring-offset-transparent"
+                className="group relative bg-gradient-to-r from-primary via-primary-dark to-primary text-white px-3 py-1.5 md:px-4 md:py-2 rounded-full font-semibold text-[10px] md:text-[11px] overflow-hidden shadow-2xl ring-2 ring-primary/30 ring-offset-2 ring-offset-transparent"
                 data-sanity={data?._id ? `${data._id}.ctaText` : undefined}
               >
                 <span className="relative z-10 flex items-center space-x-2">
@@ -151,7 +151,7 @@ const Hero = ({ data }: HeroProps) => {
                 }}
                 whileTap={{ scale: 0.95 }}
                 href={data?.secondaryCtaLink || "#systems"}
-                className="group relative backdrop-blur-xl bg-white/5 text-white px-4 py-2 md:px-5 md:py-2.5 rounded-full font-semibold text-[11px] md:text-xs border-2 border-white/20 transition-all shadow-xl"
+                className="group relative backdrop-blur-xl bg-white/5 text-white px-3 py-1.5 md:px-4 md:py-2 rounded-full font-semibold text-[10px] md:text-[11px] border-2 border-white/20 transition-all shadow-xl"
                 data-sanity={data?._id ? `${data._id}.secondaryCtaText` : undefined}
               >
                 <span className="flex items-center space-x-2">
@@ -222,7 +222,7 @@ const Hero = ({ data }: HeroProps) => {
                 ease: 'easeInOut',
               }}
               style={{ transformStyle: 'preserve-3d' }}
-              className="relative w-[320px] mx-auto"
+              className="relative w-[280px] mx-auto"
             >
               {/* Main Image Card with 3D effect */}
               <div
@@ -248,14 +248,14 @@ const Hero = ({ data }: HeroProps) => {
                   animate={{ opacity: 1, scale: 1, rotateZ: 0 }}
                   transition={{ delay: 1.2 + index * 0.2, type: 'spring' }}
                   whileHover={{ scale: 1.1, rotateZ: index === 0 ? 5 : -5, y: -10 }}
-                  className={`absolute ${index === 0 ? 'top-10 -left-10' : 'bottom-10 -right-10'} bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-xl p-4 rounded-2xl border border-white/20 shadow-2xl hover:shadow-[0_20px_60px_rgba(140,198,63,0.4)] cursor-pointer`}
+                  className={`absolute ${index === 0 ? 'top-10 -left-10' : 'bottom-10 -right-10'} bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-xl p-3 rounded-2xl border border-white/20 shadow-2xl hover:shadow-[0_20px_60px_rgba(140,198,63,0.4)] cursor-pointer`}
                   style={{ transformStyle: 'preserve-3d' }}
                   data-sanity={data?._id && stat._key ? `${data._id}.stats[_key=="${stat._key}"]` : undefined}
                 >
-                  <div className="text-xl font-bold bg-gradient-to-r from-[#8cc63f] to-[#7ab52f] bg-clip-text text-transparent mb-1">
+                  <div className="text-lg font-bold bg-gradient-to-r from-[#8cc63f] to-[#7ab52f] bg-clip-text text-transparent mb-0.5">
                     {stat.value}
                   </div>
-                  <div className="text-[9px] text-white font-semibold">{stat.label}</div>
+                  <div className="text-[8px] text-white font-semibold">{stat.label}</div>
                   <div className="absolute -inset-1 bg-gradient-to-r from-[#8cc63f] to-[#7ab52f] opacity-0 hover:opacity-20 rounded-3xl blur transition-opacity" />
                 </motion.div>
               ))}
