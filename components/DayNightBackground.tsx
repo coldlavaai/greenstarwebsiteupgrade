@@ -1,20 +1,57 @@
 'use client';
 
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useMotionValue, useAnimationFrame, animate } from 'framer-motion';
+import { useRef, useContext, useEffect } from 'react';
+import { LoadingContext } from './PageWrapper';
 
 const DayNightBackground = () => {
   const { scrollYProgress } = useScroll();
+  const baseRotation = useMotionValue(0);
+  const timeRef = useRef(0);
+  const { isLoaded, assemblyComplete } = useContext(LoadingContext);
 
-  // Sleek black gradient transitions
-  const backgroundGradient = useTransform(
-    scrollYProgress,
-    [0, 0.5, 1],
-    [
-      'radial-gradient(ellipse at top, #1a1a1a 0%, #000000 100%)',
-      'radial-gradient(ellipse at center, #0a0a0a 0%, #000000 100%)',
-      'radial-gradient(ellipse at bottom, #000000 0%, #000000 100%)',
-    ]
+  // Continuous clockwise rotation
+  useAnimationFrame((t) => {
+    timeRef.current = t;
+    baseRotation.set((t / 1000) * 4); // 4 degrees per second = 90 sec for 360°
+  });
+
+  // Scroll-based rotation boost (speeds up clockwise when scrolling down)
+  const scrollRotation = useTransform(scrollYProgress, [0, 1], [0, 360]);
+
+  // Combine rotations
+  const combinedRotation = useTransform(
+    [baseRotation, scrollRotation],
+    ([base, scroll]) => base + scroll
   );
+
+  // Logo opacity - starts at 0, fades to bright, then dims smoothly as content loads
+  const logoOpacity = useMotionValue(0);
+  const hasStartedEntranceRef = useRef(false);
+
+  // Entrance animation: fade in to bright
+  useEffect(() => {
+    if (!hasStartedEntranceRef.current) {
+      hasStartedEntranceRef.current = true;
+      animate(logoOpacity, 0.3, {
+        duration: 1.2,
+        ease: [0.25, 0.1, 0.0, 1.0]
+      });
+    }
+  }, [logoOpacity]);
+
+  // Dimming animation: when content loads, dim gradually (10% brighter than before)
+  useEffect(() => {
+    if (isLoaded) {
+      animate(logoOpacity, 0.11, {
+        duration: 2.0,
+        ease: [0.25, 0.1, 0.25, 1.0]
+      });
+    }
+  }, [isLoaded, logoOpacity]);
+
+  // Consistent dark background (no mist effect)
+  const backgroundGradient = 'radial-gradient(ellipse at center, #0a0a0a 0%, #000000 100%)';
 
   // Accent color glow
   const accentOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.3, 0.6, 0.2]);
@@ -91,78 +128,67 @@ const DayNightBackground = () => {
         );
       })}
 
-      {/* Geometric Lines - Animated */}
+      {/* Rotating Logo - Present from the START */}
       <motion.div
-        className="absolute inset-0 pointer-events-none"
-        style={{ opacity: 0.1 }}
+        className="absolute inset-0 pointer-events-none flex items-center justify-center"
+        style={{ opacity: logoOpacity }}
       >
-        {/* Diagonal Lines */}
+        {/* Logo Container with Parallax Rotation */}
         <motion.div
-          className="absolute top-0 left-0 w-full h-full"
+          className="relative"
+          style={{
+            rotate: combinedRotation,
+          }}
+          initial={{ scale: 0.3 }}
           animate={{
-            rotate: [0, 360],
+            scale: 1
           }}
           transition={{
-            duration: 60,
-            repeat: Infinity,
-            ease: 'linear',
+            scale: { duration: 1.2, ease: [0.25, 0.1, 0.0, 1.0] }
           }}
         >
-          {[...Array(6)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute top-1/2 left-1/2"
-              style={{
-                width: '2px',
-                height: `${300 + i * 100}px`,
-                background: 'linear-gradient(to bottom, transparent, rgba(140, 198, 63, 0.3), transparent)',
-                transform: `translate(-50%, -50%) rotate(${i * 60}deg)`,
-                transformOrigin: 'center',
-              }}
-            />
-          ))}
-        </motion.div>
-      </motion.div>
-
-      {/* Pulsing Circles */}
-      <div className="absolute inset-0 pointer-events-none">
-        {[300, 500, 700].map((size, i) => (
+          {/* Subtle Electrical Glow Pulse */}
           <motion.div
-            key={i}
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full border border-green-500/10"
-            style={{
-              width: `${size}px`,
-              height: `${size}px`,
-            }}
+            className="absolute inset-0"
             animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.1, 0.2, 0.1],
+              opacity: [0.2, 0.35, 0.2],
+              scale: [1, 1.03, 1],
             }}
             transition={{
-              duration: 8,
+              duration: 5,
               repeat: Infinity,
-              delay: i * 1.5,
+              ease: 'easeInOut',
+            }}
+            style={{
+              filter: 'blur(30px)',
+              background: 'radial-gradient(circle, rgba(140, 198, 63, 0.25) 0%, transparent 70%)',
             }}
           />
-        ))}
-      </div>
 
-      {/* Scan Lines Effect */}
-      <motion.div
-        className="absolute inset-0 pointer-events-none"
-        style={{ opacity: 0.03 }}
-      >
-        <motion.div
-          className="w-full h-1 bg-gradient-to-r from-transparent via-green-500 to-transparent"
-          animate={{
-            y: ['0vh', '100vh'],
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            ease: 'linear',
-          }}
-        />
+          {/* Logo Image */}
+          <motion.img
+            src="/images/greenstar-logo-dots.png"
+            alt="Greenstar Logo"
+            className="relative z-10"
+            style={{
+              width: '600px',
+              height: '600px',
+              filter: 'drop-shadow(0 0 15px rgba(140, 198, 63, 0.25))',
+            }}
+            animate={{
+              filter: [
+                'drop-shadow(0 0 15px rgba(140, 198, 63, 0.25))',
+                'drop-shadow(0 0 22px rgba(140, 198, 63, 0.35))',
+                'drop-shadow(0 0 15px rgba(140, 198, 63, 0.25))',
+              ],
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+          />
+        </motion.div>
       </motion.div>
 
       {/* Corner Accents */}

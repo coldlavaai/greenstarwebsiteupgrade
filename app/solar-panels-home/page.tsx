@@ -6,15 +6,14 @@ import { useRef } from 'react';
 import { Sun, TrendingDown, Shield, Zap, Home, CheckCircle, ArrowRight, Battery, Leaf, Award } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
-import DayNightBackground from '@/components/DayNightBackground';
+import PageWrapper from '@/components/PageWrapper';
 
 export default function SolarPanelsHome() {
   const benefitsRef = useRef(null);
   const benefitsInView = useInView(benefitsRef, { once: true, margin: '-100px' });
 
   return (
-    <div className="relative min-h-screen">
-      <DayNightBackground />
+    <PageWrapper>
       <Navigation />
 
       {/* Hero Section */}
@@ -209,6 +208,6 @@ export default function SolarPanelsHome() {
       </section>
 
       <Footer />
-    </div>
+    </PageWrapper>
   );
 }

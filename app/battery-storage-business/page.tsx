@@ -6,7 +6,7 @@ import { useRef } from 'react';
 import { Battery, TrendingDown, Shield, Zap, Building2, Clock, Power, Moon, ArrowRight, Target } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
-import DayNightBackground from '@/components/DayNightBackground';
+import PageWrapper from '@/components/PageWrapper';
 
 export default function BatteryStorageBusiness() {
   const benefitsRef = useRef(null);
@@ -91,8 +91,7 @@ export default function BatteryStorageBusiness() {
   ];
 
   return (
-    <div className="relative min-h-screen">
-      <DayNightBackground />
+    <PageWrapper>
       <Navigation />
 
       {/* Hero Section */}
@@ -315,6 +314,6 @@ export default function BatteryStorageBusiness() {
       </section>
 
       <Footer />
-    </div>
+    </PageWrapper>
   );
 }
