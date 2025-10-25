@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, Sun, BatteryFull, Zap, Sparkles } from 'lucide-react';
+import { ArrowRight, BatteryFull, Zap } from 'lucide-react';
 import { useRef, useState, useEffect } from 'react';
 import { urlFor } from '@/lib/sanity';
 
@@ -76,10 +76,15 @@ const Hero = ({ data }: HeroProps) => {
             >
               <motion.div
                 animate={{ rotate: [0, 360] }}
-                transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-                className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-gradient-to-br from-primary via-primary-light to-primary flex items-center justify-center"
+                transition={{ duration: 90, repeat: Infinity, ease: 'linear' }}
+                className="w-6 h-6 md:w-8 md:h-8 flex items-center justify-center"
               >
-                <Sparkles className="w-4 h-4 md:w-5 md:h-5 text-white" />
+                <img
+                  src="/images/greenstar-logo-dots.png"
+                  alt="Greenstar"
+                  className="w-full h-full"
+                  style={{ filter: 'drop-shadow(0 0 8px rgba(140, 198, 63, 0.4))' }}
+                />
               </motion.div>
               <span className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent font-semibold text-[9px] md:text-[10px] uppercase tracking-[0.15em] md:tracking-[0.2em]">
                 Premium Solar Solutions
@@ -158,9 +163,15 @@ const Hero = ({ data }: HeroProps) => {
                   <span className="tracking-wide">{data?.secondaryCtaText || 'Explore Systems'}</span>
                   <motion.span
                     animate={{ rotate: [0, 360] }}
-                    transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
+                    transition={{ duration: 90, repeat: Infinity, ease: 'linear' }}
+                    className="inline-block w-4 h-4 md:w-5 md:h-5"
                   >
-                    <Sun className="w-4 h-4 md:w-5 md:h-5 text-primary" />
+                    <img
+                      src="/images/greenstar-logo-dots.png"
+                      alt="Greenstar"
+                      className="w-full h-full"
+                      style={{ filter: 'drop-shadow(0 0 6px rgba(140, 198, 63, 0.4))' }}
+                    />
                   </motion.span>
                 </span>
               </motion.a>
