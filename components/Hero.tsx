@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, Sun, BatteryCharging, Zap, Sparkles } from 'lucide-react';
+import { ArrowRight, Sun, BatteryFull, Zap, Sparkles } from 'lucide-react';
 import { useRef, useState, useEffect } from 'react';
 import { urlFor } from '@/lib/sanity';
 
@@ -48,7 +48,7 @@ const Hero = ({ data }: HeroProps) => {
 
   const features = [
     { icon: Sun, text: 'Solar Panels', color: 'from-orange-400 to-yellow-500' },
-    { icon: BatteryCharging, text: 'Battery Storage', color: 'from-[#8cc63f] to-[#7ab52f]' },
+    { icon: BatteryFull, text: 'Battery Storage', color: 'from-[#8cc63f] to-[#7ab52f]' },
     { icon: Zap, text: 'EV Charging', color: 'from-green-400 to-emerald-500' },
   ];
 
