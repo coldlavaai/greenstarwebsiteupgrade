@@ -110,7 +110,7 @@ const Systems = ({ data }: SystemsProps) => {
   return (
     <section id="systems" ref={ref} className="py-16 md:py-24 bg-transparent relative overflow-hidden">
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-8 md:px-12 relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -124,16 +124,16 @@ const Systems = ({ data }: SystemsProps) => {
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
           >
             <div className="h-px w-8 md:w-12 bg-gradient-to-r from-transparent to-accent"></div>
-            <span className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent font-semibold text-xs md:text-sm uppercase tracking-[0.15em] md:tracking-[0.2em]">
+            <span className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent font-semibold text-[10px] md:text-xs uppercase tracking-[0.15em] md:tracking-[0.2em]">
               Our Solutions
             </span>
             <div className="h-px w-8 md:w-12 bg-gradient-to-l from-transparent to-accent"></div>
           </motion.div>
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4 md:mb-6 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4 md:mb-6 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
             Tailored Solar & Storage{' '}
             <span className="bg-gradient-to-r from-accent via-primary-light to-accent bg-clip-text text-transparent">Systems</span>
           </h2>
-          <p className="text-base md:text-xl lg:text-2xl text-white/60 max-w-3xl mx-auto font-light leading-relaxed px-4">
+          <p className="text-xs md:text-sm lg:text-base text-white/60 max-w-3xl mx-auto font-light leading-relaxed px-4">
             Whether you're a homeowner or business owner, we have the perfect renewable energy solution for your needs
           </p>
         </motion.div>
@@ -152,14 +152,14 @@ const Systems = ({ data }: SystemsProps) => {
           transition={{ delay: 0.8 }}
           className="text-center mt-12 md:mt-20"
         >
-          <p className="text-white/60 mb-6 md:mb-8 text-base md:text-xl font-light">
+          <p className="text-white/60 mb-6 md:mb-8 text-xs md:text-sm font-light">
             Not sure which system is right for you?
           </p>
           <motion.a
             whileHover={{ scale: 1.05, boxShadow: '0 20px 50px rgba(140,198,63,0.4)' }}
             whileTap={{ scale: 0.95 }}
             href="#contact"
-            className="inline-block bg-gradient-to-r from-primary via-primary-dark to-primary text-white px-8 py-4 md:px-12 md:py-5 rounded-full font-semibold text-base md:text-lg hover:shadow-2xl transition-all relative overflow-hidden group"
+            className="inline-block bg-gradient-to-r from-primary via-primary-dark to-primary text-white px-6 py-3 md:px-8 md:py-4 rounded-full font-semibold text-xs md:text-sm hover:shadow-2xl transition-all relative overflow-hidden group"
           >
             <span className="relative z-10 tracking-wide">Schedule Free Consultation</span>
             <motion.div
@@ -226,25 +226,25 @@ const ServiceCard = ({ service, index, isInView }: any) => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 p-6 md:p-10 h-full min-h-[420px] md:min-h-[520px] flex flex-col">
+      <div className="relative z-10 p-5 md:p-8 h-full min-h-[360px] md:min-h-[440px] flex flex-col">
         {/* Glass morphism icon container */}
         <motion.div
-          className="mb-5 md:mb-8"
+          className="mb-4 md:mb-6"
           animate={{
             scale: isHovered ? 1.1 : 1,
             y: isHovered ? -4 : 0,
           }}
           transition={{ duration: 0.3 }}
         >
-          <div className="w-14 h-14 md:w-20 md:h-20 rounded-xl md:rounded-2xl bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-xl flex items-center justify-center border border-white/20 shadow-2xl relative overflow-hidden">
+          <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-xl flex items-center justify-center border border-white/20 shadow-2xl relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            <service.icon className="w-7 h-7 md:w-10 md:h-10 text-primary relative z-10" />
+            <service.icon className="w-6 h-6 md:w-8 md:h-8 text-primary relative z-10" />
           </div>
         </motion.div>
 
         {/* Title with premium typography */}
         <motion.h3
-          className="text-2xl md:text-3xl font-bold text-white mb-3 md:mb-4 tracking-tight leading-tight"
+          className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4 tracking-tight leading-tight"
           style={{ fontFamily: 'var(--font-playfair)' }}
           animate={{
             y: isHovered ? -4 : 0,
@@ -254,7 +254,7 @@ const ServiceCard = ({ service, index, isInView }: any) => {
           {service.title}
         </motion.h3>
 
-        <p className="text-white/70 mb-5 md:mb-8 leading-relaxed text-sm md:text-base font-light">
+        <p className="text-white/70 mb-4 md:mb-6 leading-relaxed text-xs md:text-sm font-light">
           {service.description}
         </p>
 
@@ -272,10 +272,10 @@ const ServiceCard = ({ service, index, isInView }: any) => {
                 delay: index * 0.1 + idx * 0.05,
                 duration: 0.3,
               }}
-              className="flex items-center space-x-2 md:space-x-3 text-white/80 text-sm md:text-base group/item"
+              className="flex items-center space-x-2 text-white/80 text-xs md:text-sm group/item"
             >
               <motion.div
-                className="flex-shrink-0 w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-gradient-to-r from-primary to-primary-light shadow-lg"
+                className="flex-shrink-0 w-1 h-1 md:w-1.5 md:h-1.5 rounded-full bg-gradient-to-r from-primary to-primary-light shadow-lg"
                 animate={{
                   scale: isHovered ? 1.3 : 1,
                 }}
@@ -288,13 +288,13 @@ const ServiceCard = ({ service, index, isInView }: any) => {
 
         {/* Glass morphism CTA button */}
         <motion.div
-          className="inline-flex items-center space-x-2 md:space-x-3 self-start group/btn"
+          className="inline-flex items-center space-x-2 self-start group/btn"
           animate={{
             x: isHovered ? 8 : 0,
           }}
           transition={{ duration: 0.3 }}
         >
-          <span className="text-white font-semibold text-sm md:text-base border-b-2 border-primary/50 group-hover/btn:border-primary transition-colors pb-1">
+          <span className="text-white font-semibold text-xs md:text-sm border-b-2 border-primary/50 group-hover/btn:border-primary transition-colors pb-1">
             Learn More
           </span>
           <motion.div
@@ -303,7 +303,7 @@ const ServiceCard = ({ service, index, isInView }: any) => {
             }}
             transition={{ duration: 0.3 }}
           >
-            <ArrowRight className="w-4 h-4 md:w-5 md:h-5 text-primary" />
+            <ArrowRight className="w-3 h-3 md:w-4 md:h-4 text-primary" />
           </motion.div>
         </motion.div>
       </div>
