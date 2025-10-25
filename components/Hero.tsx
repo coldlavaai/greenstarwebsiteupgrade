@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, Sun, BatteryFull, Zap } from 'lucide-react';
+import { ArrowRight, Sun, BatteryFull, Zap, Sparkles } from 'lucide-react';
 import { useRef, useState, useEffect } from 'react';
 import { urlFor } from '@/lib/sanity';
 
@@ -77,14 +77,9 @@ const Hero = ({ data }: HeroProps) => {
               <motion.div
                 animate={{ rotate: [0, 360] }}
                 transition={{ duration: 90, repeat: Infinity, ease: 'linear' }}
-                className="w-6 h-6 md:w-8 md:h-8 flex items-center justify-center"
+                className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-gradient-to-br from-primary via-primary-light to-primary flex items-center justify-center"
               >
-                <img
-                  src="/images/greenstar-logo-dots.png"
-                  alt="Greenstar"
-                  className="w-full h-full"
-                  style={{ filter: 'drop-shadow(0 0 8px rgba(140, 199, 64, 0.4))' }}
-                />
+                <Sparkles className="w-4 h-4 md:w-5 md:h-5 text-white" />
               </motion.div>
               <span className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent font-semibold text-[9px] md:text-[10px] uppercase tracking-[0.15em] md:tracking-[0.2em]">
                 Premium Solar Solutions
@@ -95,7 +90,7 @@ const Hero = ({ data }: HeroProps) => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.8 }}
-              className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-[1.1] tracking-tight"
+              className="text-2xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-[1.1] tracking-tight"
               data-sanity={data?._id ? `${data._id}.heading` : undefined}
             >
               {data?.heading || 'Power Your Future'}<br />
@@ -163,14 +158,8 @@ const Hero = ({ data }: HeroProps) => {
                   <motion.span
                     animate={{ rotate: [0, 360] }}
                     transition={{ duration: 90, repeat: Infinity, ease: 'linear' }}
-                    className="inline-block w-4 h-4 md:w-5 md:h-5"
                   >
-                    <img
-                      src="/images/greenstar-logo-dots.png"
-                      alt="Greenstar"
-                      className="w-full h-full"
-                      style={{ filter: 'drop-shadow(0 0 6px rgba(140, 199, 64, 0.4))' }}
-                    />
+                    <Sun className="w-4 h-4 md:w-5 md:h-5 text-primary" />
                   </motion.span>
                 </span>
               </motion.a>
