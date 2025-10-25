@@ -100,7 +100,7 @@ const Hero = ({ data }: HeroProps) => {
             >
               {data?.heading || 'Power Your Future'}<br />
               <motion.span
-                className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent bg-[length:200%_auto]"
+                className="bg-gradient-to-r from-primary via-primary to-primary bg-clip-text text-transparent bg-[length:200%_auto]"
                 animate={{ backgroundPosition: ['0% center', '200% center'] }}
                 transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
                 style={{ textShadow: '0 0 80px rgba(140, 198, 63, 0.3)' }}
