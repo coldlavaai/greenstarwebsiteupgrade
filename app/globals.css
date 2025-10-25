@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Eurostile Extended';
+  src: url('/fonts/EurostileExtendedBlack.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #1a1a1a;
@@ -25,6 +33,7 @@
 
   --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-serif: var(--font-playfair), Georgia, serif;
+  --font-heading: 'Eurostile Extended', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 @theme inline {
@@ -76,8 +85,8 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-serif);
-  font-weight: 600;
+  font-family: var(--font-heading);
+  font-weight: 900;
   letter-spacing: -0.02em;
   line-height: 1.2;
 }

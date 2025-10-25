@@ -95,18 +95,17 @@ const Hero = ({ data }: HeroProps) => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.8 }}
-              className="text-2xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-[1.1] tracking-tight"
-              style={{ fontFamily: 'var(--font-playfair)' }}
+              className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-[1.1] tracking-tight"
               data-sanity={data?._id ? `${data._id}.heading` : undefined}
             >
-              {data?.heading || 'Power Your Future with'}{' '}
+              {data?.heading || 'Power Your Future'}<br />
               <motion.span
                 className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent bg-[length:200%_auto]"
                 animate={{ backgroundPosition: ['0% center', '200% center'] }}
                 transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
                 style={{ textShadow: '0 0 80px rgba(140, 198, 63, 0.3)' }}
               >
-                Solar Energy
+                with Solar Energy
               </motion.span>
             </motion.h1>
 
