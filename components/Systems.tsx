@@ -129,7 +129,7 @@ const Systems = ({ data }: SystemsProps) => {
             </span>
             <div className="h-px w-8 md:w-12 bg-gradient-to-l from-transparent to-accent"></div>
           </motion.div>
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4 md:mb-6 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4 md:mb-6 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
             Tailored Solar & Storage{' '}
             <span className="bg-gradient-to-r from-accent via-primary-light to-accent bg-clip-text text-transparent">Systems</span>
           </h2>
@@ -245,7 +245,7 @@ const ServiceCard = ({ service, index, isInView }: any) => {
         {/* Title with premium typography */}
         <motion.h3
           className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4 tracking-tight leading-tight"
-          style={{ fontFamily: 'var(--font-playfair)' }}
+          style={{ fontFamily: 'var(--font-heading)' }}
           animate={{
             y: isHovered ? -4 : 0,
           }}

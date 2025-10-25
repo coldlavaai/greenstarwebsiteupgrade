@@ -125,7 +125,7 @@ const Gallery = ({ data }: GalleryProps) => {
             </span>
             <div className="h-px w-12 bg-gradient-to-l from-transparent to-accent"></div>
           </motion.div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
             Recent{' '}
             <span className="bg-gradient-to-r from-accent via-primary-light to-accent bg-clip-text text-transparent">Installations</span>
           </h2>
@@ -176,7 +176,7 @@ const Gallery = ({ data }: GalleryProps) => {
                   transition={{ duration: 0.3 }}
                   className="relative"
                 >
-                  <h3 className="text-white font-bold text-2xl mb-3 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
+                  <h3 className="text-white font-bold text-2xl mb-3 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
                     {project.title}
                   </h3>
                   <div className="space-y-2 text-white/90 text-sm font-light">

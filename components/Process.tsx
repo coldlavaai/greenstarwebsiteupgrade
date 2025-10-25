@@ -93,7 +93,7 @@ const Process = ({ data }: ProcessProps) => {
             </span>
             <div className="h-px w-8 md:w-12 bg-gradient-to-l from-transparent to-accent"></div>
           </motion.div>
-          <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-4 md:mb-6 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
+          <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-4 md:mb-6 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
             We're With You{' '}
             <span className="bg-gradient-to-r from-accent via-primary-light to-accent bg-clip-text text-transparent">Every Step</span>
           </h2>
@@ -150,7 +150,7 @@ const Process = ({ data }: ProcessProps) => {
                           <span className="relative z-10">{step.number}</span>
                           <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                         </motion.div>
-                        <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight pt-2" style={{ fontFamily: 'var(--font-playfair)' }}>
+                        <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight pt-2" style={{ fontFamily: 'var(--font-heading)' }}>
                           {step.title}
                         </h3>
                       </div>

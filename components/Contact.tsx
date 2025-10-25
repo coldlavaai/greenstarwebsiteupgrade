@@ -116,7 +116,7 @@ const Contact = ({ data }: ContactProps) => {
           </motion.div>
           <h2
             className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-4 md:mb-6 tracking-tight"
-            style={{ fontFamily: 'var(--font-playfair)' }}
+            style={{ fontFamily: 'var(--font-heading)' }}
             data-sanity={data?._id ? `${data._id}.heading` : undefined}
           >
             {data?.heading || 'Book Your'}{' '}
@@ -139,7 +139,7 @@ const Contact = ({ data }: ContactProps) => {
             className="space-y-6 md:space-y-8"
           >
             <div>
-              <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-4 md:mb-6 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
+              <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-4 md:mb-6 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
                 Let's Start Your Solar Journey
               </h3>
               <p className="text-white/70 text-xs md:text-sm leading-relaxed mb-6 md:mb-8 font-light">
@@ -178,7 +178,7 @@ const Contact = ({ data }: ContactProps) => {
               className="bg-gradient-to-br from-primary via-primary-dark to-primary rounded-2xl md:rounded-3xl p-6 md:p-8 text-white shadow-2xl relative overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent"></div>
-              <h4 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 relative z-10" style={{ fontFamily: 'var(--font-playfair)' }}>Why Choose Us?</h4>
+              <h4 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 relative z-10" style={{ fontFamily: 'var(--font-heading)' }}>Why Choose Us?</h4>
               <ul className="space-y-3 md:space-y-4 relative z-10">
                 {[
                   'Free site assessment & consultation',
@@ -340,7 +340,7 @@ const Contact = ({ data }: ContactProps) => {
                   >
                     <CheckCircle className="w-12 h-12 text-white" />
                   </motion.div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2" style={{ fontFamily: 'var(--font-playfair)' }}>Thank You!</h3>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2" style={{ fontFamily: 'var(--font-heading)' }}>Thank You!</h3>
                   <p className="text-gray-600">
                     We've received your message and will get back to you soon.
                   </p>
