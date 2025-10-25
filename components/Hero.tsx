@@ -64,8 +64,8 @@ const Hero = ({ data }: HeroProps) => {
       <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-transparent pointer-events-none"></div>
 
       {/* Content */}
-      <motion.div style={{ y, opacity }} className="container mx-auto px-4 relative z-10 mt-4 md:mt-8">
-        <div className="grid lg:grid-cols-2 gap-12 md:gap-20 items-center max-w-7xl mx-auto">
+      <motion.div style={{ y, opacity }} className="container mx-auto px-6 md:px-8 relative z-10 mt-6 md:mt-12">
+        <div className="grid lg:grid-cols-2 gap-16 md:gap-24 items-center max-w-7xl mx-auto">
           {/* Left Content */}
           <div className="text-white max-w-xl">
             <motion.div
@@ -81,7 +81,7 @@ const Hero = ({ data }: HeroProps) => {
               >
                 <Sparkles className="w-4 h-4 md:w-5 md:h-5 text-white" />
               </motion.div>
-              <span className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent font-semibold text-xs md:text-sm uppercase tracking-[0.15em] md:tracking-[0.2em]">
+              <span className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent font-semibold text-[10px] md:text-xs uppercase tracking-[0.15em] md:tracking-[0.2em]">
                 Premium Solar Solutions
               </span>
             </motion.div>
@@ -90,7 +90,7 @@ const Hero = ({ data }: HeroProps) => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.8 }}
-              className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-[1.1] tracking-tight"
+              className="text-2xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-[1.1] tracking-tight"
               style={{ fontFamily: 'var(--font-playfair)' }}
               data-sanity={data?._id ? `${data._id}.heading` : undefined}
             >
@@ -109,7 +109,7 @@ const Hero = ({ data }: HeroProps) => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
-              className="text-base md:text-lg lg:text-xl text-gray-200 mb-6 md:mb-8 leading-relaxed font-light"
+              className="text-sm md:text-base lg:text-lg text-gray-200 mb-6 md:mb-8 leading-relaxed font-light"
               data-sanity={data?._id ? `${data._id}.subheading` : undefined}
             >
               {data?.subheading || 'Bespoke solar energy systems designed to perfectly match your unique requirements. Save money, reduce your carbon footprint, and achieve true energy independence.'}
@@ -125,10 +125,10 @@ const Hero = ({ data }: HeroProps) => {
                 whileHover={{ scale: 1.05, boxShadow: '0 20px 50px rgba(140,198,63,0.5)' }}
                 whileTap={{ scale: 0.95 }}
                 href={data?.ctaLink || "#contact"}
-                className="group relative bg-gradient-to-r from-primary via-primary-dark to-primary text-white px-6 py-3 md:px-8 md:py-4 rounded-full font-semibold text-sm md:text-base overflow-hidden shadow-2xl ring-2 ring-primary/30 ring-offset-2 ring-offset-transparent"
+                className="group relative bg-gradient-to-r from-primary via-primary-dark to-primary text-white px-5 py-2.5 md:px-6 md:py-3 rounded-full font-semibold text-xs md:text-sm overflow-hidden shadow-2xl ring-2 ring-primary/30 ring-offset-2 ring-offset-transparent"
                 data-sanity={data?._id ? `${data._id}.ctaText` : undefined}
               >
-                <span className="relative z-10 flex items-center space-x-2 md:space-x-3">
+                <span className="relative z-10 flex items-center space-x-2">
                   <span className="tracking-wide">{data?.ctaText || 'Get Free Survey'}</span>
                   <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-2 transition-transform duration-300" />
                 </span>
@@ -151,10 +151,10 @@ const Hero = ({ data }: HeroProps) => {
                 }}
                 whileTap={{ scale: 0.95 }}
                 href={data?.secondaryCtaLink || "#systems"}
-                className="group relative backdrop-blur-xl bg-white/5 text-white px-6 py-3 md:px-8 md:py-4 rounded-full font-semibold text-sm md:text-base border-2 border-white/20 transition-all shadow-xl"
+                className="group relative backdrop-blur-xl bg-white/5 text-white px-5 py-2.5 md:px-6 md:py-3 rounded-full font-semibold text-xs md:text-sm border-2 border-white/20 transition-all shadow-xl"
                 data-sanity={data?._id ? `${data._id}.secondaryCtaText` : undefined}
               >
-                <span className="flex items-center space-x-2 md:space-x-3">
+                <span className="flex items-center space-x-2">
                   <span className="tracking-wide">{data?.secondaryCtaText || 'Explore Systems'}</span>
                   <motion.span
                     animate={{ rotate: [0, 360] }}
@@ -222,7 +222,7 @@ const Hero = ({ data }: HeroProps) => {
                 ease: 'easeInOut',
               }}
               style={{ transformStyle: 'preserve-3d' }}
-              className="relative w-[450px] mx-auto"
+              className="relative w-[380px] mx-auto"
             >
               {/* Main Image Card with 3D effect */}
               <div
@@ -248,14 +248,14 @@ const Hero = ({ data }: HeroProps) => {
                   animate={{ opacity: 1, scale: 1, rotateZ: 0 }}
                   transition={{ delay: 1.2 + index * 0.2, type: 'spring' }}
                   whileHover={{ scale: 1.1, rotateZ: index === 0 ? 5 : -5, y: -10 }}
-                  className={`absolute ${index === 0 ? 'top-10 -left-10' : 'bottom-10 -right-10'} bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/20 shadow-2xl hover:shadow-[0_20px_60px_rgba(140,198,63,0.4)] cursor-pointer`}
+                  className={`absolute ${index === 0 ? 'top-10 -left-10' : 'bottom-10 -right-10'} bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-xl p-5 rounded-2xl border border-white/20 shadow-2xl hover:shadow-[0_20px_60px_rgba(140,198,63,0.4)] cursor-pointer`}
                   style={{ transformStyle: 'preserve-3d' }}
                   data-sanity={data?._id && stat._key ? `${data._id}.stats[_key=="${stat._key}"]` : undefined}
                 >
-                  <div className="text-3xl font-bold bg-gradient-to-r from-[#8cc63f] to-[#7ab52f] bg-clip-text text-transparent mb-1">
+                  <div className="text-2xl font-bold bg-gradient-to-r from-[#8cc63f] to-[#7ab52f] bg-clip-text text-transparent mb-1">
                     {stat.value}
                   </div>
-                  <div className="text-xs text-white font-semibold">{stat.label}</div>
+                  <div className="text-[10px] text-white font-semibold">{stat.label}</div>
                   <div className="absolute -inset-1 bg-gradient-to-r from-[#8cc63f] to-[#7ab52f] opacity-0 hover:opacity-20 rounded-3xl blur transition-opacity" />
                 </motion.div>
               ))}
