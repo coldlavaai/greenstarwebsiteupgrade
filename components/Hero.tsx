@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, Sun, Battery, Zap, Sparkles } from 'lucide-react';
+import { ArrowRight, Sun, BatteryCharging, Zap, Sparkles } from 'lucide-react';
 import { useRef, useState, useEffect } from 'react';
 import { urlFor } from '@/lib/sanity';
 
@@ -48,8 +48,8 @@ const Hero = ({ data }: HeroProps) => {
 
   const features = [
     { icon: Sun, text: 'Solar Panels', color: 'from-orange-400 to-yellow-500' },
-    { icon: Battery, text: 'Battery Storage', color: 'from-[#8cc63f] to-[#7ab52f]' },
-    { icon: Zap, text: 'Energy Savings', color: 'from-green-400 to-emerald-500' },
+    { icon: BatteryCharging, text: 'Battery Storage', color: 'from-[#8cc63f] to-[#7ab52f]' },
+    { icon: Zap, text: 'EV Charging', color: 'from-green-400 to-emerald-500' },
   ];
 
   // Use stats from CMS or fallback to default
@@ -193,7 +193,7 @@ const Hero = ({ data }: HeroProps) => {
                     />
 
                     <div className={`relative bg-gradient-to-br ${feature.color} p-1.5 md:p-2.5 rounded-md md:rounded-lg mb-1 md:mb-2 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                      <feature.icon className="w-4 h-4 md:w-6 md:h-6 text-white" />
+                      <feature.icon className="w-4 h-4 md:w-6 md:h-6 text-white" style={{ fill: 'white', strokeWidth: 2 }} />
                     </div>
                     <span className="text-[10px] md:text-xs font-semibold text-white/90 group-hover:text-white transition-colors">
                       {feature.text}
