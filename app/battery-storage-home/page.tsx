@@ -10,10 +10,10 @@ import PageWrapper from '@/components/PageWrapper';
 
 export default function BatteryStorageHome() {
   const benefitsRef = useRef(null);
-  const benefitsInView = useInView(benefitsRef, { once: true, margin: '-100px' });
+  const benefitsInView = useInView(benefitsRef, { once: true, amount: 0.1 });
 
   const processRef = useRef(null);
-  const processInView = useInView(processRef, { once: true, margin: '-100px' });
+  const processInView = useInView(processRef, { once: true, amount: 0.1 });
 
   const benefits = [
     {

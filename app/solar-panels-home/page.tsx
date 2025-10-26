@@ -10,7 +10,7 @@ import PageWrapper from '@/components/PageWrapper';
 
 export default function SolarPanelsHome() {
   const benefitsRef = useRef(null);
-  const benefitsInView = useInView(benefitsRef, { once: true, margin: '-100px' });
+  const benefitsInView = useInView(benefitsRef, { once: true, amount: 0.1 });
 
   return (
     <PageWrapper>

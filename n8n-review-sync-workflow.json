@@ -1,0 +1,330 @@
+{
+  "name": "Greenstar Solar - Review Auto-Sync (Google + Trustpilot)",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 2 * * *"
+            }
+          ]
+        }
+      },
+      "name": "Daily at 2 AM",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "url": "https://mybusinessbusinessinformation.googleapis.com/v1/accounts/{{$env.GOOGLE_ACCOUNT_ID}}/locations/{{$env.GOOGLE_LOCATION_ID}}/reviews",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleApi",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "pageSize",
+              "value": "50"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Fetch Google Reviews",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [450, 200],
+      "notes": "Fetches reviews from Google Business Profile\n\nSetup required:\n1. Enable Google Business Profile API in Google Cloud\n2. Create OAuth credentials\n3. Add credentials to n8n\n4. Set environment variables:\n   - GOOGLE_ACCOUNT_ID\n   - GOOGLE_LOCATION_ID"
+    },
+    {
+      "parameters": {
+        "url": "https://api.trustpilot.com/v1/business-units/{{$env.TRUSTPILOT_BUSINESS_ID}}/reviews",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "trustpilotApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{$env.TRUSTPILOT_API_KEY}}"
+            }
+          ]
+        },
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "perPage",
+              "value": "100"
+            },
+            {
+              "name": "orderBy",
+              "value": "createdat.desc"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Fetch Trustpilot Reviews",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [450, 400],
+      "notes": "Fetches reviews from Trustpilot\n\nSetup required:\n1. Get Trustpilot Business account\n2. Request API key from Trustpilot\n3. Find your Business Unit ID\n4. Set environment variables:\n   - TRUSTPILOT_BUSINESS_ID\n   - TRUSTPILOT_API_KEY"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combinationMode": "mergeByPosition",
+        "options": {}
+      },
+      "name": "Merge Reviews",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Transform Google and Trustpilot reviews to Sanity format\nconst items = $input.all();\nconst transformedReviews = [];\n\nfor (const item of items) {\n  let review = {};\n  \n  // Check if it's a Google review\n  if (item.json.reviewId) {\n    review = {\n      _type: 'review',\n      _id: `review-google-${item.json.reviewId}`,\n      customerName: item.json.reviewer?.displayName || 'Google Customer',\n      rating: item.json.starRating === 'FIVE' ? 5 : \n              item.json.starRating === 'FOUR' ? 4 :\n              item.json.starRating === 'THREE' ? 3 :\n              item.json.starRating === 'TWO' ? 2 : 1,\n      platform: 'google',\n      reviewText: item.json.comment || '',\n      reviewDate: item.json.createTime?.split('T')[0] || new Date().toISOString().split('T')[0],\n      staffMentioned: extractStaffNames(item.json.comment || ''),\n      customerType: 'residential',\n      featured: (item.json.starRating === 'FIVE'),\n      isPublished: true,\n      order: 999\n    };\n  }\n  // Check if it's a Trustpilot review\n  else if (item.json.id) {\n    review = {\n      _type: 'review',\n      _id: `review-trustpilot-${item.json.id}`,\n      customerName: item.json.consumer?.displayName || 'Trustpilot Customer',\n      rating: item.json.stars || 5,\n      platform: 'trustpilot',\n      reviewTitle: item.json.title || '',\n      reviewText: item.json.text || '',\n      reviewDate: item.json.createdAt?.split('T')[0] || new Date().toISOString().split('T')[0],\n      staffMentioned: extractStaffNames(item.json.text || ''),\n      customerType: (item.json.text || '').toLowerCase().includes('business') ? 'commercial' : 'residential',\n      featured: (item.json.stars === 5),\n      isPublished: true,\n      order: 999\n    };\n  }\n  \n  if (review._id) {\n    transformedReviews.push({ json: review });\n  }\n}\n\n// Helper function to extract staff names mentioned in reviews\nfunction extractStaffNames(text) {\n  const knownStaff = ['Jack', 'Jon', 'John', 'Tobias', 'Tom', 'Anthony', 'Ben', 'Matt', 'Adam', 'Alex'];\n  const mentioned = [];\n  \n  for (const name of knownStaff) {\n    if (text.includes(name)) {\n      mentioned.push(name);\n    }\n  }\n  \n  return mentioned;\n}\n\nreturn transformedReviews;"
+      },
+      "name": "Transform to Sanity Format",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [850, 300],
+      "notes": "Converts Google and Trustpilot data to match Sanity schema:\n- Maps review IDs\n- Converts ratings\n- Extracts staff mentions\n- Sets featured status for 5-star reviews"
+    },
+    {
+      "parameters": {
+        "url": "https://kpz3fwyf.api.sanity.io/v2024-01-01/data/query/production",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "query",
+              "value": "*[_type == \"review\"]{_id}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Get Existing Reviews from Sanity",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [1050, 300],
+      "notes": "Queries Sanity to get all existing review IDs\nUsed to prevent duplicate entries"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Filter out reviews that already exist in Sanity\nconst newReviews = $input.first().json;\nconst existingReviews = $input.last().json.result || [];\nconst existingIds = existingReviews.map(r => r._id);\n\nconst filtered = newReviews.filter(review => !existingIds.includes(review._id));\n\nif (filtered.length === 0) {\n  return [{ json: { message: 'No new reviews to add', count: 0 } }];\n}\n\nreturn filtered.map(review => ({ json: review }));"
+      },
+      "name": "Filter Only New Reviews",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1250, 300],
+      "notes": "Compares new reviews against existing Sanity data\nOnly passes through reviews that don't exist yet"
+    },
+    {
+      "parameters": {
+        "url": "https://kpz3fwyf.api.sanity.io/v2024-01-01/data/mutate/production",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{$env.SANITY_API_WRITE_TOKEN}}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "mutations",
+              "value": "=[{ \"createOrReplace\": $json }]"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Create Review in Sanity",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [1450, 300],
+      "notes": "Creates new review documents in Sanity CMS\n\nRequires environment variable:\n- SANITY_API_WRITE_TOKEN"
+    },
+    {
+      "parameters": {
+        "content": "🎉 New Reviews Added to Greenstar Solar Database!\n\n**Summary:**\n- {{$runIndex + 1}} new review(s) synced\n- Platform: {{$json.platform}}\n- Customer: {{$json.customerName}}\n- Rating: {{$json.rating}}⭐\n\n**Review Text:**\n{{$json.reviewText}}\n\n---\nView all reviews in Sanity Studio",
+        "options": {}
+      },
+      "name": "Format Notification",
+      "type": "n8n-nodes-base.markdown",
+      "typeVersion": 1,
+      "position": [1650, 300]
+    },
+    {
+      "parameters": {
+        "operation": "sendMessage",
+        "chatId": "={{$env.TELEGRAM_CHAT_ID}}",
+        "text": "={{$json.content}}",
+        "additionalFields": {}
+      },
+      "name": "Send Telegram Notification",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [1850, 300],
+      "notes": "Sends notification when new reviews are added\n\nOptional: Set TELEGRAM_CHAT_ID to receive notifications\nOr replace with email/Slack node"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{$json.count}}",
+              "operation": "notEqual",
+              "value2": 0
+            }
+          ]
+        }
+      },
+      "name": "Check if New Reviews Exist",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [1250, 450],
+      "notes": "Only proceed if there are actually new reviews to add"
+    }
+  ],
+  "connections": {
+    "Daily at 2 AM": {
+      "main": [
+        [
+          {
+            "node": "Fetch Google Reviews",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Fetch Trustpilot Reviews",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Google Reviews": {
+      "main": [
+        [
+          {
+            "node": "Merge Reviews",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Trustpilot Reviews": {
+      "main": [
+        [
+          {
+            "node": "Merge Reviews",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge Reviews": {
+      "main": [
+        [
+          {
+            "node": "Transform to Sanity Format",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transform to Sanity Format": {
+      "main": [
+        [
+          {
+            "node": "Get Existing Reviews from Sanity",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Existing Reviews from Sanity": {
+      "main": [
+        [
+          {
+            "node": "Filter Only New Reviews",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter Only New Reviews": {
+      "main": [
+        [
+          {
+            "node": "Check if New Reviews Exist",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check if New Reviews Exist": {
+      "main": [
+        [
+          {
+            "node": "Create Review in Sanity",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Review in Sanity": {
+      "main": [
+        [
+          {
+            "node": "Format Notification",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Notification": {
+      "main": [
+        [
+          {
+            "node": "Send Telegram Notification",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": ["greenstar", "reviews", "automation"],
+  "triggerCount": 1,
+  "updatedAt": "2025-10-22T00:00:00.000Z",
+  "versionId": "1"
+}
