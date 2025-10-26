@@ -117,7 +117,7 @@ export default function BatteryStorageBusiness() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.8 }}
               className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-[1.1] tracking-tight"
-              style={{ fontFamily: 'var(--font-playfair)' }}
+              style={{ fontFamily: 'var(--font-heading)' }}
             >
               Battery Storage for{' '}
               <span className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent">
@@ -165,7 +165,7 @@ export default function BatteryStorageBusiness() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
               Commercial Battery{' '}
               <span className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent">Advantages</span>
             </h2>
@@ -187,7 +187,7 @@ export default function BatteryStorageBusiness() {
                 <div className="bg-gradient-to-br from-primary/20 to-primary/10 w-16 h-16 rounded-xl flex items-center justify-center mb-6">
                   <benefit.icon className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-4 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
+                <h3 className="text-2xl font-bold text-white mb-4 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
                   {benefit.title}
                 </h3>
                 <p className="text-white/70 leading-relaxed font-light">
@@ -208,7 +208,7 @@ export default function BatteryStorageBusiness() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
               Our Implementation{' '}
               <span className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent">Process</span>
             </h2>
@@ -227,10 +227,10 @@ export default function BatteryStorageBusiness() {
                 className="relative"
               >
                 <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl p-8 rounded-2xl border border-white/10 h-full">
-                  <div className="text-6xl font-bold bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent mb-4" style={{ fontFamily: 'var(--font-playfair)' }}>
+                  <div className="text-6xl font-bold bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
                     {step.number}
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-4 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
+                  <h3 className="text-2xl font-bold text-white mb-4 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
                     {step.title}
                   </h3>
                   <p className="text-white/70 leading-relaxed font-light">
@@ -253,7 +253,7 @@ export default function BatteryStorageBusiness() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
               Frequently Asked{' '}
               <span className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent">Questions</span>
             </h2>
@@ -269,7 +269,7 @@ export default function BatteryStorageBusiness() {
                 transition={{ delay: index * 0.1, duration: 0.5 }}
                 className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl p-8 rounded-2xl border border-white/10"
               >
-                <h3 className="text-xl font-bold text-white mb-4 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
+                <h3 className="text-xl font-bold text-white mb-4 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
                   {faq.question}
                 </h3>
                 <p className="text-white/70 leading-relaxed font-light">
@@ -293,7 +293,7 @@ export default function BatteryStorageBusiness() {
           >
             <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent"></div>
             <div className="relative z-10">
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
                 Optimize Your Energy Strategy
               </h2>
               <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto font-light">

@@ -39,7 +39,7 @@ export default function SolarPanelsHome() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.8 }}
               className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-[1.1] tracking-tight"
-              style={{ fontFamily: 'var(--font-playfair)' }}
+              style={{ fontFamily: 'var(--font-heading)' }}
             >
               Solar Panels for{' '}
               <span className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent">
@@ -110,7 +110,7 @@ export default function SolarPanelsHome() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
               Why Choose Solar for{' '}
               <span className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent">Your Home</span>
             </h2>
@@ -163,7 +163,7 @@ export default function SolarPanelsHome() {
                 <div className="bg-gradient-to-br from-primary/20 to-primary/10 w-16 h-16 rounded-xl flex items-center justify-center mb-6">
                   <benefit.icon className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-4 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
+                <h3 className="text-2xl font-bold text-white mb-4 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
                   {benefit.title}
                 </h3>
                 <p className="text-white/70 leading-relaxed font-light">
@@ -187,7 +187,7 @@ export default function SolarPanelsHome() {
           >
             <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent"></div>
             <div className="relative z-10">
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
                 Ready to Go Solar?
               </h2>
               <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto font-light">

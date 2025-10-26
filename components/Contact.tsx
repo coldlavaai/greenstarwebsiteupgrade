@@ -115,7 +115,7 @@ const Contact = ({ data }: ContactProps) => {
             <div className="h-px w-8 md:w-12 bg-gradient-to-l from-transparent to-accent"></div>
           </motion.div>
           <h2
-            className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-4 md:mb-6 tracking-tight"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 md:mb-6 tracking-tight"
             style={{ fontFamily: 'var(--font-heading)' }}
             data-sanity={data?._id ? `${data._id}.heading` : undefined}
           >
@@ -139,7 +139,7 @@ const Contact = ({ data }: ContactProps) => {
             className="space-y-6 md:space-y-8"
           >
             <div>
-              <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-4 md:mb-6 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
+              <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 md:mb-6 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
                 Let's Start Your Solar Journey
               </h3>
               <p className="text-white/70 text-xs md:text-sm leading-relaxed mb-6 md:mb-8 font-light">

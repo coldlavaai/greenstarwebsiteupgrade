@@ -66,7 +66,7 @@ const About = ({ data }: AboutProps) => {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ delay: 0.3 }}
-              className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mt-3 md:mt-4 mb-4 md:mb-6 tracking-tight"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mt-3 md:mt-4 mb-4 md:mb-6 tracking-tight"
               style={{ fontFamily: 'var(--font-heading)' }}
               data-sanity={data?._id ? `${data._id}.heading` : undefined}
             >
