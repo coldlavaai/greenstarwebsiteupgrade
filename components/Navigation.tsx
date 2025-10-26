@@ -65,6 +65,15 @@ const Navigation = ({ data }: NavigationProps) => {
       ],
     },
     { name: 'Process', href: '/#process' },
+    {
+      name: 'Our Work',
+      href: '/#gallery',
+      submenu: [
+        { name: 'Gallery', href: '/#gallery' },
+        { name: 'Case Studies', href: '/case-studies' },
+        { name: 'Testimonials', href: '/#testimonials' },
+      ],
+    },
     { name: 'Contact', href: '/#contact' },
   ];
 
