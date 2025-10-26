@@ -18,6 +18,7 @@ import companyInfo from './companyInfo'
 import { siteSettings } from './siteSettings'
 import { brandTheme } from './brandTheme'
 import { emailSettings } from './emailSettings'
+import { themeSettings } from './themeSettings'
 
 // Section Schemas
 import { heroSection } from './heroSection'
@@ -38,6 +39,7 @@ export const schemaTypes = [
   siteSettings,
   brandTheme,
   emailSettings,
+  themeSettings,
 
   // Section Configurations (singleton documents)
   heroSection,
