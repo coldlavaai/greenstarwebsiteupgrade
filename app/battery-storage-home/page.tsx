@@ -134,14 +134,22 @@ export default function BatteryStorageHome() {
               </span>
             </motion.h1>
 
-            <motion.p
+            <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
-              className="text-xl md:text-2xl text-gray-200 mb-10 leading-relaxed max-w-3xl mx-auto font-light"
+              className="text-lg md:text-xl text-gray-200 mb-10 leading-relaxed max-w-3xl mx-auto font-light space-y-4"
             >
-              Store your solar energy and use it whenever you need it. Maximize your solar investment with intelligent battery storage that puts you in control.
-            </motion.p>
+              <p>
+                Store the energy your solar panels generate during the day and use it whenever you need it, even after the sun goes down. With intelligent battery storage, you can power your home using your own renewable energy around the clock and significantly reduce your reliance on the grid.
+              </p>
+              <p>
+                There has never been a better time to invest in battery storage. Modern systems now allow you to take advantage of off-peak tariffs, charging your batteries at cheaper night-time rates and using that energy during the day. This means you can save money even in the winter months when sunlight hours are shorter.
+              </p>
+              <p>
+                Our battery systems are designed for efficiency, safety, and long term performance, giving you complete control over how and when you use your energy. Paired with our advanced hybrid inverters from Hanchu, Fox ESS, EcoFlow, and Sigenergy, you can monitor, manage, and optimise your usage directly from your app for maximum savings and independence.
+              </p>
+            </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 30 }}
