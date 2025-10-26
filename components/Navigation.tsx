@@ -37,20 +37,35 @@ const Navigation = ({ data }: NavigationProps) => {
   }, []);
 
   // Map Sanity navItems to component structure, or use fallback
-  const navItems = data?.navItems?.map(item => ({
-    name: item.label,
-    href: item.href,
-    // Add submenu for Systems if this is the Systems item
-    ...(item.label === 'Systems' && {
-      submenu: [
-        { name: 'Solar Panels for Home', href: '/solar-panels-home' },
-        { name: 'Battery Storage for Home', href: '/battery-storage-home' },
-        { name: 'Solar Panels for Business', href: '/solar-panels-business' },
-        { name: 'Battery Storage for Business', href: '/battery-storage-business' },
-        { name: 'EV Charging', href: '/ev-charging' },
-      ],
-    }),
-  })) || [
+  const navItems = data?.navItems?.map(item => {
+    // Replace Testimonials with Our Work dropdown
+    if (item.label === 'Testimonials') {
+      return {
+        name: 'Our Work',
+        href: '/#gallery',
+        submenu: [
+          { name: 'Gallery', href: '/#gallery' },
+          { name: 'Case Studies', href: '/case-studies' },
+          { name: 'Testimonials', href: '/#testimonials' },
+        ],
+      };
+    }
+
+    return {
+      name: item.label,
+      href: item.href,
+      // Add submenu for Systems if this is the Systems item
+      ...(item.label === 'Systems' && {
+        submenu: [
+          { name: 'Solar Panels for Home', href: '/solar-panels-home' },
+          { name: 'Battery Storage for Home', href: '/battery-storage-home' },
+          { name: 'Solar Panels for Business', href: '/solar-panels-business' },
+          { name: 'Battery Storage for Business', href: '/battery-storage-business' },
+          { name: 'EV Charging', href: '/ev-charging' },
+        ],
+      }),
+    };
+  }) || [
     { name: 'Home', href: '/' },
     { name: 'About Us', href: '/#about' },
     {
