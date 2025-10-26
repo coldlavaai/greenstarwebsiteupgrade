@@ -28,7 +28,16 @@ export default function SolarPanelsHome() {
               transition={{ duration: 0.8 }}
               className="inline-flex items-center space-x-3 mb-8"
             >
-              <Sun className="w-8 h-8 text-primary" />
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{
+                  duration: 20,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+              >
+                <Sun className="w-8 h-8 text-primary" />
+              </motion.div>
               <span className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent font-semibold text-sm uppercase tracking-[0.2em]">
                 Residential Solar Solutions
               </span>
@@ -38,12 +47,12 @@ export default function SolarPanelsHome() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.8 }}
-              className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-[1.1] tracking-tight"
+              className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 leading-[1.1] tracking-tight"
               style={{ fontFamily: 'var(--font-heading)' }}
             >
-              Solar Panels for{' '}
-              <span className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent">
-                Your Home
+              <span className="block text-white">Solar Panels</span>
+              <span className="block bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent">
+                for Your Home
               </span>
             </motion.h1>
 
@@ -53,20 +62,8 @@ export default function SolarPanelsHome() {
               transition={{ delay: 0.4, duration: 0.8 }}
               className="max-w-4xl mx-auto mb-10"
             >
-              <p className="text-lg md:text-xl text-gray-200 leading-relaxed font-light mb-6">
-                With energy prices at an all-time high, now is an ideal time to invest in solar panels and battery storage. We offer a variety of options, including solar panels, battery storage systems, or a combined setup tailored to meet your home's energy needs.
-              </p>
               <p className="text-lg md:text-xl text-gray-200 leading-relaxed font-light">
-                Our custom-designed systems feature highly efficient{' '}
-                <a
-                  href="https://aikosolar.com/en/products/neostar-2splus54-dual-glass/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary hover:text-primary-light underline transition-colors"
-                >
-                  Aiko Neostar 2S N-type mono glass panels
-                </a>
-                , known for their ethical sourcing and top-tier performance. Paired with the latest hybrid inverters and batteries from leading brands like Fox ESS, SolarEdge, and EcoFlow, our solutions provide state-of-the-art solar power to help you achieve your energy goals.
+                With energy prices continuing to rise, there has never been a better time to invest in solar panels and battery storage. We design every system around your home and energy goals, ensuring maximum performance and long term value.
               </p>
             </motion.div>
 
@@ -101,77 +98,220 @@ export default function SolarPanelsHome() {
         </div>
       </section>
 
-      {/* Key Benefits Section */}
+      {/* Premium Panels Showcase */}
       <section ref={benefitsRef} className="py-24 bg-transparent">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={benefitsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="max-w-6xl mx-auto"
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
-              Why Choose Solar for{' '}
-              <span className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent">Your Home</span>
-            </h2>
-            <p className="text-xl text-white/60 max-w-3xl mx-auto font-light">
-              Premium solar solutions that deliver exceptional value
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {[
-              {
-                icon: Sun,
-                title: 'Premium Aiko Panels',
-                description: 'Highly efficient N-type mono glass panels with ethical sourcing and top-tier performance',
-              },
-              {
-                icon: Battery,
-                title: 'Leading Brand Batteries',
-                description: 'Latest hybrid inverters and batteries from Fox ESS, SolarEdge, and EcoFlow',
-              },
-              {
-                icon: TrendingDown,
-                title: 'Maximum Savings',
-                description: 'Combat high energy prices with custom-designed systems that maximize your investment',
-              },
-              {
-                icon: Zap,
-                title: 'Flexible Options',
-                description: 'Choose from solar panels only, battery storage, or combined systems',
-              },
-              {
-                icon: Home,
-                title: 'Custom Design',
-                description: 'Tailored solutions designed specifically for your home\'s energy needs',
-              },
-              {
-                icon: Shield,
-                title: 'State-of-the-Art',
-                description: 'Latest technology and premium components for reliable, long-lasting performance',
-              },
-            ].map((benefit, index) => (
-              <motion.div
-                key={benefit.title}
-                initial={{ opacity: 0, y: 50 }}
-                animate={benefitsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-                whileHover={{ y: -10, scale: 1.02 }}
-                className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl p-8 rounded-2xl border border-white/10 hover:border-primary/50 transition-all"
-              >
-                <div className="bg-gradient-to-br from-primary/20 to-primary/10 w-16 h-16 rounded-xl flex items-center justify-center mb-6">
-                  <benefit.icon className="w-8 h-8 text-primary" />
+            {/* Premium Panel Feature */}
+            <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl border border-white/10 overflow-hidden">
+              <div className="grid lg:grid-cols-2 gap-12 p-12 md:p-16">
+                <div className="flex flex-col justify-center">
+                  <motion.div
+                    initial={{ opacity: 0, x: -30 }}
+                    animate={benefitsInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+                    transition={{ delay: 0.2, duration: 0.6 }}
+                  >
+                    <div className="inline-flex items-center space-x-2 mb-6">
+                      <Award className="w-6 h-6 text-primary" />
+                      <span className="text-primary font-semibold uppercase tracking-wider text-sm">
+                        Next Generation Technology
+                      </span>
+                    </div>
+                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight leading-tight" style={{ fontFamily: 'var(--font-heading)' }}>
+                      Aiko Neostar 3S{' '}
+                      <span className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent">
+                        N-Type ABC
+                      </span>
+                    </h2>
+                    <p className="text-lg text-white/80 leading-relaxed font-light mb-8">
+                      Our installations feature the Aiko Neostar 3S N Type ABC mono glass panels, the latest generation of high performance solar technology. These panels achieve efficiency levels of up to <span className="text-primary font-semibold">24.3%</span> and use precision overlap soldering for greater energy capture and a refined all black finish.
+                    </p>
+                    <p className="text-lg text-white/80 leading-relaxed font-light">
+                      Each panel is covered by a <span className="text-primary font-semibold">25 year product warranty</span> and a <span className="text-primary font-semibold">30 year performance warranty</span>, offering lasting confidence in your investment.
+                    </p>
+                  </motion.div>
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-4 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
-                  {benefit.title}
-                </h3>
-                <p className="text-white/70 leading-relaxed font-light">
-                  {benefit.description}
+
+                {/* Specs Highlight */}
+                <motion.div
+                  initial={{ opacity: 0, x: 30 }}
+                  animate={benefitsInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
+                  transition={{ delay: 0.4, duration: 0.6 }}
+                  className="flex flex-col justify-center space-y-6"
+                >
+                  <div className="bg-gradient-to-br from-primary/20 to-primary/5 backdrop-blur-xl rounded-2xl p-8 border border-primary/20">
+                    <div className="flex items-center space-x-4 mb-4">
+                      <div className="bg-primary/20 w-14 h-14 rounded-xl flex items-center justify-center">
+                        <Zap className="w-7 h-7 text-primary" />
+                      </div>
+                      <div>
+                        <div className="text-4xl font-bold text-white" style={{ fontFamily: 'var(--font-heading)' }}>
+                          24.3%
+                        </div>
+                        <div className="text-white/60 text-sm font-medium uppercase tracking-wide">
+                          Peak Efficiency
+                        </div>
+                      </div>
+                    </div>
+                    <p className="text-white/70 text-sm leading-relaxed">
+                      Industry-leading conversion rates for maximum energy generation
+                    </p>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10">
+                    <div className="flex items-center space-x-4 mb-4">
+                      <div className="bg-primary/20 w-14 h-14 rounded-xl flex items-center justify-center">
+                        <Shield className="w-7 h-7 text-primary" />
+                      </div>
+                      <div>
+                        <div className="text-4xl font-bold text-white" style={{ fontFamily: 'var(--font-heading)' }}>
+                          25/30
+                        </div>
+                        <div className="text-white/60 text-sm font-medium uppercase tracking-wide">
+                          Year Warranties
+                        </div>
+                      </div>
+                    </div>
+                    <p className="text-white/70 text-sm leading-relaxed">
+                      25 year product + 30 year performance warranty included
+                    </p>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10">
+                    <div className="flex items-center space-x-4 mb-4">
+                      <div className="bg-primary/20 w-14 h-14 rounded-xl flex items-center justify-center">
+                        <Leaf className="w-7 h-7 text-primary" />
+                      </div>
+                      <div>
+                        <div className="text-2xl font-bold text-white" style={{ fontFamily: 'var(--font-heading)' }}>
+                          All Black
+                        </div>
+                        <div className="text-white/60 text-sm font-medium uppercase tracking-wide">
+                          Premium Finish
+                        </div>
+                      </div>
+                    </div>
+                    <p className="text-white/70 text-sm leading-relaxed">
+                      Refined aesthetic with precision overlap soldering
+                    </p>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Complete System Section */}
+      <section className="py-24 bg-transparent">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="max-w-6xl mx-auto"
+          >
+            <div className="text-center mb-16">
+              <div className="inline-flex items-center space-x-2 mb-6">
+                <Battery className="w-6 h-6 text-primary" />
+                <span className="text-primary font-semibold uppercase tracking-wider text-sm">
+                  Complete Energy Solutions
+                </span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
+                Power Your{' '}
+                <span className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent">
+                  Independence
+                </span>
+              </h2>
+              <p className="text-xl text-white/70 max-w-3xl mx-auto font-light leading-relaxed">
+                We pair these panels with hybrid inverters and battery systems from Hanchu, Fox ESS, EcoFlow, and Sigenergy, creating powerful, future ready energy solutions that allow you to generate, store, and manage your own clean energy with ease.
+              </p>
+            </div>
+
+            {/* Brand Partners Grid */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                {
+                  name: 'Hanchu',
+                  description: 'Advanced hybrid inverter technology',
+                  icon: Zap,
+                },
+                {
+                  name: 'Fox ESS',
+                  description: 'Industry-leading energy storage',
+                  icon: Battery,
+                },
+                {
+                  name: 'EcoFlow',
+                  description: 'Smart power management systems',
+                  icon: Zap,
+                },
+                {
+                  name: 'Sigenergy',
+                  description: 'Next-gen battery solutions',
+                  icon: Battery,
+                },
+              ].map((brand, index) => (
+                <motion.div
+                  key={brand.name}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1, duration: 0.5 }}
+                  whileHover={{ y: -5, scale: 1.02 }}
+                  className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10 hover:border-primary/30 transition-all"
+                >
+                  <div className="bg-gradient-to-br from-primary/20 to-primary/10 w-14 h-14 rounded-xl flex items-center justify-center mb-6">
+                    <brand.icon className="w-7 h-7 text-primary" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-3 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
+                    {brand.name}
+                  </h3>
+                  <p className="text-white/60 text-sm leading-relaxed font-light">
+                    {brand.description}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Key Features */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+              className="mt-12 grid md:grid-cols-3 gap-6"
+            >
+              <div className="bg-gradient-to-br from-white/5 to-transparent backdrop-blur-xl rounded-xl p-6 border border-white/5">
+                <CheckCircle className="w-8 h-8 text-primary mb-4" />
+                <h4 className="text-lg font-semibold text-white mb-2">Generate</h4>
+                <p className="text-white/60 text-sm leading-relaxed">
+                  Maximum solar energy capture with premium panels
                 </p>
-              </motion.div>
-            ))}
-          </div>
+              </div>
+              <div className="bg-gradient-to-br from-white/5 to-transparent backdrop-blur-xl rounded-xl p-6 border border-white/5">
+                <CheckCircle className="w-8 h-8 text-primary mb-4" />
+                <h4 className="text-lg font-semibold text-white mb-2">Store</h4>
+                <p className="text-white/60 text-sm leading-relaxed">
+                  Reliable battery systems for 24/7 power availability
+                </p>
+              </div>
+              <div className="bg-gradient-to-br from-white/5 to-transparent backdrop-blur-xl rounded-xl p-6 border border-white/5">
+                <CheckCircle className="w-8 h-8 text-primary mb-4" />
+                <h4 className="text-lg font-semibold text-white mb-2">Manage</h4>
+                <p className="text-white/60 text-sm leading-relaxed">
+                  Smart control over your energy usage and costs
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
