@@ -1,9 +1,9 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'framer-motion';
-import { useRef } from 'react';
-import { Search, Lightbulb, Wrench, HeartHandshake } from 'lucide-react';
+import { useRef, useState } from 'react';
+import { Search, Lightbulb, Wrench, FileCheck, HeartHandshake } from 'lucide-react';
 
 interface ProcessStep {
   _id: string;
@@ -22,52 +22,59 @@ interface ProcessProps {
 const Process = ({ data }: ProcessProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const [flippedCards, setFlippedCards] = useState<Record<number, boolean>>({});
+
+  const toggleCard = (index: number) => {
+    setFlippedCards(prev => ({
+      ...prev,
+      [index]: !prev[index]
+    }));
+  };
 
   // Icon mapping
   const iconMap: Record<string, any> = {
     Search: Search,
     Lightbulb: Lightbulb,
     Wrench: Wrench,
+    FileCheck: FileCheck,
     HeartHandshake: HeartHandshake,
   };
 
-  // Map CMS data or use fallback
-  const steps = data?.map((step, index) => ({
-    _id: step._id,
-    _type: step._type,
-    number: step.order.toString().padStart(2, '0'),
-    icon: step.icon ? (iconMap[step.icon] || Search) : Search,
-    title: step.title,
-    description: step.description,
-    features: [],  // Features not in current schema but kept for compatibility
-  })) || [
+  const steps = [
     {
       number: '01',
       icon: Search,
       title: 'Personal Consultation',
-      description: 'We begin with a thorough face to face consultation to understand your energy usage patterns, environmental goals, and budget. Our expert surveyors conduct a comprehensive site assessment, analysing roof orientation, shading, sunlight, cable runs, and optimal placement for inverters and batteries.',
-      features: ['Free home visit', 'Face to face meeting', 'Site survey', 'Personalised recommendations'],
+      description: 'We begin with a face to face consultation to understand your energy usage, goals, and budget.',
+      backContent: 'Our surveyors carry out a full structural and wind load assessment to ensure your roof is sound and suitable for installation. Every site is carefully assessed for roof orientation, shading, sunlight, and the ideal placement for inverters and batteries.',
     },
     {
       number: '02',
       icon: Lightbulb,
       title: 'Bespoke Design',
-      description: 'Using cutting edge technology and high quality products, we design a bespoke solution that maximises energy efficiency and cost savings tailored specifically to your unique requirements.',
-      features: ['Custom system design', 'ROI analysis', 'Transparent pricing', 'Product selection'],
+      description: 'There is no one size fits all solution. Each system is tailored to your specific energy consumption and future requirements to ensure long term efficiency and flexibility.',
+      backContent: 'Using premium components and industry leading software, we create a system that meets your needs today while preparing you for tomorrow.',
     },
     {
       number: '03',
       icon: Wrench,
       title: 'Expert Installation',
-      description: 'Our skilled technicians handle the entire installation process with precision, ensuring your system is ready to perform reliably and efficiently for years to come.',
-      features: ['Expert team', 'Premium equipment', 'Minimal disruption', 'Quality assurance'],
+      description: 'With over 15 years experience, our qualified installation team completes every project with precision and care.',
+      backContent: 'We ensure full compliance, safety, and reliability so your system performs optimally for years to come.',
     },
     {
       number: '04',
+      icon: FileCheck,
+      title: 'System Handover',
+      description: 'Upon completion, you'll receive a comprehensive handover pack including your MCS certificate, DNO approval letter, and other essential documents required for Smart Export Guarantee onboarding.',
+      backContent: 'We assist you through this process to ensure a seamless transition onto the right export tariff. Our team also provides full guidance on using your monitoring app and understanding your energy data so you can get the most from your new system.',
+    },
+    {
+      number: '05',
       icon: HeartHandshake,
       title: 'Ongoing Support',
-      description: 'Our commitment continues with comprehensive aftercare appointments, app training, and ongoing system monitoring. We stay in close communication so you feel informed and confident at every step.',
-      features: ['Personal aftercare', 'App training', '5 year guarantee', 'System monitoring'],
+      description: 'Our relationship doesn't end once your system is installed. Greenstar offers continued support with no labour call out charges post installation.',
+      backContent: 'We ensure any issues are resolved quickly and efficiently. We remain available for advice, system checks, and performance reviews so you always have us to rely on for anything you need.',
     },
   ];
 
@@ -80,7 +87,7 @@ const Process = ({ data }: ProcessProps) => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12 md:mb-20"
+          className="text-center mb-12 md:mb-16"
         >
           <motion.div
             className="inline-flex items-center space-x-2 mb-4 md:mb-6"
@@ -117,13 +124,13 @@ const Process = ({ data }: ProcessProps) => {
           </div>
 
           {/* Steps */}
-          <div className="space-y-10 md:space-y-16 lg:space-y-20">
+          <div className="space-y-6 md:space-y-10 lg:space-y-12">
             {steps.map((step, index) => (
               <motion.div
                 key={step.number}
                 initial={{ opacity: 0, y: 50 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-                transition={{ delay: index * 0.2, duration: 0.6 }}
+                transition={{ delay: index * 0.15, duration: 0.6 }}
                 className={`flex flex-col lg:flex-row items-center gap-8 ${
                   index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
                 }`}
@@ -131,52 +138,88 @@ const Process = ({ data }: ProcessProps) => {
                 {/* Content Card */}
                 <div className="flex-1 w-full">
                   <motion.div
-                    whileHover={{ scale: 1.02, y: -8 }}
-                    className={`group bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-2xl hover:shadow-[0_25px_70px_rgba(140,198,63,0.3)] transition-all duration-500 border border-white/10 hover:border-primary/30 relative overflow-hidden ${
+                    onClick={() => toggleCard(index)}
+                    whileHover={{ scale: 1.02, y: -4 }}
+                    className={`group cursor-pointer perspective-1000 ${
                       index % 2 === 0 ? 'lg:mr-8' : 'lg:ml-8'
                     }`}
+                    style={{ perspective: '1000px' }}
                   >
-                    {/* Gradient overlay on hover */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <motion.div
+                      className="relative w-full"
+                      animate={{ rotateY: flippedCards[index] ? 180 : 0 }}
+                      transition={{ duration: 0.6, type: 'spring', stiffness: 100 }}
+                      style={{ transformStyle: 'preserve-3d' }}
+                    >
+                      {/* Front of card */}
+                      <div
+                        className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-2xl hover:shadow-[0_25px_70px_rgba(140,199,64,0.3)] transition-all duration-500 border border-white/10 hover:border-primary/30 relative overflow-hidden"
+                        style={{
+                          backfaceVisibility: 'hidden',
+                          WebkitBackfaceVisibility: 'hidden'
+                        }}
+                      >
+                        {/* Gradient overlay on hover */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-                    {/* Number Badge - Compact styling */}
-                    <div className="relative z-10 mb-5">
-                      <div className="flex items-start gap-4 mb-4">
-                        <motion.div
-                          whileHover={{ rotate: 360 }}
-                          transition={{ duration: 0.6 }}
-                          className="bg-gradient-to-br from-primary to-primary-dark text-white text-lg md:text-xl font-bold w-12 h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center flex-shrink-0 shadow-xl relative overflow-hidden"
-                        >
-                          <span className="relative z-10">{step.number}</span>
-                          <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                        </motion.div>
-                        <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight pt-2" style={{ fontFamily: 'var(--font-heading)' }}>
-                          {step.title}
-                        </h3>
+                        {/* Number Badge */}
+                        <div className="relative z-10 mb-5">
+                          <div className="flex items-start gap-4 mb-4">
+                            <motion.div
+                              whileHover={{ rotate: 360 }}
+                              transition={{ duration: 0.6 }}
+                              className="bg-gradient-to-br from-primary to-primary-dark text-white text-lg md:text-xl font-bold w-12 h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center flex-shrink-0 shadow-xl relative overflow-hidden"
+                            >
+                              <span className="relative z-10">{step.number}</span>
+                              <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                            </motion.div>
+                            <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight pt-2" style={{ fontFamily: 'var(--font-heading)' }}>
+                              {step.title}
+                            </h3>
+                          </div>
+                          <p className="text-white/70 leading-relaxed text-xs md:text-sm font-light">
+                            {step.description}
+                          </p>
+                        </div>
+
+                        {/* Click hint */}
+                        <div className="relative z-10 text-right">
+                          <span className="text-primary/60 text-xs font-medium">Click to learn more →</span>
+                        </div>
+
+                        {/* Corner accent */}
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-accent/5 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                       </div>
-                      <p className="text-white/70 leading-relaxed text-xs md:text-sm font-light">
-                        {step.description}
-                      </p>
-                    </div>
 
-                    {/* Features Grid - Compact styling */}
-                    <div className="grid grid-cols-2 gap-2 md:gap-3 relative z-10">
-                      {step.features.map((feature, idx) => (
-                        <motion.div
-                          key={feature}
-                          initial={{ opacity: 0, scale: 0.8 }}
-                          animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                          transition={{ delay: index * 0.2 + idx * 0.1 }}
-                          className="flex items-center space-x-2 text-xs md:text-sm text-white/90 bg-white/5 backdrop-blur-sm px-3 py-2 md:px-4 md:py-2.5 rounded-lg md:rounded-xl border border-white/10 hover:border-primary/30 hover:bg-white/10 transition-all group/feature"
-                        >
-                          <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-gradient-to-r from-primary to-primary-light rounded-full flex-shrink-0"></div>
-                          <span className="font-medium">{feature}</span>
-                        </motion.div>
-                      ))}
-                    </div>
-
-                    {/* Corner accent */}
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-accent/5 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      {/* Back of card */}
+                      <div
+                        className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary-dark/20 backdrop-blur-xl rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-2xl border border-primary/30 overflow-hidden"
+                        style={{
+                          backfaceVisibility: 'hidden',
+                          WebkitBackfaceVisibility: 'hidden',
+                          transform: 'rotateY(180deg)'
+                        }}
+                      >
+                        <div className="relative z-10 h-full flex flex-col justify-between">
+                          <div>
+                            <div className="flex items-center gap-4 mb-4">
+                              <div className="bg-gradient-to-br from-primary to-primary-dark text-white text-lg md:text-xl font-bold w-12 h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center flex-shrink-0 shadow-xl">
+                                <span>{step.number}</span>
+                              </div>
+                              <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
+                                {step.title}
+                              </h3>
+                            </div>
+                            <p className="text-white/80 leading-relaxed text-xs md:text-sm font-light">
+                              {step.backContent}
+                            </p>
+                          </div>
+                          <div className="text-right mt-4">
+                            <span className="text-primary/80 text-xs font-medium">← Click to return</span>
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
                   </motion.div>
                 </div>
 
@@ -184,7 +227,7 @@ const Process = ({ data }: ProcessProps) => {
                 <motion.div
                   initial={{ scale: 0, rotate: -180 }}
                   animate={isInView ? { scale: 1, rotate: 0 } : { scale: 0, rotate: -180 }}
-                  transition={{ delay: index * 0.2 + 0.3, duration: 0.5, type: 'spring' }}
+                  transition={{ delay: index * 0.15 + 0.3, duration: 0.5, type: 'spring' }}
                   whileHover={{ scale: 1.1, rotate: 360 }}
                   className="relative flex-shrink-0 z-20 group/icon hidden lg:block"
                 >
@@ -219,13 +262,13 @@ const Process = ({ data }: ProcessProps) => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ delay: 1 }}
-          className="text-center mt-24"
+          className="text-center mt-20"
         >
           <p className="text-white/60 mb-8 text-xl font-light">
             Ready to start your solar journey?
           </p>
           <motion.a
-            whileHover={{ scale: 1.05, boxShadow: '0 20px 50px rgba(140,198,63,0.4)' }}
+            whileHover={{ scale: 1.05, boxShadow: '0 20px 50px rgba(140,199,64,0.4)' }}
             whileTap={{ scale: 0.95 }}
             href="#contact"
             className="inline-block bg-gradient-to-r from-primary via-primary-dark to-primary text-white px-12 py-5 rounded-full font-semibold text-lg hover:shadow-2xl transition-all relative overflow-hidden group"
