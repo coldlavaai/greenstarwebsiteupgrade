@@ -12,7 +12,7 @@ export default function EVCharging() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative py-20 flex items-center overflow-hidden pt-24 bg-transparent">
+      <section className="relative py-20 flex items-center overflow-hidden pt-32 bg-transparent">
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-transparent pointer-events-none"></div>
 
         <div className="container mx-auto px-4 relative z-10">

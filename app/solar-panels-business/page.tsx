@@ -87,7 +87,7 @@ export default function SolarPanelsBusiness() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative py-20 flex items-center overflow-hidden pt-24 bg-transparent">
+      <section className="relative py-20 flex items-center overflow-hidden pt-32 bg-transparent">
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-transparent pointer-events-none"></div>
 
         <div className="container mx-auto px-4 relative z-10">
@@ -108,12 +108,12 @@ export default function SolarPanelsBusiness() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.8 }}
-              className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-[1.1] tracking-tight"
+              className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-[1.1] tracking-tight"
               style={{ fontFamily: 'var(--font-heading)' }}
             >
-              Solar Panels for{' '}
-              <span className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent">
-                Your Business
+              <span className="block text-white">Solar Panels</span>
+              <span className="block bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent">
+                for Your Business
               </span>
             </motion.h1>
 
