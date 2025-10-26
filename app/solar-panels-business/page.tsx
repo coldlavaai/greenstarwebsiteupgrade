@@ -1,20 +1,12 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
-import { useRef } from 'react';
 import { Building2, TrendingDown, Shield, Zap, Target, Award, Leaf, Users, ArrowRight } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import PageWrapper from '@/components/PageWrapper';
 
 export default function SolarPanelsBusiness() {
-  const benefitsRef = useRef(null);
-  const benefitsInView = useInView(benefitsRef, { once: true, amount: 0.1 });
-
-  const processRef = useRef(null);
-  const processInView = useInView(processRef, { once: true, amount: 0.1 });
-
   const benefits = [
     {
       icon: TrendingDown,
@@ -157,11 +149,12 @@ export default function SolarPanelsBusiness() {
       </section>
 
       {/* Benefits Section */}
-      <section ref={benefitsRef} className="py-12 bg-transparent">
+      <section className="py-12 bg-transparent">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={benefitsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.6 }}
             className="text-center mb-8"
           >
@@ -179,7 +172,8 @@ export default function SolarPanelsBusiness() {
               <motion.div
                 key={benefit.title}
                 initial={{ opacity: 0, y: 50 }}
-                animate={benefitsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.1 }}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
                 whileHover={{ y: -10, scale: 1.02 }}
                 className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl p-8 rounded-2xl border border-white/10 hover:border-primary/50 transition-all"
@@ -200,11 +194,12 @@ export default function SolarPanelsBusiness() {
       </section>
 
       {/* Process Section */}
-      <section ref={processRef} className="py-12 bg-transparent">
+      <section className="py-12 bg-transparent">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={processInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.6 }}
             className="text-center mb-8"
           >
@@ -222,7 +217,8 @@ export default function SolarPanelsBusiness() {
               <motion.div
                 key={step.number}
                 initial={{ opacity: 0, y: 50 }}
-                animate={processInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.1 }}
                 transition={{ delay: index * 0.15, duration: 0.5 }}
                 className="relative"
               >
@@ -249,7 +245,7 @@ export default function SolarPanelsBusiness() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.6 }}
             className="text-center mb-8"
           >
@@ -265,7 +261,7 @@ export default function SolarPanelsBusiness() {
                 key={faq.question}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, amount: 0.1 }}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
                 className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl p-8 rounded-2xl border border-white/10"
               >
@@ -287,7 +283,7 @@ export default function SolarPanelsBusiness() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.6 }}
             className="bg-gradient-to-br from-primary via-primary-dark to-primary rounded-3xl p-12 md:p-16 text-center relative overflow-hidden"
           >

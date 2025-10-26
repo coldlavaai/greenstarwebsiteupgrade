@@ -1,17 +1,12 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
-import { useRef } from 'react';
 import { Sun, TrendingDown, Shield, Zap, Home, CheckCircle, ArrowRight, Battery, Leaf, Award } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import PageWrapper from '@/components/PageWrapper';
 
 export default function SolarPanelsHome() {
-  const benefitsRef = useRef(null);
-  const benefitsInView = useInView(benefitsRef, { once: true, amount: 0.1 });
-
   return (
     <PageWrapper>
       <Navigation />
@@ -99,11 +94,12 @@ export default function SolarPanelsHome() {
       </section>
 
       {/* Premium Panels Showcase */}
-      <section ref={benefitsRef} className="py-12 bg-transparent">
+      <section className="py-12 bg-transparent">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={benefitsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.6 }}
             className="max-w-6xl mx-auto"
           >
@@ -113,7 +109,8 @@ export default function SolarPanelsHome() {
                 <div className="flex flex-col justify-center">
                   <motion.div
                     initial={{ opacity: 0, x: -30 }}
-                    animate={benefitsInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, amount: 0.1 }}
                     transition={{ delay: 0.2, duration: 0.6 }}
                   >
                     <div className="inline-flex items-center space-x-2 mb-6">
@@ -140,7 +137,8 @@ export default function SolarPanelsHome() {
                 {/* Specs Highlight */}
                 <motion.div
                   initial={{ opacity: 0, x: 30 }}
-                  animate={benefitsInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.1 }}
                   transition={{ delay: 0.4, duration: 0.6 }}
                   className="flex flex-col justify-center space-y-6"
                 >
@@ -213,7 +211,7 @@ export default function SolarPanelsHome() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.6 }}
             className="max-w-6xl mx-auto"
           >
@@ -263,7 +261,7 @@ export default function SolarPanelsHome() {
                   key={brand.name}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: true, amount: 0.1 }}
                   transition={{ delay: index * 0.1, duration: 0.5 }}
                   whileHover={{ y: -5, scale: 1.02 }}
                   className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10 hover:border-primary/30 transition-all"
@@ -285,7 +283,7 @@ export default function SolarPanelsHome() {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.1 }}
               transition={{ delay: 0.4, duration: 0.6 }}
               className="mt-12 grid md:grid-cols-3 gap-6"
             >
@@ -321,7 +319,7 @@ export default function SolarPanelsHome() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.6 }}
             className="bg-gradient-to-br from-primary via-primary-dark to-primary rounded-3xl p-12 md:p-16 text-center relative overflow-hidden"
           >

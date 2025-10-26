@@ -1,17 +1,12 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
-import { useRef } from 'react';
 import { Zap, TrendingDown, Shield, Battery, Home, CheckCircle, ArrowRight, Plug, Award, Leaf, Sun } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import PageWrapper from '@/components/PageWrapper';
 
 export default function EVCharging() {
-  const benefitsRef = useRef(null);
-  const benefitsInView = useInView(benefitsRef, { once: true, amount: 0.1 });
-
   return (
     <PageWrapper>
       <Navigation />
@@ -99,11 +94,12 @@ export default function EVCharging() {
       </section>
 
       {/* Premium Charger Showcase */}
-      <section ref={benefitsRef} className="py-12 bg-transparent">
+      <section className="py-12 bg-transparent">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={benefitsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.6 }}
             className="max-w-6xl mx-auto"
           >
@@ -113,7 +109,8 @@ export default function EVCharging() {
                 <div className="flex flex-col justify-center">
                   <motion.div
                     initial={{ opacity: 0, x: -30 }}
-                    animate={benefitsInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, amount: 0.1 }}
                     transition={{ delay: 0.2, duration: 0.6 }}
                   >
                     <div className="inline-flex items-center space-x-2 mb-6">
@@ -140,7 +137,8 @@ export default function EVCharging() {
                 {/* Specs Highlight */}
                 <motion.div
                   initial={{ opacity: 0, x: 30 }}
-                  animate={benefitsInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.1 }}
                   transition={{ delay: 0.4, duration: 0.6 }}
                   className="flex flex-col justify-center space-y-6"
                 >
@@ -213,7 +211,7 @@ export default function EVCharging() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.6 }}
             className="max-w-6xl mx-auto"
           >
@@ -273,7 +271,7 @@ export default function EVCharging() {
                   key={benefit.title}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: true, amount: 0.1 }}
                   transition={{ delay: index * 0.1, duration: 0.5 }}
                   whileHover={{ y: -8, scale: 1.02 }}
                   className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10 hover:border-primary/30 transition-all hover:shadow-[0_20px_60px_rgba(140,198,63,0.3)]"
@@ -300,7 +298,7 @@ export default function EVCharging() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.6 }}
             className="max-w-6xl mx-auto"
           >
@@ -340,7 +338,7 @@ export default function EVCharging() {
                   key={step.number}
                   initial={{ opacity: 0, x: -30 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: true, amount: 0.1 }}
                   transition={{ delay: index * 0.1, duration: 0.5 }}
                   className="flex items-start gap-6 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10"
                 >
@@ -368,7 +366,7 @@ export default function EVCharging() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.6 }}
             className="max-w-4xl mx-auto text-center"
           >
