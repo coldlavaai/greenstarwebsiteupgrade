@@ -47,6 +47,7 @@ const Navigation = ({ data }: NavigationProps) => {
         name: 'Our Work',
         href: '/#gallery',
         submenu: [
+          { name: 'The Process', href: '/#process' },
           { name: 'Gallery', href: '/#gallery' },
           { name: 'Case Studies', href: '/case-studies' },
           { name: 'Testimonials', href: '/#testimonials' },
@@ -76,6 +77,7 @@ const Navigation = ({ data }: NavigationProps) => {
       name: 'Our Work',
       href: '/#gallery',
       submenu: [
+        { name: 'The Process', href: '/#process' },
         { name: 'Gallery', href: '/#gallery' },
         { name: 'Case Studies', href: '/case-studies' },
         { name: 'Testimonials', href: '/#testimonials' },
