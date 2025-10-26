@@ -140,7 +140,7 @@ const Contact = ({ data }: ContactProps) => {
           >
             <div>
               <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 md:mb-6 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
-                Let's Start Your Solar Journey
+                Let's Start Your <span className="text-[#8cc63f]">Solar Journey</span>
               </h3>
               <p className="text-white/70 text-xs md:text-sm leading-relaxed mb-6 md:mb-8 font-light">
                 Our team of experts is ready to help you transition to clean, renewable energy. Get in touch for a free, no-obligation consultation.
