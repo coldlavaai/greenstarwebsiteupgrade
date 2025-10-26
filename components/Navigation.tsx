@@ -68,6 +68,16 @@ const Navigation = ({ data }: NavigationProps) => {
   }) || [
     { name: 'Home', href: '/' },
     { name: 'About Us', href: '/#about' },
+    { name: 'Process', href: '/#process' },
+    {
+      name: 'Our Work',
+      href: '/#gallery',
+      submenu: [
+        { name: 'Gallery', href: '/#gallery' },
+        { name: 'Case Studies', href: '/case-studies' },
+        { name: 'Testimonials', href: '/#testimonials' },
+      ],
+    },
     {
       name: 'Systems',
       href: '/#systems',
@@ -77,16 +87,6 @@ const Navigation = ({ data }: NavigationProps) => {
         { name: 'Solar Panels for Business', href: '/solar-panels-business' },
         { name: 'Battery Storage for Business', href: '/battery-storage-business' },
         { name: 'EV Charging', href: '/ev-charging' },
-      ],
-    },
-    { name: 'Process', href: '/#process' },
-    {
-      name: 'Our Work',
-      href: '/#gallery',
-      submenu: [
-        { name: 'Gallery', href: '/#gallery' },
-        { name: 'Case Studies', href: '/case-studies' },
-        { name: 'Testimonials', href: '/#testimonials' },
       ],
     },
     { name: 'Contact', href: '/#contact' },
