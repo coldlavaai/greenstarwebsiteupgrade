@@ -144,13 +144,13 @@ const Navigation = ({ data }: NavigationProps) => {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 10 }}
-                        className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl py-2"
+                        className="absolute top-full left-0 mt-2 w-64 bg-black/90 backdrop-blur-xl rounded-xl shadow-2xl py-2 border border-white/10"
                       >
                         {item.submenu.map((subitem) => (
                           <a
                             key={subitem.name}
                             href={subitem.href}
-                            className="block px-4 py-3 text-gray-700 hover:bg-[#8cc63f]/10 hover:text-[#8cc63f] transition-colors"
+                            className="block px-4 py-3 text-white/80 hover:bg-[#8cc63f]/20 hover:text-[#8cc63f] transition-all text-sm font-medium border-l-2 border-transparent hover:border-[#8cc63f]"
                           >
                             {subitem.name}
                           </a>
@@ -199,12 +199,12 @@ const Navigation = ({ data }: NavigationProps) => {
                     {item.name}
                   </a>
                   {item.submenu && (
-                    <div className="pl-4 bg-black/50">
+                    <div className="pl-4 bg-gradient-to-r from-[#8cc63f]/10 to-transparent border-l-2 border-[#8cc63f]/30">
                       {item.submenu.map((subitem) => (
                         <a
                           key={subitem.name}
                           href={subitem.href}
-                          className="block px-4 py-2 text-sm text-white/80 hover:text-[#8cc63f]"
+                          className="block px-4 py-2 text-sm text-white/80 hover:text-[#8cc63f] hover:bg-[#8cc63f]/10 transition-all"
                           onClick={() => setIsOpen(false)}
                         >
                           {subitem.name}
