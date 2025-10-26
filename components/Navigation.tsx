@@ -36,8 +36,11 @@ const Navigation = ({ data }: NavigationProps) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Define desired order
+  const desiredOrder = ['Home', 'About Us', 'Process', 'Our Work', 'Systems', 'Contact'];
+
   // Map Sanity navItems to component structure, or use fallback
-  const navItems = data?.navItems?.map(item => {
+  const mappedItems = data?.navItems?.map(item => {
     // Replace Testimonials with Our Work dropdown
     if (item.label === 'Testimonials') {
       return {
@@ -91,6 +94,13 @@ const Navigation = ({ data }: NavigationProps) => {
     },
     { name: 'Contact', href: '/#contact' },
   ];
+
+  // Sort items according to desired order
+  const navItems = mappedItems.sort((a, b) => {
+    const indexA = desiredOrder.indexOf(a.name);
+    const indexB = desiredOrder.indexOf(b.name);
+    return indexA - indexB;
+  });
 
   const ctaButton = data?.ctaButton || { text: 'Get Free Quote', href: '/#contact' };
 
@@ -150,7 +160,7 @@ const Navigation = ({ data }: NavigationProps) => {
                           <a
                             key={subitem.name}
                             href={subitem.href}
-                            className="block px-4 py-3 text-white/80 hover:bg-[#8cc63f]/20 hover:text-[#8cc63f] transition-all text-sm font-medium border-l-2 border-transparent hover:border-[#8cc63f]"
+                            className="block px-4 py-3 text-white/80 hover:bg-[#8cc63f]/20 hover:text-[#8cc63f] transition-all duration-100 text-sm font-medium border-l-2 border-transparent hover:border-[#8cc63f]"
                           >
                             {subitem.name}
                           </a>
@@ -204,7 +214,7 @@ const Navigation = ({ data }: NavigationProps) => {
                         <a
                           key={subitem.name}
                           href={subitem.href}
-                          className="block px-4 py-2 text-sm text-white/80 hover:text-[#8cc63f] hover:bg-[#8cc63f]/10 transition-all"
+                          className="block px-4 py-2 text-sm text-white/80 hover:text-[#8cc63f] hover:bg-[#8cc63f]/10 transition-all duration-100"
                           onClick={() => setIsOpen(false)}
                         >
                           {subitem.name}
