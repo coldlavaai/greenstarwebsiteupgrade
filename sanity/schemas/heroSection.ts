@@ -16,9 +16,33 @@ export const heroSection = defineType({
     {
       name: 'subheading',
       title: 'Subheading',
-      type: 'text',
-      initialValue:
-        'Join thousands of UK homeowners saving money and the planet with solar energy. Get a free quote today.',
+      type: 'array',
+      of: [
+        {
+          type: 'block',
+          styles: [{ title: 'Normal', value: 'normal' }],
+          marks: {
+            decorators: [
+              { title: 'Bold', value: 'strong' },
+              { title: 'Italic', value: 'em' },
+            ],
+            annotations: [
+              {
+                name: 'link',
+                type: 'object',
+                title: 'Link',
+                fields: [
+                  {
+                    name: 'href',
+                    type: 'url',
+                    title: 'URL',
+                  },
+                ],
+              },
+            ],
+          },
+        },
+      ],
     },
     {
       name: 'ctaText',

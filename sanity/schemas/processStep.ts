@@ -20,7 +20,33 @@ export const processStep = defineType({
     {
       name: 'description',
       title: 'Description',
-      type: 'text',
+      type: 'array',
+      of: [
+        {
+          type: 'block',
+          styles: [{ title: 'Normal', value: 'normal' }],
+          marks: {
+            decorators: [
+              { title: 'Bold', value: 'strong' },
+              { title: 'Italic', value: 'em' },
+            ],
+            annotations: [
+              {
+                name: 'link',
+                type: 'object',
+                title: 'Link',
+                fields: [
+                  {
+                    name: 'href',
+                    type: 'url',
+                    title: 'URL',
+                  },
+                ],
+              },
+            ],
+          },
+        },
+      ],
       validation: (Rule) => Rule.required(),
     },
     {
@@ -40,9 +66,34 @@ export const processStep = defineType({
     {
       name: 'backContent',
       title: 'Back Content',
-      type: 'text',
+      type: 'array',
+      of: [
+        {
+          type: 'block',
+          styles: [{ title: 'Normal', value: 'normal' }],
+          marks: {
+            decorators: [
+              { title: 'Bold', value: 'strong' },
+              { title: 'Italic', value: 'em' },
+            ],
+            annotations: [
+              {
+                name: 'link',
+                type: 'object',
+                title: 'Link',
+                fields: [
+                  {
+                    name: 'href',
+                    type: 'url',
+                    title: 'URL',
+                  },
+                ],
+              },
+            ],
+          },
+        },
+      ],
       description: 'Additional detailed content shown on card flip',
-      rows: 4,
     },
     {
       name: 'frontReview',

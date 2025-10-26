@@ -22,9 +22,33 @@ export const aboutSection = defineType({
     {
       name: 'description',
       title: 'Description',
-      type: 'text',
-      initialValue:
-        'We are passionate about helping homeowners and businesses transition to clean, renewable energy. With over a decade of experience, our MCS-certified team delivers exceptional solar installations across the UK.',
+      type: 'array',
+      of: [
+        {
+          type: 'block',
+          styles: [{ title: 'Normal', value: 'normal' }],
+          marks: {
+            decorators: [
+              { title: 'Bold', value: 'strong' },
+              { title: 'Italic', value: 'em' },
+            ],
+            annotations: [
+              {
+                name: 'link',
+                type: 'object',
+                title: 'Link',
+                fields: [
+                  {
+                    name: 'href',
+                    type: 'url',
+                    title: 'URL',
+                  },
+                ],
+              },
+            ],
+          },
+        },
+      ],
     },
     {
       name: 'image',
@@ -56,7 +80,19 @@ export const aboutSection = defineType({
             {
               name: 'description',
               title: 'Description',
-              type: 'text',
+              type: 'array',
+              of: [
+                {
+                  type: 'block',
+                  styles: [{ title: 'Normal', value: 'normal' }],
+                  marks: {
+                    decorators: [
+                      { title: 'Bold', value: 'strong' },
+                      { title: 'Italic', value: 'em' },
+                    ],
+                  },
+                },
+              ],
             },
           ],
         },

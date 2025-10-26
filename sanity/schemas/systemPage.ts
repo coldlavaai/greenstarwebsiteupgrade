@@ -157,8 +157,19 @@ export const systemPage = defineType({
     {
       name: 'benefitsSubheading',
       title: 'Benefits Section Subheading',
-      type: 'text',
-      rows: 2,
+      type: 'array',
+      of: [
+        {
+          type: 'block',
+          styles: [{ title: 'Normal', value: 'normal' }],
+          marks: {
+            decorators: [
+              { title: 'Bold', value: 'strong' },
+              { title: 'Italic', value: 'em' },
+            ],
+          },
+        },
+      ],
       group: 'benefits',
     },
     {
@@ -199,8 +210,19 @@ export const systemPage = defineType({
             {
               name: 'description',
               title: 'Description',
-              type: 'text',
-              rows: 3,
+              type: 'array',
+              of: [
+                {
+                  type: 'block',
+                  styles: [{ title: 'Normal', value: 'normal' }],
+                  marks: {
+                    decorators: [
+                      { title: 'Bold', value: 'strong' },
+                      { title: 'Italic', value: 'em' },
+                    ],
+                  },
+                },
+              ],
               validation: (Rule) => Rule.required(),
             },
           ],
@@ -235,8 +257,19 @@ export const systemPage = defineType({
     {
       name: 'processSubheading',
       title: 'Process Section Subheading',
-      type: 'text',
-      rows: 2,
+      type: 'array',
+      of: [
+        {
+          type: 'block',
+          styles: [{ title: 'Normal', value: 'normal' }],
+          marks: {
+            decorators: [
+              { title: 'Bold', value: 'strong' },
+              { title: 'Italic', value: 'em' },
+            ],
+          },
+        },
+      ],
       group: 'process',
     },
     {
@@ -263,8 +296,19 @@ export const systemPage = defineType({
             {
               name: 'description',
               title: 'Step Description',
-              type: 'text',
-              rows: 3,
+              type: 'array',
+              of: [
+                {
+                  type: 'block',
+                  styles: [{ title: 'Normal', value: 'normal' }],
+                  marks: {
+                    decorators: [
+                      { title: 'Bold', value: 'strong' },
+                      { title: 'Italic', value: 'em' },
+                    ],
+                  },
+                },
+              ],
               validation: (Rule) => Rule.required(),
             },
           ],
@@ -310,8 +354,33 @@ export const systemPage = defineType({
             {
               name: 'answer',
               title: 'Answer',
-              type: 'text',
-              rows: 4,
+              type: 'array',
+              of: [
+                {
+                  type: 'block',
+                  styles: [{ title: 'Normal', value: 'normal' }],
+                  marks: {
+                    decorators: [
+                      { title: 'Bold', value: 'strong' },
+                      { title: 'Italic', value: 'em' },
+                    ],
+                    annotations: [
+                      {
+                        name: 'link',
+                        type: 'object',
+                        title: 'Link',
+                        fields: [
+                          {
+                            name: 'href',
+                            type: 'url',
+                            title: 'URL',
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                },
+              ],
               validation: (Rule) => Rule.required(),
             },
           ],
@@ -338,8 +407,19 @@ export const systemPage = defineType({
     {
       name: 'ctaDescription',
       title: 'CTA Description',
-      type: 'text',
-      rows: 2,
+      type: 'array',
+      of: [
+        {
+          type: 'block',
+          styles: [{ title: 'Normal', value: 'normal' }],
+          marks: {
+            decorators: [
+              { title: 'Bold', value: 'strong' },
+              { title: 'Italic', value: 'em' },
+            ],
+          },
+        },
+      ],
       group: 'cta',
     },
     {

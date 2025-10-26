@@ -45,9 +45,34 @@ export const service = defineType({
     {
       name: 'description',
       title: 'Description',
-      type: 'text',
+      type: 'array',
+      of: [
+        {
+          type: 'block',
+          styles: [{ title: 'Normal', value: 'normal' }],
+          marks: {
+            decorators: [
+              { title: 'Bold', value: 'strong' },
+              { title: 'Italic', value: 'em' },
+            ],
+            annotations: [
+              {
+                name: 'link',
+                type: 'object',
+                title: 'Link',
+                fields: [
+                  {
+                    name: 'href',
+                    type: 'url',
+                    title: 'URL',
+                  },
+                ],
+              },
+            ],
+          },
+        },
+      ],
       description: 'Brief description shown on the service card',
-      rows: 3,
       validation: (Rule) => Rule.required(),
       group: 'content',
     },
