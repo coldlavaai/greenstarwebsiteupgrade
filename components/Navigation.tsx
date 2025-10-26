@@ -47,6 +47,7 @@ const Navigation = ({ data }: NavigationProps) => {
         { name: 'Battery Storage for Home', href: '/battery-storage-home' },
         { name: 'Solar Panels for Business', href: '/solar-panels-business' },
         { name: 'Battery Storage for Business', href: '/battery-storage-business' },
+        { name: 'EV Charging', href: '/ev-charging' },
       ],
     }),
   })) || [
@@ -60,6 +61,7 @@ const Navigation = ({ data }: NavigationProps) => {
         { name: 'Battery Storage for Home', href: '/battery-storage-home' },
         { name: 'Solar Panels for Business', href: '/solar-panels-business' },
         { name: 'Battery Storage for Business', href: '/battery-storage-business' },
+        { name: 'EV Charging', href: '/ev-charging' },
       ],
     },
     { name: 'Process', href: '/#process' },

@@ -36,6 +36,7 @@ const Footer = ({ data }: FooterProps) => {
       { name: 'Battery Storage for Home', href: '#battery-home' },
       { name: 'Solar Panels for Business', href: '#solar-business' },
       { name: 'Battery Storage for Business', href: '#battery-business' },
+      { name: 'EV Charging', href: '#ev-charging' },
     ],
     resources: [
       { name: 'FAQ', href: '#faq' },
@@ -94,9 +95,9 @@ const Footer = ({ data }: FooterProps) => {
 
               {/* Contact Info */}
               <div className="space-y-3 text-left">
-                <a href="tel:08001234567" className="flex items-center space-x-3 text-gray-400 hover:text-[#8cc63f] transition-colors">
+                <a href="tel:02382123763" className="flex items-center space-x-3 text-gray-400 hover:text-[#8cc63f] transition-colors">
                   <Phone className="w-5 h-5" />
-                  <span>0800 123 4567</span>
+                  <span>023 8212 3763</span>
                 </a>
                 <a href="mailto:info@greenstarsolar.co.uk" className="flex items-center space-x-3 text-gray-400 hover:text-[#8cc63f] transition-colors">
                   <Mail className="w-5 h-5" />
@@ -203,7 +204,7 @@ const Footer = ({ data }: FooterProps) => {
               className="text-gray-400 text-sm text-center md:text-left"
               data-sanity={data?._id ? `${data._id}.copyright` : undefined}
             >
-              {data?.copyright || `© ${new Date().getFullYear()} Greenstar Solar. All rights reserved. | MCS Certified Installer`}
+              {data?.copyright || `© ${new Date().getFullYear()} Greenstar Solar. All rights reserved.`}
             </div>
             <div className="flex flex-wrap justify-center md:justify-end gap-6 text-sm text-center md:text-left">
               <a href="#" className="text-gray-400 hover:text-[#8cc63f] transition-colors">
