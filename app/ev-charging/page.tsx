@@ -217,7 +217,7 @@ export default function EVCharging() {
             transition={{ duration: 0.6 }}
             className="max-w-6xl mx-auto"
           >
-            <div className="text-center mb-16">
+            <div className="text-center mb-8">
               <div className="inline-flex items-center space-x-2 mb-6">
                 <Leaf className="w-6 h-6 text-primary" />
                 <span className="text-primary font-semibold uppercase tracking-wider text-sm">
@@ -304,7 +304,7 @@ export default function EVCharging() {
             transition={{ duration: 0.6 }}
             className="max-w-6xl mx-auto"
           >
-            <div className="text-center mb-16">
+            <div className="text-center mb-8">
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
                 How{' '}
                 <span className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent">
@@ -363,7 +363,7 @@ export default function EVCharging() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-20 bg-transparent">
+      <section className="py-16 bg-transparent">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

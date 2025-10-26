@@ -95,10 +95,10 @@ export default function BatteryStorageBusiness() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative min-h-[80vh] flex items-center overflow-hidden pt-24">
+      <section className="relative py-20 flex items-center overflow-hidden pt-24 bg-transparent">
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-transparent pointer-events-none"></div>
 
-        <div className="container mx-auto px-4 relative z-10 mt-8">
+        <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -157,13 +157,13 @@ export default function BatteryStorageBusiness() {
       </section>
 
       {/* Benefits Section */}
-      <section ref={benefitsRef} className="py-24 bg-transparent">
+      <section ref={benefitsRef} className="py-12 bg-transparent">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={benefitsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="text-center mb-8"
           >
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
               Commercial Battery{' '}
@@ -200,13 +200,13 @@ export default function BatteryStorageBusiness() {
       </section>
 
       {/* Process Section */}
-      <section ref={processRef} className="py-24 bg-transparent">
+      <section ref={processRef} className="py-12 bg-transparent">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={processInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="text-center mb-8"
           >
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
               Our Implementation{' '}
@@ -244,14 +244,14 @@ export default function BatteryStorageBusiness() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-24 bg-transparent">
+      <section className="py-12 bg-transparent">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="text-center mb-8"
           >
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
               Frequently Asked{' '}
@@ -282,7 +282,7 @@ export default function BatteryStorageBusiness() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-transparent">
+      <section className="py-16 bg-transparent">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

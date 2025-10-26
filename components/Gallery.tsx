@@ -208,25 +208,8 @@ const Gallery = ({ data }: GalleryProps) => {
                   <div className="absolute inset-0 bg-gradient-to-tr from-accent/30 via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                   <div className="absolute inset-0 p-6 flex flex-col justify-end">
-                    <h3 className="text-white font-bold text-2xl mb-3 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
-                      {project.title}
-                    </h3>
-                    <div className="space-y-2 text-white/90 text-sm font-light mb-3">
-                      <div className="flex items-center space-x-2">
-                        <MapPin className="w-4 h-4 text-primary" />
-                        <span>{project.location}</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Zap className="w-4 h-4 text-primary" />
-                        <span>{project.capacity}</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Calendar className="w-4 h-4 text-primary" />
-                        <span>{project.date}</span>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <span className="text-primary/80 text-xs font-medium">Click for details →</span>
+                    <div className="text-center">
+                      <span className="text-white text-sm font-medium">Click for details →</span>
                     </div>
                   </div>
                 </div>
@@ -245,6 +228,24 @@ const Gallery = ({ data }: GalleryProps) => {
                       <h3 className="text-xl font-bold mb-4 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
                         {project.title}
                       </h3>
+
+                      {/* Basic Info */}
+                      <div className="space-y-2 mb-4 text-sm">
+                        <div className="flex items-center space-x-2 text-white/90">
+                          <MapPin className="w-4 h-4 text-primary" />
+                          <span>{project.location}</span>
+                        </div>
+                        <div className="flex items-center space-x-2 text-white/90">
+                          <Zap className="w-4 h-4 text-primary" />
+                          <span>{project.capacity}</span>
+                        </div>
+                        <div className="flex items-center space-x-2 text-white/90">
+                          <Calendar className="w-4 h-4 text-primary" />
+                          <span>{project.date}</span>
+                        </div>
+                      </div>
+
+                      {/* Detailed Info */}
                       <div className="space-y-3 text-sm">
                         <div className="bg-white/10 rounded-lg p-3">
                           <div className="text-primary/80 text-xs uppercase tracking-wider mb-1">System Type</div>

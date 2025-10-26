@@ -37,47 +37,48 @@ const Navigation = ({ data }: NavigationProps) => {
   }, []);
 
   // Define desired order
-  const desiredOrder = ['Home', 'About Us', 'Process', 'Our Work', 'Systems', 'Contact'];
+  const desiredOrder = ['Home', 'About Us', 'Our Work', 'Systems', 'Contact'];
 
   // Map Sanity navItems to component structure, or use fallback
-  const mappedItems = data?.navItems?.map(item => {
-    // Replace Testimonials with Our Work dropdown
-    if (item.label === 'Testimonials') {
-      return {
-        name: 'Our Work',
-        href: '/#gallery',
-        submenu: [
-          { name: 'The Process', href: '/#process' },
-          { name: 'Gallery', href: '/#gallery' },
-          { name: 'Case Studies', href: '/case-studies' },
-          { name: 'Testimonials', href: '/#testimonials' },
-        ],
-      };
-    }
+  const mappedItems = data?.navItems
+    ?.filter(item => item.label !== 'Process') // Exclude Process completely
+    ?.map(item => {
+      // Replace Testimonials with Our Work dropdown
+      if (item.label === 'Testimonials') {
+        return {
+          name: 'Our Work',
+          href: '/#gallery',
+          submenu: [
+            { name: 'Process', href: '/#process' },
+            { name: 'Gallery', href: '/#gallery' },
+            { name: 'Case Studies', href: '/case-studies' },
+            { name: 'Testimonials', href: '/#testimonials' },
+          ],
+        };
+      }
 
-    return {
-      name: item.label,
-      href: item.href,
-      // Add submenu for Systems if this is the Systems item
-      ...(item.label === 'Systems' && {
-        submenu: [
-          { name: 'Solar Panels for Home', href: '/solar-panels-home' },
-          { name: 'Battery Storage for Home', href: '/battery-storage-home' },
-          { name: 'Solar Panels for Business', href: '/solar-panels-business' },
-          { name: 'Battery Storage for Business', href: '/battery-storage-business' },
-          { name: 'EV Charging', href: '/ev-charging' },
-        ],
-      }),
-    };
-  }) || [
+      return {
+        name: item.label,
+        href: item.href,
+        // Add submenu for Systems if this is the Systems item
+        ...(item.label === 'Systems' && {
+          submenu: [
+            { name: 'Solar Panels for Home', href: '/solar-panels-home' },
+            { name: 'Battery Storage for Home', href: '/battery-storage-home' },
+            { name: 'Solar Panels for Business', href: '/solar-panels-business' },
+            { name: 'Battery Storage for Business', href: '/battery-storage-business' },
+            { name: 'EV Charging', href: '/ev-charging' },
+          ],
+        }),
+      };
+    }) || [
     { name: 'Home', href: '/' },
     { name: 'About Us', href: '/#about' },
-    { name: 'Process', href: '/#process' },
     {
       name: 'Our Work',
       href: '/#gallery',
       submenu: [
-        { name: 'The Process', href: '/#process' },
+        { name: 'Process', href: '/#process' },
         { name: 'Gallery', href: '/#gallery' },
         { name: 'Case Studies', href: '/case-studies' },
         { name: 'Testimonials', href: '/#testimonials' },
@@ -97,12 +98,14 @@ const Navigation = ({ data }: NavigationProps) => {
     { name: 'Contact', href: '/#contact' },
   ];
 
-  // Sort items according to desired order
-  const navItems = mappedItems.sort((a, b) => {
-    const indexA = desiredOrder.indexOf(a.name);
-    const indexB = desiredOrder.indexOf(b.name);
-    return indexA - indexB;
-  });
+  // Sort items according to desired order and filter out any items not in desired order
+  const navItems = mappedItems
+    .filter(item => desiredOrder.includes(item.name))
+    .sort((a, b) => {
+      const indexA = desiredOrder.indexOf(a.name);
+      const indexB = desiredOrder.indexOf(b.name);
+      return indexA - indexB;
+    });
 
   const ctaButton = data?.ctaButton || { text: 'Get Free Quote', href: '/#contact' };
 

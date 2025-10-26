@@ -17,7 +17,7 @@ export default function SolarPanelsHome() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative py-20 flex items-center overflow-hidden pt-24">
+      <section className="relative py-20 flex items-center overflow-hidden pt-24 bg-transparent">
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-transparent pointer-events-none"></div>
 
         <div className="container mx-auto px-4 relative z-10">
@@ -217,7 +217,7 @@ export default function SolarPanelsHome() {
             transition={{ duration: 0.6 }}
             className="max-w-6xl mx-auto"
           >
-            <div className="text-center mb-16">
+            <div className="text-center mb-8">
               <div className="inline-flex items-center space-x-2 mb-6">
                 <Battery className="w-6 h-6 text-primary" />
                 <span className="text-primary font-semibold uppercase tracking-wider text-sm">
