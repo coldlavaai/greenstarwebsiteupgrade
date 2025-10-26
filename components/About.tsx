@@ -47,10 +47,35 @@ const About = ({ data }: AboutProps) => {
     <section id="about" ref={ref} className="py-16 md:py-24 bg-transparent">
       <div className="container mx-auto px-8 md:px-12">
         <div className="grid lg:grid-cols-2 gap-14 md:gap-20 items-center">
-          {/* Left Content */}
+          {/* Left Content - Stats Grid */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+            transition={{ duration: 0.6 }}
+            className="grid grid-cols-2 gap-4 md:gap-6 max-w-full overflow-hidden"
+          >
+            {stats.map((stat, index) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 50 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+                transition={{ delay: 0.3 + index * 0.1, duration: 0.5 }}
+                whileHover={{ scale: 1.05, y: -5 }}
+                className="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-xl p-3 md:p-6 rounded-xl md:rounded-2xl border border-white/10 shadow-lg hover:shadow-[0_20px_60px_rgba(140,198,63,0.4)] hover:border-[#8cc63f]/50 transition-all w-full max-w-full overflow-hidden"
+              >
+                <div className="bg-[#8cc63f]/20 w-8 h-8 md:w-12 md:h-12 rounded-lg md:rounded-xl flex items-center justify-center mb-2 md:mb-3">
+                  <stat.icon className="w-4 h-4 md:w-6 md:h-6 text-[#8cc63f]" />
+                </div>
+                <div className="text-xl md:text-3xl font-bold text-white mb-1 md:mb-2">{stat.value}</div>
+                <div className="text-white/70 font-medium text-[10px] md:text-sm">{stat.label}</div>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Right Content - Text */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
             transition={{ duration: 0.6 }}
           >
             <motion.span
@@ -70,7 +95,7 @@ const About = ({ data }: AboutProps) => {
               style={{ fontFamily: 'var(--font-heading)' }}
               data-sanity={data?._id ? `${data._id}.heading` : undefined}
             >
-              {data?.heading || 'Leading the Way in'}{' '}
+              {data?.heading || 'Leading the Way in'}<br />
               <span className="text-[#8cc63f]">Renewable Energy</span>
             </motion.h2>
 
@@ -117,31 +142,6 @@ const About = ({ data }: AboutProps) => {
                 </motion.div>
               ))}
             </motion.div>
-          </motion.div>
-
-          {/* Right Content - Stats Grid */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-            transition={{ duration: 0.6 }}
-            className="grid grid-cols-2 gap-4 md:gap-6 max-w-full overflow-hidden"
-          >
-            {stats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 50 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-                transition={{ delay: 0.3 + index * 0.1, duration: 0.5 }}
-                whileHover={{ scale: 1.05, y: -5 }}
-                className="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-xl p-3 md:p-6 rounded-xl md:rounded-2xl border border-white/10 shadow-lg hover:shadow-[0_20px_60px_rgba(140,198,63,0.4)] hover:border-[#8cc63f]/50 transition-all w-full max-w-full overflow-hidden"
-              >
-                <div className="bg-[#8cc63f]/20 w-8 h-8 md:w-12 md:h-12 rounded-lg md:rounded-xl flex items-center justify-center mb-2 md:mb-3">
-                  <stat.icon className="w-4 h-4 md:w-6 md:h-6 text-[#8cc63f]" />
-                </div>
-                <div className="text-xl md:text-3xl font-bold text-white mb-1 md:mb-2">{stat.value}</div>
-                <div className="text-white/70 font-medium text-[10px] md:text-sm">{stat.label}</div>
-              </motion.div>
-            ))}
           </motion.div>
         </div>
       </div>
