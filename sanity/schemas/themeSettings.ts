@@ -435,7 +435,7 @@ export const themeSettings = defineType({
           initialValue: '0 20px 25px -5px rgba(0, 0, 0, 0.1)',
         },
         {
-          name: '2xl',
+          name: 'xxl',
           title: '2X Large',
           type: 'string',
           initialValue: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
@@ -540,7 +540,7 @@ export const themeSettings = defineType({
           initialValue: '1280px',
         },
         {
-          name: '2xl',
+          name: 'xxl',
           title: '2X Large (Wide Screen)',
           type: 'string',
           initialValue: '1536px',

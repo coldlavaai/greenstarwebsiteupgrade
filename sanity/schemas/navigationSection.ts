@@ -1,6 +1,6 @@
 import { defineType } from 'sanity'
 
-export const navigationSectionEnhanced = defineType({
+export const navigationSection = defineType({
   name: 'navigationSection',
   title: '🧭 Navigation',
   type: 'document',

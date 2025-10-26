@@ -1,6 +1,6 @@
 import { defineType } from 'sanity'
 
-export const siteSettingsEnhanced = defineType({
+export const siteSettings = defineType({
   name: 'siteSettings',
   title: '⚙️ Site Settings',
   type: 'document',
