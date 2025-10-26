@@ -66,14 +66,14 @@ const Process = ({ data }: ProcessProps) => {
       number: '04',
       icon: FileCheck,
       title: 'System Handover',
-      description: 'Upon completion, you'll receive a comprehensive handover pack including your MCS certificate, DNO approval letter, and other essential documents required for Smart Export Guarantee onboarding.',
-      backContent: 'We assist you through this process to ensure a seamless transition onto the right export tariff. Our team also provides full guidance on using your monitoring app and understanding your energy data so you can get the most from your new system.',
+      description: "Upon completion, you'll receive a comprehensive handover pack including your MCS certificate, DNO approval letter, and other essential documents required for Smart Export Guarantee onboarding.",
+      backContent: "We assist you through this process to ensure a seamless transition onto the right export tariff. Our team also provides full guidance on using your monitoring app and understanding your energy data so you can get the most from your new system.",
     },
     {
       number: '05',
       icon: HeartHandshake,
       title: 'Ongoing Support',
-      description: 'Our relationship doesn't end once your system is installed. Greenstar offers continued support with no labour call out charges post installation.',
+      description: "Our relationship doesn't end once your system is installed. Greenstar offers continued support with no labour call out charges post installation.",
       backContent: 'We ensure any issues are resolved quickly and efficiently. We remain available for advice, system checks, and performance reviews so you always have us to rely on for anything you need.',
     },
   ];
