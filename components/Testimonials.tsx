@@ -251,8 +251,20 @@ const Testimonials = ({ data }: TestimonialsProps) => {
     },
   ];
 
-  const totalPages = Math.ceil(allReviews.length / reviewsPerPage);
-  const currentReviews = allReviews.slice(
+  // Shuffle reviews to mix Google and Trustpilot together
+  const shuffleReviews = (reviews: Testimonial[]) => {
+    const shuffled = [...reviews];
+    // Fisher-Yates shuffle algorithm with fixed seed for consistency
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor((Math.sin(i) * 10000) % (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  };
+
+  const mixedReviews = shuffleReviews(allReviews);
+  const totalPages = Math.ceil(mixedReviews.length / reviewsPerPage);
+  const currentReviews = mixedReviews.slice(
     currentPage * reviewsPerPage,
     (currentPage + 1) * reviewsPerPage
   );
