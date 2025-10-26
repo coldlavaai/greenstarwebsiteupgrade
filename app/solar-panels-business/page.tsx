@@ -134,14 +134,19 @@ export default function SolarPanelsBusiness() {
               </span>
             </motion.h1>
 
-            <motion.p
+            <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
-              className="text-xl md:text-2xl text-gray-200 mb-10 leading-relaxed max-w-3xl mx-auto font-light"
+              className="text-lg md:text-xl text-gray-200 mb-10 leading-relaxed max-w-3xl mx-auto font-light space-y-4"
             >
-              Power your business with clean energy. Reduce costs, enhance sustainability, and protect against rising energy prices with commercial solar solutions.
-            </motion.p>
+              <p>
+                Power your business with clean, renewable energy and take control of rising electricity costs. Our commercial solar systems are designed to deliver long term savings, strengthen your sustainability credentials, and enhance energy independence.
+              </p>
+              <p>
+                We work with businesses of all sizes to create tailored systems that reduce operating expenses and protect against unpredictable energy prices. Each installation is engineered for efficiency, reliability, and return on investment, helping you turn unused roof space into a valuable financial asset.
+              </p>
+            </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 30 }}
