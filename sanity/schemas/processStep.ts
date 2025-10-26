@@ -37,6 +37,51 @@ export const processStep = defineType({
         hotspot: true,
       },
     },
+    {
+      name: 'backContent',
+      title: 'Back Content',
+      type: 'text',
+      description: 'Additional detailed content shown on card flip',
+      rows: 4,
+    },
+    {
+      name: 'frontReview',
+      title: 'Front Review',
+      type: 'object',
+      description: 'Customer review shown on the front of the card',
+      fields: [
+        {
+          name: 'text',
+          title: 'Review Text',
+          type: 'text',
+          rows: 2,
+        },
+        {
+          name: 'author',
+          title: 'Review Author',
+          type: 'string',
+        },
+      ],
+    },
+    {
+      name: 'backReview',
+      title: 'Back Review',
+      type: 'object',
+      description: 'Customer review shown on the back of the card',
+      fields: [
+        {
+          name: 'text',
+          title: 'Review Text',
+          type: 'text',
+          rows: 2,
+        },
+        {
+          name: 'author',
+          title: 'Review Author',
+          type: 'string',
+        },
+      ],
+    },
   ],
   orderings: [
     {
