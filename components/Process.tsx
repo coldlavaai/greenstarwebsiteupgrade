@@ -47,6 +47,8 @@ const Process = ({ data }: ProcessProps) => {
       title: 'Personal Consultation',
       description: 'We begin with a face to face consultation to understand your energy usage, goals, and budget.',
       backContent: 'Our surveyors carry out a full structural and wind load assessment to ensure your roof is sound and suitable for installation. Every site is carefully assessed for roof orientation, shading, sunlight, and the ideal placement for inverters and batteries.',
+      frontReview: { text: '"They explained everything in simple terms and made us feel confident."', author: 'Martyn Brayshaw' },
+      backReview: { text: '"Jon explained everything clearly. Tobias kept things organized."', author: 'Rikesh' },
     },
     {
       number: '02',
@@ -54,6 +56,8 @@ const Process = ({ data }: ProcessProps) => {
       title: 'Bespoke Design',
       description: 'There is no one size fits all solution. Each system is tailored to your specific energy consumption and future requirements to ensure long term efficiency and flexibility.',
       backContent: 'Using premium components and industry leading software, we create a system that meets your needs today while preparing you for tomorrow.',
+      frontReview: { text: '"Not the cheapest of 5 quotes but best value. Excellent equipment..."', author: 'Mark Diaper' },
+      backReview: { text: '"Quote adjusted to my needs. Install was quick and well done."', author: 'Jim' },
     },
     {
       number: '03',
@@ -61,6 +65,8 @@ const Process = ({ data }: ProcessProps) => {
       title: 'Expert Installation',
       description: 'With over 15 years experience, our qualified installation team completes every project with precision and care.',
       backContent: 'We ensure full compliance, safety, and reliability so your system performs optimally for years to come.',
+      frontReview: { text: '"Install team were really helpful and thorough."', author: 'Ben Miles-Mathewson' },
+      backReview: { text: '"Team were punctual, knowledgeable, polite and cleaned up everything."', author: 'Peter Lucas' },
     },
     {
       number: '04',
@@ -68,6 +74,8 @@ const Process = ({ data }: ProcessProps) => {
       title: 'System Handover',
       description: "Upon completion, you'll receive a comprehensive handover pack including your MCS certificate, DNO approval letter, and other essential documents required for Smart Export Guarantee onboarding.",
       backContent: "We assist you through this process to ensure a seamless transition onto the right export tariff. Our team also provides full guidance on using your monitoring app and understanding your energy data so you can get the most from your new system.",
+      frontReview: { text: '"System working so well adding a second battery next week!"', author: 'Ben Miles-Mathewson' },
+      backReview: { text: '"System has been superb for one month now."', author: 'Tony Hamlett' },
     },
     {
       number: '05',
@@ -75,6 +83,8 @@ const Process = ({ data }: ProcessProps) => {
       title: 'Ongoing Support',
       description: "Our relationship doesn't end once your system is installed. Greenstar offers continued support with no labour call out charges post installation.",
       backContent: 'We ensure any issues are resolved quickly and efficiently. We remain available for advice, system checks, and performance reviews so you always have us to rely on for anything you need.',
+      frontReview: { text: '"First class customer service continues after purchase."', author: 'Daniel Blackman' },
+      backReview: { text: '"Any concerns resolved quickly and professionally."', author: 'Oliver' },
     },
   ];
 
@@ -177,9 +187,17 @@ const Process = ({ data }: ProcessProps) => {
                               {step.title}
                             </h3>
                           </div>
-                          <p className="text-white/70 leading-relaxed text-xs md:text-sm font-light">
+                          <p className="text-white/70 leading-relaxed text-xs md:text-sm font-light mb-4">
                             {step.description}
                           </p>
+
+                          {/* Customer Review Snippet */}
+                          {step.frontReview && (
+                            <div className="bg-white/5 border-l-2 border-primary/50 pl-3 py-2 rounded">
+                              <p className="text-white/90 italic text-[10px] md:text-xs mb-1">{step.frontReview.text}</p>
+                              <p className="text-primary/70 text-[9px] md:text-[10px] font-medium">— {step.frontReview.author}</p>
+                            </div>
+                          )}
                         </div>
 
                         {/* Click hint */}
@@ -210,9 +228,17 @@ const Process = ({ data }: ProcessProps) => {
                                 {step.title}
                               </h3>
                             </div>
-                            <p className="text-white/80 leading-relaxed text-xs md:text-sm font-light">
+                            <p className="text-white/80 leading-relaxed text-xs md:text-sm font-light mb-4">
                               {step.backContent}
                             </p>
+
+                            {/* Customer Review Snippet */}
+                            {step.backReview && (
+                              <div className="bg-white/5 border-l-2 border-primary/50 pl-3 py-2 rounded">
+                                <p className="text-white/90 italic text-[10px] md:text-xs mb-1">{step.backReview.text}</p>
+                                <p className="text-primary/70 text-[9px] md:text-[10px] font-medium">— {step.backReview.author}</p>
+                              </div>
+                            )}
                           </div>
                           <div className="text-right mt-4">
                             <span className="text-primary/80 text-xs font-medium">← Click to return</span>
