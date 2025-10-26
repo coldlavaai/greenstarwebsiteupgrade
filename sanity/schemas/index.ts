@@ -30,6 +30,9 @@ import { testimonialsSection } from './testimonialsSection'
 import { processSection } from './processSection'
 import { gallerySection } from './gallerySection'
 
+// System Pages (NEW - for CMS integration)
+import { systemPage } from './systemPage'
+
 export const schemaTypes = [
   // Settings (singleton documents)
   siteSettings,
@@ -46,6 +49,9 @@ export const schemaTypes = [
   contactSection,
   navigationSection,
   footerSection,
+
+  // System Pages (NEW - for CMS-managed product pages)
+  systemPage,
 
   // Content Types (can have multiple instances)
   service,
