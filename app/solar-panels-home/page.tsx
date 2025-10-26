@@ -17,10 +17,10 @@ export default function SolarPanelsHome() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative min-h-[70vh] flex items-center overflow-hidden pt-24">
+      <section className="relative py-20 flex items-center overflow-hidden pt-24">
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-transparent pointer-events-none"></div>
 
-        <div className="container mx-auto px-4 relative z-10 mt-8">
+        <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-5xl mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -99,7 +99,7 @@ export default function SolarPanelsHome() {
       </section>
 
       {/* Premium Panels Showcase */}
-      <section ref={benefitsRef} className="py-16 bg-transparent">
+      <section ref={benefitsRef} className="py-12 bg-transparent">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -208,7 +208,7 @@ export default function SolarPanelsHome() {
       </section>
 
       {/* Complete System Section */}
-      <section className="py-16 bg-transparent">
+      <section className="py-12 bg-transparent">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -316,7 +316,7 @@ export default function SolarPanelsHome() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-transparent">
+      <section className="py-16 bg-transparent">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
