@@ -22,7 +22,7 @@ const Testimonials = ({ data }: TestimonialsProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
   const [currentPage, setCurrentPage] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
   // Detect mobile screen size
