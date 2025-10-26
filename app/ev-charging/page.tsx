@@ -1,15 +1,32 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 import { Zap, TrendingDown, Shield, Battery, Home, CheckCircle, ArrowRight, Plug, Award, Leaf, Sun } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import PageWrapper from '@/components/PageWrapper';
+import { client } from '@/lib/sanity';
 
 export default function EVCharging() {
+  const [navigationData, setNavigationData] = useState<any>(null);
+  const [footerData, setFooterData] = useState<any>(null);
+
+  useEffect(() => {
+    async function fetchData() {
+      const [nav, footer] = await Promise.all([
+        client.fetch(`*[_type == "navigationSection"][0]{ _id, _type, title, navItems, ctaButton }`),
+        client.fetch(`*[_type == "footerSection"][0]`)
+      ]);
+      setNavigationData(nav);
+      setFooterData(footer);
+    }
+    fetchData();
+  }, []);
+
   return (
     <PageWrapper>
-      <Navigation />
+      <Navigation data={navigationData} />
 
       {/* Hero Section */}
       <section className="relative py-20 flex items-center overflow-hidden pt-32 bg-transparent">
@@ -394,7 +411,7 @@ export default function EVCharging() {
         </div>
       </section>
 
-      <Footer />
+      <Footer data={footerData} />
     </PageWrapper>
   );
 }
