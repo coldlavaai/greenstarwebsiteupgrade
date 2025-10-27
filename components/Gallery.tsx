@@ -45,7 +45,7 @@ const Gallery = ({ data }: GalleryProps) => {
   };
 
   // Map CMS data or use fallback
-  const projects = data?.map(item => {
+  const projects = (data && data.length > 0) ? data.map(item => {
     // Safely get image URL - check if image exists and has asset reference
     let imageUrl = imageMap[item.title] || '';
     if (item.image && item.image.asset) {
@@ -66,7 +66,7 @@ const Gallery = ({ data }: GalleryProps) => {
       capacity: item.systemSize || '',
       date: '2024',  // Default date
     };
-  }) || [
+  }) : [
     {
       image: 'https://irp.cdn-website.com/8f142869/dms3rep/multi/AdobeStock_855615596.jpeg',
       title: 'Residential Solar Installation',

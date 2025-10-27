@@ -50,7 +50,7 @@ const Systems = ({ data }: SystemsProps) => {
   };
 
   // Map CMS data to component format or use fallback
-  const services = data?.map(service => {
+  const services = (data && data.length > 0) ? data.map(service => {
     // Safely get image URL - check if image exists and has asset reference
     let imageUrl = imageMap[service.title] || '';
     if (service.image && service.image.asset) {
@@ -72,7 +72,7 @@ const Systems = ({ data }: SystemsProps) => {
       image: imageUrl,
       link: linkMap[service.title] || `/${service.category || 'services'}`,
     };
-  }) || [
+  }) : [
     {
       icon: Sun,
       title: 'Solar Panels for Home',
