@@ -34,6 +34,17 @@ import { gallerySection } from './gallerySection'
 // System Pages (NEW - for CMS integration)
 import { systemPage } from './systemPage'
 
+// Universal Page Builder & Reusable Sections
+import { page } from './page'
+import { heroSectionObject } from './sections/heroSectionObject'
+import { contentSection } from './sections/contentSection'
+import { ctaSection } from './sections/ctaSection'
+import { gridSection } from './sections/gridSection'
+import { imageTextSection } from './sections/imageTextSection'
+import { faqSection } from './sections/faqSection'
+import { formSection } from './sections/formSection'
+import { spacerSection } from './sections/spacerSection'
+
 export const schemaTypes = [
   // Settings (singleton documents)
   siteSettings,
@@ -54,6 +65,19 @@ export const schemaTypes = [
 
   // System Pages (NEW - for CMS-managed product pages)
   systemPage,
+
+  // Universal Page Builder (NEW - for creating custom pages)
+  page,
+
+  // Reusable Page Sections (for Page Builder)
+  heroSectionObject,
+  contentSection,
+  ctaSection,
+  gridSection,
+  imageTextSection,
+  faqSection,
+  formSection,
+  spacerSection,
 
   // Content Types (can have multiple instances)
   service,
