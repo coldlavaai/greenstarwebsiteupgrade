@@ -216,75 +216,75 @@ const Gallery = ({ data }: GalleryProps) => {
 
                 {/* Back of card */}
                 <div
-                  className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary-dark/20 backdrop-blur-xl rounded-3xl shadow-2xl border border-primary/30 overflow-hidden p-6"
+                  className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary-dark/20 backdrop-blur-xl rounded-3xl shadow-2xl border border-primary/30 overflow-hidden p-4"
                   style={{
                     backfaceVisibility: 'hidden',
                     WebkitBackfaceVisibility: 'hidden',
                     transform: 'rotateY(180deg)',
                   }}
                 >
-                  <div className="h-full flex flex-col justify-between text-white">
-                    <div>
-                      <h3 className="text-xl font-bold mb-4 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
+                  <div className="h-full flex flex-col text-white overflow-y-auto">
+                    <div className="flex-1 overflow-y-auto">
+                      <h3 className="text-lg font-bold mb-2 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
                         {project.title}
                       </h3>
 
                       {/* Basic Info */}
-                      <div className="space-y-2 mb-4 text-sm">
+                      <div className="space-y-1.5 mb-3 text-xs">
                         <div className="flex items-center space-x-2 text-white/90">
-                          <MapPin className="w-4 h-4 text-primary" />
+                          <MapPin className="w-3.5 h-3.5 text-primary flex-shrink-0" />
                           <span>{project.location}</span>
                         </div>
                         <div className="flex items-center space-x-2 text-white/90">
-                          <Zap className="w-4 h-4 text-primary" />
+                          <Zap className="w-3.5 h-3.5 text-primary flex-shrink-0" />
                           <span>{project.capacity}</span>
                         </div>
                         <div className="flex items-center space-x-2 text-white/90">
-                          <Calendar className="w-4 h-4 text-primary" />
+                          <Calendar className="w-3.5 h-3.5 text-primary flex-shrink-0" />
                           <span>{project.date}</span>
                         </div>
                       </div>
 
                       {/* Detailed Info */}
-                      <div className="space-y-3 text-sm">
-                        <div className="bg-white/10 rounded-lg p-3">
-                          <div className="text-primary/80 text-xs uppercase tracking-wider mb-1">System Type</div>
-                          <div className="font-medium">{project.systemDetails || project.capacity}</div>
+                      <div className="space-y-2 text-xs">
+                        <div className="bg-white/10 rounded-lg p-2">
+                          <div className="text-primary/80 text-[10px] uppercase tracking-wider mb-0.5">System Type</div>
+                          <div className="font-medium text-xs">{project.systemDetails || project.capacity}</div>
                         </div>
                         {project.panelCount && (
-                          <div className="bg-white/10 rounded-lg p-3">
-                            <div className="text-primary/80 text-xs uppercase tracking-wider mb-1">Panels</div>
-                            <div className="font-medium">{project.panelCount}</div>
+                          <div className="bg-white/10 rounded-lg p-2">
+                            <div className="text-primary/80 text-[10px] uppercase tracking-wider mb-0.5">Panels</div>
+                            <div className="font-medium text-xs">{project.panelCount}</div>
                           </div>
                         )}
                         {project.battery && (
-                          <div className="bg-white/10 rounded-lg p-3">
-                            <div className="text-primary/80 text-xs uppercase tracking-wider mb-1">Battery</div>
-                            <div className="font-medium">{project.battery}</div>
+                          <div className="bg-white/10 rounded-lg p-2">
+                            <div className="text-primary/80 text-[10px] uppercase tracking-wider mb-0.5">Battery</div>
+                            <div className="font-medium text-xs">{project.battery}</div>
                           </div>
                         )}
                         {project.inverter && (
-                          <div className="bg-white/10 rounded-lg p-3">
-                            <div className="text-primary/80 text-xs uppercase tracking-wider mb-1">Inverter</div>
-                            <div className="font-medium">{project.inverter}</div>
+                          <div className="bg-white/10 rounded-lg p-2">
+                            <div className="text-primary/80 text-[10px] uppercase tracking-wider mb-0.5">Inverter</div>
+                            <div className="font-medium text-xs">{project.inverter}</div>
                           </div>
                         )}
                         {project.performance && (
-                          <div className="bg-primary/20 rounded-lg p-3 border border-primary/30">
-                            <div className="text-primary/90 text-xs uppercase tracking-wider mb-1">Performance</div>
-                            <div className="font-bold">{project.performance}</div>
+                          <div className="bg-primary/20 rounded-lg p-2 border border-primary/30">
+                            <div className="text-primary/90 text-[10px] uppercase tracking-wider mb-0.5">Performance</div>
+                            <div className="font-bold text-xs">{project.performance}</div>
                           </div>
                         )}
                         {project.savings && (
-                          <div className="bg-primary/20 rounded-lg p-3 border border-primary/30">
-                            <div className="text-primary/90 text-xs uppercase tracking-wider mb-1">Savings</div>
-                            <div className="font-bold">{project.savings}</div>
+                          <div className="bg-primary/20 rounded-lg p-2 border border-primary/30">
+                            <div className="text-primary/90 text-[10px] uppercase tracking-wider mb-0.5">Savings</div>
+                            <div className="font-bold text-xs">{project.savings}</div>
                           </div>
                         )}
                       </div>
                     </div>
-                    <div className="text-right mt-4">
-                      <span className="text-primary/80 text-xs font-medium">← Click to return</span>
+                    <div className="text-right mt-2 pt-2 border-t border-white/10 flex-shrink-0">
+                      <span className="text-primary/80 text-[10px] font-medium">← Click to return</span>
                     </div>
                   </div>
                 </div>
