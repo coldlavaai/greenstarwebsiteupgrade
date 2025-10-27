@@ -128,7 +128,7 @@ export const siteSettings = defineType({
       type: 'string',
       description: 'Primary contact email',
       validation: (Rule) =>
-        Rule.custom((email) => {
+        Rule.custom((email: string | undefined) => {
           if (!email) return true
           const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
           return emailRegex.test(email) || 'Please enter a valid email address'
