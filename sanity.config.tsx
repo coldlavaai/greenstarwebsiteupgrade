@@ -39,6 +39,7 @@ export default defineConfig({
                   .title('Settings')
                   .items([
                     singletonItem(S, 'siteSettings', 'Site Settings'),
+                    singletonItem(S, 'themeSettings', 'Theme Settings'),
                     singletonItem(S, 'brandTheme', 'Brand & Theme'),
                     singletonItem(S, 'emailSettings', 'Email Notifications'),
                   ])
@@ -185,6 +186,66 @@ export default defineConfig({
 
             S.divider(),
 
+            // Page Builder
+            S.listItem()
+              .title('📄 Pages')
+              .child(
+                S.list()
+                  .title('Pages')
+                  .items([
+                    S.listItem()
+                      .title('✨ Create New Page')
+                      .icon(() => '➕')
+                      .child(
+                        S.documentTypeList('page')
+                          .title('All Pages')
+                          .filter('status != "archived"')
+                          .defaultOrdering([{ field: '_createdAt', direction: 'desc' }])
+                          .canHandleIntent((intentName, params) => {
+                            return intentName === 'create' && params.type === 'page'
+                          })
+                      ),
+                    S.divider(),
+                    S.listItem()
+                      .title('📄 Published Pages')
+                      .child(
+                        S.documentTypeList('page')
+                          .title('Published Pages')
+                          .filter('status == "published"')
+                          .defaultOrdering([{ field: 'publishedAt', direction: 'desc' }])
+                      ),
+                    S.listItem()
+                      .title('📝 Draft Pages')
+                      .child(
+                        S.documentTypeList('page')
+                          .title('Draft Pages')
+                          .filter('status == "draft"')
+                          .defaultOrdering([{ field: '_updatedAt', direction: 'desc' }])
+                      ),
+                    S.listItem()
+                      .title('🗄️ Archived Pages')
+                      .child(
+                        S.documentTypeList('page')
+                          .title('Archived Pages')
+                          .filter('status == "archived"')
+                          .defaultOrdering([{ field: '_updatedAt', direction: 'desc' }])
+                      ),
+                  ])
+              ),
+
+            S.divider(),
+
+            // System Pages
+            S.listItem()
+              .title('🏠 System Pages')
+              .child(
+                S.documentTypeList('systemPage')
+                  .title('System/Product Pages')
+                  .defaultOrdering([{ field: '_updatedAt', direction: 'desc' }])
+              ),
+
+            S.divider(),
+
             // Website Content Group
             S.listItem()
               .title('🌐 Website Content')
@@ -226,7 +287,6 @@ export default defineConfig({
       defaultDocumentNode: (S) => {
         return S.document().views([
           S.view.form(),
-          S.view.component(() => null).title('Presentation').id('presentation')
         ])
       }
     }),
