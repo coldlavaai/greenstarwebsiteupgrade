@@ -39,15 +39,43 @@ export const page = defineType({
       type: 'array',
       description: 'Drag and drop to reorder sections. Click + to add new sections.',
       of: [
-        // Reference to section types
+        // Core Layout Sections
         { type: 'heroSectionObject' },
         { type: 'contentSection' },
-        { type: 'ctaSection' },
-        { type: 'gridSection' },
         { type: 'imageTextSection' },
-        { type: 'faqSection' },
-        { type: 'formSection' },
         { type: 'spacerSection' },
+
+        // Call-to-Action & Forms
+        { type: 'ctaSection' },
+        { type: 'formSection' },
+        { type: 'newsletterSection' },
+
+        // Content Display
+        { type: 'gridSection' },
+        { type: 'faqSection' },
+        { type: 'accordionSection' },
+
+        // Social Proof & Stats
+        { type: 'testimonialSection' },
+        { type: 'statsSection' },
+        { type: 'logoCloudSection' },
+
+        // Team & People
+        { type: 'teamSection' },
+
+        // Pricing & Comparison
+        { type: 'pricingSection' },
+        { type: 'comparisonSection' },
+
+        // Media
+        { type: 'videoSection' },
+        { type: 'galleryGridSection' },
+
+        // Timeline & Process
+        { type: 'timelineSection' },
+
+        // Contact & Location
+        { type: 'contactMapSection' },
       ],
       group: 'content',
     },

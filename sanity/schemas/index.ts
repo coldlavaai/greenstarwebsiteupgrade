@@ -44,6 +44,18 @@ import { imageTextSection } from './sections/imageTextSection'
 import { faqSection } from './sections/faqSection'
 import { formSection } from './sections/formSection'
 import { spacerSection } from './sections/spacerSection'
+import { testimonialSection } from './sections/testimonialSection'
+import { statsSection } from './sections/statsSection'
+import { teamSection } from './sections/teamSection'
+import { pricingSection } from './sections/pricingSection'
+import { videoSection } from './sections/videoSection'
+import { logoCloudSection } from './sections/logoCloudSection'
+import { timelineSection } from './sections/timelineSection'
+import { comparisonSection } from './sections/comparisonSection'
+import { accordionSection } from './sections/accordionSection'
+import { galleryGridSection } from './sections/galleryGridSection'
+import { contactMapSection } from './sections/contactMapSection'
+import { newsletterSection } from './sections/newsletterSection'
 
 export const schemaTypes = [
   // Settings (singleton documents)
@@ -69,7 +81,7 @@ export const schemaTypes = [
   // Universal Page Builder (NEW - for creating custom pages)
   page,
 
-  // Reusable Page Sections (for Page Builder)
+  // Reusable Page Sections (for Page Builder) - 20 Total
   heroSectionObject,
   contentSection,
   ctaSection,
@@ -78,6 +90,18 @@ export const schemaTypes = [
   faqSection,
   formSection,
   spacerSection,
+  testimonialSection,
+  statsSection,
+  teamSection,
+  pricingSection,
+  videoSection,
+  logoCloudSection,
+  timelineSection,
+  comparisonSection,
+  accordionSection,
+  galleryGridSection,
+  contactMapSection,
+  newsletterSection,
 
   // Content Types (can have multiple instances)
   service,
