@@ -3,6 +3,7 @@ import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { draftMode } from 'next/headers';
 import { VisualEditing } from '@/components/VisualEditing';
+import { ThemeProvider } from '@/components/ThemeProvider';
 
 const inter = Inter({
   subsets: ["latin"],
@@ -31,8 +32,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${playfair.variable} font-sans antialiased`}>
-        {children}
-        {isDraftMode && <VisualEditing />}
+        <ThemeProvider>
+          {children}
+          {isDraftMode && <VisualEditing />}
+        </ThemeProvider>
       </body>
     </html>
   );
