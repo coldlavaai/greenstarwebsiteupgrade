@@ -162,18 +162,21 @@ export default function CaseStudiesPage() {
               Ready to start your own success story?
             </p>
             <motion.a
-              whileHover={{ scale: 1.05, boxShadow: '0 20px 50px rgba(140,199,64,0.4)' }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               href="/#contact"
-              className="inline-block bg-gradient-to-r from-primary via-primary-dark to-primary text-white px-12 py-5 rounded-full font-semibold text-lg hover:shadow-2xl transition-all relative overflow-hidden group"
+              className="inline-block relative px-12 py-5 rounded-full font-semibold text-lg overflow-hidden group"
+              style={{
+                background: 'rgba(140, 198, 63, 0.15)',
+                backdropFilter: 'blur(20px)',
+                WebkitBackdropFilter: 'blur(20px)',
+                border: '1px solid rgba(140, 198, 63, 0.3)',
+                boxShadow: '0 8px 32px rgba(140, 198, 63, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+              }}
             >
-              <span className="relative z-10 tracking-wide">Book Your Free Survey</span>
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-white/30 to-transparent"
-                initial={{ x: '-100%' }}
-                whileHover={{ x: '100%' }}
-                transition={{ duration: 0.6 }}
-              />
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-transparent to-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
+              <span className="relative z-10 tracking-wide text-white drop-shadow-lg">Book Your Free Survey</span>
             </motion.a>
           </motion.div>
         </div>

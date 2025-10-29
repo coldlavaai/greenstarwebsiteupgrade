@@ -282,16 +282,27 @@ const Contact = ({ data }: ContactProps) => {
                     />
                   </div>
 
-                  {/* Submit Button - Premium styling with instant feedback */}
+                  {/* Submit Button - Premium glassmorphism styling with instant feedback */}
                   <motion.button
-                    whileHover={!isSubmitting ? { scale: 1.02, boxShadow: '0 20px 50px rgba(140,198,63,0.4)' } : {}}
-                    whileTap={{ scale: 0.95 }}
+                    whileHover={!isSubmitting ? { scale: 1.02 } : {}}
+                    whileTap={{ scale: 0.98 }}
                     type="submit"
                     disabled={isSubmitting}
-                    className={`w-full bg-gradient-to-r from-primary via-primary-dark to-primary text-white py-3 md:py-4 rounded-xl font-semibold text-xs md:text-sm hover:shadow-2xl transition-all duration-150 flex items-center justify-center space-x-2 md:space-x-3 relative overflow-hidden group active:scale-95 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : 'active:opacity-90'}`}
+                    className={`w-full py-3 md:py-4 rounded-xl font-semibold text-xs md:text-sm transition-all duration-150 flex items-center justify-center space-x-2 md:space-x-3 relative overflow-hidden group ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
+                    style={{
+                      background: 'rgba(140, 198, 63, 0.15)',
+                      backdropFilter: 'blur(20px)',
+                      WebkitBackdropFilter: 'blur(20px)',
+                      border: '1px solid rgba(140, 198, 63, 0.3)',
+                      boxShadow: '0 8px 32px rgba(140, 198, 63, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+                    }}
                   >
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
+                    {!isSubmitting && (
+                      <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-transparent to-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    )}
                     <motion.span
-                      className="relative z-10 tracking-wide"
+                      className="relative z-10 tracking-wide text-white drop-shadow-lg"
                       initial={false}
                       animate={{ opacity: isSubmitting ? 0.7 : 1 }}
                       transition={{ duration: 0.15 }}
@@ -305,7 +316,7 @@ const Contact = ({ data }: ContactProps) => {
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.15 }}
                       >
-                        <Send className="w-4 h-4 md:w-5 md:h-5 relative z-10" />
+                        <Send className="w-4 h-4 md:w-5 md:h-5 relative z-10 text-white drop-shadow-lg" />
                       </motion.div>
                     )}
                     {isSubmitting && (
@@ -314,14 +325,6 @@ const Contact = ({ data }: ContactProps) => {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.15 }}
                         className="w-4 h-4 md:w-5 md:h-5 border-2 border-white border-t-transparent rounded-full animate-spin relative z-10"
-                      />
-                    )}
-                    {!isSubmitting && (
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent"
-                        initial={{ x: '-100%' }}
-                        whileHover={{ x: '100%' }}
-                        transition={{ duration: 0.6 }}
                       />
                     )}
                   </motion.button>

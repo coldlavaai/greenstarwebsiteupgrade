@@ -122,24 +122,25 @@ const Hero = ({ data }: HeroProps) => {
               className="flex flex-wrap gap-3 md:gap-4 mb-8 md:mb-10"
             >
               <motion.a
-                whileHover={{ scale: 1.05, boxShadow: '0 20px 50px rgba(140,198,63,0.5)' }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
                 href={data?.ctaLink || "#contact"}
-                className="group relative bg-gradient-to-r from-primary via-primary-dark to-primary text-white px-5 py-2.5 md:px-6 md:py-3 rounded-full font-semibold text-xs md:text-sm overflow-hidden shadow-2xl ring-2 ring-primary/30 ring-offset-2 ring-offset-transparent"
+                className="group relative px-5 py-2.5 md:px-6 md:py-3 rounded-full font-semibold text-xs md:text-sm overflow-hidden"
+                style={{
+                  background: 'rgba(140, 198, 63, 0.15)',
+                  backdropFilter: 'blur(20px)',
+                  WebkitBackdropFilter: 'blur(20px)',
+                  border: '1px solid rgba(140, 198, 63, 0.3)',
+                  boxShadow: '0 8px 32px rgba(140, 198, 63, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+                }}
                 data-sanity={data?._id ? `${data._id}.ctaText` : undefined}
               >
+                <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-transparent to-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <span className="relative z-10 flex items-center space-x-2">
-                  <span className="tracking-wide">{data?.ctaText || 'Get Free Survey'}</span>
-                  <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-2 transition-transform duration-300" />
+                  <span className="tracking-wide text-white drop-shadow-lg">{data?.ctaText || 'Get Free Survey'}</span>
+                  <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-2 transition-transform duration-300 text-white drop-shadow-lg" />
                 </span>
-                {/* Shine effect */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"
-                  initial={{ x: '-100%' }}
-                  whileHover={{ x: '100%' }}
-                  transition={{ duration: 0.6 }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary-dark opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </motion.a>
 
               <motion.a

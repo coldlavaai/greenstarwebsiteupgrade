@@ -276,32 +276,38 @@ const Gallery = ({ data }: GalleryProps) => {
         >
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <motion.a
-              whileHover={{ scale: 1.05, boxShadow: '0 20px 50px rgba(212,175,55,0.4)' }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               href="/gallery"
-              className="inline-block bg-gradient-to-r from-accent via-accent/90 to-accent text-white px-10 py-4 rounded-full font-semibold text-lg shadow-xl relative overflow-hidden group border-2 border-accent"
+              className="inline-block relative px-10 py-4 rounded-full font-semibold text-lg overflow-hidden group"
+              style={{
+                background: 'rgba(212, 175, 55, 0.15)',
+                backdropFilter: 'blur(20px)',
+                WebkitBackdropFilter: 'blur(20px)',
+                border: '1px solid rgba(212, 175, 55, 0.3)',
+                boxShadow: '0 8px 32px rgba(212, 175, 55, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+              }}
             >
-              <span className="relative z-10 tracking-wide">View Full Gallery</span>
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-white/30 to-transparent"
-                initial={{ x: '-100%' }}
-                whileHover={{ x: '100%' }}
-                transition={{ duration: 0.6 }}
-              />
+              <div className="absolute inset-0 bg-gradient-to-r from-accent/20 via-transparent to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
+              <span className="relative z-10 tracking-wide text-white drop-shadow-lg">View Full Gallery</span>
             </motion.a>
             <motion.a
-              whileHover={{ scale: 1.05, boxShadow: '0 20px 50px rgba(140,198,63,0.4)' }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               href="#contact"
-              className="inline-block bg-gradient-to-r from-primary via-primary-dark to-primary text-white px-12 py-4 rounded-full font-semibold text-lg shadow-xl relative overflow-hidden group"
+              className="inline-block relative px-12 py-4 rounded-full font-semibold text-lg overflow-hidden group"
+              style={{
+                background: 'rgba(140, 198, 63, 0.15)',
+                backdropFilter: 'blur(20px)',
+                WebkitBackdropFilter: 'blur(20px)',
+                border: '1px solid rgba(140, 198, 63, 0.3)',
+                boxShadow: '0 8px 32px rgba(140, 198, 63, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+              }}
             >
-              <span className="relative z-10 tracking-wide">Start Your Project</span>
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-white/30 to-transparent"
-                initial={{ x: '-100%' }}
-                whileHover={{ x: '100%' }}
-                transition={{ duration: 0.6 }}
-              />
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-transparent to-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
+              <span className="relative z-10 tracking-wide text-white drop-shadow-lg">Start Your Project</span>
             </motion.a>
           </div>
         </motion.div>
