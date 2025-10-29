@@ -44,8 +44,20 @@ const Gallery = ({ data }: GalleryProps) => {
     'Farm Solar Project': 'https://irp.cdn-website.com/8f142869/dms3rep/multi/AdobeStock_586564893-0f77e5a0-84f93a01.jpeg',
   };
 
-  // All 24 Greenstar Solar projects
-  const allProjects = [
+  // All 24 Greenstar Solar projects (with optional inverter property)
+  const allProjects: Array<{
+    image: string;
+    title: string;
+    location: string;
+    capacity: string;
+    date: string;
+    systemDetails: string;
+    panelCount: string;
+    battery?: string;
+    inverter?: string;
+    performance: string;
+    savings: string;
+  }> = [
     { image: '/gallery/greenstar-1.jpg', title: 'Residential Solar + Battery', location: 'Alton, Hampshire', capacity: '7.2kW System', date: 'November 2024', systemDetails: 'Solar Panels + Battery Storage', panelCount: '16 x DMEG 450w Panels', battery: '10.36kWh FoxESS EP11 Battery', performance: 'Generating 7,200 kWh annually', savings: '92% bill reduction - £1,663 annual savings' },
     { image: '/gallery/greenstar-2.jpg', title: 'Premium Solar Installation', location: 'Farnborough, Hampshire', capacity: '8.55kW System', date: 'September 2025', systemDetails: 'Solar Panels + Battery Storage', panelCount: '18 x AIKO 475w Gen 3 Panels', battery: '11.52kWh FoxESS EP12 Plus Battery', performance: 'Generating 8,674 kWh annually', savings: '115% bill reduction - £2,140 annual savings' },
     { image: '/gallery/greenstar-3.jpg', title: 'In-Roof Solar System', location: 'Bournemouth, Hampshire', capacity: '5.22kW System', date: 'January 2025', systemDetails: 'In-Roof Solar + Battery', panelCount: '12 x AIKO 460w Gen 2 GSE In Roof Panels', battery: '8.06kWh Sigenergy 8.0 Battery', performance: 'Generating 4,802 kWh annually', savings: '72% bill reduction - £806 annual savings' },
