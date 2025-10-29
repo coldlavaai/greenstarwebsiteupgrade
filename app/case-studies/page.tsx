@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Home, Battery, Sun, TrendingDown, Zap, Calendar, MapPin, ArrowRight } from 'lucide-react';
+import { Home, BatteryCharging as Battery, Sun, TrendingDown, Zap, Calendar, MapPin, ArrowRight } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 

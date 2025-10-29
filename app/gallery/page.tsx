@@ -33,55 +33,43 @@ export default function GalleryPage() {
     }));
   };
 
-  // Real Greenstar Solar project data
+  // Real Greenstar Solar project data - reordered for visual diversity
   const projects: GalleryItem[] = [
     {
-      image: '/gallery/greenstar-1.jpg',
-      title: 'Residential Solar + Battery',
-      location: 'Alton, Hampshire',
-      capacity: '7.2kW System',
-      date: 'November 2024',
-      systemDetails: 'Solar Panels + Battery Storage',
-      panelCount: '16 x DMEG 450w Panels',
-      battery: '10.36kWh FoxESS EP11 Battery',
-      performance: 'Generating 7,200 kWh annually',
-      savings: '92% bill reduction - £1,663 annual savings',
+      image: '/gallery/greenstar-6.jpg',
+      title: 'High-Capacity System',
+      location: 'Brockenhurst, Hampshire',
+      capacity: '9.5kW System',
+      date: 'July 2025',
+      systemDetails: 'Solar + Dual Battery Storage',
+      panelCount: '20 x AIKO 475w Gen 3 Panels',
+      battery: '23.04kWh FoxESS EP12 Plus x2 Battery',
+      performance: 'Generating 9,810 kWh annually',
+      savings: '164% bill reduction - £2,610 annual savings',
     },
     {
-      image: '/gallery/greenstar-2.jpg',
-      title: 'Premium Solar Installation',
-      location: 'Farnborough, Hampshire',
-      capacity: '8.55kW System',
-      date: 'September 2025',
-      systemDetails: 'Solar Panels + Battery Storage',
-      panelCount: '18 x AIKO 475w Gen 3 Panels',
-      battery: '11.52kWh FoxESS EP12 Plus Battery',
-      performance: 'Generating 8,674 kWh annually',
-      savings: '115% bill reduction - £2,140 annual savings',
+      image: '/gallery/greenstar-17.jpg',
+      title: 'All-in-One Solar System',
+      location: 'Bishops Waltham, Hampshire',
+      capacity: '7.05kW System',
+      date: 'May 2025',
+      systemDetails: 'Solar + All-in-One Battery',
+      panelCount: '15 x AIKO 470w Gen 3 Panels',
+      battery: '10.24kWh FOX EVO All In One Battery',
+      performance: 'Generating 6,683 kWh annually',
+      savings: '121% bill reduction - £1,371 annual savings',
     },
     {
-      image: '/gallery/greenstar-3.jpg',
-      title: 'In-Roof Solar System',
-      location: 'Bournemouth, Hampshire',
-      capacity: '5.22kW System',
-      date: 'January 2025',
-      systemDetails: 'In-Roof Solar + Battery',
-      panelCount: '12 x AIKO 460w Gen 2 GSE In Roof Panels',
-      battery: '8.06kWh Sigenergy 8.0 Battery',
-      performance: 'Generating 4,802 kWh annually',
-      savings: '72% bill reduction - £806 annual savings',
-    },
-    {
-      image: '/gallery/greenstar-4.jpg',
-      title: 'Residential Solar System',
-      location: 'Guildford, Surrey',
-      capacity: '5.92kW System',
-      date: 'February 2025',
-      systemDetails: 'Solar Panels + Battery Storage',
-      panelCount: '13 x AIKO 455w Gen 2 Panels',
-      battery: '5.1kWh Ecoflow Battery',
-      performance: 'Generating 5,736 kWh annually',
-      savings: '103% bill reduction - £1,085 annual savings',
+      image: '/gallery/greenstar-11.jpg',
+      title: 'High-Efficiency System',
+      location: 'Whiteley, Hampshire',
+      capacity: '10.45kW System',
+      date: 'June 2025',
+      systemDetails: 'Solar + Sigenergy Battery',
+      panelCount: '22 x AIKO 475w Gen 3 Panels',
+      battery: '9.04kWh Sigenergy 10.0 Battery',
+      performance: 'Generating 11,015 kWh annually',
+      savings: '133% bill reduction - £1,930 annual savings',
     },
     {
       image: '/gallery/greenstar-5.jpg',
@@ -96,16 +84,28 @@ export default function GalleryPage() {
       savings: '134% bill reduction - £2,329 annual savings',
     },
     {
-      image: '/gallery/greenstar-6.jpg',
-      title: 'High-Capacity System',
-      location: 'Brockenhurst, Hampshire',
-      capacity: '9.5kW System',
-      date: 'July 2025',
-      systemDetails: 'Solar + Dual Battery Storage',
-      panelCount: '20 x AIKO 475w Gen 3 Panels',
+      image: '/gallery/greenstar-1.jpg',
+      title: 'Residential Solar + Battery',
+      location: 'Alton, Hampshire',
+      capacity: '7.2kW System',
+      date: 'November 2024',
+      systemDetails: 'Solar Panels + Battery Storage',
+      panelCount: '16 x DMEG 450w Panels',
+      battery: '10.36kWh FoxESS EP11 Battery',
+      performance: 'Generating 7,200 kWh annually',
+      savings: '92% bill reduction - £1,663 annual savings',
+    },
+    {
+      image: '/gallery/greenstar-13.jpg',
+      title: 'Large Residential System',
+      location: 'Romsey, Hampshire',
+      capacity: '17.1kW System',
+      date: 'August 2025',
+      systemDetails: 'Large Solar + Dual Battery Storage',
+      panelCount: '36 x AIKO 475w Gen 3 Panels',
       battery: '23.04kWh FoxESS EP12 Plus x2 Battery',
-      performance: 'Generating 9,810 kWh annually',
-      savings: '164% bill reduction - £2,610 annual savings',
+      performance: 'Generating 18,008 kWh annually',
+      savings: '125% bill reduction - £3,284 annual savings',
     },
     {
       image: '/gallery/greenstar-7.jpg',
@@ -392,7 +392,17 @@ export default function GalleryPage() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-70" />
                     <div className="absolute inset-0 bg-gradient-to-tr from-accent/30 via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                    <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                    <div className="absolute inset-0 p-6 flex flex-col justify-between">
+                      {/* Location badge at top */}
+                      <div className="flex justify-center">
+                        <div className="bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20">
+                          <span className="text-white/90 text-xs font-medium flex items-center gap-1.5">
+                            <MapPin className="w-3 h-3" />
+                            {project.location}
+                          </span>
+                        </div>
+                      </div>
+                      {/* Click prompt at bottom */}
                       <div className="text-center">
                         <span className="text-white text-sm font-medium">Click for details →</span>
                       </div>
@@ -430,7 +440,23 @@ export default function GalleryPage() {
                           </div>
                         </div>
 
-                        {/* Detailed Info */}
+                        {/* Key Metrics First - Savings & Performance */}
+                        <div className="space-y-2 text-xs mb-3">
+                          {project.savings && (
+                            <div className="bg-primary/20 rounded-lg p-2 border border-primary/30">
+                              <div className="text-primary/90 text-[10px] uppercase tracking-wider mb-0.5">Savings</div>
+                              <div className="font-bold text-xs">{project.savings}</div>
+                            </div>
+                          )}
+                          {project.performance && (
+                            <div className="bg-primary/20 rounded-lg p-2 border border-primary/30">
+                              <div className="text-primary/90 text-[10px] uppercase tracking-wider mb-0.5">Performance</div>
+                              <div className="font-bold text-xs">{project.performance}</div>
+                            </div>
+                          )}
+                        </div>
+
+                        {/* System Details */}
                         <div className="space-y-2 text-xs">
                           <div className="bg-white/10 rounded-lg p-2">
                             <div className="text-primary/80 text-[10px] uppercase tracking-wider mb-0.5">System Type</div>
@@ -452,18 +478,6 @@ export default function GalleryPage() {
                             <div className="bg-white/10 rounded-lg p-2">
                               <div className="text-primary/80 text-[10px] uppercase tracking-wider mb-0.5">Inverter</div>
                               <div className="font-medium text-xs">{project.inverter}</div>
-                            </div>
-                          )}
-                          {project.performance && (
-                            <div className="bg-primary/20 rounded-lg p-2 border border-primary/30">
-                              <div className="text-primary/90 text-[10px] uppercase tracking-wider mb-0.5">Performance</div>
-                              <div className="font-bold text-xs">{project.performance}</div>
-                            </div>
-                          )}
-                          {project.savings && (
-                            <div className="bg-primary/20 rounded-lg p-2 border border-primary/30">
-                              <div className="text-primary/90 text-[10px] uppercase tracking-wider mb-0.5">Savings</div>
-                              <div className="font-bold text-xs">{project.savings}</div>
                             </div>
                           )}
                         </div>

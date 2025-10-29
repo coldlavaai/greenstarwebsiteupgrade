@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import { Zap, TrendingDown, Shield, Battery, Home, CheckCircle, ArrowRight, Plug, Award, Leaf, Sun } from 'lucide-react';
+import { Zap, TrendingDown, Shield, BatteryCharging as Battery, Home, CheckCircle, ArrowRight, Plug, Award, Leaf, Sun } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import PageWrapper from '@/components/PageWrapper';

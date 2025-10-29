@@ -3,7 +3,7 @@
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { Home, Building2, Battery, Sun, ArrowRight, Zap } from 'lucide-react';
+import { Home, Building2, BatteryCharging as Battery, Sun, ArrowRight, Zap } from 'lucide-react';
 import { urlFor } from '@/lib/sanity';
 
 interface Service {
