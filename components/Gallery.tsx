@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useInView } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect, useMemo } from 'react';
 import { MapPin, Calendar, Zap } from 'lucide-react';
 import { urlFor } from '@/lib/sanity';
 
@@ -44,102 +44,52 @@ const Gallery = ({ data }: GalleryProps) => {
     'Farm Solar Project': 'https://irp.cdn-website.com/8f142869/dms3rep/multi/AdobeStock_586564893-0f77e5a0-84f93a01.jpeg',
   };
 
-  // Map CMS data or use fallback
-  const projects = (data && data.length > 0) ? data.map(item => {
-    // Safely get image URL - check if image exists and has asset reference
-    let imageUrl = imageMap[item.title] || '';
-    if (item.image && item.image.asset) {
-      try {
-        imageUrl = urlFor(item.image).width(800).url();
-      } catch (e) {
-        // If URL building fails, use fallback
-        imageUrl = imageMap[item.title] || '';
-      }
-    }
-
-    return {
-      _id: item._id,
-      _type: item._type,
-      image: imageUrl,
-      title: item.title,
-      location: item.location || '',
-      capacity: item.systemSize || '',
-      date: '2024',  // Default date
-    };
-  }) : [
-    {
-      image: 'https://irp.cdn-website.com/8f142869/dms3rep/multi/AdobeStock_855615596.jpeg',
-      title: 'Residential Solar Installation',
-      location: 'Southampton, Hampshire',
-      capacity: '8.4kW System',
-      date: 'March 2024',
-      systemDetails: 'Solar Panels + Battery Storage',
-      panelCount: '21 x Aiko Neostar panels',
-      battery: '13.5kWh GivEnergy Battery',
-      performance: 'Generating 7,800 kWh annually',
-      savings: '85% reduction in energy bills',
-    },
-    {
-      image: 'https://irp.cdn-website.com/8f142869/dms3rep/multi/AdobeStock_586564893-0f77e5a0-84f93a01.jpeg',
-      title: 'Commercial Rooftop Array',
-      location: 'Portsmouth, Hampshire',
-      capacity: '95kW System',
-      date: 'January 2024',
-      systemDetails: 'Commercial Solar Array',
-      panelCount: '238 x Commercial panels',
-      inverter: 'SolarEdge Commercial Inverters',
-      performance: 'Generating 89,000 kWh annually',
-      savings: '72% reduction in energy costs',
-    },
-    {
-      image: 'https://irp.cdn-website.com/8f142869/dms3rep/multi/AdobeStock_553388506--281-29.jpeg',
-      title: 'Home Battery Storage',
-      location: 'Winchester, Hampshire',
-      capacity: '6.8kW + Battery',
-      date: 'September 2023',
-      systemDetails: 'Solar + Battery + EV Charger',
-      panelCount: '17 x Aiko panels',
-      battery: '9.5kWh GivEnergy Battery',
-      performance: 'Generating 6,200 kWh annually',
-      savings: '78% reduction + free EV charging',
-    },
-    {
-      image: 'https://irp.cdn-website.com/8f142869/dms3rep/multi/Blog_image_2.webp',
-      title: 'Office Building Solar',
-      location: 'Eastleigh, Hampshire',
-      capacity: '42kW System',
-      date: 'May 2024',
-      systemDetails: 'Commercial Solar Installation',
-      panelCount: '105 x High-efficiency panels',
-      inverter: 'Fox ESS Commercial',
-      performance: 'Generating 39,000 kWh annually',
-      savings: '68% reduction in operating costs',
-    },
-    {
-      image: 'https://irp.cdn-website.com/8f142869/dms3rep/multi/AdobeStock_855615596.jpeg',
-      title: 'Large Family Home',
-      location: 'Romsey, Hampshire',
-      capacity: '12.6kW System',
-      date: 'July 2023',
-      systemDetails: 'Premium Solar + Battery',
-      panelCount: '32 x Aiko Neostar panels',
-      battery: '18kWh Battery Storage',
-      performance: 'Generating 11,400 kWh annually',
-      savings: '92% energy independence',
-    },
-    {
-      image: 'https://irp.cdn-website.com/8f142869/dms3rep/multi/AdobeStock_586564893-0f77e5a0-84f93a01.jpeg',
-      title: 'Farm Solar Project',
-      location: 'New Forest, Hampshire',
-      capacity: '120kW System',
-      date: 'November 2023',
-      systemDetails: 'Agricultural Solar Array',
-      panelCount: '300 x Commercial panels',
-      inverter: 'Multiple SolarEdge units',
-      performance: 'Generating 112,000 kWh annually',
-      savings: '£32,000 annual savings',
-    },
+  // All 24 Greenstar Solar projects
+  const allProjects = [
+    { image: '/gallery/greenstar-1.jpg', title: 'Residential Solar + Battery', location: 'Alton, Hampshire', capacity: '7.2kW System', date: 'November 2024', systemDetails: 'Solar Panels + Battery Storage', panelCount: '16 x DMEG 450w Panels', battery: '10.36kWh FoxESS EP11 Battery', performance: 'Generating 7,200 kWh annually', savings: '92% bill reduction - £1,663 annual savings' },
+    { image: '/gallery/greenstar-2.jpg', title: 'Premium Solar Installation', location: 'Farnborough, Hampshire', capacity: '8.55kW System', date: 'September 2025', systemDetails: 'Solar Panels + Battery Storage', panelCount: '18 x AIKO 475w Gen 3 Panels', battery: '11.52kWh FoxESS EP12 Plus Battery', performance: 'Generating 8,674 kWh annually', savings: '115% bill reduction - £2,140 annual savings' },
+    { image: '/gallery/greenstar-3.jpg', title: 'In-Roof Solar System', location: 'Bournemouth, Hampshire', capacity: '5.22kW System', date: 'January 2025', systemDetails: 'In-Roof Solar + Battery', panelCount: '12 x AIKO 460w Gen 2 GSE In Roof Panels', battery: '8.06kWh Sigenergy 8.0 Battery', performance: 'Generating 4,802 kWh annually', savings: '72% bill reduction - £806 annual savings' },
+    { image: '/gallery/greenstar-4.jpg', title: 'Residential Solar System', location: 'Guildford, Surrey', capacity: '5.92kW System', date: 'February 2025', systemDetails: 'Solar Panels + Battery Storage', panelCount: '13 x AIKO 455w Gen 2 Panels', battery: '5.1kWh Ecoflow Battery', performance: 'Generating 5,736 kWh annually', savings: '103% bill reduction - £1,085 annual savings' },
+    { image: '/gallery/greenstar-5.jpg', title: 'Large-Scale Residential', location: 'Salisbury, Wiltshire', capacity: '12.35kW System', date: 'August 2025', systemDetails: 'Premium Solar + All-in-One Battery', panelCount: '26 x AIKO 475w Gen 3 Panels', battery: '10.24kWh FOX EVO All In One Battery', performance: 'Generating 12,498 kWh annually', savings: '134% bill reduction - £2,329 annual savings' },
+    { image: '/gallery/greenstar-6.jpg', title: 'High-Capacity System', location: 'Brockenhurst, Hampshire', capacity: '9.5kW System', date: 'July 2025', systemDetails: 'Solar + Dual Battery Storage', panelCount: '20 x AIKO 475w Gen 3 Panels', battery: '23.04kWh FoxESS EP12 Plus x2 Battery', performance: 'Generating 9,810 kWh annually', savings: '164% bill reduction - £2,610 annual savings' },
+    { image: '/gallery/greenstar-7.jpg', title: 'Dual Battery System', location: 'Hayling Island, Hampshire', capacity: '10.12kW System', date: 'December 2024', systemDetails: 'Solar + Dual Ecoflow Batteries', panelCount: '22 x AIKO 460w Gen 2 Panels', battery: '10.2kWh Ecoflow x2 Battery', performance: 'Generating 9,887 kWh annually', savings: '99% bill reduction - £2,160 annual savings' },
+    { image: '/gallery/greenstar-8.jpg', title: 'Advanced Sigenergy System', location: 'Fareham, Hampshire', capacity: '9.66kW System', date: 'February 2025', systemDetails: 'Solar + Dual Sigenergy Batteries', panelCount: '21 x AIKO 460w Gen 2 Panels', battery: '16.12kWh Sigenergy 8.0 x2 Battery', performance: 'Generating 9,853 kWh annually', savings: '82% bill reduction - £2,387 annual savings' },
+    { image: '/gallery/greenstar-9.jpg', title: 'Premium Large Installation', location: 'Wokingham, Berkshire', capacity: '17.86kW System', date: 'September 2025', systemDetails: 'Large-Scale Solar + Triple Battery', panelCount: '38 x AIKO 470w Gen 3 Panels', battery: '27.12kWh Sigenergy 10.0 x3 Battery', performance: 'Generating 16,090 kWh annually', savings: '92% bill reduction - £5,124 annual savings' },
+    { image: '/gallery/greenstar-10.jpg', title: 'EV Charging Installation', location: 'Various Locations', capacity: 'EV Charger', date: '2024-2025', systemDetails: 'Zappi 7kW EV Charger All Black', panelCount: 'Professional EV charging solution', performance: 'Smart solar-integrated charging', savings: 'Free EV charging from solar power' },
+    { image: '/gallery/greenstar-11.jpg', title: 'High-Efficiency System', location: 'Whiteley, Hampshire', capacity: '10.45kW System', date: 'June 2025', systemDetails: 'Solar + Sigenergy Battery', panelCount: '22 x AIKO 475w Gen 3 Panels', battery: '9.04kWh Sigenergy 10.0 Battery', performance: 'Generating 11,015 kWh annually', savings: '133% bill reduction - £1,930 annual savings' },
+    { image: '/gallery/greenstar-12.jpg', title: 'Premium Large Installation', location: 'Wokingham, Berkshire', capacity: '17.86kW System', date: 'September 2025', systemDetails: 'Large-Scale Solar + Triple Battery', panelCount: '38 x AIKO 470w Gen 3 Panels', battery: '27.12kWh Sigenergy 10.0 x3 Battery', performance: 'Generating 16,090 kWh annually', savings: '92% bill reduction - £5,124 annual savings' },
+    { image: '/gallery/greenstar-13.jpg', title: 'Large Residential System', location: 'Romsey, Hampshire', capacity: '17.1kW System', date: 'August 2025', systemDetails: 'Large Solar + Dual Battery Storage', panelCount: '36 x AIKO 475w Gen 3 Panels', battery: '23.04kWh FoxESS EP12 Plus x2 Battery', performance: 'Generating 18,008 kWh annually', savings: '125% bill reduction - £3,284 annual savings' },
+    { image: '/gallery/greenstar-14.jpg', title: 'Advanced Sigenergy System', location: 'Fareham, Hampshire', capacity: '9.66kW System', date: 'February 2025', systemDetails: 'Solar + Dual Sigenergy Batteries', panelCount: '21 x AIKO 460w Gen 2 Panels', battery: '16.12kWh Sigenergy 8.0 x2 Battery', performance: 'Generating 9,853 kWh annually', savings: '82% bill reduction - £2,387 annual savings' },
+    { image: '/gallery/greenstar-15.jpg', title: 'High-Performance System', location: 'Winchester, Hampshire', capacity: '10.01kW System', date: 'February 2025', systemDetails: 'Solar + Battery Storage', panelCount: '22 x AIKO 455w Gen 2 Panels', battery: '10.36kWh FoxESS EP11 Battery', performance: 'Generating 18,008 kWh annually', savings: '114% bill reduction - £2,268 annual savings' },
+    { image: '/gallery/greenstar-16.jpg', title: 'Premium Installation', location: 'Ferndown, Dorset', capacity: '10.45kW System', date: 'February 2025', systemDetails: 'Solar + Battery Storage', panelCount: '22 x AIKO 475w Gen 3 Panels', battery: '11.52kWh FoxESS EP12 Plus Battery', performance: 'Generating 10,241 kWh annually', savings: '136% bill reduction - £1,995 annual savings' },
+    { image: '/gallery/greenstar-17.jpg', title: 'All-in-One Solar System', location: 'Bishops Waltham, Hampshire', capacity: '7.05kW System', date: 'May 2025', systemDetails: 'Solar + All-in-One Battery', panelCount: '15 x AIKO 470w Gen 3 Panels', battery: '10.24kWh FOX EVO All In One Battery', performance: 'Generating 6,683 kWh annually', savings: '121% bill reduction - £1,371 annual savings' },
+    { image: '/gallery/greenstar-18.jpg', title: 'Hybrid Battery System', location: 'Fareham, Hampshire', capacity: '9.5kW System', date: 'April 2025', systemDetails: 'Solar + Hybrid Battery Setup', panelCount: '20 x AIKO 475w Gen 3 Panels', battery: '10.36kWh FoxESS EP11 + 5.18kWh Fox EP5 Battery', performance: 'Generating 9,455 kWh annually', savings: '102% bill reduction - £1,405 annual savings' },
+    { image: '/gallery/greenstar-19.jpg', title: 'Dual Ecoflow System', location: 'Cranleigh, Surrey', capacity: '9.025kW System', date: 'October 2025', systemDetails: 'Solar + Dual Ecoflow Batteries', panelCount: '19 x AIKO 475w Gen 3 Panels', battery: '10.2kWh Ecoflow x2 Battery', performance: 'Generating 8,890 kWh annually', savings: '127% bill reduction - £1,645 annual savings' },
+    { image: '/gallery/greenstar-20.jpg', title: 'Premium Large Installation', location: 'Wokingham, Berkshire', capacity: '17.86kW System', date: 'September 2025', systemDetails: 'Large-Scale Solar + Triple Battery', panelCount: '38 x AIKO 470w Gen 3 Panels', battery: '27.12kWh Sigenergy 10.0 x3 Battery', performance: 'Generating 16,090 kWh annually', savings: '92% bill reduction - £5,124 annual savings' },
+    { image: '/gallery/greenstar-21.jpg', title: 'Triple Battery System', location: 'Romsey, Hampshire', capacity: '15.47kW System', date: 'May 2025', systemDetails: 'Large Solar + Triple Sigenergy Batteries', panelCount: '34 x AIKO 455w Gen 2 Panels', battery: '24.18kWh Sigenergy 8.0 x3 Battery', performance: 'Generating 13,551 kWh annually', savings: '87% bill reduction - £4,115 annual savings' },
+    { image: '/gallery/greenstar-22.jpg', title: 'Triple Battery System', location: 'Romsey, Hampshire', capacity: '15.47kW System', date: 'May 2025', systemDetails: 'Large Solar + Triple Sigenergy Batteries', panelCount: '34 x AIKO 455w Gen 2 Panels', battery: '24.18kWh Sigenergy 8.0 x3 Battery', performance: 'Generating 13,551 kWh annually', savings: '87% bill reduction - £4,115 annual savings' },
+    { image: '/gallery/greenstar-23.jpg', title: 'Triple Battery System', location: 'Romsey, Hampshire', capacity: '15.47kW System', date: 'May 2025', systemDetails: 'Large Solar + Triple Sigenergy Batteries', panelCount: '34 x AIKO 455w Gen 2 Panels', battery: '24.18kWh Sigenergy 8.0 x3 Battery', performance: 'Generating 13,551 kWh annually', savings: '87% bill reduction - £4,115 annual savings' },
+    { image: '/gallery/greenstar-24.jpg', title: 'Triple Battery System', location: 'Romsey, Hampshire', capacity: '15.47kW System', date: 'May 2025', systemDetails: 'Large Solar + Triple Sigenergy Batteries', panelCount: '34 x AIKO 455w Gen 2 Panels', battery: '24.18kWh Sigenergy 8.0 x3 Battery', performance: 'Generating 13,551 kWh annually', savings: '87% bill reduction - £4,115 annual savings' },
   ];
+
+  // Select 6 random projects that rotate every 30 minutes
+  const projects = useMemo(() => {
+    // Get current 30-minute interval (changes every 30 minutes)
+    const now = new Date();
+    const thirtyMinuteInterval = Math.floor(now.getTime() / (30 * 60 * 1000));
+
+    // Use interval as seed for deterministic randomization
+    const seed = thirtyMinuteInterval;
+    const shuffled = [...allProjects].sort((a, b) => {
+      // Deterministic shuffle based on seed
+      const hashA = (seed + allProjects.indexOf(a)) * 2654435761;
+      const hashB = (seed + allProjects.indexOf(b)) * 2654435761;
+      return (hashA % 100) - (hashB % 100);
+    });
+
+    // Return first 6 projects
+    return shuffled.slice(0, 6);
+  }, []);
 
   return (
     <section id="gallery" ref={ref} className="py-24 bg-transparent relative overflow-hidden">
