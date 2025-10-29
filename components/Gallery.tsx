@@ -173,14 +173,14 @@ const Gallery = ({ data }: GalleryProps) => {
                   <div className="absolute bottom-4 left-4">
                     <div className="bg-black/60 backdrop-blur-md px-2 py-1 rounded-full border border-white/20">
                       <span className="text-white/90 text-[10px] font-medium flex items-center gap-1">
-                        <MapPin className="w-2.5 h-2.5" style={{ color: '#EA4335' }} />
+                        <MapPin className="w-2.5 h-2.5" style={{ color: '#8CC63F' }} />
                         {project.location.split(',')[0]}
                       </span>
                     </div>
                   </div>
                   {/* Click prompt - bottom right */}
                   <div className="absolute bottom-4 right-4">
-                    <span className="text-white text-[10px] font-medium">Click for details →</span>
+                    <span className="text-white text-[10px] font-medium">Tap to flip</span>
                   </div>
                 </div>
 
