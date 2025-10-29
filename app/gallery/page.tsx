@@ -395,15 +395,15 @@ export default function GalleryPage() {
                     {/* Location badge - bottom left */}
                     <div className="absolute bottom-4 left-4">
                       <div className="bg-black/60 backdrop-blur-md px-2 py-1 rounded-full border border-white/20">
-                        <span className="text-white/90 text-[10px] font-medium flex items-center gap-1">
-                          <MapPin className="w-2.5 h-2.5" style={{ color: '#8CC63F' }} />
+                        <span className="text-white/90 text-xs font-medium flex items-center gap-1">
+                          <MapPin className="w-3 h-3" style={{ color: '#8CC63F' }} />
                           {project.location.split(',')[0]}
                         </span>
                       </div>
                     </div>
                     {/* Click prompt - bottom right */}
                     <div className="absolute bottom-4 right-4">
-                      <span className="text-white text-[10px] font-medium">Tap to flip</span>
+                      <span className="text-white text-xs font-medium">Tap to flip</span>
                     </div>
                   </div>
 
@@ -504,7 +504,7 @@ export default function GalleryPage() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               href="/#contact"
-              className="inline-block relative px-12 py-5 rounded-full font-semibold text-lg overflow-hidden group"
+              className="inline-block relative px-6 py-3 md:px-12 md:py-5 rounded-full font-semibold text-sm md:text-lg overflow-hidden group"
               style={{
                 background: 'rgba(140, 198, 63, 0.15)',
                 backdropFilter: 'blur(20px)',

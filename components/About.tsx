@@ -125,7 +125,6 @@ const About = ({ data }: AboutProps) => {
               className="space-y-4"
             >
               {[
-                'Certified and experienced installers',
                 'Premium quality solar panels and equipment',
                 'Comprehensive warranty and support',
                 'Tailored solutions for your energy goals',

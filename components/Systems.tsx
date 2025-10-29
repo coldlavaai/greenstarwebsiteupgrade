@@ -34,12 +34,12 @@ const Systems = ({ data }: SystemsProps) => {
     Home: Home,
   };
 
-  // Hardcoded image URLs as fallbacks
+  // Gemini-generated AI background images
   const imageMap: Record<string, string> = {
-    'Solar Panels for Home': 'https://irp.cdn-website.com/8f142869/dms3rep/multi/AdobeStock_855615596.jpeg',
-    'Battery Storage for Home': 'https://irp.cdn-website.com/8f142869/dms3rep/multi/AdobeStock_553388506--281-29.jpeg',
-    'Solar Panels for Business': 'https://irp.cdn-website.com/8f142869/dms3rep/multi/AdobeStock_586564893-0f77e5a0-84f93a01.jpeg',
-    'Battery Storage for Business': 'https://irp.cdn-website.com/8f142869/dms3rep/multi/Blog_image_2.webp',
+    'Solar Panels for Home': '/images/home-bg-1.png',
+    'Battery Storage for Home': '/images/home-bg-2.png',
+    'Solar Panels for Business': '/images/business-bg-1.png',
+    'Battery Storage for Business': '/images/business-bg-2.png',
   };
 
   const linkMap: Record<string, string> = {
@@ -78,7 +78,7 @@ const Systems = ({ data }: SystemsProps) => {
       title: 'Solar Panels for Home',
       description: 'Transform your home with our premium residential solar panel installations. Reduce your electricity bills and increase your property value.',
       features: ['Free energy assessment', 'Custom system design', '25-year warranty', 'Smart monitoring'],
-      image: 'https://irp.cdn-website.com/8f142869/dms3rep/multi/AdobeStock_855615596.jpeg',
+      image: '/images/home-bg-1.png',
       link: '/solar-panels-home',
     },
     {
@@ -86,7 +86,7 @@ const Systems = ({ data }: SystemsProps) => {
       title: 'Battery Storage for Home',
       description: 'Store excess solar energy and use it when you need it most. Achieve energy independence with our advanced battery solutions.',
       features: ['24/7 backup power', 'Peak shaving', 'Seamless integration', 'Smart controls'],
-      image: 'https://irp.cdn-website.com/8f142869/dms3rep/multi/AdobeStock_553388506--281-29.jpeg',
+      image: '/images/home-bg-2.png',
       link: '/battery-storage-home',
     },
     {
@@ -94,7 +94,7 @@ const Systems = ({ data }: SystemsProps) => {
       title: 'Solar Panels for Business',
       description: 'Reduce operational costs and demonstrate environmental responsibility with commercial solar installations.',
       features: ['ROI analysis', 'Scalable solutions', 'Tax incentives', 'Minimal downtime'],
-      image: 'https://irp.cdn-website.com/8f142869/dms3rep/multi/AdobeStock_586564893-0f77e5a0-84f93a01.jpeg',
+      image: '/images/business-bg-1.png',
       link: '/solar-panels-business',
     },
     {
@@ -102,7 +102,7 @@ const Systems = ({ data }: SystemsProps) => {
       title: 'Battery Storage for Business',
       description: 'Ensure business continuity and optimize energy costs with commercial-grade battery storage systems.',
       features: ['Demand response', 'Grid independence', 'Load management', 'Remote monitoring'],
-      image: 'https://irp.cdn-website.com/8f142869/dms3rep/multi/Blog_image_2.webp',
+      image: '/images/business-bg-2.png',
       link: '/battery-storage-business',
     },
   ];
@@ -159,7 +159,7 @@ const Systems = ({ data }: SystemsProps) => {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             href="#contact"
-            className="inline-block relative px-6 py-3 md:px-8 md:py-4 rounded-full font-semibold text-xs md:text-sm overflow-hidden group"
+            className="inline-block relative px-6 py-3 md:px-8 md:py-4 rounded-full font-semibold text-sm md:text-base overflow-hidden group"
             style={{
               background: 'rgba(140, 198, 63, 0.15)',
               backdropFilter: 'blur(20px)',

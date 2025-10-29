@@ -187,7 +187,7 @@ export default async function SolarPanelsBusinessCMS() {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   href={pageData.heroCta.link}
-                  className="group relative px-8 py-4 rounded-full font-semibold text-base overflow-hidden"
+                  className="group relative px-6 py-3 md:px-8 md:py-4 rounded-full font-semibold text-sm md:text-base overflow-hidden"
                   style={{
                     background: 'rgba(140, 198, 63, 0.15)',
                     backdropFilter: 'blur(20px)',
@@ -198,9 +198,9 @@ export default async function SolarPanelsBusinessCMS() {
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
                   <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-transparent to-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <span className="relative z-10 flex items-center space-x-3">
+                  <span className="relative z-10 flex items-center space-x-2 md:space-x-3">
                     <span className="tracking-wide text-white drop-shadow-lg">{pageData.heroCta.text}</span>
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300 text-white drop-shadow-lg" />
+                    <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-2 transition-transform duration-300 text-white drop-shadow-lg" />
                   </span>
                 </MotionLink>
               )}

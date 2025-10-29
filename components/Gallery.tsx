@@ -84,23 +84,30 @@ const Gallery = ({ data }: GalleryProps) => {
     { image: '/gallery/greenstar-24.jpg', title: 'Triple Battery System', location: 'Romsey, Hampshire', capacity: '15.47kW System', date: 'May 2025', systemDetails: 'Large Solar + Triple Sigenergy Batteries', panelCount: '34 x AIKO 455w Gen 2 Panels', battery: '24.18kWh Sigenergy 8.0 x3 Battery', performance: 'Generating 13,551 kWh annually', savings: '87% bill reduction - £4,115 annual savings' },
   ];
 
-  // Select 6 random projects that rotate every 30 minutes
+  // Pin 3 favorite projects and rotate the other 3 every 30 minutes
   const projects = useMemo(() => {
-    // Get current 30-minute interval (changes every 30 minutes)
+    // These are our 3 favorite "pride of place" projects - always shown
+    const pinnedIndexes = [8, 12, 5]; // greenstar-9, greenstar-13, greenstar-6
+    const pinnedProjects = pinnedIndexes.map(i => allProjects[i]);
+
+    // Get remaining projects (excluding pinned ones)
+    const remainingProjects = allProjects.filter((_, index) => !pinnedIndexes.includes(index));
+
+    // Get current 30-minute interval for rotating the bottom 3
     const now = new Date();
     const thirtyMinuteInterval = Math.floor(now.getTime() / (30 * 60 * 1000));
 
-    // Use interval as seed for deterministic randomization
+    // Use interval as seed for deterministic randomization of remaining projects
     const seed = thirtyMinuteInterval;
-    const shuffled = [...allProjects].sort((a, b) => {
+    const shuffled = [...remainingProjects].sort((a, b) => {
       // Deterministic shuffle based on seed
-      const hashA = (seed + allProjects.indexOf(a)) * 2654435761;
-      const hashB = (seed + allProjects.indexOf(b)) * 2654435761;
+      const hashA = (seed + remainingProjects.indexOf(a)) * 2654435761;
+      const hashB = (seed + remainingProjects.indexOf(b)) * 2654435761;
       return (hashA % 100) - (hashB % 100);
     });
 
-    // Return first 6 projects
-    return shuffled.slice(0, 6);
+    // Return 3 pinned projects + 3 rotating projects
+    return [...pinnedProjects, ...shuffled.slice(0, 3)];
   }, []);
 
   return (
@@ -172,15 +179,15 @@ const Gallery = ({ data }: GalleryProps) => {
                   {/* Location badge - bottom left */}
                   <div className="absolute bottom-4 left-4">
                     <div className="bg-black/60 backdrop-blur-md px-2 py-1 rounded-full border border-white/20">
-                      <span className="text-white/90 text-[10px] font-medium flex items-center gap-1">
-                        <MapPin className="w-2.5 h-2.5" style={{ color: '#8CC63F' }} />
+                      <span className="text-white/90 text-xs font-medium flex items-center gap-1">
+                        <MapPin className="w-3 h-3" style={{ color: '#8CC63F' }} />
                         {project.location.split(',')[0]}
                       </span>
                     </div>
                   </div>
                   {/* Click prompt - bottom right */}
                   <div className="absolute bottom-4 right-4">
-                    <span className="text-white text-[10px] font-medium">Tap to flip</span>
+                    <span className="text-white text-xs font-medium">Tap to flip</span>
                   </div>
                 </div>
 
@@ -279,7 +286,7 @@ const Gallery = ({ data }: GalleryProps) => {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               href="/gallery"
-              className="inline-block relative px-10 py-4 rounded-full font-semibold text-lg overflow-hidden group"
+              className="inline-block relative px-6 py-3 md:px-10 md:py-4 rounded-full font-semibold text-sm md:text-lg overflow-hidden group"
               style={{
                 background: 'rgba(212, 175, 55, 0.15)',
                 backdropFilter: 'blur(20px)',
@@ -296,7 +303,7 @@ const Gallery = ({ data }: GalleryProps) => {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               href="#contact"
-              className="inline-block relative px-12 py-4 rounded-full font-semibold text-lg overflow-hidden group"
+              className="inline-block relative px-6 py-3 md:px-12 md:py-4 rounded-full font-semibold text-sm md:text-lg overflow-hidden group"
               style={{
                 background: 'rgba(140, 198, 63, 0.15)',
                 backdropFilter: 'blur(20px)',

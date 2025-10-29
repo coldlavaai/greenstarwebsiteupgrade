@@ -37,7 +37,7 @@ const Navigation = ({ data }: NavigationProps) => {
   }, []);
 
   // Define desired order
-  const desiredOrder = ['Home', 'About Us', 'Our Work', 'Systems', 'Contact'];
+  const desiredOrder = ['Home', 'Our Work', 'Systems', 'Contact'];
 
   // Map Sanity navItems to component structure, or use fallback
   const mappedItems = data?.navItems
@@ -51,7 +51,6 @@ const Navigation = ({ data }: NavigationProps) => {
           submenu: [
             { name: 'Process', href: '/#process' },
             { name: 'Gallery', href: '/gallery' },
-            { name: 'Case Studies', href: '/case-studies' },
             { name: 'Testimonials', href: '/#testimonials' },
           ],
         };
@@ -73,14 +72,12 @@ const Navigation = ({ data }: NavigationProps) => {
       };
     }) || [
     { name: 'Home', href: '/' },
-    { name: 'About Us', href: '/#about' },
     {
       name: 'Our Work',
       href: '/#gallery',
       submenu: [
         { name: 'Process', href: '/#process' },
         { name: 'Gallery', href: '/gallery' },
-        { name: 'Case Studies', href: '/case-studies' },
         { name: 'Testimonials', href: '/#testimonials' },
       ],
     },
