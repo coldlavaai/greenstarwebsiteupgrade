@@ -300,20 +300,36 @@ const Gallery = ({ data }: GalleryProps) => {
           transition={{ delay: 0.8 }}
           className="text-center mt-20"
         >
-          <motion.a
-            whileHover={{ scale: 1.05, boxShadow: '0 20px 50px rgba(140,198,63,0.4)' }}
-            whileTap={{ scale: 0.95 }}
-            href="#contact"
-            className="inline-block bg-gradient-to-r from-primary via-primary-dark to-primary text-white px-12 py-5 rounded-full font-semibold text-lg shadow-xl relative overflow-hidden group"
-          >
-            <span className="relative z-10 tracking-wide">Start Your Project</span>
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-white/30 to-transparent"
-              initial={{ x: '-100%' }}
-              whileHover={{ x: '100%' }}
-              transition={{ duration: 0.6 }}
-            />
-          </motion.a>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <motion.a
+              whileHover={{ scale: 1.05, boxShadow: '0 20px 50px rgba(212,175,55,0.4)' }}
+              whileTap={{ scale: 0.95 }}
+              href="/gallery"
+              className="inline-block bg-gradient-to-r from-accent via-accent/90 to-accent text-white px-10 py-4 rounded-full font-semibold text-lg shadow-xl relative overflow-hidden group border-2 border-accent"
+            >
+              <span className="relative z-10 tracking-wide">View Full Gallery</span>
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-white/30 to-transparent"
+                initial={{ x: '-100%' }}
+                whileHover={{ x: '100%' }}
+                transition={{ duration: 0.6 }}
+              />
+            </motion.a>
+            <motion.a
+              whileHover={{ scale: 1.05, boxShadow: '0 20px 50px rgba(140,198,63,0.4)' }}
+              whileTap={{ scale: 0.95 }}
+              href="#contact"
+              className="inline-block bg-gradient-to-r from-primary via-primary-dark to-primary text-white px-12 py-4 rounded-full font-semibold text-lg shadow-xl relative overflow-hidden group"
+            >
+              <span className="relative z-10 tracking-wide">Start Your Project</span>
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-white/30 to-transparent"
+                initial={{ x: '-100%' }}
+                whileHover={{ x: '100%' }}
+                transition={{ duration: 0.6 }}
+              />
+            </motion.a>
+          </div>
         </motion.div>
       </div>
     </section>

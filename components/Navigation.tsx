@@ -50,7 +50,7 @@ const Navigation = ({ data }: NavigationProps) => {
           href: '/#gallery',
           submenu: [
             { name: 'Process', href: '/#process' },
-            { name: 'Gallery', href: '/#gallery' },
+            { name: 'Gallery', href: '/gallery' },
             { name: 'Case Studies', href: '/case-studies' },
             { name: 'Testimonials', href: '/#testimonials' },
           ],
@@ -79,7 +79,7 @@ const Navigation = ({ data }: NavigationProps) => {
       href: '/#gallery',
       submenu: [
         { name: 'Process', href: '/#process' },
-        { name: 'Gallery', href: '/#gallery' },
+        { name: 'Gallery', href: '/gallery' },
         { name: 'Case Studies', href: '/case-studies' },
         { name: 'Testimonials', href: '/#testimonials' },
       ],
