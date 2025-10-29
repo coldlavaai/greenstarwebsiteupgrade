@@ -392,20 +392,18 @@ export default function GalleryPage() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-70" />
                     <div className="absolute inset-0 bg-gradient-to-tr from-accent/30 via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                    <div className="absolute inset-0 p-6 flex flex-col justify-between">
-                      {/* Location badge at top */}
-                      <div className="flex justify-center">
-                        <div className="bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20">
-                          <span className="text-white/90 text-xs font-medium flex items-center gap-1.5">
-                            <MapPin className="w-3 h-3" />
-                            {project.location}
-                          </span>
-                        </div>
+                    {/* Location badge - bottom left */}
+                    <div className="absolute bottom-4 left-4">
+                      <div className="bg-black/60 backdrop-blur-md px-2 py-1 rounded-full border border-white/20">
+                        <span className="text-white/90 text-[10px] font-medium flex items-center gap-1">
+                          <MapPin className="w-2.5 h-2.5" style={{ color: '#EA4335' }} />
+                          {project.location.split(',')[0]}
+                        </span>
                       </div>
-                      {/* Click prompt at bottom */}
-                      <div className="text-center">
-                        <span className="text-white text-sm font-medium">Click for details →</span>
-                      </div>
+                    </div>
+                    {/* Click prompt - bottom right */}
+                    <div className="absolute bottom-4 right-4">
+                      <span className="text-white text-[10px] font-medium">Click for details →</span>
                     </div>
                   </div>
 

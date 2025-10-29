@@ -169,10 +169,18 @@ const Gallery = ({ data }: GalleryProps) => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-70" />
                   <div className="absolute inset-0 bg-gradient-to-tr from-accent/30 via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                  <div className="absolute inset-0 p-6 flex flex-col justify-end">
-                    <div className="text-center">
-                      <span className="text-white text-sm font-medium">Click for details →</span>
+                  {/* Location badge - bottom left */}
+                  <div className="absolute bottom-4 left-4">
+                    <div className="bg-black/60 backdrop-blur-md px-2 py-1 rounded-full border border-white/20">
+                      <span className="text-white/90 text-[10px] font-medium flex items-center gap-1">
+                        <MapPin className="w-2.5 h-2.5" style={{ color: '#EA4335' }} />
+                        {project.location.split(',')[0]}
+                      </span>
                     </div>
+                  </div>
+                  {/* Click prompt - bottom right */}
+                  <div className="absolute bottom-4 right-4">
+                    <span className="text-white text-[10px] font-medium">Click for details →</span>
                   </div>
                 </div>
 
@@ -207,7 +215,23 @@ const Gallery = ({ data }: GalleryProps) => {
                         </div>
                       </div>
 
-                      {/* Detailed Info */}
+                      {/* Key Metrics First - Savings & Performance */}
+                      <div className="space-y-2 text-xs mb-3">
+                        {project.savings && (
+                          <div className="bg-primary/20 rounded-lg p-2 border border-primary/30">
+                            <div className="text-primary/90 text-[10px] uppercase tracking-wider mb-0.5">Savings</div>
+                            <div className="font-bold text-xs">{project.savings}</div>
+                          </div>
+                        )}
+                        {project.performance && (
+                          <div className="bg-primary/20 rounded-lg p-2 border border-primary/30">
+                            <div className="text-primary/90 text-[10px] uppercase tracking-wider mb-0.5">Performance</div>
+                            <div className="font-bold text-xs">{project.performance}</div>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* System Details */}
                       <div className="space-y-2 text-xs">
                         <div className="bg-white/10 rounded-lg p-2">
                           <div className="text-primary/80 text-[10px] uppercase tracking-wider mb-0.5">System Type</div>
@@ -229,18 +253,6 @@ const Gallery = ({ data }: GalleryProps) => {
                           <div className="bg-white/10 rounded-lg p-2">
                             <div className="text-primary/80 text-[10px] uppercase tracking-wider mb-0.5">Inverter</div>
                             <div className="font-medium text-xs">{project.inverter}</div>
-                          </div>
-                        )}
-                        {project.performance && (
-                          <div className="bg-primary/20 rounded-lg p-2 border border-primary/30">
-                            <div className="text-primary/90 text-[10px] uppercase tracking-wider mb-0.5">Performance</div>
-                            <div className="font-bold text-xs">{project.performance}</div>
-                          </div>
-                        )}
-                        {project.savings && (
-                          <div className="bg-primary/20 rounded-lg p-2 border border-primary/30">
-                            <div className="text-primary/90 text-[10px] uppercase tracking-wider mb-0.5">Savings</div>
-                            <div className="font-bold text-xs">{project.savings}</div>
                           </div>
                         )}
                       </div>
