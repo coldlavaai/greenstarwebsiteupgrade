@@ -307,11 +307,11 @@ export default function SolarPanelsHome() {
                   whileHover={{ y: -5, scale: 1.02 }}
                   className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10 hover:border-primary/30 transition-all"
                 >
-                  <div className="bg-white/95 backdrop-blur-sm rounded-xl p-5 mb-6 h-24 flex items-center justify-center">
+                  <div className="mb-6 h-24 flex items-center justify-center">
                     <img
                       src={brand.logo}
                       alt={`${brand.name} logo`}
-                      className="max-w-full max-h-full object-contain"
+                      className="max-w-full max-h-full object-contain filter drop-shadow-lg"
                     />
                   </div>
                   <h3 className="text-xl font-bold text-white mb-2 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
