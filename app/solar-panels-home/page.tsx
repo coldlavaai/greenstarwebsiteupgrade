@@ -315,7 +315,8 @@ export default function SolarPanelsHome() {
                     <img
                       src={brand.logo}
                       alt={`${brand.name} logo`}
-                      className={`max-w-full max-h-full object-contain filter drop-shadow-lg ${brand.invert ? 'brightness-0 invert' : ''}`}
+                      className={`max-w-full max-h-full object-contain drop-shadow-lg ${brand.invert ? 'invert' : ''}`}
+                      style={brand.invert ? { mixBlendMode: 'screen' } : {}}
                     />
                   </div>
                   <h3 className="text-xl font-bold text-white mb-2 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
