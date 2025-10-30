@@ -4,6 +4,7 @@ import "./globals.css";
 import { draftMode } from 'next/headers';
 import { VisualEditing } from '@/components/VisualEditing';
 import { ThemeProvider } from '@/components/ThemeProvider';
+import VapiWidget from '@/components/VapiWidget';
 
 const inter = Inter({
   subsets: ["latin"],
@@ -35,6 +36,7 @@ export default function RootLayout({
         <ThemeProvider>
           {children}
           {isDraftMode && <VisualEditing />}
+          <VapiWidget />
         </ThemeProvider>
       </body>
     </html>
