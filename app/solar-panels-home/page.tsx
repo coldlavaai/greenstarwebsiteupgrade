@@ -129,10 +129,26 @@ export default function SolarPanelsHome() {
             transition={{ duration: 0.6 }}
             className="max-w-6xl mx-auto"
           >
-            {/* Premium Panel Feature */}
-            <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl border border-white/10 overflow-hidden">
-              <div className="grid lg:grid-cols-2 gap-12 p-12 md:p-16">
-                <div className="flex flex-col justify-center">
+            {/* Premium Panel Feature - Brochure Style */}
+            <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl border border-white/10 overflow-hidden p-12 md:p-16">
+              {/* Aiko Logo */}
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ delay: 0.1, duration: 0.5 }}
+                className="mb-12 flex justify-center"
+              >
+                <img
+                  src="/aiko-logo.png"
+                  alt="Aiko Solar"
+                  className="h-12 object-contain opacity-90"
+                />
+              </motion.div>
+
+              <div className="grid lg:grid-cols-[1fr,400px] gap-12 items-start">
+                {/* Content Column */}
+                <div>
                   <motion.div
                     initial={{ opacity: 0, x: -30 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -146,99 +162,61 @@ export default function SolarPanelsHome() {
                       </span>
                     </div>
                     <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight leading-tight" style={{ fontFamily: 'var(--font-heading)' }}>
-                      Aiko Neostar 3S{' '}
+                      Neostar 3S{' '}
                       <span className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent">
                         N-Type ABC
                       </span>
                     </h2>
                     <p className="text-lg text-white/80 leading-relaxed font-light mb-8">
-                      Our installations feature the Aiko Neostar 3S N Type ABC mono glass panels, the latest generation of high performance solar technology. These panels achieve efficiency levels of up to <span className="text-primary font-semibold">24.3%</span> and use precision overlap soldering for greater energy capture and a refined all black finish.
+                      Our installations feature the Aiko Neostar 3S N-Type ABC mono glass panels, the latest generation of high-performance solar technology. These panels achieve efficiency levels of up to <span className="text-primary font-semibold">24.3%</span> and use precision overlap soldering for greater energy capture and a refined all-black finish.
                     </p>
-                    <p className="text-lg text-white/80 leading-relaxed font-light">
-                      Each panel is covered by a <span className="text-primary font-semibold">25 year product warranty</span> and a <span className="text-primary font-semibold">30 year performance warranty</span>, offering lasting confidence in your investment.
+                    <p className="text-lg text-white/80 leading-relaxed font-light mb-10">
+                      Each panel is covered by a <span className="text-primary font-semibold">25-year product warranty</span> and a <span className="text-primary font-semibold">30-year performance warranty</span>, offering lasting confidence in your investment.
                     </p>
+
+                    {/* Inline Specs Grid */}
+                    <div className="grid grid-cols-3 gap-4">
+                      <div className="bg-gradient-to-br from-primary/20 to-primary/5 backdrop-blur-xl rounded-xl p-5 border border-primary/20 text-center">
+                        <div className="text-3xl font-bold text-white mb-1" style={{ fontFamily: 'var(--font-heading)' }}>
+                          24.3%
+                        </div>
+                        <div className="text-white/60 text-xs font-medium uppercase tracking-wide">
+                          Efficiency
+                        </div>
+                      </div>
+                      <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-xl p-5 border border-white/10 text-center">
+                        <div className="text-3xl font-bold text-white mb-1" style={{ fontFamily: 'var(--font-heading)' }}>
+                          25/30
+                        </div>
+                        <div className="text-white/60 text-xs font-medium uppercase tracking-wide">
+                          Warranty
+                        </div>
+                      </div>
+                      <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-xl p-5 border border-white/10 text-center">
+                        <div className="text-2xl font-bold text-white mb-1" style={{ fontFamily: 'var(--font-heading)' }}>
+                          All Black
+                        </div>
+                        <div className="text-white/60 text-xs font-medium uppercase tracking-wide">
+                          Premium
+                        </div>
+                      </div>
+                    </div>
                   </motion.div>
                 </div>
 
-                {/* Specs Highlight */}
+                {/* Image Column */}
                 <motion.div
-                  initial={{ opacity: 0, x: 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true, amount: 0.1 }}
-                  transition={{ delay: 0.4, duration: 0.6 }}
-                  className="flex flex-col justify-center space-y-6"
+                  transition={{ delay: 0.3, duration: 0.6 }}
+                  className="flex justify-center items-start"
                 >
-                  {/* Solar Panel Image */}
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true, amount: 0.1 }}
-                    transition={{ delay: 0.3, duration: 0.8 }}
-                    className="flex justify-center mb-8"
-                  >
-                    <img
-                      src="/aiko-neostar-3s.png"
-                      alt="Aiko Neostar 3S N-Type ABC Solar Panel"
-                      className="w-full max-w-md object-contain drop-shadow-2xl"
-                    />
-                  </motion.div>
-
-                  <div className="bg-gradient-to-br from-primary/20 to-primary/5 backdrop-blur-xl rounded-2xl p-8 border border-primary/20">
-                    <div className="flex items-center space-x-4 mb-4">
-                      <div className="bg-primary/20 w-14 h-14 rounded-xl flex items-center justify-center">
-                        <Zap className="w-7 h-7 text-primary" />
-                      </div>
-                      <div>
-                        <div className="text-4xl font-bold text-white" style={{ fontFamily: 'var(--font-heading)' }}>
-                          24.3%
-                        </div>
-                        <div className="text-white/60 text-sm font-medium uppercase tracking-wide">
-                          Peak Efficiency
-                        </div>
-                      </div>
-                    </div>
-                    <p className="text-white/70 text-sm leading-relaxed">
-                      Industry-leading conversion rates for maximum energy generation
-                    </p>
-                  </div>
-
-                  <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10">
-                    <div className="flex items-center space-x-4 mb-4">
-                      <div className="bg-primary/20 w-14 h-14 rounded-xl flex items-center justify-center">
-                        <Shield className="w-7 h-7 text-primary" />
-                      </div>
-                      <div>
-                        <div className="text-4xl font-bold text-white" style={{ fontFamily: 'var(--font-heading)' }}>
-                          25/30
-                        </div>
-                        <div className="text-white/60 text-sm font-medium uppercase tracking-wide">
-                          Year Warranties
-                        </div>
-                      </div>
-                    </div>
-                    <p className="text-white/70 text-sm leading-relaxed">
-                      25 year product + 30 year performance warranty included
-                    </p>
-                  </div>
-
-                  <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10">
-                    <div className="flex items-center space-x-4 mb-4">
-                      <div className="bg-primary/20 w-14 h-14 rounded-xl flex items-center justify-center">
-                        <Leaf className="w-7 h-7 text-primary" />
-                      </div>
-                      <div>
-                        <div className="text-2xl font-bold text-white" style={{ fontFamily: 'var(--font-heading)' }}>
-                          All Black
-                        </div>
-                        <div className="text-white/60 text-sm font-medium uppercase tracking-wide">
-                          Premium Finish
-                        </div>
-                      </div>
-                    </div>
-                    <p className="text-white/70 text-sm leading-relaxed">
-                      Refined aesthetic with precision overlap soldering
-                    </p>
-                  </div>
+                  <img
+                    src="/aiko-neostar-3s.png"
+                    alt="Aiko Neostar 3S N-Type ABC Solar Panel"
+                    className="w-full object-contain drop-shadow-2xl"
+                  />
                 </motion.div>
               </div>
             </div>
