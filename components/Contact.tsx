@@ -76,8 +76,8 @@ const Contact = ({ data }: ContactProps) => {
     {
       icon: Phone,
       title: 'Phone',
-      content: data?.phone || '0800 123 4567',
-      link: `tel:${(data?.phone || '08001234567').replace(/\s/g, '')}`,
+      content: data?.phone || '023 8212 3763',
+      link: `tel:${(data?.phone || '02382123763').replace(/\s/g, '')}`,
     },
     {
       icon: Mail,
