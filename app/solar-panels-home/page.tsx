@@ -168,6 +168,21 @@ export default function SolarPanelsHome() {
                   transition={{ delay: 0.4, duration: 0.6 }}
                   className="flex flex-col justify-center space-y-6"
                 >
+                  {/* Solar Panel Image */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true, amount: 0.1 }}
+                    transition={{ delay: 0.3, duration: 0.8 }}
+                    className="flex justify-center mb-8"
+                  >
+                    <img
+                      src="/aiko-neostar-3s.png"
+                      alt="Aiko Neostar 3S N-Type ABC Solar Panel"
+                      className="w-full max-w-md object-contain drop-shadow-2xl"
+                    />
+                  </motion.div>
+
                   <div className="bg-gradient-to-br from-primary/20 to-primary/5 backdrop-blur-xl rounded-2xl p-8 border border-primary/20">
                     <div className="flex items-center space-x-4 mb-4">
                       <div className="bg-primary/20 w-14 h-14 rounded-xl flex items-center justify-center">
@@ -265,22 +280,22 @@ export default function SolarPanelsHome() {
                 {
                   name: 'Hanchu',
                   description: 'Advanced hybrid inverter technology',
-                  icon: Zap,
+                  logo: '/hanchu-logo.svg',
                 },
                 {
                   name: 'Fox ESS',
                   description: 'Industry-leading energy storage',
-                  icon: Battery,
+                  logo: '/foxess-logo.png',
                 },
                 {
                   name: 'EcoFlow',
                   description: 'Smart power management systems',
-                  icon: Zap,
+                  logo: '/ecoflow-logo.svg',
                 },
                 {
                   name: 'Sigenergy',
                   description: 'Next-gen battery solutions',
-                  icon: Battery,
+                  logo: '/sigenergy-logo.svg',
                 },
               ].map((brand, index) => (
                 <motion.div
@@ -292,8 +307,12 @@ export default function SolarPanelsHome() {
                   whileHover={{ y: -5, scale: 1.02 }}
                   className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10 hover:border-primary/30 transition-all"
                 >
-                  <div className="bg-gradient-to-br from-primary/20 to-primary/10 w-14 h-14 rounded-xl flex items-center justify-center mb-6">
-                    <brand.icon className="w-7 h-7 text-primary" />
+                  <div className="bg-white/95 backdrop-blur-sm rounded-xl p-4 mb-6 h-20 flex items-center justify-center">
+                    <img
+                      src={brand.logo}
+                      alt={`${brand.name} logo`}
+                      className="max-w-full max-h-full object-contain"
+                    />
                   </div>
                   <h3 className="text-2xl font-bold text-white mb-3 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
                     {brand.name}
