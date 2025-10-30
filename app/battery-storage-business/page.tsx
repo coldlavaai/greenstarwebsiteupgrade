@@ -6,6 +6,7 @@ import { TrendingDown, Shield, Zap, Building2, Clock, Power, Moon, ArrowRight, T
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import PageWrapper from '@/components/PageWrapper';
+import Contact from '@/components/Contact';
 import { client } from '@/lib/sanity';
 import BatteryIcon from '@/components/icons/BatteryIcon';
 
@@ -325,7 +326,7 @@ export default function BatteryStorageBusiness() {
               <motion.a
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                href="/#contact"
+                href="#contact"
                 className="inline-flex items-center space-x-3 bg-white text-primary px-10 py-5 rounded-full font-semibold text-lg shadow-2xl hover:shadow-3xl transition-all"
               >
                 <span>Request Consultation</span>
@@ -335,6 +336,9 @@ export default function BatteryStorageBusiness() {
           </motion.div>
         </div>
       </section>
+
+      {/* Contact Form */}
+      <Contact />
 
       <Footer data={footerData} />
     </PageWrapper>

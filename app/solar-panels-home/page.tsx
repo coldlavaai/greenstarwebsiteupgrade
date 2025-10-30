@@ -7,6 +7,7 @@ import Image from 'next/image';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import PageWrapper from '@/components/PageWrapper';
+import Contact from '@/components/Contact';
 import { client } from '@/lib/sanity';
 import BatteryIcon from '@/components/icons/BatteryIcon';
 
@@ -90,7 +91,7 @@ export default function SolarPanelsHome() {
               <motion.a
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                href="/#contact"
+                href="#contact"
                 className="group relative px-6 py-3 md:px-8 md:py-4 rounded-full font-semibold text-sm md:text-base overflow-hidden"
                 style={{
                   background: 'rgba(140, 198, 63, 0.15)',
@@ -396,7 +397,7 @@ export default function SolarPanelsHome() {
               <motion.a
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                href="/#contact"
+                href="#contact"
                 className="inline-flex items-center space-x-3 bg-white text-primary px-10 py-5 rounded-full font-semibold text-lg shadow-2xl hover:shadow-3xl transition-all"
               >
                 <span>Book Free Consultation</span>
@@ -406,6 +407,9 @@ export default function SolarPanelsHome() {
           </motion.div>
         </div>
       </section>
+
+      {/* Contact Form */}
+      <Contact />
 
       <Footer data={footerData} />
     </PageWrapper>
