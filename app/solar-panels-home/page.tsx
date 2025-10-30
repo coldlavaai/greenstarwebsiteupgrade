@@ -130,9 +130,9 @@ export default function SolarPanelsHome() {
             className="max-w-6xl mx-auto"
           >
             {/* Premium Panel Feature */}
-            <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl border border-white/10 overflow-hidden p-12 md:p-16">
-              <div className="grid lg:grid-cols-[1.2fr,0.8fr] gap-12 items-center">
-                <div className="flex flex-col justify-center order-2 lg:order-1">
+            <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl border border-white/10 overflow-hidden">
+              <div className="grid lg:grid-cols-2 gap-12 p-12 md:p-16">
+                <div className="flex flex-col justify-center">
                   <motion.div
                     initial={{ opacity: 0, x: -30 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -154,53 +154,91 @@ export default function SolarPanelsHome() {
                     <p className="text-lg text-white/80 leading-relaxed font-light mb-8">
                       Our installations feature the Aiko Neostar 3S N Type ABC mono glass panels, the latest generation of high performance solar technology. These panels achieve efficiency levels of up to <span className="text-primary font-semibold">24.3%</span> and use precision overlap soldering for greater energy capture and a refined all black finish.
                     </p>
-                    <p className="text-lg text-white/80 leading-relaxed font-light mb-8">
+                    <p className="text-lg text-white/80 leading-relaxed font-light">
                       Each panel is covered by a <span className="text-primary font-semibold">25 year product warranty</span> and a <span className="text-primary font-semibold">30 year performance warranty</span>, offering lasting confidence in your investment.
                     </p>
-
-                    {/* Inline Specs */}
-                    <div className="grid grid-cols-3 gap-4">
-                      <div className="bg-gradient-to-br from-primary/20 to-primary/5 backdrop-blur-xl rounded-xl p-4 border border-primary/20">
-                        <div className="text-3xl font-bold text-white mb-1" style={{ fontFamily: 'var(--font-heading)' }}>
-                          24.3%
-                        </div>
-                        <div className="text-white/60 text-xs font-medium uppercase tracking-wide">
-                          Peak Efficiency
-                        </div>
-                      </div>
-                      <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-xl p-4 border border-white/10">
-                        <div className="text-3xl font-bold text-white mb-1" style={{ fontFamily: 'var(--font-heading)' }}>
-                          25/30
-                        </div>
-                        <div className="text-white/60 text-xs font-medium uppercase tracking-wide">
-                          Year Warranty
-                        </div>
-                      </div>
-                      <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-xl p-4 border border-white/10">
-                        <div className="text-xl font-bold text-white mb-1" style={{ fontFamily: 'var(--font-heading)' }}>
-                          All Black
-                        </div>
-                        <div className="text-white/60 text-xs font-medium uppercase tracking-wide">
-                          Premium
-                        </div>
-                      </div>
-                    </div>
                   </motion.div>
                 </div>
 
-                {/* Solar Panel Image */}
+                {/* Specs Highlight */}
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, amount: 0.1 }}
-                  transition={{ delay: 0.3, duration: 0.8 }}
-                  className="flex justify-center items-center order-1 lg:order-2"
+                  transition={{ delay: 0.4, duration: 0.6 }}
+                  className="flex flex-col justify-center space-y-6"
                 >
-                  <img
-                    src="/aiko-neostar-3s.png"
-                    alt="Aiko Neostar 3S N-Type ABC Solar Panel"
-                    className="w-full max-w-sm object-contain drop-shadow-2xl"
-                  />
+                  {/* Solar Panel Image */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true, amount: 0.1 }}
+                    transition={{ delay: 0.3, duration: 0.8 }}
+                    className="flex justify-center mb-8"
+                  >
+                    <img
+                      src="/aiko-neostar-3s.png"
+                      alt="Aiko Neostar 3S N-Type ABC Solar Panel"
+                      className="w-full max-w-md object-contain drop-shadow-2xl"
+                    />
+                  </motion.div>
+
+                  <div className="bg-gradient-to-br from-primary/20 to-primary/5 backdrop-blur-xl rounded-2xl p-8 border border-primary/20">
+                    <div className="flex items-center space-x-4 mb-4">
+                      <div className="bg-primary/20 w-14 h-14 rounded-xl flex items-center justify-center">
+                        <Zap className="w-7 h-7 text-primary" />
+                      </div>
+                      <div>
+                        <div className="text-4xl font-bold text-white" style={{ fontFamily: 'var(--font-heading)' }}>
+                          24.3%
+                        </div>
+                        <div className="text-white/60 text-sm font-medium uppercase tracking-wide">
+                          Peak Efficiency
+                        </div>
+                      </div>
+                    </div>
+                    <p className="text-white/70 text-sm leading-relaxed">
+                      Industry-leading conversion rates for maximum energy generation
+                    </p>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10">
+                    <div className="flex items-center space-x-4 mb-4">
+                      <div className="bg-primary/20 w-14 h-14 rounded-xl flex items-center justify-center">
+                        <Shield className="w-7 h-7 text-primary" />
+                      </div>
+                      <div>
+                        <div className="text-4xl font-bold text-white" style={{ fontFamily: 'var(--font-heading)' }}>
+                          25/30
+                        </div>
+                        <div className="text-white/60 text-sm font-medium uppercase tracking-wide">
+                          Year Warranties
+                        </div>
+                      </div>
+                    </div>
+                    <p className="text-white/70 text-sm leading-relaxed">
+                      25 year product + 30 year performance warranty included
+                    </p>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10">
+                    <div className="flex items-center space-x-4 mb-4">
+                      <div className="bg-primary/20 w-14 h-14 rounded-xl flex items-center justify-center">
+                        <Leaf className="w-7 h-7 text-primary" />
+                      </div>
+                      <div>
+                        <div className="text-2xl font-bold text-white" style={{ fontFamily: 'var(--font-heading)' }}>
+                          All Black
+                        </div>
+                        <div className="text-white/60 text-sm font-medium uppercase tracking-wide">
+                          Premium Finish
+                        </div>
+                      </div>
+                    </div>
+                    <p className="text-white/70 text-sm leading-relaxed">
+                      Refined aesthetic with precision overlap soldering
+                    </p>
+                  </div>
                 </motion.div>
               </div>
             </div>
@@ -240,28 +278,24 @@ export default function SolarPanelsHome() {
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
                 {
-                  name: 'HANCHU',
-                  subtitle: 'ESS',
+                  name: 'Hanchu',
                   description: 'Advanced hybrid inverter technology',
-                  icon: Zap,
+                  logo: '/hanchu-logo.svg',
                 },
                 {
-                  name: 'FOX',
-                  subtitle: 'ESS',
+                  name: 'Fox ESS',
                   description: 'Industry-leading energy storage',
-                  icon: Battery,
+                  logo: '/foxess-logo.png',
                 },
                 {
                   name: 'EcoFlow',
-                  subtitle: null,
                   description: 'Smart power management systems',
-                  icon: Zap,
+                  logo: '/ecoflow-logo.svg',
                 },
                 {
                   name: 'Sigenergy',
-                  subtitle: null,
                   description: 'Next-gen battery solutions',
-                  icon: Battery,
+                  logo: '/sigenergy-logo.svg',
                 },
               ].map((brand, index) => (
                 <motion.div
@@ -273,19 +307,16 @@ export default function SolarPanelsHome() {
                   whileHover={{ y: -5, scale: 1.02 }}
                   className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10 hover:border-primary/30 transition-all"
                 >
-                  <div className="mb-6">
-                    <h3 className="text-3xl font-bold text-white tracking-tight leading-none" style={{ fontFamily: 'var(--font-heading)' }}>
-                      {brand.name}
-                    </h3>
-                    {brand.subtitle && (
-                      <div className="text-primary text-sm font-bold uppercase tracking-widest mt-1">
-                        {brand.subtitle}
-                      </div>
-                    )}
+                  <div className="bg-white/95 backdrop-blur-sm rounded-xl p-4 mb-6 h-20 flex items-center justify-center">
+                    <img
+                      src={brand.logo}
+                      alt={`${brand.name} logo`}
+                      className="max-w-full max-h-full object-contain"
+                    />
                   </div>
-                  <div className="bg-gradient-to-br from-primary/10 to-primary/5 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
-                    <brand.icon className="w-6 h-6 text-primary" />
-                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-3 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
+                    {brand.name}
+                  </h3>
                   <p className="text-white/60 text-sm leading-relaxed font-light">
                     {brand.description}
                   </p>
