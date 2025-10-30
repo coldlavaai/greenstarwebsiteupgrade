@@ -2,11 +2,12 @@
 
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import { Zap, TrendingDown, Shield, BatteryCharging as Battery, Home, CheckCircle, ArrowRight, Plug, Award, Leaf, Sun } from 'lucide-react';
+import { Zap, TrendingDown, Shield, Home, CheckCircle, ArrowRight, Plug, Award, Leaf, Sun } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import PageWrapper from '@/components/PageWrapper';
 import { client } from '@/lib/sanity';
+import BatteryIcon from '@/components/icons/BatteryIcon';
 
 export default function EVCharging() {
   const [navigationData, setNavigationData] = useState<any>(null);
@@ -273,7 +274,7 @@ export default function EVCharging() {
                   description: 'Zappi automatically prioritises solar power, only using grid electricity when solar isn\'t available',
                 },
                 {
-                  icon: Battery,
+                  icon: BatteryIcon,
                   title: 'Battery Integration',
                   description: 'Works seamlessly with home batteries to charge your car overnight using stored solar energy',
                 },

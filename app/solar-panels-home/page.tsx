@@ -2,11 +2,12 @@
 
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import { Sun, TrendingDown, Shield, Zap, Home, CheckCircle, ArrowRight, BatteryCharging as Battery, Leaf, Award } from 'lucide-react';
+import { Sun, TrendingDown, Shield, Zap, Home, CheckCircle, ArrowRight, Leaf, Award } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import PageWrapper from '@/components/PageWrapper';
 import { client } from '@/lib/sanity';
+import BatteryIcon from '@/components/icons/BatteryIcon';
 
 export default function SolarPanelsHome() {
   const [navigationData, setNavigationData] = useState<any>(null);
@@ -256,7 +257,7 @@ export default function SolarPanelsHome() {
           >
             <div className="text-center mb-8">
               <div className="inline-flex items-center space-x-2 mb-6">
-                <Battery className="w-6 h-6 text-primary" />
+                <BatteryIcon className="w-6 h-6 text-primary" />
                 <span className="text-primary font-semibold uppercase tracking-wider text-sm">
                   Complete Energy Solutions
                 </span>

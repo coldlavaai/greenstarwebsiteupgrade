@@ -3,8 +3,9 @@
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { Home, Building2, BatteryCharging as Battery, Sun, ArrowRight, Zap } from 'lucide-react';
+import { Home, Building2, Sun, ArrowRight, Zap } from 'lucide-react';
 import { urlFor } from '@/lib/sanity';
+import BatteryIcon from '@/components/icons/BatteryIcon';
 
 interface Service {
   _id: string;
@@ -28,7 +29,7 @@ const Systems = ({ data }: SystemsProps) => {
   // Icon mapping
   const iconMap: Record<string, any> = {
     Sun: Sun,
-    Battery: Battery,
+    Battery: BatteryIcon,
     Building2: Building2,
     Zap: Zap,
     Home: Home,
@@ -82,7 +83,7 @@ const Systems = ({ data }: SystemsProps) => {
       link: '/solar-panels-home',
     },
     {
-      icon: Battery,
+      icon: BatteryIcon,
       title: 'Battery Storage for Home',
       description: 'Store excess solar energy and use it when you need it most. Achieve energy independence with our advanced battery solutions.',
       features: ['24/7 backup power', 'Peak shaving', 'Seamless integration', 'Smart controls'],

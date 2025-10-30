@@ -2,11 +2,12 @@
 
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import { BatteryCharging as Battery, TrendingDown, Shield, Zap, Home, Clock, Power, Moon, ArrowRight } from 'lucide-react';
+import { TrendingDown, Shield, Zap, Home, Clock, Power, Moon, ArrowRight } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import PageWrapper from '@/components/PageWrapper';
 import { client } from '@/lib/sanity';
+import BatteryIcon from '@/components/icons/BatteryIcon';
 
 export default function BatteryStorageHome() {
   const [navigationData, setNavigationData] = useState<any>(null);
@@ -26,7 +27,7 @@ export default function BatteryStorageHome() {
 
   const benefits = [
     {
-      icon: Battery,
+      icon: BatteryIcon,
       title: 'Store Excess Energy',
       description: 'Capture surplus solar energy during the day and use it when you need it most',
     },
@@ -115,7 +116,7 @@ export default function BatteryStorageHome() {
               transition={{ duration: 0.8 }}
               className="inline-flex items-center space-x-3 mb-8"
             >
-              <Battery className="w-8 h-8 text-primary" />
+              <BatteryIcon className="w-8 h-8 text-primary" />
               <span className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent font-semibold text-sm uppercase tracking-[0.2em]">
                 Residential Battery Solutions
               </span>
@@ -285,7 +286,7 @@ export default function BatteryStorageHome() {
           >
             <div className="text-center mb-8">
               <div className="inline-flex items-center space-x-2 mb-6">
-                <Battery className="w-6 h-6 text-primary" />
+                <BatteryIcon className="w-6 h-6 text-primary" />
                 <span className="text-primary font-semibold uppercase tracking-wider text-sm">
                   Complete Energy Solutions
                 </span>

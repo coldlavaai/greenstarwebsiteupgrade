@@ -2,11 +2,12 @@
 
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import { BatteryCharging as Battery, TrendingDown, Shield, Zap, Building2, Clock, Power, Moon, ArrowRight, Target } from 'lucide-react';
+import { TrendingDown, Shield, Zap, Building2, Clock, Power, Moon, ArrowRight, Target } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import PageWrapper from '@/components/PageWrapper';
 import { client } from '@/lib/sanity';
+import BatteryIcon from '@/components/icons/BatteryIcon';
 
 export default function BatteryStorageBusiness() {
   const [navigationData, setNavigationData] = useState<any>(null);
@@ -26,7 +27,7 @@ export default function BatteryStorageBusiness() {
 
   const benefits = [
     {
-      icon: Battery,
+      icon: BatteryIcon,
       title: 'Peak Shaving',
       description: 'Reduce peak demand charges by storing energy during off-peak hours',
     },
@@ -115,7 +116,7 @@ export default function BatteryStorageBusiness() {
               transition={{ duration: 0.8 }}
               className="inline-flex items-center space-x-3 mb-8"
             >
-              <Battery className="w-8 h-8 text-primary" />
+              <BatteryIcon className="w-8 h-8 text-primary" />
               <span className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent font-semibold text-sm uppercase tracking-[0.2em]">
                 Commercial Battery Solutions
               </span>
