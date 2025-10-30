@@ -131,37 +131,36 @@ export default function SolarPanelsHome() {
           >
             {/* Premium Panel Feature - Brochure Style */}
             <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl border border-white/10 overflow-hidden p-12 md:p-16">
-              <div className="grid lg:grid-cols-[1.2fr,0.8fr] gap-12 items-start">
+              {/* Top Row: Text Left, Logo + Image Right */}
+              <div className="grid lg:grid-cols-2 gap-12 items-center mb-8">
                 {/* Text Content Column */}
-                <div>
-                  <motion.div
-                    initial={{ opacity: 0, x: -30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, amount: 0.1 }}
-                    transition={{ delay: 0.2, duration: 0.6 }}
-                  >
-                    <div className="inline-flex items-center space-x-2 mb-6">
-                      <Award className="w-6 h-6 text-primary" />
-                      <span className="text-primary font-semibold uppercase tracking-wider text-sm">
-                        Next Generation Technology
-                      </span>
-                    </div>
-                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight leading-tight" style={{ fontFamily: 'var(--font-heading)' }}>
-                      Neostar 3S{' '}
-                      <span className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent">
-                        N-Type ABC
-                      </span>
-                    </h2>
-                    <p className="text-lg text-white/80 leading-relaxed font-light mb-6">
-                      Our installations feature the Aiko Neostar 3S N-Type ABC mono glass panels, the latest generation of high-performance solar technology. These panels achieve efficiency levels of up to <span className="text-primary font-semibold">24.3%</span> and use precision overlap soldering for greater energy capture and a refined all-black finish.
-                    </p>
-                    <p className="text-lg text-white/80 leading-relaxed font-light">
-                      Each panel is covered by a <span className="text-primary font-semibold">25-year product warranty</span> and a <span className="text-primary font-semibold">30-year performance warranty</span>, offering lasting confidence in your investment.
-                    </p>
-                  </motion.div>
-                </div>
+                <motion.div
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.1 }}
+                  transition={{ delay: 0.2, duration: 0.6 }}
+                >
+                  <div className="inline-flex items-center space-x-2 mb-6">
+                    <Award className="w-6 h-6 text-primary" />
+                    <span className="text-primary font-semibold uppercase tracking-wider text-sm">
+                      Next Generation Technology
+                    </span>
+                  </div>
+                  <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight leading-tight" style={{ fontFamily: 'var(--font-heading)' }}>
+                    Neostar 3S{' '}
+                    <span className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent">
+                      N-Type ABC
+                    </span>
+                  </h2>
+                  <p className="text-lg text-white/80 leading-relaxed font-light mb-6">
+                    Our installations feature the Aiko Neostar 3S N-Type ABC mono glass panels, the latest generation of high-performance solar technology. These panels achieve efficiency levels of up to <span className="text-primary font-semibold">24.3%</span> and use precision overlap soldering for greater energy capture and a refined all-black finish.
+                  </p>
+                  <p className="text-lg text-white/80 leading-relaxed font-light">
+                    Each panel is covered by a <span className="text-primary font-semibold">25-year product warranty</span> and a <span className="text-primary font-semibold">30-year performance warranty</span>, offering lasting confidence in your investment.
+                  </p>
+                </motion.div>
 
-                {/* Visual Column - Logo, Image, and Specs */}
+                {/* Visual Column - Logo and Image */}
                 <div className="space-y-6">
                   {/* Aiko Logo */}
                   <motion.div
@@ -192,35 +191,53 @@ export default function SolarPanelsHome() {
                       className="w-full max-w-xs object-contain drop-shadow-2xl"
                     />
                   </motion.div>
-
-                  {/* Specs Cards */}
-                  <div className="space-y-3">
-                    <div className="bg-gradient-to-br from-primary/20 to-primary/5 backdrop-blur-xl rounded-xl p-4 border border-primary/20 text-center">
-                      <div className="text-3xl font-bold text-white mb-1" style={{ fontFamily: 'var(--font-heading)' }}>
-                        24.3%
-                      </div>
-                      <div className="text-white/60 text-xs font-medium uppercase tracking-wide">
-                        Peak Efficiency
-                      </div>
-                    </div>
-                    <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-xl p-4 border border-white/10 text-center">
-                      <div className="text-3xl font-bold text-white mb-1" style={{ fontFamily: 'var(--font-heading)' }}>
-                        25/30 Years
-                      </div>
-                      <div className="text-white/60 text-xs font-medium uppercase tracking-wide">
-                        Warranty Coverage
-                      </div>
-                    </div>
-                    <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-xl p-4 border border-white/10 text-center">
-                      <div className="text-2xl font-bold text-white mb-1" style={{ fontFamily: 'var(--font-heading)' }}>
-                        All Black
-                      </div>
-                      <div className="text-white/60 text-xs font-medium uppercase tracking-wide">
-                        Premium Finish
-                      </div>
-                    </div>
-                  </div>
                 </div>
+              </div>
+
+              {/* Bottom Row: Spec Cards Full Width */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.1 }}
+                  transition={{ delay: 0.4, duration: 0.5 }}
+                  className="bg-gradient-to-br from-primary/20 to-primary/5 backdrop-blur-xl rounded-xl p-4 border border-primary/20 text-center"
+                >
+                  <div className="text-3xl font-bold text-white mb-1" style={{ fontFamily: 'var(--font-heading)' }}>
+                    24.3%
+                  </div>
+                  <div className="text-white/60 text-xs font-medium uppercase tracking-wide">
+                    Peak Efficiency
+                  </div>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.1 }}
+                  transition={{ delay: 0.5, duration: 0.5 }}
+                  className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-xl p-4 border border-white/10 text-center"
+                >
+                  <div className="text-3xl font-bold text-white mb-1" style={{ fontFamily: 'var(--font-heading)' }}>
+                    25/30 Years
+                  </div>
+                  <div className="text-white/60 text-xs font-medium uppercase tracking-wide">
+                    Warranty Coverage
+                  </div>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.1 }}
+                  transition={{ delay: 0.6, duration: 0.5 }}
+                  className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-xl p-4 border border-white/10 text-center"
+                >
+                  <div className="text-2xl font-bold text-white mb-1" style={{ fontFamily: 'var(--font-heading)' }}>
+                    All Black
+                  </div>
+                  <div className="text-white/60 text-xs font-medium uppercase tracking-wide">
+                    Premium Finish
+                  </div>
+                </motion.div>
               </div>
             </div>
           </motion.div>
