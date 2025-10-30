@@ -57,11 +57,14 @@ const About = ({ data }: AboutProps) => {
             {stats.map((stat, index) => (
               <motion.div
                 key={stat.label}
-                initial={{ opacity: 0, y: 50 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-                transition={{ delay: 0.3 + index * 0.1, duration: 0.5 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ delay: 0.2 + index * 0.08, duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
                 whileHover={{ scale: 1.05, y: -5 }}
-                className="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-xl p-3 md:p-6 rounded-xl md:rounded-2xl border border-white/10 shadow-lg hover:shadow-[0_20px_60px_rgba(140,198,63,0.4)] hover:border-[#8cc63f]/50 transition-all w-full max-w-full overflow-hidden"
+                className="p-3 md:p-6 rounded-xl md:rounded-2xl border border-white/10 shadow-lg hover:shadow-[0_20px_60px_rgba(140,198,63,0.4)] hover:border-[#8cc63f]/50 transition-all w-full max-w-full overflow-hidden"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.12) 100%), rgba(18, 18, 18, 0.75)',
+                }}
               >
                 <div className="bg-[#8cc63f]/20 w-8 h-8 md:w-12 md:h-12 rounded-lg md:rounded-xl flex items-center justify-center mb-2 md:mb-3">
                   <stat.icon className="w-4 h-4 md:w-6 md:h-6 text-[#8cc63f]" />
