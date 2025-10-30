@@ -1,21 +1,16 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
-import Script from 'next/script';
 
 export default function VapiWidget() {
   const [isOpen, setIsOpen] = useState(false);
-  const [mode, setMode] = useState<'text' | 'voice'>('text');
   const [messages, setMessages] = useState<Array<{ text: string; isUser: boolean }>>([]);
   const [inputValue, setInputValue] = useState('');
-  const [vapiLoaded, setVapiLoaded] = useState(false);
-  const vapiInstanceRef = useRef<any>(null);
   const previousChatIdRef = useRef<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const WIDGET_CONFIG = {
     assistantId: 'cb76e1bc-dc2d-4ea8-84a1-c17499ed6387',
-    publicApiKey: 'b3f38fb7-8541-4e3e-8708-5d49c3f54f00',
     directApiKey: 'bb0b198b-1a8f-4675-bdf8-8a865fc5d68a'
   };
 
@@ -87,51 +82,8 @@ export default function VapiWidget() {
     }
   };
 
-  const initializeVoice = () => {
-    if (typeof window === 'undefined' || !(window as any).vapiSDK) {
-      console.warn('VAPI SDK not loaded yet');
-      return;
-    }
-
-    try {
-      vapiInstanceRef.current = (window as any).vapiSDK.run({
-        apiKey: WIDGET_CONFIG.publicApiKey,
-        assistant: WIDGET_CONFIG.assistantId
-      });
-    } catch (error) {
-      console.error('Voice initialization error:', error);
-    }
-  };
-
-  const startVoiceCall = () => {
-    if (vapiInstanceRef.current) {
-      vapiInstanceRef.current.start(WIDGET_CONFIG.assistantId);
-    } else {
-      initializeVoice();
-      setTimeout(() => {
-        if (vapiInstanceRef.current) {
-          vapiInstanceRef.current.start(WIDGET_CONFIG.assistantId);
-        }
-      }, 500);
-    }
-  };
-
-  const handleModeSwitch = (newMode: 'text' | 'voice') => {
-    setMode(newMode);
-    if (newMode === 'voice' && !vapiInstanceRef.current) {
-      initializeVoice();
-    }
-  };
-
   return (
     <>
-      {/* Load VAPI SDK */}
-      <Script
-        src="https://unpkg.com/@vapi-ai/client-sdk-react/dist/embed/widget.umd.js"
-        strategy="lazyOnload"
-        onLoad={() => setVapiLoaded(true)}
-      />
-
       {/* Widget Styles */}
       <style jsx global>{`
         :root {
@@ -141,10 +93,25 @@ export default function VapiWidget() {
           --vapi-dark-bg: #000000;
           --vapi-glass-border: rgba(140, 198, 63, 0.2);
         }
+
+        @keyframes slideUp {
+          0% {
+            opacity: 0;
+            transform: translateY(60px) scale(0.88);
+          }
+          50% {
+            opacity: 0.8;
+            transform: translateY(-5px) scale(1.02);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
       `}</style>
 
       {/* Widget Container */}
-      <div id="vapi-hybrid-widget" style={{
+      <div id="vapi-widget" style={{
         position: 'fixed',
         bottom: '30px',
         right: '30px',
@@ -198,6 +165,7 @@ export default function VapiWidget() {
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.transform = 'translateY(-12px) scale(1.08)';
+            e.currentTarget.style.boxShadow = '0 40px 80px rgba(140, 198, 63, 0.35), 0 20px 40px rgba(0, 0, 0, 0.2), 0 0 80px rgba(140, 198, 63, 0.3)';
             const tooltip = e.currentTarget.parentElement?.querySelector('.widget-tooltip') as HTMLElement;
             if (tooltip) {
               tooltip.style.opacity = '1';
@@ -206,6 +174,7 @@ export default function VapiWidget() {
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.transform = 'translateY(0) scale(1)';
+            e.currentTarget.style.boxShadow = '0 24px 48px rgba(140, 198, 63, 0.2), 0 12px 24px rgba(0, 0, 0, 0.15)';
             const tooltip = e.currentTarget.parentElement?.querySelector('.widget-tooltip') as HTMLElement;
             if (tooltip) {
               tooltip.style.opacity = '0';
@@ -276,51 +245,12 @@ export default function VapiWidget() {
               </button>
             </div>
 
-            {/* Mode Buttons */}
-            <div style={{ display: 'flex', gap: '8px', padding: '20px 30px 0' }}>
-              <button
-                onClick={() => handleModeSwitch('text')}
-                style={{
-                  flex: 1,
-                  padding: '12px',
-                  background: mode === 'text' ? 'linear-gradient(135deg, #8cc63f, #7ab52f)' : 'rgba(40, 40, 40, 0.6)',
-                  border: `1px solid ${mode === 'text' ? '#8cc63f' : 'rgba(140, 198, 63, 0.2)'}`,
-                  borderRadius: '12px',
-                  color: mode === 'text' ? '#000' : 'rgba(255, 255, 255, 0.7)',
-                  cursor: 'pointer',
-                  transition: 'all 0.3s ease',
-                  fontSize: '13px',
-                  fontWeight: 500
-                }}
-              >
-                💬 Text Chat
-              </button>
-              <button
-                onClick={() => handleModeSwitch('voice')}
-                style={{
-                  flex: 1,
-                  padding: '12px',
-                  background: mode === 'voice' ? 'linear-gradient(135deg, #8cc63f, #7ab52f)' : 'rgba(40, 40, 40, 0.6)',
-                  border: `1px solid ${mode === 'voice' ? '#8cc63f' : 'rgba(140, 198, 63, 0.2)'}`,
-                  borderRadius: '12px',
-                  color: mode === 'voice' ? '#000' : 'rgba(255, 255, 255, 0.7)',
-                  cursor: 'pointer',
-                  transition: 'all 0.3s ease',
-                  fontSize: '13px',
-                  fontWeight: 500
-                }}
-              >
-                🎤 Voice Call
-              </button>
-            </div>
-
             {/* Messages Container */}
             <div style={{
               flex: 1,
               padding: '25px 30px',
               overflowY: 'auto',
-              fontSize: '15px',
-              display: mode === 'text' ? 'block' : 'none'
+              fontSize: '15px'
             }}>
               {messages.map((msg, idx) => (
                 <div
@@ -351,115 +281,63 @@ export default function VapiWidget() {
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Voice Mode Container */}
-            {mode === 'voice' && (
-              <div style={{
-                flex: 1,
-                padding: '40px 20px',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}>
-                <p style={{ textAlign: 'center', color: 'rgba(255, 255, 255, 0.7)', marginBottom: '30px' }}>
-                  Click the button below to start a voice conversation with Sophie.
-                </p>
-                <button
-                  onClick={startVoiceCall}
-                  style={{
-                    padding: '16px 32px',
-                    background: 'linear-gradient(135deg, #8cc63f, #7ab52f)',
-                    color: '#000',
-                    border: 'none',
-                    borderRadius: '16px',
-                    fontWeight: 600,
-                    cursor: 'pointer',
-                    fontSize: '16px',
-                    transition: 'all 0.3s ease'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = 'scale(1.05)';
-                    e.currentTarget.style.boxShadow = '0 8px 20px rgba(140, 198, 63, 0.3)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = 'scale(1)';
-                    e.currentTarget.style.boxShadow = 'none';
-                  }}
-                >
-                  Start Voice Call
-                </button>
-              </div>
-            )}
-
             {/* Input Container */}
-            {mode === 'text' && (
-              <div style={{
-                padding: '25px 30px',
-                background: 'rgba(30, 30, 30, 0.8)',
-                borderTop: '1px solid rgba(140, 198, 63, 0.2)',
-                backdropFilter: 'blur(20px)',
-                display: 'flex',
-                gap: '12px'
-              }}>
-                <input
-                  type="text"
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
-                  onKeyPress={(e) => e.key === 'Enter' && sendMessage(inputValue)}
-                  placeholder="Ask Sophie..."
-                  style={{
-                    flex: 1,
-                    padding: '14px 18px',
-                    borderRadius: '14px',
-                    border: '1px solid rgba(140, 198, 63, 0.2)',
-                    background: 'rgba(40, 40, 40, 0.6)',
-                    color: 'white',
-                    fontSize: '14px',
-                    outline: 'none',
-                    transition: 'all 0.3s ease'
-                  }}
-                  aria-label="Message input"
-                />
-                <button
-                  onClick={() => sendMessage(inputValue)}
-                  style={{
-                    padding: '14px 24px',
-                    background: 'linear-gradient(135deg, #8cc63f, #7ab52f)',
-                    color: '#000',
-                    border: 'none',
-                    borderRadius: '14px',
-                    fontWeight: 600,
-                    cursor: 'pointer',
-                    transition: 'all 0.3s ease',
-                    fontSize: '14px'
-                  }}
-                  aria-label="Send message"
-                >
-                  Send
-                </button>
-              </div>
-            )}
+            <div style={{
+              padding: '25px 30px',
+              background: 'rgba(30, 30, 30, 0.8)',
+              borderTop: '1px solid rgba(140, 198, 63, 0.2)',
+              backdropFilter: 'blur(20px)',
+              display: 'flex',
+              gap: '12px'
+            }}>
+              <input
+                type="text"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && sendMessage(inputValue)}
+                placeholder="Ask Sophie..."
+                style={{
+                  flex: 1,
+                  padding: '14px 18px',
+                  borderRadius: '14px',
+                  border: '1px solid rgba(140, 198, 63, 0.2)',
+                  background: 'rgba(40, 40, 40, 0.6)',
+                  color: 'white',
+                  fontSize: '14px',
+                  outline: 'none',
+                  transition: 'all 0.3s ease'
+                }}
+                aria-label="Message input"
+              />
+              <button
+                onClick={() => sendMessage(inputValue)}
+                style={{
+                  padding: '14px 24px',
+                  background: 'linear-gradient(135deg, #8cc63f, #7ab52f)',
+                  color: '#000',
+                  border: 'none',
+                  borderRadius: '14px',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  fontSize: '14px'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'scale(1.05)';
+                  e.currentTarget.style.boxShadow = '0 8px 20px rgba(140, 198, 63, 0.3)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'scale(1)';
+                  e.currentTarget.style.boxShadow = 'none';
+                }}
+                aria-label="Send message"
+              >
+                Send
+              </button>
+            </div>
           </div>
         )}
       </div>
-
-      {/* Animations */}
-      <style jsx global>{`
-        @keyframes slideUp {
-          0% {
-            opacity: 0;
-            transform: translateY(60px) scale(0.88);
-          }
-          50% {
-            opacity: 0.8;
-            transform: translateY(-5px) scale(1.02);
-          }
-          100% {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-          }
-        }
-      `}</style>
     </>
   );
 }

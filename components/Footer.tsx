@@ -221,8 +221,8 @@ const Footer = ({ data }: FooterProps) => {
         </div>
       </div>
 
-      {/* Scroll to Top Button */}
-      <motion.button
+      {/* Scroll to Top Button - Hidden (conflicts with chat widget) */}
+      {/* <motion.button
         onClick={scrollToTop}
         initial={{ opacity: 0, scale: 0 }}
         whileInView={{ opacity: 1, scale: 1 }}
@@ -233,7 +233,7 @@ const Footer = ({ data }: FooterProps) => {
         aria-label="Scroll to top"
       >
         <ArrowUp className="w-6 h-6" />
-      </motion.button>
+      </motion.button> */}
     </footer>
   );
 };
