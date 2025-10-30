@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Facebook, Instagram, Mail, Phone, MapPin, ArrowUp } from 'lucide-react';
+import { useIsTouch } from '@/hooks/useMediaQuery';
 
 interface FooterData {
   _id?: string;
@@ -20,29 +21,30 @@ interface FooterProps {
 }
 
 const Footer = ({ data }: FooterProps) => {
+  const isTouch = useIsTouch();
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const footerLinks = {
     company: [
-      { name: 'About Us', href: '#about' },
-      { name: 'Our Process', href: '#process' },
-      { name: 'Testimonials', href: '#testimonials' },
-      { name: 'Contact', href: '#contact' },
+      { name: 'About Us', href: '/#about' },
+      { name: 'Our Process', href: '/#process' },
+      { name: 'Testimonials', href: '/#testimonials' },
+      { name: 'Contact', href: '/#contact' },
     ],
     systems: [
-      { name: 'Solar Panels for Home', href: '#solar-home' },
-      { name: 'Battery Storage for Home', href: '#battery-home' },
-      { name: 'Solar Panels for Business', href: '#solar-business' },
-      { name: 'Battery Storage for Business', href: '#battery-business' },
-      { name: 'EV Charging', href: '#ev-charging' },
+      { name: 'Solar Panels for Home', href: '/solar-panels-home' },
+      { name: 'Battery Storage for Home', href: '/battery-storage-home' },
+      { name: 'Solar Panels for Business', href: '/solar-panels-business' },
+      { name: 'Battery Storage for Business', href: '/battery-storage-business' },
+      { name: 'EV Charging', href: '/ev-charging' },
     ],
     resources: [
-      { name: 'FAQ', href: '#faq' },
-      { name: 'Blog', href: '#blog' },
-      { name: 'Case Studies', href: '#case-studies' },
-      { name: 'Warranty Info', href: '#warranty' },
+      { name: 'Gallery', href: '/gallery' },
+      { name: 'Case Studies', href: '/case-studies' },
+      { name: 'Systems Overview', href: '/#systems' },
     ],
   };
 
@@ -115,9 +117,13 @@ const Footer = ({ data }: FooterProps) => {
                   <motion.a
                     key={social.label}
                     href={social.href}
-                    whileHover={{ scale: 1.1, y: -3 }}
-                    whileTap={{ scale: 0.9 }}
+                    whileHover={!isTouch ? { scale: 1.1, y: -3 } : {}}
+                    whileTap={!isTouch ? { scale: 0.9 } : {}}
                     className="bg-white/10 hover:bg-[#8cc63f] w-10 h-10 rounded-lg flex items-center justify-center transition-colors"
+                    style={{
+                      minWidth: '44px',
+                      minHeight: '44px'
+                    }}
                     aria-label={social.label}
                   >
                     <social.icon className="w-5 h-5" />
@@ -199,23 +205,12 @@ const Footer = ({ data }: FooterProps) => {
 
         {/* Bottom Bar */}
         <div className="border-t border-white/10 py-8">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+          <div className="flex flex-col md:flex-row justify-center items-center">
             <div
-              className="text-gray-400 text-sm text-center md:text-left"
+              className="text-gray-400 text-sm text-center"
               data-sanity={data?._id ? `${data._id}.copyright` : undefined}
             >
               {data?.copyright || `© ${new Date().getFullYear()} Greenstar Solar. All rights reserved.`}
-            </div>
-            <div className="flex flex-wrap justify-center md:justify-end gap-6 text-sm text-center md:text-left">
-              <a href="#" className="text-gray-400 hover:text-[#8cc63f] transition-colors">
-                Privacy Policy
-              </a>
-              <a href="#" className="text-gray-400 hover:text-[#8cc63f] transition-colors">
-                Terms of Service
-              </a>
-              <a href="#" className="text-gray-400 hover:text-[#8cc63f] transition-colors">
-                Cookie Policy
-              </a>
             </div>
           </div>
         </div>
