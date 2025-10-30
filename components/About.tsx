@@ -52,7 +52,7 @@ const About = ({ data }: AboutProps) => {
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
             transition={{ duration: 0.6 }}
-            className="grid grid-cols-2 gap-4 md:gap-6 max-w-full overflow-hidden order-2 lg:order-1"
+            className="grid grid-cols-2 gap-4 md:gap-6 max-w-full order-2 lg:order-1"
           >
             {stats.map((stat, index) => (
               <motion.div
