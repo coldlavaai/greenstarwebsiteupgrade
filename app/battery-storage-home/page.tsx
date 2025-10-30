@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { TrendingDown, Shield, Zap, Home, Clock, Power, Moon, ArrowRight } from 'lucide-react';
+import Image from 'next/image';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import PageWrapper from '@/components/PageWrapper';
@@ -335,11 +336,13 @@ export default function BatteryStorageHome() {
                   whileHover={{ y: -5, scale: 1.02 }}
                   className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10 hover:border-primary/30 transition-all"
                 >
-                  <div className="mb-6 h-24 flex items-center justify-center">
-                    <img
+                  <div className="mb-6 h-24 flex items-center justify-center relative">
+                    <Image
                       src={brand.logo}
                       alt="Brand logo"
-                      className="max-w-full max-h-full object-contain drop-shadow-lg"
+                      fill
+                      className="object-contain drop-shadow-lg"
+                      sizes="(max-width: 768px) 100vw, 25vw"
                     />
                   </div>
                   <p className="text-white/70 text-sm leading-relaxed font-light mb-6">

@@ -96,7 +96,7 @@ const DayNightBackground = () => {
       </motion.div>
 
       {/* Floating Particles */}
-      {[...Array(30)].map((_, i) => {
+      {[...Array(8)].map((_, i) => {
         const xPos = ((i * 37) % 100);
         const yStart = ((i * 53) % 100);
         const duration = 8 + ((i * 0.5) % 4);

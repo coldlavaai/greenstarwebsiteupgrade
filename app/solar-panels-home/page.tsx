@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { Sun, TrendingDown, Shield, Zap, Home, CheckCircle, ArrowRight, Leaf, Award } from 'lucide-react';
+import Image from 'next/image';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import PageWrapper from '@/components/PageWrapper';
@@ -171,10 +172,14 @@ export default function SolarPanelsHome() {
                     transition={{ delay: 0.3, duration: 0.6 }}
                     className="flex justify-center"
                   >
-                    <img
+                    <Image
                       src="/aiko-neostar-3s.png"
                       alt="Aiko Neostar 3S N-Type ABC Solar Panel"
+                      width={512}
+                      height={512}
                       className="w-full h-auto object-contain drop-shadow-2xl max-w-lg"
+                      priority
+                      quality={90}
                     />
                   </motion.div>
 
@@ -186,10 +191,13 @@ export default function SolarPanelsHome() {
                     transition={{ delay: 0.1, duration: 0.5 }}
                     className="flex justify-center"
                   >
-                    <img
+                    <Image
                       src="/aiko-logo.png"
                       alt="Aiko Solar"
+                      width={200}
+                      height={56}
                       className="h-14 w-auto object-contain opacity-90"
+                      priority
                     />
                   </motion.div>
                 </div>
@@ -306,11 +314,13 @@ export default function SolarPanelsHome() {
                   whileHover={{ y: -5, scale: 1.02 }}
                   className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10 hover:border-primary/30 transition-all"
                 >
-                  <div className="mb-6 h-24 flex items-center justify-center">
-                    <img
+                  <div className="mb-6 h-24 flex items-center justify-center relative">
+                    <Image
                       src={brand.logo}
                       alt="Brand logo"
-                      className="max-w-full max-h-full object-contain drop-shadow-lg"
+                      fill
+                      className="object-contain drop-shadow-lg"
+                      sizes="(max-width: 768px) 100vw, 25vw"
                     />
                   </div>
                   <p className="text-white/70 text-sm leading-relaxed font-light mb-6">
