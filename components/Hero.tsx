@@ -263,12 +263,19 @@ const Hero = ({ data }: HeroProps) => {
 
               {/* Floating Stats Cards with premium effects */}
               {stats.map((stat, index) => (
-                <div
+                <motion.div
                   key={stat._key || index}
-                  className={`absolute ${index === 0 ? 'top-10 -left-10' : 'bottom-10 -right-10'} bg-gradient-to-br from-white/15 to-white/5 p-5 rounded-2xl border border-white/20 shadow-2xl cursor-pointer transition-all duration-300 hover:scale-110 hover:shadow-[0_20px_60px_rgba(140,198,63,0.4)]`}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.6 + index * 0.1, type: 'spring', stiffness: 100 }}
+                  whileHover={!reduceMotion ? { scale: 1.1, y: -10 } : {}}
+                  className={`absolute ${index === 0 ? 'top-10 -left-10' : 'bottom-10 -right-10'} bg-gradient-to-br from-[rgba(255,255,255,0.15)] to-[rgba(255,255,255,0.05)] p-5 rounded-2xl border border-white/20 shadow-2xl hover:shadow-[0_20px_60px_rgba(140,198,63,0.4)] cursor-pointer`}
                   style={{
                     backdropFilter: 'blur(20px)',
                     WebkitBackdropFilter: 'blur(20px)',
+                    willChange: 'transform, opacity, backdrop-filter',
+                    transform: 'translateZ(0)',
+                    backgroundColor: 'rgba(30, 30, 30, 0.6)',
                   }}
                   data-sanity={data?._id && stat._key ? `${data._id}.stats[_key=="${stat._key}"]` : undefined}
                 >
@@ -277,7 +284,7 @@ const Hero = ({ data }: HeroProps) => {
                   </div>
                   <div className="text-[10px] text-white font-semibold">{stat.label}</div>
                   <div className="absolute -inset-1 bg-gradient-to-r from-[#8cc63f] to-[#7ab52f] opacity-0 hover:opacity-20 rounded-3xl blur transition-opacity" />
-                </div>
+                </motion.div>
               ))}
             </motion.div>
           </motion.div>
