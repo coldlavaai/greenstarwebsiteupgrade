@@ -160,23 +160,8 @@ export default function SolarPanelsHome() {
                   </p>
                 </motion.div>
 
-                {/* Visual Column - Logo and Image */}
-                <div className="space-y-6">
-                  {/* Aiko Logo */}
-                  <motion.div
-                    initial={{ opacity: 0, y: -20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.1 }}
-                    transition={{ delay: 0.1, duration: 0.5 }}
-                    className="flex justify-center"
-                  >
-                    <img
-                      src="/aiko-logo.png"
-                      alt="Aiko Solar"
-                      className="h-10 w-auto object-contain opacity-90"
-                    />
-                  </motion.div>
-
+                {/* Visual Column - Image and Logo */}
+                <div className="space-y-4">
                   {/* Solar Panel Image */}
                   <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
@@ -189,6 +174,21 @@ export default function SolarPanelsHome() {
                       src="/aiko-neostar-3s.png"
                       alt="Aiko Neostar 3S N-Type ABC Solar Panel"
                       className="w-full h-auto object-contain drop-shadow-2xl max-w-lg"
+                    />
+                  </motion.div>
+
+                  {/* Aiko Logo */}
+                  <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.1 }}
+                    transition={{ delay: 0.1, duration: 0.5 }}
+                    className="flex justify-center"
+                  >
+                    <img
+                      src="/aiko-logo.png"
+                      alt="Aiko Solar"
+                      className="h-14 w-auto object-contain opacity-90"
                     />
                   </motion.div>
                 </div>
