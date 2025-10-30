@@ -30,12 +30,16 @@ export default function GalleryGridSection({ data }: any) {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05 }}
-                className="aspect-square rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
+                whileHover={{ scale: 1.05, y: -5, transition: { duration: 0.2 } }}
+                className="aspect-square rounded-lg overflow-hidden shadow-lg hover:shadow-[0_20px_60px_rgba(140,198,63,0.4)] border border-gray-200 hover:border-[#8cc63f]/50"
+                style={{
+                  transition: 'box-shadow 0.2s ease, border-color 0.2s ease',
+                }}
               >
                 <img
                   src={urlFor(img.image).width(800).height(800).fit('crop').quality(85).url()}
                   alt={img.alt || ''}
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover"
                 />
               </motion.div>
             ))}

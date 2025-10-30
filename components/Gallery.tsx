@@ -150,7 +150,7 @@ const Gallery = ({ data }: GalleryProps) => {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
               transition={{ delay: index * 0.1, duration: 0.6 }}
               onClick={() => toggleCard(index)}
-              whileHover={{ y: -8 }}
+              whileHover={{ scale: 1.05, y: -5, transition: { duration: 0.2 } }}
               className="group cursor-pointer perspective-1000"
               style={{ perspective: '1000px' }}
             >
@@ -162,11 +162,11 @@ const Gallery = ({ data }: GalleryProps) => {
               >
                 {/* Front of card */}
                 <div
-                  className="absolute inset-0 rounded-3xl overflow-hidden shadow-2xl"
+                  className="absolute inset-0 rounded-3xl overflow-hidden shadow-2xl group-hover:shadow-[0_20px_60px_rgba(140,198,63,0.4)] border border-white/10 group-hover:border-[#8cc63f]/50"
                   style={{
                     backfaceVisibility: 'hidden',
                     WebkitBackfaceVisibility: 'hidden',
-                    boxShadow: '0 10px 40px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.05)',
+                    transition: 'box-shadow 0.2s ease, border-color 0.2s ease',
                   }}
                 >
                   <motion.div
@@ -174,7 +174,6 @@ const Gallery = ({ data }: GalleryProps) => {
                     style={{ backgroundImage: `url('${project.image}')` }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-70" />
-                  <div className="absolute inset-0 bg-gradient-to-tr from-accent/30 via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                   {/* Location badge - bottom left */}
                   <div className="absolute bottom-4 left-4">
