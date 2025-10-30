@@ -4,7 +4,6 @@ import { testimonial } from './testimonial'
 import { galleryItem } from './galleryItem'
 import { processStep } from './processStep'
 import { formSubmission } from './formSubmission'
-import { dbrLead } from './dbrLead'
 
 // Knowledge Base Types
 import productCategory from './productCategory'
@@ -111,9 +110,6 @@ export const schemaTypes = [
 
   // Form Submissions
   formSubmission,
-
-  // DBR (Database Recovery) Leads
-  dbrLead,
 
   // Knowledge Base
   productCategory,
