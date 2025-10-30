@@ -171,6 +171,28 @@ h1, h2, h3, h4, h5, h6 {
   will-change: transform, opacity;
 }
 
+/* Navigation visibility - force desktop nav on desktop screens */
+@media (min-width: 1200px) {
+  .mobile-menu-button {
+    display: none !important;
+  }
+  .mobile-menu {
+    display: none !important;
+  }
+  .desktop-menu {
+    display: flex !important;
+  }
+}
+
+@media (max-width: 1199px) {
+  .desktop-menu {
+    display: none !important;
+  }
+  .mobile-menu-button {
+    display: flex !important;
+  }
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
