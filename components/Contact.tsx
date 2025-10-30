@@ -207,29 +207,29 @@ const Contact = ({ data }: ContactProps) => {
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="bg-white rounded-2xl md:rounded-3xl shadow-xl p-6 md:p-8 border border-gray-100">
+            <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl md:rounded-3xl shadow-2xl p-6 md:p-8 border border-white/20">
               {!isSubmitted ? (
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 md:space-y-6">
                   {/* Name Field */}
                   <div>
-                    <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
+                    <label htmlFor="name" className="block text-sm font-semibold text-white mb-2">
                       Full Name *
                     </label>
                     <input
                       {...register('name', { required: 'Name is required' })}
                       type="text"
                       id="name"
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#8cc63f] focus:ring-2 focus:ring-[#8cc63f]/20 outline-none transition-all text-gray-900"
+                      className="w-full px-4 py-3 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 focus:border-[#8cc63f] focus:ring-2 focus:ring-[#8cc63f]/30 outline-none transition-all text-white placeholder:text-white/40"
                       placeholder="John Smith"
                     />
                     {errors.name && (
-                      <p className="mt-1 text-sm text-red-500">{errors.name.message}</p>
+                      <p className="mt-1 text-sm text-red-400">{errors.name.message}</p>
                     )}
                   </div>
 
                   {/* Email Field */}
                   <div>
-                    <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
+                    <label htmlFor="email" className="block text-sm font-semibold text-white mb-2">
                       Email Address *
                     </label>
                     <input
@@ -242,41 +242,41 @@ const Contact = ({ data }: ContactProps) => {
                       })}
                       type="email"
                       id="email"
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#8cc63f] focus:ring-2 focus:ring-[#8cc63f]/20 outline-none transition-all text-gray-900"
+                      className="w-full px-4 py-3 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 focus:border-[#8cc63f] focus:ring-2 focus:ring-[#8cc63f]/30 outline-none transition-all text-white placeholder:text-white/40"
                       placeholder="john@example.com"
                     />
                     {errors.email && (
-                      <p className="mt-1 text-sm text-red-500">{errors.email.message}</p>
+                      <p className="mt-1 text-sm text-red-400">{errors.email.message}</p>
                     )}
                   </div>
 
                   {/* Phone Field */}
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">
+                    <label htmlFor="phone" className="block text-sm font-semibold text-white mb-2">
                       Phone Number *
                     </label>
                     <input
                       {...register('phone', { required: 'Phone number is required' })}
                       type="tel"
                       id="phone"
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#8cc63f] focus:ring-2 focus:ring-[#8cc63f]/20 outline-none transition-all text-gray-900"
+                      className="w-full px-4 py-3 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 focus:border-[#8cc63f] focus:ring-2 focus:ring-[#8cc63f]/30 outline-none transition-all text-white placeholder:text-white/40"
                       placeholder="07123 456789"
                     />
                     {errors.phone && (
-                      <p className="mt-1 text-sm text-red-500">{errors.phone.message}</p>
+                      <p className="mt-1 text-sm text-red-400">{errors.phone.message}</p>
                     )}
                   </div>
 
                   {/* Message Field */}
                   <div>
-                    <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2">
+                    <label htmlFor="message" className="block text-sm font-semibold text-white mb-2">
                       Message
                     </label>
                     <textarea
                       {...register('message')}
                       id="message"
                       rows={4}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#8cc63f] focus:ring-2 focus:ring-[#8cc63f]/20 outline-none transition-all resize-none text-gray-900"
+                      className="w-full px-4 py-3 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 focus:border-[#8cc63f] focus:ring-2 focus:ring-[#8cc63f]/30 outline-none transition-all resize-none text-white placeholder:text-white/40"
                       placeholder="Tell us about your project..."
                     />
                   </div>
@@ -342,8 +342,8 @@ const Contact = ({ data }: ContactProps) => {
                   >
                     <CheckCircle className="w-12 h-12 text-white" />
                   </motion.div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2" style={{ fontFamily: 'var(--font-heading)' }}>Thank You!</h3>
-                  <p className="text-gray-600">
+                  <h3 className="text-2xl font-bold text-white mb-2" style={{ fontFamily: 'var(--font-heading)' }}>Thank You!</h3>
+                  <p className="text-white/80">
                     We've received your message and will get back to you soon.
                   </p>
                 </motion.div>
