@@ -184,7 +184,6 @@ const Contact = ({ data }: ContactProps) => {
                   'Free site assessment & consultation',
                   'Transparent pricing with no hidden costs',
                   '25 year warranty on all installations',
-                  'MCS certified installers',
                   'Expert advice & ongoing support',
                 ].map((benefit, idx) => (
                   <motion.li
