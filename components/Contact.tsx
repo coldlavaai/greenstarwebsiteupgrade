@@ -10,6 +10,7 @@ interface FormData {
   name: string;
   email: string;
   phone: string;
+  postcode: string;
   message: string;
 }
 
@@ -264,6 +265,23 @@ const Contact = ({ data }: ContactProps) => {
                     />
                     {errors.phone && (
                       <p className="mt-1 text-sm text-red-400">{errors.phone.message}</p>
+                    )}
+                  </div>
+
+                  {/* Postcode Field */}
+                  <div>
+                    <label htmlFor="postcode" className="block text-sm font-semibold text-white mb-2">
+                      Postcode *
+                    </label>
+                    <input
+                      {...register('postcode', { required: 'Postcode is required' })}
+                      type="text"
+                      id="postcode"
+                      className="w-full px-4 py-3 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 focus:border-[#8cc63f] focus:ring-2 focus:ring-[#8cc63f]/30 outline-none transition-all text-white placeholder:text-white/40"
+                      placeholder="SW1A 1AA"
+                    />
+                    {errors.postcode && (
+                      <p className="mt-1 text-sm text-red-400">{errors.postcode.message}</p>
                     )}
                   </div>
 
