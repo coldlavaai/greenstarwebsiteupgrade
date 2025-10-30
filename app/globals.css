@@ -1,5 +1,23 @@
 @import "tailwindcss";
 
+/* Mobile-optimized spinning logo - hardware accelerated CSS animation */
+@keyframes mobileSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.mobile-spin-logo {
+  animation: mobileSpin 90s linear infinite;
+  will-change: transform;
+  /* Use GPU acceleration for smooth performance */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
 @font-face {
   font-family: 'Microgramma D Extended';
   src: url('/fonts/MicrogrammaDMediumExtended.ttf') format('truetype');

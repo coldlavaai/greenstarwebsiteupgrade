@@ -5,6 +5,7 @@ import { ArrowRight, Sun, Zap, Sparkles, Plug } from 'lucide-react';
 import { useRef, useState, useEffect } from 'react';
 import { urlFor } from '@/lib/sanity';
 import BatteryIcon from '@/components/icons/BatteryIcon';
+import { useIsMobile, useIsTouch, useReducedMotion } from '@/hooks/useMediaQuery';
 
 interface HeroData {
   _id?: string;
@@ -30,14 +31,18 @@ interface HeroProps {
 const Hero = ({ data }: HeroProps) => {
   const ref = useRef(null);
   const [scrolled, setScrolled] = useState(false);
+  const isMobile = useIsMobile();
+  const isTouch = useIsTouch();
+  const reduceMotion = useReducedMotion();
 
+  // Disable parallax on mobile for performance
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start start', 'end start'],
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
-  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
+  const y = useTransform(scrollYProgress, [0, 1], isMobile ? ['0%', '0%'] : ['0%', '50%']);
+  const opacity = useTransform(scrollYProgress, [0, 1], isMobile ? [1, 1] : [1, 0]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -72,11 +77,11 @@ const Hero = ({ data }: HeroProps) => {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: isMobile ? 0.4 : 0.8 }}
               className="inline-flex items-center space-x-2 md:space-x-3 mb-6 md:mb-8"
             >
               <motion.div
-                animate={{ rotate: [0, 360] }}
+                animate={!isMobile && !reduceMotion ? { rotate: [0, 360] } : {}}
                 transition={{ duration: 90, repeat: Infinity, ease: 'linear' }}
                 className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-gradient-to-br from-primary via-primary-light to-primary flex items-center justify-center"
               >
@@ -90,7 +95,7 @@ const Hero = ({ data }: HeroProps) => {
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.8 }}
+              transition={{ delay: isMobile ? 0.1 : 0.2, duration: isMobile ? 0.4 : 0.8 }}
               className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-[1.1] tracking-tight"
               data-sanity={data?._id ? `${data._id}.heading` : undefined}
               style={{ fontFamily: 'var(--font-heading)' }}
@@ -98,9 +103,9 @@ const Hero = ({ data }: HeroProps) => {
               {data?.heading || 'Power Your Future'}<br />
               <motion.span
                 className="bg-gradient-to-r from-primary via-primary to-primary bg-clip-text text-transparent bg-[length:200%_auto]"
-                animate={{ backgroundPosition: ['0% center', '200% center'] }}
+                animate={!isMobile && !reduceMotion ? { backgroundPosition: ['0% center', '200% center'] } : {}}
                 transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
-                style={{ textShadow: '0 0 80px rgba(140, 199, 64, 0.3)' }}
+                style={isMobile ? {} : { textShadow: '0 0 80px rgba(140, 199, 64, 0.3)' }}
               >
                 with Solar Energy
               </motion.span>
@@ -123,14 +128,14 @@ const Hero = ({ data }: HeroProps) => {
               className="flex flex-wrap gap-3 md:gap-4 mb-8 md:mb-10"
             >
               <motion.a
-                whileHover={{ scale: 1.02 }}
+                whileHover={!isTouch ? { scale: 1.02 } : {}}
                 whileTap={{ scale: 0.98 }}
                 href={data?.ctaLink || "#contact"}
                 className="group relative px-5 py-2.5 md:px-6 md:py-3 rounded-full font-semibold text-xs md:text-sm overflow-hidden"
                 style={{
                   background: 'rgba(140, 198, 63, 0.15)',
-                  backdropFilter: 'blur(20px)',
-                  WebkitBackdropFilter: 'blur(20px)',
+                  backdropFilter: isMobile ? 'blur(10px)' : 'blur(20px)',
+                  WebkitBackdropFilter: isMobile ? 'blur(10px)' : 'blur(20px)',
                   border: '1px solid rgba(140, 198, 63, 0.3)',
                   boxShadow: '0 8px 32px rgba(140, 198, 63, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
                 }}
@@ -145,21 +150,25 @@ const Hero = ({ data }: HeroProps) => {
               </motion.a>
 
               <motion.a
-                whileHover={{
+                whileHover={!isTouch ? {
                   scale: 1.05,
                   backgroundColor: 'rgba(255,255,255,0.15)',
                   borderColor: 'rgba(140,198,63,0.8)',
                   boxShadow: '0 20px 40px rgba(140,198,63,0.3)',
-                }}
+                } : {}}
                 whileTap={{ scale: 0.95 }}
                 href={data?.secondaryCtaLink || "#systems"}
-                className="group relative backdrop-blur-xl bg-white/5 text-white px-5 py-2.5 md:px-6 md:py-3 rounded-full font-semibold text-xs md:text-sm border-2 border-white/20 transition-all shadow-xl"
+                className="group relative bg-white/5 text-white px-5 py-2.5 md:px-6 md:py-3 rounded-full font-semibold text-xs md:text-sm border-2 border-white/20 transition-all shadow-xl"
+                style={{
+                  backdropFilter: isMobile ? 'blur(10px)' : 'blur(20px)',
+                  WebkitBackdropFilter: isMobile ? 'blur(10px)' : 'blur(20px)',
+                }}
                 data-sanity={data?._id ? `${data._id}.secondaryCtaText` : undefined}
               >
                 <span className="flex items-center space-x-2">
                   <span className="tracking-wide">{data?.secondaryCtaText || 'Explore Systems'}</span>
                   <motion.span
-                    animate={{ rotate: [0, 360] }}
+                    animate={!isMobile && !reduceMotion ? { rotate: [0, 360] } : {}}
                     transition={{ duration: 90, repeat: Infinity, ease: 'linear' }}
                   >
                     <Sun className="w-4 h-4 md:w-5 md:h-5 text-primary" />
@@ -180,15 +189,21 @@ const Hero = ({ data }: HeroProps) => {
                   key={feature.text}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.9 + index * 0.1 }}
-                  whileHover={{
+                  transition={{ delay: isMobile ? 0.3 + index * 0.05 : 0.9 + index * 0.1 }}
+                  whileHover={!isTouch ? {
                     y: -6,
                     scale: 1.03,
                     transition: { type: 'spring', stiffness: 300, damping: 20 }
-                  }}
+                  } : {}}
                   className="group relative cursor-pointer"
                 >
-                  <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 p-2 md:p-4 rounded-lg md:rounded-xl hover:bg-white/10 transition-all duration-300 hover:shadow-[0_15px_40px_rgba(140,198,63,0.3)] hover:border-[#8cc63f]/50">
+                  <div
+                    className="relative bg-white/5 border border-white/10 p-2 md:p-4 rounded-lg md:rounded-xl hover:bg-white/10 transition-all duration-300 hover:shadow-[0_15px_40px_rgba(140,198,63,0.3)] hover:border-[#8cc63f]/50"
+                    style={{
+                      backdropFilter: isMobile ? 'blur(10px)' : 'blur(20px)',
+                      WebkitBackdropFilter: isMobile ? 'blur(10px)' : 'blur(20px)',
+                    }}
+                  >
                     {/* Gradient glow effect on hover */}
                     <motion.div
                       className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-20 rounded-lg md:rounded-xl blur-xl transition-opacity duration-300`}
@@ -214,10 +229,10 @@ const Hero = ({ data }: HeroProps) => {
             className="relative hidden lg:block"
           >
             <motion.div
-              animate={{
+              animate={!reduceMotion ? {
                 y: [0, -20, 0],
                 rotateY: [0, 5, 0],
-              }}
+              } : {}}
               transition={{
                 duration: 6,
                 repeat: Infinity,
@@ -228,7 +243,11 @@ const Hero = ({ data }: HeroProps) => {
             >
               {/* Main Image Card with 3D effect */}
               <div
-                className="relative aspect-square rounded-3xl overflow-hidden shadow-2xl border border-white/20 backdrop-blur-xl bg-white/5 w-full"
+                className="relative aspect-square rounded-3xl overflow-hidden shadow-2xl border border-white/20 bg-white/5 w-full"
+                style={{
+                  backdropFilter: 'blur(20px)',
+                  WebkitBackdropFilter: 'blur(20px)',
+                }}
                 data-sanity={data?._id ? `${data._id}.backgroundImage` : undefined}
               >
                 <div
@@ -249,9 +268,13 @@ const Hero = ({ data }: HeroProps) => {
                   initial={{ opacity: 0, scale: 0, rotateZ: index === 0 ? -10 : 10 }}
                   animate={{ opacity: 1, scale: 1, rotateZ: 0 }}
                   transition={{ delay: 1.2 + index * 0.2, type: 'spring' }}
-                  whileHover={{ scale: 1.1, rotateZ: index === 0 ? 5 : -5, y: -10 }}
-                  className={`absolute ${index === 0 ? 'top-10 -left-10' : 'bottom-10 -right-10'} bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-xl p-5 rounded-2xl border border-white/20 shadow-2xl hover:shadow-[0_20px_60px_rgba(140,198,63,0.4)] cursor-pointer`}
-                  style={{ transformStyle: 'preserve-3d' }}
+                  whileHover={!reduceMotion ? { scale: 1.1, rotateZ: index === 0 ? 5 : -5, y: -10 } : {}}
+                  className={`absolute ${index === 0 ? 'top-10 -left-10' : 'bottom-10 -right-10'} bg-gradient-to-br from-white/15 to-white/5 p-5 rounded-2xl border border-white/20 shadow-2xl hover:shadow-[0_20px_60px_rgba(140,198,63,0.4)] cursor-pointer`}
+                  style={{
+                    transformStyle: 'preserve-3d',
+                    backdropFilter: 'blur(20px)',
+                    WebkitBackdropFilter: 'blur(20px)',
+                  }}
                   data-sanity={data?._id && stat._key ? `${data._id}.stats[_key=="${stat._key}"]` : undefined}
                 >
                   <div className="text-2xl font-bold bg-gradient-to-r from-[#8cc63f] to-[#7ab52f] bg-clip-text text-transparent mb-1">

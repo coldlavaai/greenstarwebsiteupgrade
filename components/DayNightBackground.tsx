@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform, useMotionValue, useAnimationFrame, animate } from 'framer-motion';
 import { useRef, useContext, useEffect, useState } from 'react';
 import { LoadingContext } from './PageWrapper';
+import { useIsMobile, useReducedMotion } from '@/hooks/useMediaQuery';
 
 const DayNightBackground = () => {
   const { scrollYProgress } = useScroll();
@@ -10,6 +11,8 @@ const DayNightBackground = () => {
   const timeRef = useRef(0);
   const { isLoaded, assemblyComplete } = useContext(LoadingContext);
   const [animationsReady, setAnimationsReady] = useState(false);
+  const isMobile = useIsMobile();
+  const reduceMotion = useReducedMotion();
 
   // Defer heavy animations until after initial paint
   useEffect(() => {
@@ -19,15 +22,15 @@ const DayNightBackground = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Continuous clockwise rotation - only start when ready
+  // Continuous clockwise rotation - ONLY on desktop for performance
   useAnimationFrame((t) => {
-    if (!animationsReady) return; // Don't animate until ready
+    if (!animationsReady || isMobile) return; // Disable on mobile - use CSS instead
     timeRef.current = t;
     baseRotation.set((t / 1000) * 4); // 4 degrees per second = 90 sec for 360°
   });
 
-  // Scroll-based rotation boost (speeds up clockwise when scrolling down)
-  const scrollRotation = useTransform(scrollYProgress, [0, 1], [0, 360]);
+  // Scroll-based rotation boost - disabled on mobile for performance
+  const scrollRotation = useTransform(scrollYProgress, [0, 1], isMobile ? [0, 0] : [0, 360]);
 
   // Combine rotations
   const combinedRotation = useTransform(
@@ -105,8 +108,8 @@ const DayNightBackground = () => {
         />
       </motion.div>
 
-      {/* Floating Particles */}
-      {[...Array(30)].map((_, i) => {
+      {/* Floating Particles - Reduced on mobile */}
+      {!isMobile && [...Array(30)].map((_, i) => {
         const xPos = ((i * 37) % 100);
         const yStart = ((i * 53) % 100);
         const duration = 8 + ((i * 0.5) % 4);
@@ -145,9 +148,9 @@ const DayNightBackground = () => {
       >
         {/* Logo Container with Parallax Rotation */}
         <motion.div
-          className="relative"
+          className={`relative ${isMobile ? 'mobile-spin-logo' : ''}`}
           style={{
-            rotate: combinedRotation,
+            rotate: isMobile ? undefined : combinedRotation, // Use CSS animation on mobile
           }}
           initial={{ scale: 0.3 }}
           animate={{
@@ -157,23 +160,25 @@ const DayNightBackground = () => {
             scale: { duration: 1.2, ease: [0.25, 0.1, 0.0, 1.0] }
           }}
         >
-          {/* Subtle Electrical Glow Pulse */}
-          <motion.div
-            className="absolute inset-0"
-            animate={{
-              opacity: [0.2, 0.35, 0.2],
-              scale: [1, 1.03, 1],
-            }}
-            transition={{
-              duration: 5,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            }}
-            style={{
-              filter: 'blur(30px)',
-              background: 'radial-gradient(circle, rgba(140, 199, 64, 0.25) 0%, transparent 70%)',
-            }}
-          />
+          {/* Subtle Electrical Glow Pulse - Simplified on mobile */}
+          {!isMobile && (
+            <motion.div
+              className="absolute inset-0"
+              animate={{
+                opacity: [0.2, 0.35, 0.2],
+                scale: [1, 1.03, 1],
+              }}
+              transition={{
+                duration: 5,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }}
+              style={{
+                filter: 'blur(30px)',
+                background: 'radial-gradient(circle, rgba(140, 199, 64, 0.25) 0%, transparent 70%)',
+              }}
+            />
+          )}
 
           {/* Logo Image */}
           <motion.img
@@ -181,17 +186,17 @@ const DayNightBackground = () => {
             alt="Greenstar Logo"
             className="relative z-10"
             style={{
-              width: '500px',
-              height: '500px',
+              width: isMobile ? '350px' : '500px',
+              height: isMobile ? '350px' : '500px',
               filter: 'drop-shadow(0 0 15px rgba(140, 199, 64, 0.25))',
             }}
-            animate={{
+            animate={!isMobile && !reduceMotion ? {
               filter: [
                 'drop-shadow(0 0 15px rgba(140, 199, 64, 0.25))',
                 'drop-shadow(0 0 22px rgba(140, 199, 64, 0.35))',
                 'drop-shadow(0 0 15px rgba(140, 199, 64, 0.25))',
               ],
-            }}
+            } : {}}
             transition={{
               duration: 5,
               repeat: Infinity,
