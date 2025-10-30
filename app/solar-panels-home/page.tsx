@@ -278,9 +278,9 @@ export default function SolarPanelsHome() {
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
                 {
-                  name: 'Hanchu',
+                  name: 'Hanchu ESS',
                   description: 'Advanced hybrid inverter technology',
-                  logo: '/hanchu-logo.svg',
+                  logo: '/hanchu-logo.png',
                 },
                 {
                   name: 'Fox ESS',
@@ -290,12 +290,12 @@ export default function SolarPanelsHome() {
                 {
                   name: 'EcoFlow',
                   description: 'Smart power management systems',
-                  logo: '/ecoflow-logo.svg',
+                  logo: '/ecoflow-logo.png',
                 },
                 {
                   name: 'Sigenergy',
                   description: 'Next-gen battery solutions',
-                  logo: '/sigenergy-logo.svg',
+                  logo: '/sigenergy-logo.png',
                 },
               ].map((brand, index) => (
                 <motion.div
@@ -307,14 +307,14 @@ export default function SolarPanelsHome() {
                   whileHover={{ y: -5, scale: 1.02 }}
                   className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10 hover:border-primary/30 transition-all"
                 >
-                  <div className="bg-white/95 backdrop-blur-sm rounded-xl p-4 mb-6 h-20 flex items-center justify-center">
+                  <div className="bg-white/95 backdrop-blur-sm rounded-xl p-5 mb-6 h-24 flex items-center justify-center">
                     <img
                       src={brand.logo}
                       alt={`${brand.name} logo`}
                       className="max-w-full max-h-full object-contain"
                     />
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-3 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
+                  <h3 className="text-xl font-bold text-white mb-2 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
                     {brand.name}
                   </h3>
                   <p className="text-white/60 text-sm leading-relaxed font-light">
