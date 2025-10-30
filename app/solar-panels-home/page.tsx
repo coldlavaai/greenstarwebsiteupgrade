@@ -173,7 +173,7 @@ export default function SolarPanelsHome() {
                     <img
                       src="/aiko-logo.png"
                       alt="Aiko Solar"
-                      className="h-12 w-auto object-contain opacity-90"
+                      className="h-10 w-auto object-contain opacity-90"
                     />
                   </motion.div>
 
@@ -188,7 +188,7 @@ export default function SolarPanelsHome() {
                     <img
                       src="/aiko-neostar-3s.png"
                       alt="Aiko Neostar 3S N-Type ABC Solar Panel"
-                      className="w-full h-auto object-contain drop-shadow-2xl max-w-md"
+                      className="w-full h-auto object-contain drop-shadow-2xl max-w-lg"
                     />
                   </motion.div>
                 </div>
