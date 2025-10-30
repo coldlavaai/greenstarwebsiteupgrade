@@ -1,0 +1,365 @@
+'use client';
+
+import { useState, useRef, useEffect } from 'react';
+
+interface Message {
+  role: 'user' | 'assistant';
+  content: string;
+}
+
+export default function VapiTextChat() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [inputValue, setInputValue] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [chatId, setChatId] = useState<string | null>(null);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const WIDGET_CONFIG = {
+    assistantId: 'cb76e1bc-dc2d-4ea8-84a1-c17499ed6387',
+    apiKey: 'bb0b198b-1a8f-4675-bdf8-8a865fc5d68a'
+  };
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  const sendMessage = async (message: string) => {
+    if (!message.trim()) return;
+
+    // Add user message
+    const userMessage: Message = { role: 'user', content: message };
+    setMessages(prev => [...prev, userMessage]);
+    setInputValue('');
+    setIsLoading(true);
+
+    try {
+      // Call VAPI Chat API
+      const payload: any = {
+        assistantId: WIDGET_CONFIG.assistantId,
+        input: message
+      };
+
+      // Include previous chat ID for conversation continuity
+      if (chatId) {
+        payload.previousChatId = chatId;
+      }
+
+      const response = await fetch('https://api.vapi.ai/chat', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${WIDGET_CONFIG.apiKey}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await response.json();
+
+      // Save chat ID for conversation persistence
+      if (data.id) {
+        setChatId(data.id);
+      }
+
+      // Extract Sophie's response
+      let sophieResponse = '';
+      if (data.output && Array.isArray(data.output) && data.output.length > 0) {
+        sophieResponse = data.output[data.output.length - 1].content || data.output[data.output.length - 1].text;
+      } else if (data.messages && Array.isArray(data.messages) && data.messages.length > 0) {
+        sophieResponse = data.messages[data.messages.length - 1].content || data.messages[data.messages.length - 1].text;
+      } else if (data.response) {
+        sophieResponse = data.response;
+      } else if (data.reply) {
+        sophieResponse = data.reply;
+      }
+
+      // Add Sophie's response
+      if (sophieResponse) {
+        const assistantMessage: Message = { role: 'assistant', content: sophieResponse };
+        setMessages(prev => [...prev, assistantMessage]);
+      }
+
+    } catch (error) {
+      console.error('Chat error:', error);
+      const errorMessage: Message = {
+        role: 'assistant',
+        content: 'Sorry, I had trouble processing that. Could you try again?'
+      };
+      setMessages(prev => [...prev, errorMessage]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    sendMessage(inputValue);
+  };
+
+  return (
+    <>
+      {/* Widget Styles */}
+      <style jsx global>{`
+        @keyframes slideUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.6; }
+        }
+      `}</style>
+
+      {/* Widget Container */}
+      <div style={{
+        position: 'fixed',
+        bottom: '30px',
+        right: '30px',
+        zIndex: 10000,
+        fontFamily: 'var(--font-inter), -apple-system, sans-serif'
+      }}>
+
+        {/* Chat Button */}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          style={{
+            width: '70px',
+            height: '70px',
+            borderRadius: '50%',
+            background: 'linear-gradient(145deg, rgba(30, 30, 30, 0.95), rgba(20, 20, 20, 0.9))',
+            border: '1px solid rgba(140, 198, 63, 0.2)',
+            cursor: 'pointer',
+            boxShadow: '0 24px 48px rgba(140, 198, 63, 0.2), 0 12px 24px rgba(0, 0, 0, 0.15)',
+            backdropFilter: 'blur(30px)',
+            transition: 'all 0.3s ease',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translateY(-8px) scale(1.05)';
+            e.currentTarget.style.boxShadow = '0 32px 64px rgba(140, 198, 63, 0.3)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'translateY(0) scale(1)';
+            e.currentTarget.style.boxShadow = '0 24px 48px rgba(140, 198, 63, 0.2)';
+          }}
+          aria-label="Open chat"
+        >
+          <img
+            src="/images/greenstar-logo-dots.png"
+            alt="Greenstar Solar"
+            style={{
+              width: '42px',
+              height: '42px',
+              borderRadius: '8px',
+              filter: 'drop-shadow(0 0 12px rgba(140, 198, 63, 0.4)) brightness(1.1)'
+            }}
+          />
+        </button>
+
+        {/* Chat Window */}
+        {isOpen && (
+          <div style={{
+            position: 'absolute',
+            bottom: '85px',
+            right: 0,
+            width: '420px',
+            height: '600px',
+            background: 'linear-gradient(145deg, rgba(20, 20, 20, 0.98), rgba(15, 15, 15, 0.95))',
+            borderRadius: '24px',
+            border: '1px solid rgba(140, 198, 63, 0.2)',
+            backdropFilter: 'blur(50px)',
+            boxShadow: '0 50px 100px rgba(0, 0, 0, 0.6)',
+            display: 'flex',
+            flexDirection: 'column',
+            overflow: 'hidden',
+            animation: 'slideUp 0.4s ease-out'
+          }}>
+
+            {/* Header */}
+            <div style={{
+              padding: '20px 24px',
+              background: 'linear-gradient(135deg, #8cc63f, #7ab52f)',
+              color: '#000',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              borderBottom: '1px solid rgba(255, 255, 255, 0.1)'
+            }}>
+              <div>
+                <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 700 }}>
+                  Chat with Sophie
+                </h3>
+                <p style={{ margin: '4px 0 0 0', fontSize: '12px', opacity: 0.8 }}>
+                  Greenstar Solar Assistant
+                </p>
+              </div>
+              <button
+                onClick={() => setIsOpen(false)}
+                style={{
+                  background: 'rgba(0, 0, 0, 0.15)',
+                  border: '1px solid rgba(0, 0, 0, 0.2)',
+                  fontSize: '18px',
+                  cursor: 'pointer',
+                  padding: '6px 10px',
+                  borderRadius: '10px',
+                  color: '#000',
+                  transition: 'all 0.2s'
+                }}
+                aria-label="Close chat"
+              >
+                ×
+              </button>
+            </div>
+
+            {/* Messages */}
+            <div style={{
+              flex: 1,
+              overflowY: 'auto',
+              padding: '20px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '16px'
+            }}>
+              {messages.length === 0 && (
+                <div style={{
+                  textAlign: 'center',
+                  color: 'rgba(255, 255, 255, 0.5)',
+                  marginTop: '40px'
+                }}>
+                  <div style={{ fontSize: '14px', marginBottom: '12px' }}>
+                    Hi! I'm Sophie from Greenstar Solar.
+                  </div>
+                  <div style={{ fontSize: '12px' }}>
+                    How can I help you today?
+                  </div>
+                </div>
+              )}
+
+              {messages.map((msg, idx) => (
+                <div
+                  key={idx}
+                  style={{
+                    display: 'flex',
+                    justifyContent: msg.role === 'user' ? 'flex-end' : 'flex-start'
+                  }}
+                >
+                  <div style={{
+                    maxWidth: '75%',
+                    padding: '12px 16px',
+                    borderRadius: msg.role === 'user' ? '18px 18px 4px 18px' : '18px 18px 18px 4px',
+                    background: msg.role === 'user'
+                      ? 'linear-gradient(135deg, #8cc63f, #7ab52f)'
+                      : 'rgba(255, 255, 255, 0.1)',
+                    color: msg.role === 'user' ? '#000' : '#fff',
+                    fontSize: '14px',
+                    lineHeight: '1.5',
+                    wordWrap: 'break-word'
+                  }}>
+                    {msg.content}
+                  </div>
+                </div>
+              ))}
+
+              {isLoading && (
+                <div style={{ display: 'flex', gap: '6px', padding: '12px' }}>
+                  <div style={{
+                    width: '8px',
+                    height: '8px',
+                    borderRadius: '50%',
+                    background: '#8cc63f',
+                    animation: 'pulse 1.4s ease-in-out infinite'
+                  }} />
+                  <div style={{
+                    width: '8px',
+                    height: '8px',
+                    borderRadius: '50%',
+                    background: '#8cc63f',
+                    animation: 'pulse 1.4s ease-in-out 0.2s infinite'
+                  }} />
+                  <div style={{
+                    width: '8px',
+                    height: '8px',
+                    borderRadius: '50%',
+                    background: '#8cc63f',
+                    animation: 'pulse 1.4s ease-in-out 0.4s infinite'
+                  }} />
+                </div>
+              )}
+
+              <div ref={messagesEndRef} />
+            </div>
+
+            {/* Input */}
+            <form onSubmit={handleSubmit} style={{
+              padding: '20px',
+              borderTop: '1px solid rgba(255, 255, 255, 0.1)',
+              background: 'rgba(0, 0, 0, 0.3)'
+            }}>
+              <div style={{ display: 'flex', gap: '12px' }}>
+                <input
+                  type="text"
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  placeholder="Type your message..."
+                  disabled={isLoading}
+                  style={{
+                    flex: 1,
+                    padding: '12px 16px',
+                    borderRadius: '12px',
+                    border: '1px solid rgba(140, 198, 63, 0.3)',
+                    background: 'rgba(255, 255, 255, 0.05)',
+                    color: '#fff',
+                    fontSize: '14px',
+                    outline: 'none',
+                    transition: 'all 0.2s'
+                  }}
+                  onFocus={(e) => {
+                    e.currentTarget.style.borderColor = '#8cc63f';
+                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
+                  }}
+                  onBlur={(e) => {
+                    e.currentTarget.style.borderColor = 'rgba(140, 198, 63, 0.3)';
+                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
+                  }}
+                />
+                <button
+                  type="submit"
+                  disabled={!inputValue.trim() || isLoading}
+                  style={{
+                    padding: '12px 24px',
+                    borderRadius: '12px',
+                    border: 'none',
+                    background: inputValue.trim() && !isLoading
+                      ? 'linear-gradient(135deg, #8cc63f, #7ab52f)'
+                      : 'rgba(140, 198, 63, 0.3)',
+                    color: inputValue.trim() && !isLoading ? '#000' : 'rgba(255, 255, 255, 0.5)',
+                    fontSize: '14px',
+                    fontWeight: 600,
+                    cursor: inputValue.trim() && !isLoading ? 'pointer' : 'not-allowed',
+                    transition: 'all 0.2s'
+                  }}
+                >
+                  Send
+                </button>
+              </div>
+            </form>
+
+          </div>
+        )}
+      </div>
+    </>
+  );
+}

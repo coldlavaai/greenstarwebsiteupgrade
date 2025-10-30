@@ -2,83 +2,80 @@
 
 import { useEffect, useState, useRef } from 'react';
 
+declare global {
+  interface Window {
+    vapiSDK: any;
+  }
+}
+
 export default function VapiWidget() {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Array<{ text: string; isUser: boolean }>>([]);
-  const [inputValue, setInputValue] = useState('');
-  const previousChatIdRef = useRef<string | null>(null);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const [isCallActive, setIsCallActive] = useState(false);
+  const [callStatus, setCallStatus] = useState('Ready to chat');
+  const vapiInstanceRef = useRef<any>(null);
 
   const WIDGET_CONFIG = {
-    assistantId: 'cb76e1bc-dc2d-4ea8-84a1-c17499ed6387',
-    directApiKey: 'bb0b198b-1a8f-4675-bdf8-8a865fc5d68a'
+    publicKey: 'b3f38fb7-8541-4e3e-8708-5d49c3f54f00',
+    assistantId: 'cb76e1bc-dc2d-4ea8-84a1-c17499ed6387'
   };
 
   useEffect(() => {
-    // Add welcome message after mount
-    setTimeout(() => {
-      setMessages([{ text: "Hi! I'm Sophie. How can I help you with solar energy today?", isUser: false }]);
-    }, 1000);
+    // Load VAPI SDK
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js';
+    script.async = true;
+    script.onload = initializeVapi;
+    document.body.appendChild(script);
+
+    return () => {
+      if (vapiInstanceRef.current) {
+        vapiInstanceRef.current.stop();
+      }
+    };
   }, []);
 
-  useEffect(() => {
-    // Scroll to bottom when messages change
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages]);
+  const initializeVapi = () => {
+    if (typeof window !== 'undefined' && window.vapiSDK) {
+      const vapi = new window.vapiSDK(WIDGET_CONFIG.publicKey);
+      vapiInstanceRef.current = vapi;
 
-  const addMessage = (text: string, isUser: boolean) => {
-    setMessages(prev => [...prev, { text, isUser }]);
-  };
-
-  const extractAssistantMessage = (data: any): string => {
-    if (data.output && Array.isArray(data.output) && data.output.length > 0) {
-      const lastOutput = data.output[data.output.length - 1];
-      if (lastOutput.content) return lastOutput.content;
-      if (lastOutput.text) return lastOutput.text;
-      if (lastOutput.message) return lastOutput.message;
-    }
-    if (data.messages && Array.isArray(data.messages) && data.messages.length > 0) {
-      const lastMessage = data.messages[data.messages.length - 1];
-      if (lastMessage.content) return lastMessage.content;
-      if (lastMessage.text) return lastMessage.text;
-      if (lastMessage.message) return lastMessage.message;
-    }
-    if (data.response) return data.response;
-    if (data.reply) return data.reply;
-    return 'Hello! How can I help you today?';
-  };
-
-  const sendMessage = async (message: string) => {
-    if (!message.trim()) return;
-
-    addMessage(message, true);
-    setInputValue('');
-
-    try {
-      const response = await fetch('https://api.vapi.ai/chat', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${WIDGET_CONFIG.directApiKey}`
-        },
-        body: JSON.stringify({
-          assistantId: WIDGET_CONFIG.assistantId,
-          input: message,
-          previousChatId: previousChatIdRef.current
-        })
+      // Event listeners
+      vapi.on('call-start', () => {
+        setIsCallActive(true);
+        setCallStatus('Connected to Sophie');
       });
 
-      const data = await response.json();
+      vapi.on('call-end', () => {
+        setIsCallActive(false);
+        setCallStatus('Call ended');
+        setTimeout(() => setCallStatus('Ready to chat'), 2000);
+      });
 
-      if (data.chatId) {
-        previousChatIdRef.current = data.chatId;
-      }
+      vapi.on('speech-start', () => {
+        setCallStatus('Sophie is speaking...');
+      });
 
-      const assistantMessage = extractAssistantMessage(data);
-      addMessage(assistantMessage, false);
-    } catch (error) {
-      console.error('Chat error:', error);
-      addMessage('Sorry, there was an error. Please try again.', false);
+      vapi.on('speech-end', () => {
+        setCallStatus('Listening...');
+      });
+
+      vapi.on('error', (error: any) => {
+        console.error('VAPI Error:', error);
+        setCallStatus('Error occurred');
+        setIsCallActive(false);
+      });
+    }
+  };
+
+  const startCall = () => {
+    if (vapiInstanceRef.current && !isCallActive) {
+      vapiInstanceRef.current.start(WIDGET_CONFIG.assistantId);
+    }
+  };
+
+  const endCall = () => {
+    if (vapiInstanceRef.current && isCallActive) {
+      vapiInstanceRef.current.stop();
     }
   };
 
@@ -89,9 +86,6 @@ export default function VapiWidget() {
         :root {
           --vapi-primary-color: #8cc63f;
           --vapi-primary-dark: #7ab52f;
-          --vapi-accent-color: #ffffff;
-          --vapi-dark-bg: #000000;
-          --vapi-glass-border: rgba(140, 198, 63, 0.2);
         }
 
         @keyframes slideUp {
@@ -106,6 +100,17 @@ export default function VapiWidget() {
           100% {
             opacity: 1;
             transform: translateY(0) scale(1);
+          }
+        }
+
+        @keyframes pulse {
+          0%, 100% {
+            transform: scale(1);
+            opacity: 1;
+          }
+          50% {
+            transform: scale(1.05);
+            opacity: 0.8;
           }
         }
       `}</style>
@@ -139,7 +144,7 @@ export default function VapiWidget() {
             boxShadow: '0 8px 32px rgba(140, 198, 63, 0.3), 0 4px 16px rgba(0, 0, 0, 0.1)',
             border: '1px solid rgba(140, 198, 63, 0.3)'
           }} className="widget-tooltip">
-            Ask Sophie?
+            Talk to Sophie?
           </div>
         )}
 
@@ -153,7 +158,9 @@ export default function VapiWidget() {
             background: 'linear-gradient(145deg, rgba(30, 30, 30, 0.95), rgba(20, 20, 20, 0.9))',
             border: '1px solid rgba(140, 198, 63, 0.2)',
             cursor: 'pointer',
-            boxShadow: '0 24px 48px rgba(140, 198, 63, 0.2), 0 12px 24px rgba(0, 0, 0, 0.15)',
+            boxShadow: isCallActive
+              ? '0 0 0 4px rgba(140, 198, 63, 0.3), 0 24px 48px rgba(140, 198, 63, 0.4)'
+              : '0 24px 48px rgba(140, 198, 63, 0.2), 0 12px 24px rgba(0, 0, 0, 0.15)',
             backdropFilter: 'blur(30px) saturate(200%)',
             transition: 'all 0.5s cubic-bezier(0.23, 1, 0.32, 1)',
             display: 'flex',
@@ -161,7 +168,8 @@ export default function VapiWidget() {
             justifyContent: 'center',
             outline: 'none',
             position: 'relative',
-            overflow: 'hidden'
+            overflow: 'hidden',
+            animation: isCallActive ? 'pulse 2s ease-in-out infinite' : 'none'
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.transform = 'translateY(-12px) scale(1.08)';
@@ -174,7 +182,9 @@ export default function VapiWidget() {
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.transform = 'translateY(0) scale(1)';
-            e.currentTarget.style.boxShadow = '0 24px 48px rgba(140, 198, 63, 0.2), 0 12px 24px rgba(0, 0, 0, 0.15)';
+            e.currentTarget.style.boxShadow = isCallActive
+              ? '0 0 0 4px rgba(140, 198, 63, 0.3), 0 24px 48px rgba(140, 198, 63, 0.4)'
+              : '0 24px 48px rgba(140, 198, 63, 0.2), 0 12px 24px rgba(0, 0, 0, 0.15)';
             const tooltip = e.currentTarget.parentElement?.querySelector('.widget-tooltip') as HTMLElement;
             if (tooltip) {
               tooltip.style.opacity = '0';
@@ -196,14 +206,14 @@ export default function VapiWidget() {
           />
         </button>
 
-        {/* Chat Panel */}
+        {/* Voice Chat Panel */}
         {isOpen && (
           <div style={{
             position: 'absolute',
             bottom: '85px',
             right: 0,
             width: '420px',
-            height: '600px',
+            height: '500px',
             background: 'linear-gradient(145deg, rgba(20, 20, 20, 0.98), rgba(15, 15, 15, 0.95))',
             borderRadius: '28px',
             border: '1px solid rgba(140, 198, 63, 0.2)',
@@ -225,7 +235,7 @@ export default function VapiWidget() {
               borderBottom: '1px solid rgba(255, 255, 255, 0.1)'
             }}>
               <h3 style={{ margin: 0, fontSize: '18px', fontWeight: 700, letterSpacing: '0.5px' }}>
-                Chat with Sophie
+                Talk with Sophie
               </h3>
               <button
                 onClick={() => setIsOpen(false)}
@@ -245,95 +255,103 @@ export default function VapiWidget() {
               </button>
             </div>
 
-            {/* Messages Container */}
+            {/* Voice Interface */}
             <div style={{
               flex: 1,
-              padding: '25px 30px',
-              overflowY: 'auto',
-              fontSize: '15px'
-            }}>
-              {messages.map((msg, idx) => (
-                <div
-                  key={idx}
-                  style={{
-                    marginBottom: '20px',
-                    padding: '16px 20px',
-                    borderRadius: '18px',
-                    maxWidth: '85%',
-                    wordWrap: 'break-word',
-                    lineHeight: 1.5,
-                    fontSize: '14px',
-                    background: msg.isUser
-                      ? 'linear-gradient(135deg, #8cc63f, #7ab52f)'
-                      : 'rgba(40, 40, 40, 0.8)',
-                    color: msg.isUser ? '#000' : '#fff',
-                    marginLeft: msg.isUser ? 'auto' : 0,
-                    marginRight: msg.isUser ? 0 : 'auto',
-                    borderBottomRightRadius: msg.isUser ? '8px' : '18px',
-                    borderBottomLeftRadius: msg.isUser ? '18px' : '8px',
-                    boxShadow: msg.isUser ? '0 4px 12px rgba(140, 198, 63, 0.3)' : 'none',
-                    border: msg.isUser ? 'none' : '1px solid rgba(140, 198, 63, 0.1)'
-                  }}
-                >
-                  {msg.text}
-                </div>
-              ))}
-              <div ref={messagesEndRef} />
-            </div>
-
-            {/* Input Container */}
-            <div style={{
-              padding: '25px 30px',
-              background: 'rgba(30, 30, 30, 0.8)',
-              borderTop: '1px solid rgba(140, 198, 63, 0.2)',
-              backdropFilter: 'blur(20px)',
               display: 'flex',
-              gap: '12px'
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: '40px',
+              gap: '30px'
             }}>
-              <input
-                type="text"
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && sendMessage(inputValue)}
-                placeholder="Ask Sophie..."
-                style={{
-                  flex: 1,
-                  padding: '14px 18px',
-                  borderRadius: '14px',
-                  border: '1px solid rgba(140, 198, 63, 0.2)',
-                  background: 'rgba(40, 40, 40, 0.6)',
-                  color: 'white',
-                  fontSize: '14px',
-                  outline: 'none',
-                  transition: 'all 0.3s ease'
-                }}
-                aria-label="Message input"
-              />
-              <button
-                onClick={() => sendMessage(inputValue)}
-                style={{
-                  padding: '14px 24px',
-                  background: 'linear-gradient(135deg, #8cc63f, #7ab52f)',
-                  color: '#000',
-                  border: 'none',
-                  borderRadius: '14px',
+              {/* Voice Indicator */}
+              <div style={{
+                width: '120px',
+                height: '120px',
+                borderRadius: '50%',
+                background: isCallActive
+                  ? 'linear-gradient(135deg, #8cc63f, #7ab52f)'
+                  : 'rgba(140, 198, 63, 0.2)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                position: 'relative',
+                transition: 'all 0.5s ease',
+                boxShadow: isCallActive
+                  ? '0 0 40px rgba(140, 198, 63, 0.6), 0 0 80px rgba(140, 198, 63, 0.3)'
+                  : 'none',
+                animation: isCallActive ? 'pulse 2s ease-in-out infinite' : 'none'
+              }}>
+                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke={isCallActive ? '#000' : '#8cc63f'} strokeWidth="2">
+                  <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+                  <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                  <line x1="12" y1="19" x2="12" y2="23" />
+                  <line x1="8" y1="23" x2="16" y2="23" />
+                </svg>
+              </div>
+
+              {/* Status Text */}
+              <div style={{
+                textAlign: 'center',
+                color: 'white'
+              }}>
+                <div style={{
+                  fontSize: '18px',
                   fontWeight: 600,
+                  marginBottom: '8px'
+                }}>
+                  {callStatus}
+                </div>
+                <div style={{
+                  fontSize: '14px',
+                  color: 'rgba(255, 255, 255, 0.6)'
+                }}>
+                  {isCallActive ? 'Speak naturally - Sophie is listening' : 'Start a voice conversation with Sophie'}
+                </div>
+              </div>
+
+              {/* Call Controls */}
+              <button
+                onClick={isCallActive ? endCall : startCall}
+                style={{
+                  padding: '16px 40px',
+                  background: isCallActive
+                    ? 'linear-gradient(135deg, #ef4444, #dc2626)'
+                    : 'linear-gradient(135deg, #8cc63f, #7ab52f)',
+                  color: isCallActive ? 'white' : '#000',
+                  border: 'none',
+                  borderRadius: '16px',
+                  fontWeight: 700,
+                  fontSize: '16px',
                   cursor: 'pointer',
                   transition: 'all 0.3s ease',
-                  fontSize: '14px'
+                  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.3)',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.5px'
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'scale(1.05)';
-                  e.currentTarget.style.boxShadow = '0 8px 20px rgba(140, 198, 63, 0.3)';
+                  e.currentTarget.style.boxShadow = '0 12px 32px rgba(0, 0, 0, 0.4)';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = 'scale(1)';
-                  e.currentTarget.style.boxShadow = 'none';
+                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.3)';
                 }}
-                aria-label="Send message"
               >
-                Send
+                {isCallActive ? 'End Call' : 'Start Call'}
               </button>
+
+              {/* Info Text */}
+              <div style={{
+                fontSize: '12px',
+                color: 'rgba(255, 255, 255, 0.4)',
+                textAlign: 'center',
+                maxWidth: '300px',
+                lineHeight: '1.6'
+              }}>
+                Sophie is Greenstar Solar's AI assistant. She can answer questions about solar panels, batteries, and our services.
+              </div>
             </div>
           </div>
         )}
