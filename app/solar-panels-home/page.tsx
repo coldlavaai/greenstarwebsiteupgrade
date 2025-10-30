@@ -278,28 +278,24 @@ export default function SolarPanelsHome() {
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
                 {
-                  name: 'Hanchu ESS',
-                  description: 'Advanced hybrid inverter technology',
+                  description: 'AI-empowered energy storage solutions with integrated hybrid inverters and battery systems for residential and commercial applications, delivering backup power and renewable energy optimization.',
                   logo: '/hanchu-logo.png',
                 },
                 {
-                  name: 'Fox ESS',
-                  description: 'Industry-leading energy storage',
+                  description: 'Global leader in solar inverters and lithium battery storage systems, providing high-performance solutions for residential, commercial, and industrial energy needs worldwide.',
                   logo: '/foxess-logo.png',
                 },
                 {
-                  name: 'EcoFlow',
-                  description: 'Smart power management systems',
+                  description: 'World\'s leading portable power station and home battery storage specialist, offering solutions from compact emergency backup to complete off-grid energy systems.',
                   logo: '/ecoflow-logo-white.png',
                 },
                 {
-                  name: 'Sigenergy',
-                  description: 'Next-gen battery solutions',
+                  description: '5-in-one energy storage system integrating solar inverter, EV charger, battery management, and AI optimization for next-generation home and business energy solutions.',
                   logo: '/sigenergy-logo-red.png',
                 },
               ].map((brand, index) => (
                 <motion.div
-                  key={brand.name}
+                  key={index}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.1 }}
@@ -310,14 +306,11 @@ export default function SolarPanelsHome() {
                   <div className="mb-6 h-24 flex items-center justify-center">
                     <img
                       src={brand.logo}
-                      alt={`${brand.name} logo`}
+                      alt="Brand logo"
                       className="max-w-full max-h-full object-contain drop-shadow-lg"
                     />
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-2 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
-                    {brand.name}
-                  </h3>
-                  <p className="text-white/60 text-sm leading-relaxed font-light">
+                  <p className="text-white/70 text-sm leading-relaxed font-light">
                     {brand.description}
                   </p>
                 </motion.div>
