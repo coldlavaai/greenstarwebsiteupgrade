@@ -142,7 +142,7 @@ const Navigation = ({ data }: NavigationProps) => {
           </motion.a>
 
           {/* Desktop Menu */}
-          <div className="hidden xl:flex items-center space-x-8">
+          <div className="hidden 2xl:flex items-center space-x-8">
             {navItems.map((item) => (
               <div
                 key={item.name}
@@ -205,7 +205,7 @@ const Navigation = ({ data }: NavigationProps) => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="xl:hidden p-3 rounded-lg transition-colors text-white hover:text-[#8cc63f]"
+            className="2xl:hidden p-3 rounded-lg transition-colors text-white hover:text-[#8cc63f]"
             style={{
               minWidth: '48px',
               minHeight: '48px',
@@ -227,7 +227,7 @@ const Navigation = ({ data }: NavigationProps) => {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1.0] }}
-              className="xl:hidden mt-4 rounded-lg shadow-xl overflow-hidden border border-white/10"
+              className="2xl:hidden mt-4 rounded-lg shadow-xl overflow-hidden border border-white/10"
               style={{
                 background: 'rgba(0, 0, 0, 0.95)',
                 backdropFilter: isMobile ? 'blur(10px)' : 'blur(20px)',
