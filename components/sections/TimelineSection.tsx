@@ -89,7 +89,7 @@ export default function TimelineSection({ data }: TimelineSectionProps) {
               {/* Events */}
               {data.events.map((event, index) => {
                 const IconComponent = getIcon(event.icon);
-                const imageUrl = event.image ? urlFor(event.image).width(600).height(400).fit('crop').url() : null;
+                const imageUrl = event.image ? urlFor(event.image).width(600).height(400).fit('crop').quality(85).url() : null;
                 const isAlternating = data.layout === 'vertical-alternating';
                 const isRight = isAlternating && index % 2 === 1;
 

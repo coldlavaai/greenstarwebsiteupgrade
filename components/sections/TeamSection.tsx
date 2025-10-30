@@ -87,7 +87,7 @@ export default function TeamSection({ data }: TeamSectionProps) {
         {data.teamMembers && data.teamMembers.length > 0 && (
           <div className={`grid grid-cols-1 ${layoutClass} gap-8`}>
             {data.teamMembers.map((member, index) => {
-              const photoUrl = urlFor(member.photo).width(600).height(600).fit('crop').url();
+              const photoUrl = urlFor(member.photo).width(600).height(600).fit('crop').quality(85).url();
 
               return (
                 <motion.div

@@ -39,7 +39,7 @@ export default function HeroSectionObject({ data }: HeroSectionObjectProps) {
   const heightClass = heightMap[data.height || 'large'];
   const alignmentClass = alignmentMap[data.textAlignment || 'center'];
   const backgroundImageUrl = data.backgroundImage
-    ? urlFor(data.backgroundImage).width(1920).quality(90).url()
+    ? urlFor(data.backgroundImage).width(1920).quality(90).quality(85).url()
     : null;
 
   const getButtonClasses = (style: string) => {

@@ -235,7 +235,7 @@ const Hero = ({ data }: HeroProps) => {
                   className="absolute inset-0 bg-cover bg-center"
                   style={{
                     backgroundImage: data?.backgroundImage
-                      ? `url('${urlFor(data.backgroundImage).width(800).url()}')`
+                      ? `url('${urlFor(data.backgroundImage).width(800).quality(85).url()}')`
                       : `url('/images/hero-house.png')`,
                   }}
                 />

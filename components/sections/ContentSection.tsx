@@ -42,7 +42,7 @@ const portableTextComponents = {
       return (
         <div className="my-8">
           <img
-            src={urlFor(value).width(1200).url()}
+            src={urlFor(value).width(1200).quality(85).url()}
             alt={value.alt || ''}
             className="rounded-lg w-full"
           />

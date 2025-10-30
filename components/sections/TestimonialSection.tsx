@@ -106,7 +106,7 @@ export default function TestimonialSection({ data }: TestimonialSectionProps) {
           <div className={`grid grid-cols-1 ${layoutClass} gap-8`}>
             {data.testimonials.map((testimonial, index) => {
               const imageUrl = testimonial.customerImage
-                ? urlFor(testimonial.customerImage).width(200).height(200).fit('crop').url()
+                ? urlFor(testimonial.customerImage).width(200).height(200).fit('crop').quality(85).url()
                 : null;
 
               return (

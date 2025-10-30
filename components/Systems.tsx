@@ -56,7 +56,7 @@ const Systems = ({ data }: SystemsProps) => {
     let imageUrl = imageMap[service.title] || '';
     if (service.image && service.image.asset) {
       try {
-        imageUrl = urlFor(service.image).width(800).url();
+        imageUrl = urlFor(service.image).width(800).quality(85).url();
       } catch (e) {
         // If URL building fails, use fallback
         imageUrl = imageMap[service.title] || '';

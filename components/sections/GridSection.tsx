@@ -93,7 +93,7 @@ export default function GridSection({ data }: GridSectionProps) {
             {data.items.map((item, index) => {
               const IconComponent = getIcon(item.icon);
               const imageUrl = item.image
-                ? urlFor(item.image).width(600).height(400).fit('crop').url()
+                ? urlFor(item.image).width(600).height(400).fit('crop').quality(85).url()
                 : null;
 
               const CardContent = (

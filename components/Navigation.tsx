@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronDown } from 'lucide-react';
 
@@ -29,11 +29,18 @@ const Navigation = ({ data }: NavigationProps) => {
   const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
 
   useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        setScrolled(window.scrollY > 50);
+      }, 10); // 10ms debounce for smooth scrolling
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      clearTimeout(timeoutId);
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   // Define desired order

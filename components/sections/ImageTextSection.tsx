@@ -46,7 +46,7 @@ const portableTextComponents = {
 
 export default function ImageTextSection({ data }: ImageTextSectionProps) {
   const bgClass = data.backgroundColor === 'gray' ? 'bg-gray-50' : 'bg-white';
-  const imageUrl = data.image ? urlFor(data.image).width(800).quality(90).url() : null;
+  const imageUrl = data.image ? urlFor(data.image).width(800).quality(90).quality(85).url() : null;
   const isImageLeft = data.imagePosition === 'left';
 
   return (

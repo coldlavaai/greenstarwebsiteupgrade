@@ -127,6 +127,25 @@ h1, h2, h3, h4, h5, h6 {
   animation: scaleIn 0.6s ease-out forwards;
 }
 
+/* Performance optimization - GPU acceleration for animations */
+.perspective-1000 {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Optimize animated elements for smooth performance */
+[class*="motion-"] {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Optimize hover transforms */
+.group:hover [class*="group-hover"] {
+  will-change: transform, opacity;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 10px;

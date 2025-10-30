@@ -87,7 +87,7 @@ export default function LogoCloudSection({ data }: LogoCloudSectionProps) {
         {data.logos && data.logos.length > 0 && (
           <div className={`grid ${gridClass} gap-8 md:gap-12 items-center justify-items-center`}>
             {data.logos.map((logo, index) => {
-              const logoUrl = urlFor(logo.logo).width(400).url();
+              const logoUrl = urlFor(logo.logo).width(400).quality(85).url();
 
               const LogoImage = (
                 <motion.div

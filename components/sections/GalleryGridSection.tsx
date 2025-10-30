@@ -33,7 +33,7 @@ export default function GalleryGridSection({ data }: any) {
                 className="aspect-square rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
               >
                 <img
-                  src={urlFor(img.image).width(800).height(800).fit('crop').url()}
+                  src={urlFor(img.image).width(800).height(800).fit('crop').quality(85).url()}
                   alt={img.alt || ''}
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                 />
