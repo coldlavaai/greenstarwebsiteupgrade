@@ -184,9 +184,18 @@ const Navigation = ({ data }: NavigationProps) => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               href={ctaButton.href}
-              className="bg-[#8cc63f] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#7ab52f] transition-colors shadow-lg"
+              className="relative px-6 py-3 rounded-full font-semibold text-white transition-all duration-300 overflow-hidden group"
+              style={{
+                background: 'rgba(140, 198, 63, 0.15)',
+                backdropFilter: 'blur(20px)',
+                WebkitBackdropFilter: 'blur(20px)',
+                border: '1px solid rgba(140, 198, 63, 0.3)',
+                boxShadow: '0 8px 32px rgba(140, 198, 63, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+              }}
             >
-              {ctaButton.text}
+              <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-transparent to-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <span className="relative z-10 drop-shadow-lg">{ctaButton.text}</span>
             </motion.a>
           </div>
 
@@ -236,10 +245,18 @@ const Navigation = ({ data }: NavigationProps) => {
               <div className="p-4">
                 <a
                   href={ctaButton.href}
-                  className="block w-full bg-[#8cc63f] text-white text-center px-6 py-3 rounded-full font-semibold hover:bg-[#7ab52f] transition-colors"
+                  className="block w-full text-white text-center px-6 py-3 rounded-full font-semibold transition-all duration-300 relative overflow-hidden"
+                  style={{
+                    background: 'rgba(140, 198, 63, 0.15)',
+                    backdropFilter: 'blur(20px)',
+                    WebkitBackdropFilter: 'blur(20px)',
+                    border: '1px solid rgba(140, 198, 63, 0.3)',
+                    boxShadow: '0 8px 32px rgba(140, 198, 63, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+                  }}
                   onClick={() => setIsOpen(false)}
                 >
-                  {ctaButton.text}
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
+                  <span className="relative z-10 drop-shadow-lg">{ctaButton.text}</span>
                 </a>
               </div>
             </motion.div>
