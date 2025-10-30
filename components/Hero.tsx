@@ -265,16 +265,14 @@ const Hero = ({ data }: HeroProps) => {
               {stats.map((stat, index) => (
                 <motion.div
                   key={stat._key || index}
-                  initial={{ opacity: 0, scale: 0.8, rotateZ: index === 0 ? -5 : 5 }}
+                  initial={{ opacity: 1, scale: 1, rotateZ: 0 }}
                   animate={{ opacity: 1, scale: 1, rotateZ: 0 }}
-                  transition={{ delay: 0.6 + index * 0.1, type: 'spring', stiffness: 100 }}
                   whileHover={!reduceMotion ? { scale: 1.1, rotateZ: index === 0 ? 5 : -5, y: -10 } : {}}
                   className={`absolute ${index === 0 ? 'top-10 -left-10' : 'bottom-10 -right-10'} bg-gradient-to-br from-white/15 to-white/5 p-5 rounded-2xl border border-white/20 shadow-2xl hover:shadow-[0_20px_60px_rgba(140,198,63,0.4)] cursor-pointer`}
                   style={{
                     transformStyle: 'preserve-3d',
                     backdropFilter: 'blur(20px)',
                     WebkitBackdropFilter: 'blur(20px)',
-                    willChange: 'transform, opacity',
                   }}
                   data-sanity={data?._id && stat._key ? `${data._id}.stats[_key=="${stat._key}"]` : undefined}
                 >
