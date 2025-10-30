@@ -147,23 +147,23 @@ const Testimonials = ({ data }: TestimonialsProps) => {
           </p>
 
           {/* Trust Badges */}
-          <div className="flex items-center justify-center gap-8 mt-8">
-            <div className="flex items-center gap-2">
-              <div className="flex">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 mt-8">
+            <div className="flex flex-col items-center gap-2">
+              <div className="flex gap-0.5">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-primary text-primary" />
+                  <Star key={i} className="w-4 h-4 md:w-5 md:h-5 fill-primary text-primary" />
                 ))}
               </div>
-              <span className="text-white/80 font-semibold">5.0 on Google</span>
+              <span className="text-white/80 font-semibold text-sm md:text-base">5.0 on Google</span>
             </div>
-            <div className="w-px h-6 bg-white/20"></div>
-            <div className="flex items-center gap-2">
-              <div className="flex">
+            <div className="hidden md:block w-px h-6 bg-white/20"></div>
+            <div className="flex flex-col items-center gap-2">
+              <div className="flex gap-0.5">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-primary text-primary" />
+                  <Star key={i} className="w-4 h-4 md:w-5 md:h-5 fill-primary text-primary" />
                 ))}
               </div>
-              <span className="text-white/80 font-semibold">4.7 on Trustpilot</span>
+              <span className="text-white/80 font-semibold text-sm md:text-base">4.7 on Trustpilot</span>
             </div>
           </div>
         </motion.div>

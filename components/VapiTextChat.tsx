@@ -216,16 +216,21 @@ export default function VapiTextChat() {
               <button
                 onClick={() => setIsOpen(false)}
                 style={{
-                  background: 'rgba(0, 0, 0, 0.15)',
-                  border: '1px solid rgba(0, 0, 0, 0.2)',
-                  fontSize: isMobile ? '24px' : '18px',
+                  background: isMobile ? 'rgba(0, 0, 0, 0.25)' : 'rgba(0, 0, 0, 0.15)',
+                  border: isMobile ? '2px solid rgba(0, 0, 0, 0.3)' : '1px solid rgba(0, 0, 0, 0.2)',
+                  fontSize: isMobile ? '28px' : '18px',
                   cursor: 'pointer',
-                  padding: isMobile ? '8px 12px' : '6px 10px',
-                  borderRadius: '10px',
+                  padding: isMobile ? '4px' : '6px 10px',
+                  borderRadius: isMobile ? '12px' : '10px',
                   color: '#000',
                   transition: 'all 0.2s',
-                  minWidth: isMobile ? '44px' : 'auto',
-                  minHeight: isMobile ? '44px' : 'auto'
+                  minWidth: isMobile ? '48px' : 'auto',
+                  minHeight: isMobile ? '48px' : 'auto',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontWeight: isMobile ? 300 : 400,
+                  lineHeight: 1
                 }}
                 aria-label="Close chat"
               >

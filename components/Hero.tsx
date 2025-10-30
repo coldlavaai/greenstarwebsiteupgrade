@@ -65,12 +65,12 @@ const Hero = ({ data }: HeroProps) => {
   ];
 
   return (
-    <section ref={ref} id="home" className="relative min-h-screen flex items-center overflow-hidden pt-20 md:pt-24">
+    <section ref={ref} id="home" className="relative min-h-screen flex items-center overflow-hidden pt-16 md:pt-24">
       {/* Very subtle text shadow overlay for readability */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-transparent pointer-events-none"></div>
 
       {/* Content */}
-      <motion.div style={{ y, opacity }} className="container mx-auto px-8 md:px-12 relative z-10 mt-8 md:mt-16">
+      <motion.div style={{ y, opacity }} className="container mx-auto px-8 md:px-12 relative z-10 mt-0 md:mt-16">
         <div className="grid lg:grid-cols-2 gap-20 md:gap-28 items-center max-w-7xl mx-auto">
           {/* Left Content */}
           <div className="text-white max-w-xl">
