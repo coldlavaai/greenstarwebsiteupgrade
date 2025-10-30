@@ -273,6 +273,95 @@ export default function BatteryStorageHome() {
         </div>
       </section>
 
+      {/* Battery Provider Cards Section */}
+      <section className="py-12 bg-transparent">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.6 }}
+            className="max-w-6xl mx-auto"
+          >
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center space-x-2 mb-6">
+                <Battery className="w-6 h-6 text-primary" />
+                <span className="text-primary font-semibold uppercase tracking-wider text-sm">
+                  Complete Energy Solutions
+                </span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
+                Power Your{' '}
+                <span className="bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent">
+                  Independence
+                </span>
+              </h2>
+              <p className="text-xl text-white/70 max-w-3xl mx-auto font-light leading-relaxed">
+                We pair these panels with hybrid inverters and battery systems from Hanchu, Fox ESS, EcoFlow, and Sigenergy, creating powerful, future ready energy solutions that allow you to generate, store, and manage your own clean energy with ease.
+              </p>
+            </div>
+
+            {/* Brand Partners Grid */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                {
+                  description: 'AI-empowered energy storage solutions with integrated hybrid inverters and battery systems for residential and commercial applications, delivering backup power and renewable energy optimization.',
+                  logo: '/hanchu-logo.png',
+                  url: 'https://www.hanchuess.com/',
+                },
+                {
+                  description: 'Global leader in solar inverters and lithium battery storage systems, providing high-performance solutions for residential, commercial, and industrial energy needs worldwide.',
+                  logo: '/foxess-logo.png',
+                  url: 'https://www.fox-ess.com/',
+                },
+                {
+                  description: 'World\'s leading portable power station and home battery storage specialist, offering solutions from compact emergency backup to complete off-grid energy systems.',
+                  logo: '/ecoflow-logo-white.png',
+                  url: 'https://www.ecoflow.com/',
+                },
+                {
+                  description: '5-in-one energy storage system integrating solar inverter, EV charger, battery management, and AI optimization for next-generation home and business energy solutions.',
+                  logo: '/sigenergy-logo-red.png',
+                  url: 'https://www.sigenergy.com/en',
+                },
+              ].map((brand, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.1 }}
+                  transition={{ delay: index * 0.1, duration: 0.5 }}
+                  whileHover={{ y: -5, scale: 1.02 }}
+                  className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10 hover:border-primary/30 transition-all"
+                >
+                  <div className="mb-6 h-24 flex items-center justify-center">
+                    <img
+                      src={brand.logo}
+                      alt="Brand logo"
+                      className="max-w-full max-h-full object-contain drop-shadow-lg"
+                    />
+                  </div>
+                  <p className="text-white/70 text-sm leading-relaxed font-light mb-6">
+                    {brand.description}
+                  </p>
+                  <a
+                    href={brand.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center space-x-2 text-primary hover:text-primary-light text-sm font-medium transition-colors group"
+                  >
+                    <span>Visit Website</span>
+                    <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* FAQ Section */}
       <section className="py-12 bg-transparent">
         <div className="container mx-auto px-4">
