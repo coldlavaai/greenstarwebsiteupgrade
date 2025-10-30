@@ -6,6 +6,7 @@ import { useRef, useState } from 'react';
 import { Home, Building2, Sun, ArrowRight, Zap } from 'lucide-react';
 import { urlFor } from '@/lib/sanity';
 import BatteryIcon from '@/components/icons/BatteryIcon';
+import { useIsMobile, useIsTouch } from '@/hooks/useMediaQuery';
 
 interface Service {
   _id: string;
@@ -25,6 +26,8 @@ interface SystemsProps {
 const Systems = ({ data }: SystemsProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const isMobile = useIsMobile();
+  const isTouch = useIsTouch();
 
   // Icon mapping
   const iconMap: Record<string, any> = {
@@ -142,7 +145,7 @@ const Systems = ({ data }: SystemsProps) => {
         {/* Services Grid */}
         <div className="grid md:grid-cols-2 gap-4 md:gap-8">
           {services.map((service, index) => (
-            <ServiceCard key={service.title} service={service} index={index} isInView={isInView} />
+            <ServiceCard key={service.title} service={service} index={index} isInView={isInView} isMobile={isMobile} isTouch={isTouch} />
           ))}
         </div>
 
@@ -157,16 +160,20 @@ const Systems = ({ data }: SystemsProps) => {
             Not sure which system is right for you?
           </p>
           <motion.a
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+            whileHover={!isTouch ? { scale: 1.02 } : {}}
+            whileTap={!isTouch ? { scale: 0.98 } : {}}
             href="#contact"
             className="inline-block relative px-6 py-3 md:px-8 md:py-4 rounded-full font-semibold text-sm md:text-base overflow-hidden group"
             style={{
               background: 'rgba(140, 198, 63, 0.15)',
-              backdropFilter: 'blur(20px)',
-              WebkitBackdropFilter: 'blur(20px)',
+              backdropFilter: isMobile ? 'blur(10px)' : 'blur(20px)',
+              WebkitBackdropFilter: isMobile ? 'blur(10px)' : 'blur(20px)',
               border: '1px solid rgba(140, 198, 63, 0.3)',
               boxShadow: '0 8px 32px rgba(140, 198, 63, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+              minHeight: isMobile ? '56px' : 'auto',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
             }}
           >
             <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-transparent to-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -180,7 +187,7 @@ const Systems = ({ data }: SystemsProps) => {
 };
 
 // Premium Minimal Card Component
-const ServiceCard = ({ service, index, isInView }: any) => {
+const ServiceCard = ({ service, index, isInView, isMobile, isTouch }: any) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -189,11 +196,11 @@ const ServiceCard = ({ service, index, isInView }: any) => {
       initial={{ opacity: 0, y: 30 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
       transition={{ delay: index * 0.1, duration: 0.5 }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseEnter={!isTouch ? () => setIsHovered(true) : undefined}
+      onMouseLeave={!isTouch ? () => setIsHovered(false) : undefined}
       className="group relative rounded-3xl overflow-hidden cursor-pointer h-full block"
       style={{
-        boxShadow: isHovered
+        boxShadow: isHovered && !isTouch
           ? '0 25px 70px rgba(212, 175, 55, 0.3), 0 0 0 1px rgba(212, 175, 55, 0.2)'
           : '0 8px 30px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.05)',
         transition: 'box-shadow 0.4s ease',

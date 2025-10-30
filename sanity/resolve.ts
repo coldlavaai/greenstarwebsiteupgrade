@@ -382,19 +382,5 @@ export const resolve = {
         ],
       }),
     },
-    dbrLead: {
-      select: {
-        name: 'name',
-        contactStatus: 'contactStatus',
-      },
-      resolve: () => ({
-        locations: [
-          {
-            title: 'DBR Dashboard',
-            href: '/dbr-analytics',
-          },
-        ],
-      }),
-    },
   },
 }

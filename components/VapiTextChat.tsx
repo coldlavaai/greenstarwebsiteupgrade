@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import { useIsMobile } from '@/hooks/useMediaQuery';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -14,6 +15,7 @@ export default function VapiTextChat() {
   const [isLoading, setIsLoading] = useState(false);
   const [chatId, setChatId] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
 
   const WIDGET_CONFIG = {
     assistantId: 'cb76e1bc-dc2d-4ea8-84a1-c17499ed6387',
@@ -124,8 +126,8 @@ export default function VapiTextChat() {
       {/* Widget Container */}
       <div style={{
         position: 'fixed',
-        bottom: '30px',
-        right: '30px',
+        bottom: isMobile ? '20px' : '30px',
+        right: isMobile ? '20px' : '30px',
         zIndex: 10000,
         fontFamily: 'var(--font-inter), -apple-system, sans-serif'
       }}>
@@ -134,35 +136,36 @@ export default function VapiTextChat() {
         <button
           onClick={() => setIsOpen(!isOpen)}
           style={{
-            width: '70px',
-            height: '70px',
+            width: isMobile ? '60px' : '70px',
+            height: isMobile ? '60px' : '70px',
             borderRadius: '50%',
             background: 'linear-gradient(145deg, rgba(30, 30, 30, 0.95), rgba(20, 20, 20, 0.9))',
             border: '1px solid rgba(140, 198, 63, 0.2)',
             cursor: 'pointer',
             boxShadow: '0 24px 48px rgba(140, 198, 63, 0.2), 0 12px 24px rgba(0, 0, 0, 0.15)',
-            backdropFilter: 'blur(30px)',
+            backdropFilter: isMobile ? 'blur(15px)' : 'blur(30px)',
+            WebkitBackdropFilter: isMobile ? 'blur(15px)' : 'blur(30px)',
             transition: 'all 0.3s ease',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
           }}
-          onMouseEnter={(e) => {
+          onMouseEnter={!isMobile ? (e) => {
             e.currentTarget.style.transform = 'translateY(-8px) scale(1.05)';
             e.currentTarget.style.boxShadow = '0 32px 64px rgba(140, 198, 63, 0.3)';
-          }}
-          onMouseLeave={(e) => {
+          } : undefined}
+          onMouseLeave={!isMobile ? (e) => {
             e.currentTarget.style.transform = 'translateY(0) scale(1)';
             e.currentTarget.style.boxShadow = '0 24px 48px rgba(140, 198, 63, 0.2)';
-          }}
+          } : undefined}
           aria-label="Open chat"
         >
           <img
             src="/images/greenstar-logo-dots.png"
             alt="Greenstar Solar"
             style={{
-              width: '42px',
-              height: '42px',
+              width: isMobile ? '36px' : '42px',
+              height: isMobile ? '36px' : '42px',
               borderRadius: '8px',
               filter: 'drop-shadow(0 0 12px rgba(140, 198, 63, 0.4)) brightness(1.1)'
             }}
@@ -172,15 +175,18 @@ export default function VapiTextChat() {
         {/* Chat Window */}
         {isOpen && (
           <div style={{
-            position: 'absolute',
-            bottom: '85px',
-            right: 0,
-            width: '420px',
-            height: '600px',
+            position: isMobile ? 'fixed' : 'absolute',
+            bottom: isMobile ? '0' : '85px',
+            right: isMobile ? '0' : 0,
+            left: isMobile ? '0' : 'auto',
+            width: isMobile ? '100%' : '420px',
+            height: isMobile ? '100vh' : '600px',
+            maxHeight: isMobile ? '100vh' : '600px',
             background: 'linear-gradient(145deg, rgba(20, 20, 20, 0.98), rgba(15, 15, 15, 0.95))',
-            borderRadius: '24px',
+            borderRadius: isMobile ? '0' : '24px',
             border: '1px solid rgba(140, 198, 63, 0.2)',
-            backdropFilter: 'blur(50px)',
+            backdropFilter: isMobile ? 'blur(20px)' : 'blur(50px)',
+            WebkitBackdropFilter: isMobile ? 'blur(20px)' : 'blur(50px)',
             boxShadow: '0 50px 100px rgba(0, 0, 0, 0.6)',
             display: 'flex',
             flexDirection: 'column',
@@ -190,7 +196,8 @@ export default function VapiTextChat() {
 
             {/* Header */}
             <div style={{
-              padding: '20px 24px',
+              padding: isMobile ? '16px 20px' : '20px 24px',
+              paddingTop: isMobile ? 'max(16px, env(safe-area-inset-top))' : '20px',
               background: 'linear-gradient(135deg, #8cc63f, #7ab52f)',
               color: '#000',
               display: 'flex',
@@ -211,12 +218,14 @@ export default function VapiTextChat() {
                 style={{
                   background: 'rgba(0, 0, 0, 0.15)',
                   border: '1px solid rgba(0, 0, 0, 0.2)',
-                  fontSize: '18px',
+                  fontSize: isMobile ? '24px' : '18px',
                   cursor: 'pointer',
-                  padding: '6px 10px',
+                  padding: isMobile ? '8px 12px' : '6px 10px',
                   borderRadius: '10px',
                   color: '#000',
-                  transition: 'all 0.2s'
+                  transition: 'all 0.2s',
+                  minWidth: isMobile ? '44px' : 'auto',
+                  minHeight: isMobile ? '44px' : 'auto'
                 }}
                 aria-label="Close chat"
               >
@@ -228,10 +237,11 @@ export default function VapiTextChat() {
             <div style={{
               flex: 1,
               overflowY: 'auto',
-              padding: '20px',
+              padding: isMobile ? '16px' : '20px',
               display: 'flex',
               flexDirection: 'column',
-              gap: '16px'
+              gap: isMobile ? '12px' : '16px',
+              WebkitOverflowScrolling: 'touch'
             }}>
               {messages.length === 0 && (
                 <div style={{
@@ -257,14 +267,14 @@ export default function VapiTextChat() {
                   }}
                 >
                   <div style={{
-                    maxWidth: '75%',
-                    padding: '12px 16px',
+                    maxWidth: isMobile ? '85%' : '75%',
+                    padding: isMobile ? '10px 14px' : '12px 16px',
                     borderRadius: msg.role === 'user' ? '18px 18px 4px 18px' : '18px 18px 18px 4px',
                     background: msg.role === 'user'
                       ? 'linear-gradient(135deg, #8cc63f, #7ab52f)'
                       : 'rgba(255, 255, 255, 0.1)',
                     color: msg.role === 'user' ? '#000' : '#fff',
-                    fontSize: '14px',
+                    fontSize: isMobile ? '15px' : '14px',
                     lineHeight: '1.5',
                     wordWrap: 'break-word'
                   }}>
@@ -304,7 +314,8 @@ export default function VapiTextChat() {
 
             {/* Input */}
             <form onSubmit={handleSubmit} style={{
-              padding: '20px',
+              padding: isMobile ? '16px' : '20px',
+              paddingBottom: isMobile ? 'max(16px, env(safe-area-inset-bottom))' : '20px',
               borderTop: '1px solid rgba(255, 255, 255, 0.1)',
               background: 'rgba(0, 0, 0, 0.3)'
             }}>
@@ -317,14 +328,15 @@ export default function VapiTextChat() {
                   disabled={isLoading}
                   style={{
                     flex: 1,
-                    padding: '12px 16px',
+                    padding: isMobile ? '14px 16px' : '12px 16px',
                     borderRadius: '12px',
                     border: '1px solid rgba(140, 198, 63, 0.3)',
                     background: 'rgba(255, 255, 255, 0.05)',
                     color: '#fff',
-                    fontSize: '14px',
+                    fontSize: isMobile ? '16px' : '14px',
                     outline: 'none',
-                    transition: 'all 0.2s'
+                    transition: 'all 0.2s',
+                    minHeight: isMobile ? '48px' : 'auto'
                   }}
                   onFocus={(e) => {
                     e.currentTarget.style.borderColor = '#8cc63f';
@@ -339,17 +351,19 @@ export default function VapiTextChat() {
                   type="submit"
                   disabled={!inputValue.trim() || isLoading}
                   style={{
-                    padding: '12px 24px',
+                    padding: isMobile ? '14px 28px' : '12px 24px',
                     borderRadius: '12px',
                     border: 'none',
                     background: inputValue.trim() && !isLoading
                       ? 'linear-gradient(135deg, #8cc63f, #7ab52f)'
                       : 'rgba(140, 198, 63, 0.3)',
                     color: inputValue.trim() && !isLoading ? '#000' : 'rgba(255, 255, 255, 0.5)',
-                    fontSize: '14px',
+                    fontSize: isMobile ? '15px' : '14px',
                     fontWeight: 600,
                     cursor: inputValue.trim() && !isLoading ? 'pointer' : 'not-allowed',
-                    transition: 'all 0.2s'
+                    transition: 'all 0.2s',
+                    minHeight: isMobile ? '48px' : 'auto',
+                    minWidth: isMobile ? '80px' : 'auto'
                   }}
                 >
                   Send

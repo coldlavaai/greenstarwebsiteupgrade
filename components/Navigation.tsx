@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronDown } from 'lucide-react';
+import { useIsMobile, useIsTouch } from '@/hooks/useMediaQuery';
 
 interface NavigationData {
   _id?: string;
@@ -27,6 +28,8 @@ const Navigation = ({ data }: NavigationProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
+  const isMobile = useIsMobile();
+  const isTouch = useIsTouch();
 
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
@@ -128,7 +131,7 @@ const Navigation = ({ data }: NavigationProps) => {
           {/* Logo */}
           <motion.a
             href="/"
-            whileHover={{ scale: 1.05 }}
+            whileHover={!isTouch ? { scale: 1.05 } : {}}
             className="flex items-center"
           >
             <img
@@ -181,8 +184,8 @@ const Navigation = ({ data }: NavigationProps) => {
               </div>
             ))}
             <motion.a
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={!isTouch ? { scale: 1.05 } : {}}
+              whileTap={!isTouch ? { scale: 0.95 } : {}}
               href={ctaButton.href}
               className="relative px-6 py-3 rounded-full font-semibold text-white transition-all duration-300 overflow-hidden group"
               style={{
@@ -202,7 +205,15 @@ const Navigation = ({ data }: NavigationProps) => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 rounded-lg transition-colors text-white hover:text-[#8cc63f]"
+            className="lg:hidden p-3 rounded-lg transition-colors text-white hover:text-[#8cc63f]"
+            style={{
+              minWidth: '48px',
+              minHeight: '48px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+            aria-label={isOpen ? "Close menu" : "Open menu"}
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -215,13 +226,34 @@ const Navigation = ({ data }: NavigationProps) => {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden mt-4 bg-black/95 backdrop-blur-lg rounded-lg shadow-xl overflow-hidden border border-white/10"
+              transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1.0] }}
+              className="lg:hidden mt-4 rounded-lg shadow-xl overflow-hidden border border-white/10"
+              style={{
+                background: 'rgba(0, 0, 0, 0.95)',
+                backdropFilter: isMobile ? 'blur(10px)' : 'blur(20px)',
+                WebkitBackdropFilter: isMobile ? 'blur(10px)' : 'blur(20px)'
+              }}
             >
               {navItems.map((item) => (
                 <div key={item.name}>
                   <a
                     href={item.href}
-                    className="block px-4 py-3 text-white hover:bg-[#8cc63f]/10 hover:text-[#8cc63f] transition-colors"
+                    className="block text-white transition-colors"
+                    style={{
+                      padding: isMobile ? '16px 20px' : '12px 16px',
+                      minHeight: isMobile ? '56px' : 'auto',
+                      display: 'flex',
+                      alignItems: 'center',
+                      fontSize: isMobile ? '16px' : '14px'
+                    }}
+                    onMouseEnter={!isTouch ? (e) => {
+                      e.currentTarget.style.background = 'rgba(140, 198, 63, 0.1)';
+                      e.currentTarget.style.color = '#8cc63f';
+                    } : undefined}
+                    onMouseLeave={!isTouch ? (e) => {
+                      e.currentTarget.style.background = 'transparent';
+                      e.currentTarget.style.color = '#ffffff';
+                    } : undefined}
                     onClick={() => !item.submenu && setIsOpen(false)}
                   >
                     {item.name}
@@ -232,7 +264,22 @@ const Navigation = ({ data }: NavigationProps) => {
                         <a
                           key={subitem.name}
                           href={subitem.href}
-                          className="block px-4 py-2 text-sm text-white/80 hover:text-[#8cc63f] hover:bg-[#8cc63f]/10 transition-all duration-100"
+                          className="block text-white/80 transition-all duration-200"
+                          style={{
+                            padding: isMobile ? '14px 16px' : '10px 12px',
+                            minHeight: isMobile ? '52px' : 'auto',
+                            display: 'flex',
+                            alignItems: 'center',
+                            fontSize: isMobile ? '15px' : '13px'
+                          }}
+                          onMouseEnter={!isTouch ? (e) => {
+                            e.currentTarget.style.background = 'rgba(140, 198, 63, 0.1)';
+                            e.currentTarget.style.color = '#8cc63f';
+                          } : undefined}
+                          onMouseLeave={!isTouch ? (e) => {
+                            e.currentTarget.style.background = 'transparent';
+                            e.currentTarget.style.color = 'rgba(255, 255, 255, 0.8)';
+                          } : undefined}
                           onClick={() => setIsOpen(false)}
                         >
                           {subitem.name}
@@ -245,11 +292,17 @@ const Navigation = ({ data }: NavigationProps) => {
               <div className="p-4">
                 <a
                   href={ctaButton.href}
-                  className="block w-full text-white text-center px-6 py-3 rounded-full font-semibold transition-all duration-300 relative overflow-hidden"
+                  className="block w-full text-white text-center rounded-full font-semibold transition-all duration-300 relative overflow-hidden"
                   style={{
+                    padding: isMobile ? '16px 24px' : '12px 20px',
+                    minHeight: isMobile ? '56px' : 'auto',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: isMobile ? '16px' : '14px',
                     background: 'rgba(140, 198, 63, 0.15)',
-                    backdropFilter: 'blur(20px)',
-                    WebkitBackdropFilter: 'blur(20px)',
+                    backdropFilter: isMobile ? 'blur(10px)' : 'blur(20px)',
+                    WebkitBackdropFilter: isMobile ? 'blur(10px)' : 'blur(20px)',
                     border: '1px solid rgba(140, 198, 63, 0.3)',
                     boxShadow: '0 8px 32px rgba(140, 198, 63, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
                   }}
