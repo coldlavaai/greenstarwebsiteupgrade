@@ -263,14 +263,10 @@ const Hero = ({ data }: HeroProps) => {
 
               {/* Floating Stats Cards with premium effects */}
               {stats.map((stat, index) => (
-                <motion.div
+                <div
                   key={stat._key || index}
-                  initial={{ opacity: 1, scale: 1, rotateZ: 0 }}
-                  animate={{ opacity: 1, scale: 1, rotateZ: 0 }}
-                  whileHover={!reduceMotion ? { scale: 1.1, rotateZ: index === 0 ? 5 : -5, y: -10 } : {}}
-                  className={`absolute ${index === 0 ? 'top-10 -left-10' : 'bottom-10 -right-10'} bg-gradient-to-br from-white/15 to-white/5 p-5 rounded-2xl border border-white/20 shadow-2xl hover:shadow-[0_20px_60px_rgba(140,198,63,0.4)] cursor-pointer`}
+                  className={`absolute ${index === 0 ? 'top-10 -left-10' : 'bottom-10 -right-10'} bg-gradient-to-br from-white/15 to-white/5 p-5 rounded-2xl border border-white/20 shadow-2xl cursor-pointer transition-all duration-300 hover:scale-110 hover:shadow-[0_20px_60px_rgba(140,198,63,0.4)]`}
                   style={{
-                    transformStyle: 'preserve-3d',
                     backdropFilter: 'blur(20px)',
                     WebkitBackdropFilter: 'blur(20px)',
                   }}
@@ -281,7 +277,7 @@ const Hero = ({ data }: HeroProps) => {
                   </div>
                   <div className="text-[10px] text-white font-semibold">{stat.label}</div>
                   <div className="absolute -inset-1 bg-gradient-to-r from-[#8cc63f] to-[#7ab52f] opacity-0 hover:opacity-20 rounded-3xl blur transition-opacity" />
-                </motion.div>
+                </div>
               ))}
             </motion.div>
           </motion.div>
