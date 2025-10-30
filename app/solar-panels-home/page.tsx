@@ -261,18 +261,22 @@ export default function SolarPanelsHome() {
                 {
                   description: 'AI-empowered energy storage solutions with integrated hybrid inverters and battery systems for residential and commercial applications, delivering backup power and renewable energy optimization.',
                   logo: '/hanchu-logo.png',
+                  url: 'https://www.hanchuess.com/',
                 },
                 {
                   description: 'Global leader in solar inverters and lithium battery storage systems, providing high-performance solutions for residential, commercial, and industrial energy needs worldwide.',
                   logo: '/foxess-logo.png',
+                  url: 'https://www.fox-ess.com/',
                 },
                 {
                   description: 'World\'s leading portable power station and home battery storage specialist, offering solutions from compact emergency backup to complete off-grid energy systems.',
                   logo: '/ecoflow-logo-white.png',
+                  url: 'https://www.ecoflow.com/',
                 },
                 {
                   description: '5-in-one energy storage system integrating solar inverter, EV charger, battery management, and AI optimization for next-generation home and business energy solutions.',
                   logo: '/sigenergy-logo-red.png',
+                  url: 'https://www.sigenergy.com/en',
                 },
               ].map((brand, index) => (
                 <motion.div
@@ -291,9 +295,20 @@ export default function SolarPanelsHome() {
                       className="max-w-full max-h-full object-contain drop-shadow-lg"
                     />
                   </div>
-                  <p className="text-white/70 text-sm leading-relaxed font-light">
+                  <p className="text-white/70 text-sm leading-relaxed font-light mb-6">
                     {brand.description}
                   </p>
+                  <a
+                    href={brand.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center space-x-2 text-primary hover:text-primary-light text-sm font-medium transition-colors group"
+                  >
+                    <span>Visit Website</span>
+                    <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
                 </motion.div>
               ))}
             </div>
