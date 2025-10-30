@@ -47,12 +47,12 @@ const About = ({ data }: AboutProps) => {
     <section id="about" ref={ref} className="py-16 md:py-24 bg-transparent">
       <div className="container mx-auto px-8 md:px-12">
         <div className="grid lg:grid-cols-2 gap-14 md:gap-20 items-center">
-          {/* Left Content - Stats Grid */}
+          {/* Left Content - Stats Grid (appears second on mobile) */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
             transition={{ duration: 0.6 }}
-            className="grid grid-cols-2 gap-4 md:gap-6 max-w-full overflow-hidden"
+            className="grid grid-cols-2 gap-4 md:gap-6 max-w-full overflow-hidden order-2 lg:order-1"
           >
             {stats.map((stat, index) => (
               <motion.div
@@ -72,11 +72,12 @@ const About = ({ data }: AboutProps) => {
             ))}
           </motion.div>
 
-          {/* Right Content - Text */}
+          {/* Right Content - Text (appears first on mobile) */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
             transition={{ duration: 0.6 }}
+            className="order-1 lg:order-2"
           >
             <motion.span
               initial={{ opacity: 0, y: 20 }}
