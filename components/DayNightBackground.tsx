@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useScroll, useTransform, useMotionValue, useAnimationFrame, animate } from 'framer-motion';
-import { useRef, useContext, useEffect } from 'react';
+import { useRef, useContext, useEffect, useState } from 'react';
 import { LoadingContext } from './PageWrapper';
 
 const DayNightBackground = () => {
@@ -9,9 +9,19 @@ const DayNightBackground = () => {
   const baseRotation = useMotionValue(0);
   const timeRef = useRef(0);
   const { isLoaded, assemblyComplete } = useContext(LoadingContext);
+  const [animationsReady, setAnimationsReady] = useState(false);
 
-  // Continuous clockwise rotation
+  // Defer heavy animations until after initial paint
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setAnimationsReady(true);
+    }, 100); // Small delay for smoother initial load
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Continuous clockwise rotation - only start when ready
   useAnimationFrame((t) => {
+    if (!animationsReady) return; // Don't animate until ready
     timeRef.current = t;
     baseRotation.set((t / 1000) * 4); // 4 degrees per second = 90 sec for 360°
   });
@@ -96,7 +106,7 @@ const DayNightBackground = () => {
       </motion.div>
 
       {/* Floating Particles */}
-      {[...Array(8)].map((_, i) => {
+      {[...Array(30)].map((_, i) => {
         const xPos = ((i * 37) % 100);
         const yStart = ((i * 53) % 100);
         const duration = 8 + ((i * 0.5) % 4);
