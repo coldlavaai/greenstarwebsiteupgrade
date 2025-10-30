@@ -273,9 +273,9 @@ const Hero = ({ data }: HeroProps) => {
                   style={{
                     backdropFilter: 'blur(20px)',
                     WebkitBackdropFilter: 'blur(20px)',
-                    willChange: 'transform, opacity, backdrop-filter',
+                    willChange: 'transform, opacity',
                     transform: 'translateZ(0)',
-                    backgroundColor: 'rgba(30, 30, 30, 0.6)',
+                    background: 'linear-gradient(to bottom right, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05)), rgba(20, 20, 20, 0.7)',
                   }}
                   data-sanity={data?._id && stat._key ? `${data._id}.stats[_key=="${stat._key}"]` : undefined}
                 >
