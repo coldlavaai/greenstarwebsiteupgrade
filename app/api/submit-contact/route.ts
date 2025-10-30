@@ -2,17 +2,17 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@sanity/client'
 import { Resend } from 'resend'
 
-// Initialize Sanity client with write access
-const sanityClient = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
+// Initialize Sanity client with write access (only if configured)
+const sanityClient = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ? createClient({
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
   apiVersion: '2024-01-01',
-  token: process.env.SANITY_API_WRITE_TOKEN!,
+  token: process.env.SANITY_API_WRITE_TOKEN,
   useCdn: false,
-})
+}) : null
 
-// Initialize Resend for email
-const resend = new Resend(process.env.RESEND_API_KEY)
+// Initialize Resend for email (only if configured)
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null
 
 export async function POST(request: NextRequest) {
   try {
@@ -72,28 +72,33 @@ export async function POST(request: NextRequest) {
       // Don't fail the request if Google Sheets fails
     }
 
-    // 2. Save submission to Sanity for record-keeping
-    const submission = await sanityClient.create({
-      _type: 'formSubmission',
-      name,
-      email,
-      phone,
-      message: message || '',
-      submittedAt: new Date().toISOString(),
-      status: 'new',
-    })
+    // 2. Save submission to Sanity for record-keeping (if configured)
+    let submission: any = null
+    let emailSettings: any = null
 
-    console.log('✅ Form submission saved to Sanity:', submission._id)
+    if (sanityClient) {
+      submission = await sanityClient.create({
+        _type: 'formSubmission',
+        name,
+        email,
+        phone,
+        message: message || '',
+        submittedAt: new Date().toISOString(),
+        status: 'new',
+      })
 
-    // 3. Fetch email settings from Sanity
-    const emailSettings = await sanityClient.fetch(`*[_type == "emailSettings"][0]{
-      notificationEmails,
-      emailSubject,
-      enableNotifications
-    }`)
+      console.log('✅ Form submission saved to Sanity:', submission._id)
+
+      // 3. Fetch email settings from Sanity
+      emailSettings = await sanityClient.fetch(`*[_type == "emailSettings"][0]{
+        notificationEmails,
+        emailSubject,
+        enableNotifications
+      }`)
+    }
 
     // 4. Send email notifications if enabled
-    if (emailSettings?.enableNotifications && emailSettings?.notificationEmails?.length > 0) {
+    if (resend && emailSettings?.enableNotifications && emailSettings?.notificationEmails?.length > 0) {
       const recipientEmails = emailSettings.notificationEmails.map((item: any) => item.email)
       const subject = emailSettings.emailSubject || 'New Contact Form Submission - GreenStar Solar'
 
@@ -132,12 +137,14 @@ export async function POST(request: NextRequest) {
                       timeStyle: 'short'
                     })}
                   </p>
-                  <p style="color: #666; font-size: 14px; margin: 10px 0 0 0;">
-                    <a href="${process.env.NEXT_PUBLIC_SITE_URL}/studio/structure/formSubmission;${submission._id}"
-                       style="color: #8cc63f; text-decoration: none;">
-                      View in Sanity Studio →
-                    </a>
-                  </p>
+                  ${submission?._id ? `
+                    <p style="color: #666; font-size: 14px; margin: 10px 0 0 0;">
+                      <a href="${process.env.NEXT_PUBLIC_SITE_URL}/studio/structure/formSubmission;${submission._id}"
+                         style="color: #8cc63f; text-decoration: none;">
+                        View in Sanity Studio →
+                      </a>
+                    </p>
+                  ` : ''}
                 </div>
               </div>
 
@@ -161,7 +168,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       success: true,
       message: 'Form submitted successfully',
-      submissionId: submission._id,
+      submissionId: submission?._id || 'not-recorded',
     })
 
   } catch (error) {
