@@ -102,6 +102,8 @@
 html {
   /* Reserve space for scrollbar to prevent layout shift */
   scrollbar-gutter: stable;
+  /* Fallback for browsers that don't support scrollbar-gutter */
+  overflow-y: scroll;
 }
 
 body {
