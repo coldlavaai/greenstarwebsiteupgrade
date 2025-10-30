@@ -281,21 +281,25 @@ export default function SolarPanelsHome() {
                   name: 'Hanchu ESS',
                   description: 'Advanced hybrid inverter technology',
                   logo: '/hanchu-logo.png',
+                  invert: false,
                 },
                 {
                   name: 'Fox ESS',
                   description: 'Industry-leading energy storage',
                   logo: '/foxess-logo.png',
+                  invert: false,
                 },
                 {
                   name: 'EcoFlow',
                   description: 'Smart power management systems',
                   logo: '/ecoflow-logo.png',
+                  invert: true,
                 },
                 {
                   name: 'Sigenergy',
                   description: 'Next-gen battery solutions',
                   logo: '/sigenergy-logo.png',
+                  invert: true,
                 },
               ].map((brand, index) => (
                 <motion.div
@@ -311,7 +315,7 @@ export default function SolarPanelsHome() {
                     <img
                       src={brand.logo}
                       alt={`${brand.name} logo`}
-                      className="max-w-full max-h-full object-contain filter drop-shadow-lg"
+                      className={`max-w-full max-h-full object-contain filter drop-shadow-lg ${brand.invert ? 'brightness-0 invert' : ''}`}
                     />
                   </div>
                   <h3 className="text-xl font-bold text-white mb-2 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
