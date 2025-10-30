@@ -207,8 +207,17 @@ const Contact = ({ data }: ContactProps) => {
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
             transition={{ duration: 0.6 }}
+            className="flex flex-col"
           >
-            <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl md:rounded-3xl shadow-2xl p-6 md:p-8 border border-white/20">
+            {/* Form Description */}
+            <div className="mb-6 md:mb-8">
+              <p className="text-white/80 text-sm md:text-base leading-relaxed">
+                Fill out the form below and someone from our team will get back to you within 24 hours.
+                Just give us your details and a little bit of information about how we can help you with your solar journey.
+              </p>
+            </div>
+
+            <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl md:rounded-3xl shadow-2xl p-6 md:p-8 border border-white/20 flex-grow">
               {!isSubmitted ? (
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 md:space-y-6">
                   {/* Name Field */}
