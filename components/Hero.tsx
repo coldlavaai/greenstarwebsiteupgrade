@@ -269,13 +269,11 @@ const Hero = ({ data }: HeroProps) => {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.6 + index * 0.1, type: 'spring', stiffness: 100 }}
                   whileHover={!reduceMotion ? { scale: 1.1, y: -10 } : {}}
-                  className={`absolute ${index === 0 ? 'top-10 -left-10' : 'bottom-10 -right-10'} bg-gradient-to-br from-[rgba(255,255,255,0.15)] to-[rgba(255,255,255,0.05)] p-5 rounded-2xl border border-white/20 shadow-2xl hover:shadow-[0_20px_60px_rgba(140,198,63,0.4)] cursor-pointer`}
+                  className={`absolute ${index === 0 ? 'top-10 -left-10' : 'bottom-10 -right-10'} p-5 rounded-2xl border border-white/20 shadow-2xl hover:shadow-[0_20px_60px_rgba(140,198,63,0.4)] cursor-pointer`}
                   style={{
-                    backdropFilter: 'blur(20px)',
-                    WebkitBackdropFilter: 'blur(20px)',
                     willChange: 'transform, opacity',
                     transform: 'translateZ(0)',
-                    background: 'linear-gradient(to bottom right, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05)), rgba(20, 20, 20, 0.7)',
+                    background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.04) 100%), rgba(18, 18, 18, 0.85)',
                   }}
                   data-sanity={data?._id && stat._key ? `${data._id}.stats[_key=="${stat._key}"]` : undefined}
                 >
