@@ -157,17 +157,19 @@ export default function VapiTextChat() {
           <div
             onClick={() => setIsOpen(true)}
             onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateX(-2px)';
-              e.currentTarget.style.boxShadow = '0 12px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(140, 198, 63, 0.4)';
+              e.currentTarget.style.transform = 'translateX(-3px) scale(1.05)';
+              e.currentTarget.style.boxShadow = '0 16px 40px rgba(0, 0, 0, 0.5), 0 0 0 2px rgba(140, 198, 63, 0.6)';
+              e.currentTarget.style.borderColor = 'rgba(140, 198, 63, 0.6)';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateX(0)';
+              e.currentTarget.style.transform = 'translateX(0) scale(1)';
               e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(140, 198, 63, 0.2)';
+              e.currentTarget.style.borderColor = 'rgba(140, 198, 63, 0.2)';
             }}
             style={{
               position: 'absolute',
               bottom: isMobile ? '8px' : '10px',
-              right: isMobile ? '75px' : '85px',
+              right: isMobile ? '80px' : '90px',
               background: 'linear-gradient(145deg, rgba(30, 30, 30, 0.95), rgba(20, 20, 20, 0.9))',
               backdropFilter: 'blur(20px) saturate(180%)',
               WebkitBackdropFilter: 'blur(20px) saturate(180%)',
@@ -188,17 +190,29 @@ export default function VapiTextChat() {
               animation: 'gentlePulse 3s ease-in-out infinite'
             }}>
             Talk to Sophie<br />about your project
-            {/* Speech bubble arrow pointing right to button */}
+            {/* Speech bubble arrow pointing right to button - larger and clearer */}
             <div style={{
               position: 'absolute',
               top: '50%',
-              right: '-6px',
+              right: '-10px',
               transform: 'translateY(-50%)',
               width: '0',
               height: '0',
-              borderTop: '6px solid transparent',
-              borderBottom: '6px solid transparent',
-              borderLeft: '6px solid rgba(20, 20, 20, 0.9)'
+              borderTop: '10px solid transparent',
+              borderBottom: '10px solid transparent',
+              borderLeft: '10px solid rgba(20, 20, 20, 0.9)'
+            }} />
+            {/* Arrow border for better visibility */}
+            <div style={{
+              position: 'absolute',
+              top: '50%',
+              right: '-11px',
+              transform: 'translateY(-50%)',
+              width: '0',
+              height: '0',
+              borderTop: '11px solid transparent',
+              borderBottom: '11px solid transparent',
+              borderLeft: '11px solid rgba(140, 198, 63, 0.2)'
             }} />
           </div>
         )}
