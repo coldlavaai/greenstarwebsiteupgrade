@@ -29,6 +29,10 @@ export async function POST(request: NextRequest) {
     }
 
     // 1. Send to Google Sheets directly
+    console.log('🔍 Attempting to save to Google Sheets...')
+    console.log('🔑 Has GOOGLE_SERVICE_ACCOUNT_EMAIL:', !!process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL)
+    console.log('🔑 Has GOOGLE_PRIVATE_KEY:', !!process.env.GOOGLE_PRIVATE_KEY)
+
     try {
       const sheetsResult = await appendToSheet({
         name,
@@ -42,9 +46,11 @@ export async function POST(request: NextRequest) {
         console.log('✅ Form submission saved to Google Sheets')
       } else {
         console.error('❌ Failed to save to Google Sheets:', sheetsResult.error)
+        console.error('Full error details:', JSON.stringify(sheetsResult, null, 2))
       }
     } catch (sheetsError) {
       console.error('❌ Error sending to Google Sheets:', sheetsError)
+      console.error('Error stack:', sheetsError instanceof Error ? sheetsError.stack : 'No stack trace')
       // Don't fail the request if Google Sheets fails
     }
 
