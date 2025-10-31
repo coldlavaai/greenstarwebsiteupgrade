@@ -100,8 +100,8 @@ const About = ({ data }: AboutProps) => {
               style={{ fontFamily: 'var(--font-heading)' }}
               data-sanity={data?._id ? `${data._id}.heading` : undefined}
             >
-              {data?.heading || 'Leading the Way in'}<br />
-              <span className="text-[#8cc63f]">Renewable Energy</span>
+              {data?.heading || 'Expert advice and'}<br />
+              <span className="text-[#8cc63f]">outstanding service</span>
             </motion.h2>
 
             <motion.p

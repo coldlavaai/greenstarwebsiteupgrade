@@ -96,7 +96,7 @@ const Hero = ({ data }: HeroProps) => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: isMobile ? 0.1 : 0.2, duration: isMobile ? 0.4 : 0.8 }}
-              className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-[1.1] tracking-tight"
+              className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6 leading-[1.1] tracking-tight"
               data-sanity={data?._id ? `${data._id}.heading` : undefined}
               style={{ fontFamily: 'var(--font-heading)' }}
             >

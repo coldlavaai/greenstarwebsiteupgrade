@@ -143,7 +143,7 @@ const Testimonials = ({ data }: TestimonialsProps) => {
             <span className="bg-gradient-to-r from-accent via-primary-light to-accent bg-clip-text text-transparent">Customers Say</span>
           </h2>
           <p className="text-lg md:text-xl text-white/60 max-w-3xl mx-auto font-light leading-relaxed">
-            Real reviews from real customers on Google and Trustpilot
+            Real reviews from real homeowners who have made the switch with Green Star Solar
           </p>
 
           {/* Trust Badges */}
