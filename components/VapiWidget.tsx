@@ -123,7 +123,7 @@ export default function VapiWidget() {
         zIndex: 10000,
         fontFamily: 'var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
       }}>
-        {/* Tooltip */}
+        {/* Speech Bubble */}
         {!isOpen && (
           <div style={{
             position: 'absolute',
@@ -137,14 +137,25 @@ export default function VapiWidget() {
             fontSize: '14px',
             fontWeight: 500,
             whiteSpace: 'nowrap',
-            opacity: 0,
-            transform: 'translateY(10px) scale(0.8)',
+            opacity: 1,
+            transform: 'translateY(0) scale(1)',
             transition: 'all 0.4s cubic-bezier(0.23, 1, 0.32, 1)',
             pointerEvents: 'none',
             boxShadow: '0 8px 32px rgba(140, 198, 63, 0.3), 0 4px 16px rgba(0, 0, 0, 0.1)',
             border: '1px solid rgba(140, 198, 63, 0.3)'
           }} className="widget-tooltip">
-            Talk to Sophie?
+            Talk to Sophie about your project
+            {/* Speech bubble arrow */}
+            <div style={{
+              position: 'absolute',
+              bottom: '-8px',
+              right: '20px',
+              width: '0',
+              height: '0',
+              borderLeft: '8px solid transparent',
+              borderRight: '8px solid transparent',
+              borderTop: '8px solid #7ab52f'
+            }} />
           </div>
         )}
 

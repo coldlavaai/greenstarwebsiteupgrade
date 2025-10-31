@@ -24,7 +24,7 @@ async function populateSanity() {
       secondaryCtaLink: '#systems',
       stats: [
         { _key: 'stat-1', value: '15+', label: 'Years Experience' },
-        { _key: 'stat-2', value: '500+', label: 'Happy Customers' }
+        { _key: 'stat-2', value: '250+', label: 'Happy Customers' }
       ]
     })
     console.log('✅ Hero Section created')

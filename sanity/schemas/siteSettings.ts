@@ -33,7 +33,7 @@ export const siteSettings = defineType({
       title: 'Tagline/Slogan',
       type: 'string',
       description: 'Short memorable phrase about your business',
-      initialValue: 'Powering Your Future with Clean Energy',
+      initialValue: 'Smart energy solutions designed around you',
       group: 'identity',
     },
     {

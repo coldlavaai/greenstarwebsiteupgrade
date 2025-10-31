@@ -61,7 +61,7 @@ const Hero = ({ data }: HeroProps) => {
   // Use stats from CMS or fallback to default
   const stats = data?.stats || [
     { value: '15+', label: 'Years Experience' },
-    { value: '500+', label: 'Happy Customers' },
+    { value: '250+', label: 'Happy Customers' },
   ];
 
   return (
@@ -100,14 +100,14 @@ const Hero = ({ data }: HeroProps) => {
               data-sanity={data?._id ? `${data._id}.heading` : undefined}
               style={{ fontFamily: 'var(--font-heading)' }}
             >
-              {data?.heading || 'Power Your Future'}<br />
+              {data?.heading || 'Smart Energy Solutions'}<br />
               <motion.span
                 className="bg-gradient-to-r from-primary via-primary to-primary bg-clip-text text-transparent bg-[length:200%_auto]"
                 animate={!isMobile && !reduceMotion ? { backgroundPosition: ['0% center', '200% center'] } : {}}
                 transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
                 style={isMobile ? {} : { textShadow: '0 0 80px rgba(140, 199, 64, 0.3)' }}
               >
-                with Solar Energy
+                Designed Around You
               </motion.span>
             </motion.h1>
 

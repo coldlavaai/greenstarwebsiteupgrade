@@ -205,13 +205,26 @@ const Footer = ({ data }: FooterProps) => {
 
         {/* Bottom Bar */}
         <div className="border-t border-white/10 py-8">
-          <div className="flex flex-col md:flex-row justify-center items-center">
+          <div className="flex flex-col justify-center items-center space-y-3">
             <div
               className="text-gray-400 text-sm text-center"
               data-sanity={data?._id ? `${data._id}.copyright` : undefined}
             >
-              {data?.copyright || `© ${new Date().getFullYear()} Greenstar Solar. All rights reserved.`}
+              {data?.copyright || `© ${new Date().getFullYear()} Greenstar Solar · Company No. 16038912 · All rights reserved.`}
             </div>
+            <a
+              href="https://coldlavaai.github.io/home"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center space-x-2 text-gray-500 hover:text-[#8cc63f] transition-colors text-xs group"
+            >
+              <span>Powered by</span>
+              <img
+                src="https://coldlavaai.github.io/home/images/coldlava-logo-white.png"
+                alt="ColdLava"
+                className="h-4 w-auto opacity-60 group-hover:opacity-100 transition-opacity"
+              />
+            </a>
           </div>
         </div>
       </div>
