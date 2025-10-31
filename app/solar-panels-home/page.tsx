@@ -176,9 +176,9 @@ export default function SolarPanelsHome() {
                     <Image
                       src="/aiko-neostar-3s.png"
                       alt="Aiko Neostar 3S N-Type ABC Solar Panel"
-                      width={512}
-                      height={512}
-                      className="w-full h-auto object-contain drop-shadow-2xl max-w-lg"
+                      width={600}
+                      height={600}
+                      className="w-full h-auto object-contain drop-shadow-2xl max-w-xl"
                       priority
                       quality={90}
                     />
