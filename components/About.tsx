@@ -39,7 +39,7 @@ const About = ({ data }: AboutProps) => {
   })) || [
     { icon: Award, value: '15+', label: 'Years Experience' },
     { icon: Users, value: '250+', label: 'Happy Customers' },
-    { icon: TrendingUp, value: '95%', label: 'Energy Savings' },
+    { icon: TrendingUp, value: '1.5M kWh', label: 'Generated in 2025' },
     { icon: Shield, value: '100%', label: 'Satisfaction Rate' },
   ];
 
