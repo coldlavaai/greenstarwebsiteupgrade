@@ -48,15 +48,15 @@ export async function appendToSheet(data: {
     }).replace(',', '');
 
     // Prepare row data
-    // Adjust the order of columns to match your Google Sheet headers
+    // Column order matches Google Sheet: First Name, Last Name, Mobile, Email, Postcode, Time of Request, Notes, Source
     const rowData = [
-      timestamp,           // A: Timestamp
-      firstName,           // B: First Name
-      lastName,            // C: Last Name
+      firstName,           // A: First Name
+      lastName,            // B: Last Name
+      data.phone,          // C: Mobile
       data.email,          // D: Email
-      data.phone,          // E: Phone
-      data.postcode,       // F: Postcode
-      data.message || '',  // G: Message/Notes
+      data.postcode,       // E: Postcode
+      timestamp,           // F: Time of request
+      data.message || '',  // G: Notes
       'Website Contact Form', // H: Source
     ];
 
