@@ -220,9 +220,9 @@ const Footer = ({ data }: FooterProps) => {
             >
               <span>Powered by</span>
               <img
-                src="https://cdn.shopify.com/s/files/1/0951/6141/8067/files/LAVA_1.png?v=1753207208"
+                src="https://cdn.shopify.com/s/files/1/0951/6141/8067/files/Full_logo_White_text_no_logo_glow.png?v=1761221158"
                 alt="ColdLava"
-                className="h-4 w-auto opacity-60 group-hover:opacity-100 transition-opacity"
+                className="h-5 w-auto opacity-70 group-hover:opacity-100 transition-opacity"
               />
             </a>
           </div>

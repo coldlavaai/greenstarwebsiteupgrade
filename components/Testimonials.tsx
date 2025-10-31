@@ -138,7 +138,7 @@ const Testimonials = ({ data }: TestimonialsProps) => {
             </span>
             <div className="h-px w-12 bg-gradient-to-l from-transparent to-accent"></div>
           </motion.div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-6 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
             What Our{' '}
             <span className="bg-gradient-to-r from-accent via-primary-light to-accent bg-clip-text text-transparent">Customers Say</span>
           </h2>

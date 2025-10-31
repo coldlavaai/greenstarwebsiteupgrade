@@ -116,7 +116,7 @@ const Contact = ({ data }: ContactProps) => {
             <div className="h-px w-8 md:w-12 bg-gradient-to-l from-transparent to-accent"></div>
           </motion.div>
           <h2
-            className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 md:mb-6 tracking-tight"
+            className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4 md:mb-6 tracking-tight"
             style={{ fontFamily: 'var(--font-heading)' }}
             data-sanity={data?._id ? `${data._id}.heading` : undefined}
           >
