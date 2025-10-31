@@ -43,7 +43,6 @@ const Footer = ({ data }: FooterProps) => {
     ],
     resources: [
       { name: 'Gallery', href: '/gallery' },
-      { name: 'Case Studies', href: '/case-studies' },
       { name: 'Systems Overview', href: '/#systems' },
     ],
   };

@@ -19,20 +19,29 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Greenstar Solar - Premium Solar Panel & Battery Storage Solutions UK",
+  title: "Greenstar Solar - Premium Solar Panel and Battery Storage Solutions UK",
   description: "Leading UK solar energy company. Expert installation of solar panels and battery storage for homes and businesses. Get your free survey today.",
-  metadataBase: new URL("https://greenstarwebsiteupgrade.vercel.app"),
+  metadataBase: new URL("https://greenstarsolar.co.uk"),
   openGraph: {
-    title: "Greenstar Solar - Premium Solar Solutions",
-    description: "Leading UK solar energy company. Expert installation of solar panels and battery storage for homes and businesses.",
-    url: "https://greenstarwebsiteupgrade.vercel.app",
+    title: "Greenstar Solar - Premium Solar Panel and Battery Storage Solutions UK",
+    description: "Leading UK solar energy company. Expert installation of solar panels and battery storage for homes and businesses. Get your free survey today.",
+    url: "https://greenstarsolar.co.uk",
     siteName: "Greenstar Solar",
     type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Greenstar Solar - Premium Solar Solutions",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Greenstar Solar - Premium Solar Solutions",
-    description: "Leading UK solar energy company. Expert installation of solar panels and battery storage for homes and businesses.",
+    title: "Greenstar Solar - Premium Solar Panel and Battery Storage Solutions UK",
+    description: "Leading UK solar energy company. Expert installation of solar panels and battery storage for homes and businesses. Get your free survey today.",
+    images: ["/og-image.png"],
   },
   themeColor: "#000000",
 };

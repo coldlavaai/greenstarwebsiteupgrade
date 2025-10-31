@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, Sun, Zap, Sparkles, Plug } from 'lucide-react';
 import { useRef, useState, useEffect } from 'react';
+import Image from 'next/image';
 import { urlFor } from '@/lib/sanity';
 import BatteryIcon from '@/components/icons/BatteryIcon';
 import { useIsMobile, useIsTouch, useReducedMotion } from '@/hooks/useMediaQuery';
@@ -250,15 +251,26 @@ const Hero = ({ data }: HeroProps) => {
                 }}
                 data-sanity={data?._id ? `${data._id}.backgroundImage` : undefined}
               >
-                <div
-                  className="absolute inset-0 bg-cover bg-center"
-                  style={{
-                    backgroundImage: data?.backgroundImage
-                      ? `url('${urlFor(data.backgroundImage).width(800).quality(85).url()}')`
-                      : `url('/images/hero-house.png')`,
-                  }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-br from-[#8cc63f]/30 via-transparent to-[#8cc63f]/30" />
+                {data?.backgroundImage ? (
+                  <Image
+                    src={urlFor(data.backgroundImage).width(800).quality(85).url()}
+                    alt="Greenstar Solar Installation"
+                    fill
+                    priority
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 400px"
+                  />
+                ) : (
+                  <Image
+                    src="/images/hero-house.webp"
+                    alt="Greenstar Solar Installation"
+                    fill
+                    priority
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 400px"
+                  />
+                )}
+                <div className="absolute inset-0 bg-gradient-to-br from-[#8cc63f]/30 via-transparent to-[#8cc63f]/30 z-10" />
               </div>
 
               {/* Floating Stats Cards with premium effects */}
