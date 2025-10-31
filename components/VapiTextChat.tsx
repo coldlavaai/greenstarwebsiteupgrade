@@ -147,34 +147,33 @@ export default function VapiTextChat() {
             position: 'absolute',
             bottom: isMobile ? '75px' : '85px',
             right: 0,
-            background: 'linear-gradient(135deg, #8cc63f, #7ab52f)',
+            background: 'linear-gradient(145deg, rgba(30, 30, 30, 0.95), rgba(20, 20, 20, 0.9))',
             backdropFilter: 'blur(20px) saturate(180%)',
             WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-            color: 'white',
-            padding: isMobile ? '12px 14px' : '14px 18px',
-            borderRadius: '16px',
-            fontSize: isMobile ? '13px' : '15px',
-            fontWeight: 600,
-            whiteSpace: 'nowrap',
-            boxShadow: '0 12px 40px rgba(140, 198, 63, 0.5), 0 8px 20px rgba(0, 0, 0, 0.2)',
-            border: '2px solid rgba(140, 198, 63, 0.5)',
-            zIndex: 10001,
-            animation: 'bounce 2s ease-in-out infinite'
+            color: 'rgba(255, 255, 255, 0.9)',
+            padding: isMobile ? '8px 10px' : '10px 12px',
+            borderRadius: '12px',
+            fontSize: isMobile ? '11px' : '12px',
+            fontWeight: 400,
+            whiteSpace: 'normal',
+            maxWidth: isMobile ? '140px' : '160px',
+            lineHeight: '1.4',
+            textAlign: 'center',
+            boxShadow: '0 8px 24px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(140, 198, 63, 0.2)',
+            border: '1px solid rgba(140, 198, 63, 0.2)',
+            zIndex: 10001
           }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <span style={{ fontSize: isMobile ? '18px' : '20px' }}>💬</span>
-              <span>Talk to Sophie about your project</span>
-            </div>
+            Talk to Sophie about your project
             {/* Speech bubble arrow */}
             <div style={{
               position: 'absolute',
-              bottom: '-10px',
-              right: '25px',
+              bottom: '-6px',
+              right: '20px',
               width: '0',
               height: '0',
-              borderLeft: '10px solid transparent',
-              borderRight: '10px solid transparent',
-              borderTop: '10px solid #7ab52f'
+              borderLeft: '6px solid transparent',
+              borderRight: '6px solid transparent',
+              borderTop: '6px solid rgba(20, 20, 20, 0.9)'
             }} />
           </div>
         )}
