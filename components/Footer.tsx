@@ -45,6 +45,11 @@ const Footer = ({ data }: FooterProps) => {
       { name: 'Gallery', href: '/gallery' },
       { name: 'Systems Overview', href: '/#systems' },
     ],
+    legal: [
+      { name: 'Privacy Policy', href: '/privacy-policy' },
+      { name: 'Cookie Policy', href: '/cookie-policy' },
+      { name: 'Terms & Conditions', href: '/terms' },
+    ],
   };
 
   // Icon mapping for social platforms
@@ -71,7 +76,7 @@ const Footer = ({ data }: FooterProps) => {
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Main Footer Content */}
-        <div className="py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+        <div className="py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
           {/* Company Info */}
           <div className="lg:col-span-2">
             <motion.div
@@ -189,6 +194,29 @@ const Footer = ({ data }: FooterProps) => {
             <h3 className="text-lg font-bold mb-4">Resources</h3>
             <ul className="space-y-3">
               {footerLinks.resources.map((link) => (
+                <li key={link.name}>
+                  <a
+                    href={link.href}
+                    className="text-gray-400 hover:text-[#8cc63f] transition-colors inline-block hover:translate-x-1 transform"
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* Legal Links */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-left"
+          >
+            <h3 className="text-lg font-bold mb-4">Legal</h3>
+            <ul className="space-y-3">
+              {footerLinks.legal.map((link) => (
                 <li key={link.name}>
                   <a
                     href={link.href}

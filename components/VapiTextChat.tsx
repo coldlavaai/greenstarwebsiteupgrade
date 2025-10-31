@@ -18,8 +18,8 @@ export default function VapiTextChat() {
   const isMobile = useIsMobile();
 
   const WIDGET_CONFIG = {
-    assistantId: 'cb76e1bc-dc2d-4ea8-84a1-c17499ed6387',
-    apiKey: 'bb0b198b-1a8f-4675-bdf8-8a865fc5d68a'
+    assistantId: process.env.NEXT_PUBLIC_VAPI_ASSISTANT_ID || 'cb76e1bc-dc2d-4ea8-84a1-c17499ed6387',
+    apiKey: process.env.NEXT_PUBLIC_VAPI_API_KEY || 'bb0b198b-1a8f-4675-bdf8-8a865fc5d68a'
   };
 
   const scrollToBottom = () => {

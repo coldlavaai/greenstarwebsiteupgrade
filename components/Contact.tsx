@@ -12,6 +12,7 @@ interface FormData {
   phone: string;
   postcode: string;
   message: string;
+  consent: boolean;
 }
 
 interface ContactData {
@@ -306,6 +307,38 @@ const Contact = ({ data }: ContactProps) => {
                       className="w-full px-4 py-3 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 focus:border-[#8cc63f] focus:ring-2 focus:ring-[#8cc63f]/30 outline-none transition-all resize-none text-white placeholder:text-white/40"
                       placeholder="Tell us about your project..."
                     />
+                  </div>
+
+                  {/* GDPR Consent Checkbox */}
+                  <div className="bg-white/5 p-4 rounded-xl border border-white/10">
+                    <label className="flex items-start space-x-3 cursor-pointer group">
+                      <input
+                        {...register('consent', {
+                          required: 'You must agree to the Privacy Policy to submit this form'
+                        })}
+                        type="checkbox"
+                        className="w-5 h-5 mt-0.5 rounded border-white/20 bg-white/10 text-[#8cc63f] focus:ring-2 focus:ring-[#8cc63f]/30 cursor-pointer flex-shrink-0"
+                        style={{
+                          accentColor: '#8cc63f'
+                        }}
+                      />
+                      <span className="text-sm text-white/80 group-hover:text-white transition-colors leading-relaxed">
+                        I agree to the{' '}
+                        <a
+                          href="/privacy-policy"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[#8cc63f] hover:underline font-semibold"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          Privacy Policy
+                        </a>{' '}
+                        and consent to Greenstar Solar processing my personal data to respond to my enquiry. *
+                      </span>
+                    </label>
+                    {errors.consent && (
+                      <p className="mt-2 text-sm text-red-400 ml-8">{errors.consent.message}</p>
+                    )}
                   </div>
 
                   {/* Submit Button - Premium glassmorphism styling with instant feedback */}

@@ -5,6 +5,7 @@ import { draftMode } from 'next/headers';
 import { VisualEditing } from '@/components/VisualEditing';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import VapiTextChat from '@/components/VapiTextChat';
+import CookieConsent from '@/components/CookieConsent';
 
 const inter = Inter({
   subsets: ["latin"],
@@ -60,6 +61,7 @@ export default function RootLayout({
           {children}
           {isDraftMode && <VisualEditing />}
           <VapiTextChat />
+          <CookieConsent />
         </ThemeProvider>
       </body>
     </html>
