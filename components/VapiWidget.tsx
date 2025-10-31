@@ -142,7 +142,9 @@ export default function VapiWidget() {
             transition: 'all 0.4s cubic-bezier(0.23, 1, 0.32, 1)',
             pointerEvents: 'none',
             boxShadow: '0 8px 32px rgba(140, 198, 63, 0.3), 0 4px 16px rgba(0, 0, 0, 0.1)',
-            border: '1px solid rgba(140, 198, 63, 0.3)'
+            border: '1px solid rgba(140, 198, 63, 0.3)',
+            zIndex: 10001,
+            display: 'block'
           }} className="widget-tooltip">
             Talk to Sophie about your project
             {/* Speech bubble arrow */}
