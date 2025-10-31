@@ -157,29 +157,28 @@ export default function VapiTextChat() {
           <div
             onClick={() => setIsOpen(true)}
             onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-2px)';
+              e.currentTarget.style.transform = 'translateX(-2px)';
               e.currentTarget.style.boxShadow = '0 12px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(140, 198, 63, 0.4)';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.transform = 'translateX(0)';
               e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(140, 198, 63, 0.2)';
             }}
             style={{
               position: 'absolute',
-              bottom: isMobile ? '75px' : '85px',
-              right: 0,
+              bottom: isMobile ? '8px' : '10px',
+              right: isMobile ? '75px' : '85px',
               background: 'linear-gradient(145deg, rgba(30, 30, 30, 0.95), rgba(20, 20, 20, 0.9))',
               backdropFilter: 'blur(20px) saturate(180%)',
               WebkitBackdropFilter: 'blur(20px) saturate(180%)',
               color: 'rgba(255, 255, 255, 0.9)',
-              padding: isMobile ? '8px 12px' : '10px 14px',
-              borderRadius: '12px',
-              fontSize: isMobile ? '11px' : '12px',
+              padding: isMobile ? '7px 10px' : '8px 12px',
+              borderRadius: '10px',
+              fontSize: isMobile ? '10px' : '11px',
               fontWeight: 500,
               fontFamily: 'var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
-              whiteSpace: 'normal',
-              width: isMobile ? '180px' : '200px',
-              lineHeight: '1.4',
+              whiteSpace: 'nowrap',
+              lineHeight: '1.3',
               textAlign: 'center',
               boxShadow: '0 8px 24px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(140, 198, 63, 0.2)',
               border: '1px solid rgba(140, 198, 63, 0.2)',
@@ -189,16 +188,17 @@ export default function VapiTextChat() {
               animation: 'gentlePulse 3s ease-in-out infinite'
             }}>
             Talk to Sophie<br />about your project
-            {/* Speech bubble arrow */}
+            {/* Speech bubble arrow pointing right to button */}
             <div style={{
               position: 'absolute',
-              bottom: '-6px',
-              right: '25px',
+              top: '50%',
+              right: '-6px',
+              transform: 'translateY(-50%)',
               width: '0',
               height: '0',
-              borderLeft: '6px solid transparent',
-              borderRight: '6px solid transparent',
-              borderTop: '6px solid rgba(20, 20, 20, 0.9)'
+              borderTop: '6px solid transparent',
+              borderBottom: '6px solid transparent',
+              borderLeft: '6px solid rgba(20, 20, 20, 0.9)'
             }} />
           </div>
         )}
