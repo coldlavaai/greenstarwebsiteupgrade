@@ -29,17 +29,20 @@ export default function CookieConsent() {
 
   return (
     <div
+      className="cookie-consent-banner"
       style={{
         position: 'fixed',
-        bottom: 0,
-        left: 0,
-        right: 0,
+        bottom: '20px',
+        left: '20px',
+        right: '200px',
+        maxWidth: '1000px',
         zIndex: 9999,
         padding: '20px',
         background: 'linear-gradient(135deg, rgba(18, 18, 18, 0.98), rgba(25, 25, 25, 0.98))',
         backdropFilter: 'blur(20px)',
-        borderTop: '1px solid rgba(140, 198, 63, 0.2)',
-        boxShadow: '0 -10px 40px rgba(0, 0, 0, 0.5)',
+        border: '1px solid rgba(140, 198, 63, 0.2)',
+        borderRadius: '16px',
+        boxShadow: '0 10px 40px rgba(0, 0, 0, 0.5)',
         animation: 'slideUpFade 0.5s ease-out',
       }}
     >
@@ -54,9 +57,18 @@ export default function CookieConsent() {
             transform: translateY(0);
           }
         }
+
+        @media (max-width: 768px) {
+          .cookie-consent-banner {
+            bottom: 10px !important;
+            left: 10px !important;
+            right: 10px !important;
+            max-width: none !important;
+          }
+        }
       `}</style>
 
-      <div className="container mx-auto max-w-6xl">
+      <div className="max-w-full">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           {/* Content */}
           <div className="flex items-start gap-3 flex-1">
