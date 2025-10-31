@@ -163,27 +163,8 @@ export default function SolarPanelsHome() {
                   </p>
                 </motion.div>
 
-                {/* Visual Column - Image and Logo */}
+                {/* Visual Column - Logo and Image */}
                 <div className="space-y-4">
-                  {/* Solar Panel Image */}
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true, amount: 0.1 }}
-                    transition={{ delay: 0.3, duration: 0.6 }}
-                    className="flex justify-center"
-                  >
-                    <Image
-                      src="/aiko-neostar-3s.png"
-                      alt="Aiko Neostar 3S N-Type ABC Solar Panel"
-                      width={315}
-                      height={315}
-                      className="w-full h-auto object-contain drop-shadow-2xl max-w-sm"
-                      priority
-                      quality={90}
-                    />
-                  </motion.div>
-
                   {/* Aiko Logo */}
                   <motion.div
                     initial={{ opacity: 0, y: -20 }}
@@ -199,6 +180,25 @@ export default function SolarPanelsHome() {
                       height={56}
                       className="h-14 w-auto object-contain opacity-90"
                       priority
+                    />
+                  </motion.div>
+
+                  {/* Solar Panel Image */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true, amount: 0.1 }}
+                    transition={{ delay: 0.3, duration: 0.6 }}
+                    className="flex justify-center"
+                  >
+                    <Image
+                      src="/aiko-neostar-3s.png"
+                      alt="Aiko Neostar 3S N-Type ABC Solar Panel"
+                      width={252}
+                      height={252}
+                      className="w-full h-auto object-contain drop-shadow-2xl max-w-xs"
+                      priority
+                      quality={90}
                     />
                   </motion.div>
                 </div>
