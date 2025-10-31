@@ -185,22 +185,12 @@ export default function VapiWidget() {
           onMouseEnter={(e) => {
             e.currentTarget.style.transform = 'translateY(-12px) scale(1.08)';
             e.currentTarget.style.boxShadow = '0 40px 80px rgba(140, 198, 63, 0.35), 0 20px 40px rgba(0, 0, 0, 0.2), 0 0 80px rgba(140, 198, 63, 0.3)';
-            const tooltip = e.currentTarget.parentElement?.querySelector('.widget-tooltip') as HTMLElement;
-            if (tooltip) {
-              tooltip.style.opacity = '1';
-              tooltip.style.transform = 'translateY(0) scale(1)';
-            }
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.transform = 'translateY(0) scale(1)';
             e.currentTarget.style.boxShadow = isCallActive
               ? '0 0 0 4px rgba(140, 198, 63, 0.3), 0 24px 48px rgba(140, 198, 63, 0.4)'
               : '0 24px 48px rgba(140, 198, 63, 0.2), 0 12px 24px rgba(0, 0, 0, 0.15)';
-            const tooltip = e.currentTarget.parentElement?.querySelector('.widget-tooltip') as HTMLElement;
-            if (tooltip) {
-              tooltip.style.opacity = '0';
-              tooltip.style.transform = 'translateY(10px) scale(0.8)';
-            }
           }}
           aria-label="Open chat widget"
         >
