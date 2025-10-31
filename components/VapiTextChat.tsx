@@ -121,6 +121,15 @@ export default function VapiTextChat() {
           0%, 100% { opacity: 1; }
           50% { opacity: 0.6; }
         }
+
+        @keyframes bounce {
+          0%, 100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+        }
       `}</style>
 
       {/* Widget Container */}
@@ -131,6 +140,44 @@ export default function VapiTextChat() {
         zIndex: 10000,
         fontFamily: 'var(--font-inter), -apple-system, sans-serif'
       }}>
+
+        {/* Speech Bubble - Always visible when chat closed */}
+        {!isOpen && (
+          <div style={{
+            position: 'absolute',
+            bottom: isMobile ? '75px' : '85px',
+            right: 0,
+            background: 'linear-gradient(135deg, #8cc63f, #7ab52f)',
+            backdropFilter: 'blur(20px) saturate(180%)',
+            WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+            color: 'white',
+            padding: isMobile ? '12px 14px' : '14px 18px',
+            borderRadius: '16px',
+            fontSize: isMobile ? '13px' : '15px',
+            fontWeight: 600,
+            whiteSpace: 'nowrap',
+            boxShadow: '0 12px 40px rgba(140, 198, 63, 0.5), 0 8px 20px rgba(0, 0, 0, 0.2)',
+            border: '2px solid rgba(140, 198, 63, 0.5)',
+            zIndex: 10001,
+            animation: 'bounce 2s ease-in-out infinite'
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span style={{ fontSize: isMobile ? '18px' : '20px' }}>💬</span>
+              <span>Talk to Sophie about your project</span>
+            </div>
+            {/* Speech bubble arrow */}
+            <div style={{
+              position: 'absolute',
+              bottom: '-10px',
+              right: '25px',
+              width: '0',
+              height: '0',
+              borderLeft: '10px solid transparent',
+              borderRight: '10px solid transparent',
+              borderTop: '10px solid #7ab52f'
+            }} />
+          </div>
+        )}
 
         {/* Chat Button */}
         <button
