@@ -209,7 +209,7 @@ const Gallery = ({ data }: GalleryProps) => {
                       <div className="space-y-1.5 mb-3 text-xs">
                         <div className="flex items-center space-x-2 text-white/90">
                           <MapPin className="w-3.5 h-3.5 text-primary flex-shrink-0" />
-                          <span>{project.location}</span>
+                          <span>{project.location.split(',')[0]}</span>
                         </div>
                         <div className="flex items-center space-x-2 text-white/90">
                           <Zap className="w-3.5 h-3.5 text-primary flex-shrink-0" />
