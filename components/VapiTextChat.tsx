@@ -157,9 +157,9 @@ export default function VapiTextChat() {
           <div
             onClick={() => setIsOpen(true)}
             onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateX(-3px) scale(1.05)';
-              e.currentTarget.style.boxShadow = '0 16px 40px rgba(0, 0, 0, 0.5), 0 0 0 2px rgba(140, 198, 63, 0.6)';
-              e.currentTarget.style.borderColor = 'rgba(140, 198, 63, 0.6)';
+              e.currentTarget.style.transform = 'translateX(-4px) scale(1.08)';
+              e.currentTarget.style.boxShadow = '0 20px 60px rgba(140, 198, 63, 0.4), 0 12px 32px rgba(0, 0, 0, 0.5), 0 0 40px rgba(140, 198, 63, 0.3)';
+              e.currentTarget.style.borderColor = 'rgba(140, 198, 63, 0.7)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = 'translateX(0) scale(1)';
