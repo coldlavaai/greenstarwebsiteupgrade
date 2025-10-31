@@ -253,12 +253,13 @@ const Hero = ({ data }: HeroProps) => {
               >
                 {data?.backgroundImage ? (
                   <Image
-                    src={urlFor(data.backgroundImage).width(800).quality(85).url()}
+                    src={urlFor(data.backgroundImage).width(1200).quality(90).url()}
                     alt="Greenstar Solar Installation"
                     fill
                     priority
+                    quality={95}
                     className="object-cover"
-                    sizes="(max-width: 1024px) 100vw, 400px"
+                    sizes="(max-width: 1024px) 100vw, 500px"
                   />
                 ) : (
                   <Image
@@ -266,8 +267,9 @@ const Hero = ({ data }: HeroProps) => {
                     alt="Greenstar Solar Installation"
                     fill
                     priority
+                    quality={95}
                     className="object-cover"
-                    sizes="(max-width: 1024px) 100vw, 400px"
+                    sizes="(max-width: 1024px) 100vw, 500px"
                   />
                 )}
                 <div className="absolute inset-0 bg-gradient-to-br from-[#8cc63f]/30 via-transparent to-[#8cc63f]/30 z-10" />
