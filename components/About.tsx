@@ -39,7 +39,7 @@ const About = ({ data }: AboutProps) => {
   })) || [
     { icon: Award, value: '15+', label: 'Years Experience' },
     { icon: Users, value: '250+', label: 'Happy Customers' },
-    { icon: TrendingUp, value: '1,500,000 kWh', label: 'Generated in 2025' },
+    { icon: TrendingUp, value: '1,500,000', label: 'Generated in 2025', unit: 'kWh' },
     { icon: Shield, value: '100%', label: 'Satisfaction Rate' },
   ];
 
@@ -70,7 +70,14 @@ const About = ({ data }: AboutProps) => {
                 <div className="bg-[#8cc63f]/20 w-8 h-8 md:w-12 md:h-12 rounded-lg md:rounded-xl flex items-center justify-center mb-2 md:mb-3">
                   <stat.icon className="w-4 h-4 md:w-6 md:h-6 text-[#8cc63f]" />
                 </div>
-                <div className="text-xl md:text-3xl font-bold text-white mb-1 md:mb-2">{stat.value}</div>
+                <div className="text-xl md:text-3xl font-bold text-white mb-1 md:mb-2">
+                  {stat.value}
+                  {(stat as any).unit && (
+                    <span className="text-sm md:text-lg font-semibold text-[#8cc63f] ml-1 md:ml-2">
+                      {(stat as any).unit}
+                    </span>
+                  )}
+                </div>
                 <div className="text-white/70 font-medium text-[10px] md:text-sm">{stat.label}</div>
               </motion.div>
             ))}
