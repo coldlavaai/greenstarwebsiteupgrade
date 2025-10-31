@@ -220,6 +220,16 @@ const Testimonials = ({ data }: TestimonialsProps) => {
                       }`}>
                         {review.platform}
                       </span>
+                      <a
+                        href={review.platform === 'Google'
+                          ? 'https://share.google/roGnZCbpn66Cm8GEX'
+                          : 'https://www.trustpilot.com/review/greenstarsolar.co.uk'}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[8px] md:text-[9px] text-white/40 hover:text-primary transition-colors underline"
+                      >
+                        View on {review.platform}
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -295,7 +305,7 @@ const Testimonials = ({ data }: TestimonialsProps) => {
           className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-20"
         >
           {[
-            { value: '36+', label: 'Verified Reviews' },
+            { value: '55+', label: 'Verified Reviews' },
             { value: '4.9/5', label: 'Average Rating' },
             { value: '100%', label: 'Would Recommend' },
           ].map((stat, index) => (
