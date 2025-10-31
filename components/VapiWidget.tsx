@@ -12,6 +12,7 @@ export default function VapiWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [isCallActive, setIsCallActive] = useState(false);
   const [callStatus, setCallStatus] = useState('Ready to chat');
+  const [showBubble, setShowBubble] = useState(true);
   const vapiInstanceRef = useRef<any>(null);
 
   const WIDGET_CONFIG = {
@@ -113,6 +114,15 @@ export default function VapiWidget() {
             opacity: 0.8;
           }
         }
+
+        @keyframes bounce {
+          0%, 100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+        }
       `}</style>
 
       {/* Widget Container */}
@@ -123,8 +133,8 @@ export default function VapiWidget() {
         zIndex: 10000,
         fontFamily: 'var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
       }}>
-        {/* Speech Bubble */}
-        {!isOpen && (
+        {/* Speech Bubble - Always visible when widget closed */}
+        {!isOpen && showBubble && (
           <div style={{
             position: 'absolute',
             bottom: '85px',
@@ -132,31 +142,35 @@ export default function VapiWidget() {
             background: 'linear-gradient(135deg, #8cc63f, #7ab52f)',
             backdropFilter: 'blur(20px) saturate(180%)',
             color: 'white',
-            padding: '12px 16px',
-            borderRadius: '15px',
-            fontSize: '14px',
-            fontWeight: 500,
+            padding: '14px 18px',
+            borderRadius: '16px',
+            fontSize: '15px',
+            fontWeight: 600,
             whiteSpace: 'nowrap',
             opacity: 1,
             transform: 'translateY(0) scale(1)',
-            transition: 'all 0.4s cubic-bezier(0.23, 1, 0.32, 1)',
+            transition: 'all 0.3s ease',
             pointerEvents: 'none',
-            boxShadow: '0 8px 32px rgba(140, 198, 63, 0.3), 0 4px 16px rgba(0, 0, 0, 0.1)',
-            border: '1px solid rgba(140, 198, 63, 0.3)',
+            boxShadow: '0 12px 40px rgba(140, 198, 63, 0.5), 0 8px 20px rgba(0, 0, 0, 0.2)',
+            border: '2px solid rgba(140, 198, 63, 0.5)',
             zIndex: 10001,
-            display: 'block'
-          }} className="widget-tooltip">
-            Talk to Sophie about your project
+            display: 'block',
+            animation: 'bounce 2s ease-in-out infinite'
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span style={{ fontSize: '20px' }}>💬</span>
+              <span>Talk to Sophie about your project</span>
+            </div>
             {/* Speech bubble arrow */}
             <div style={{
               position: 'absolute',
-              bottom: '-8px',
-              right: '20px',
+              bottom: '-10px',
+              right: '25px',
               width: '0',
               height: '0',
-              borderLeft: '8px solid transparent',
-              borderRight: '8px solid transparent',
-              borderTop: '8px solid #7ab52f'
+              borderLeft: '10px solid transparent',
+              borderRight: '10px solid transparent',
+              borderTop: '10px solid #7ab52f'
             }} />
           </div>
         )}
