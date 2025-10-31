@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@sanity/client'
 import { Resend } from 'resend'
+import { appendToSheet } from '@/lib/googleSheets'
 
 // Initialize Sanity client with write access (only if configured)
 const sanityClient = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ? createClient({
@@ -27,48 +28,23 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Split name into first and last name for Google Sheets
-    const nameParts = name.trim().split(' ')
-    const first_name = nameParts[0] || name
-    const last_name = nameParts.slice(1).join(' ') || ''
-
-    // Format timestamp for Google Sheets (UK format: DD/MM/YYYY HH:mm)
-    const now = new Date()
-    const time_of_request = now.toLocaleString('en-GB', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: false
-    }).replace(',', '')
-
-    // Send to Google Sheets via VAPI tool
+    // 1. Send to Google Sheets directly
     try {
-      const vapiResponse = await fetch('https://api.vapi.ai/tool/a990cb5d-d6e8-4ed7-a245-215f22654d6a/call', {
-        method: 'POST',
-        headers: {
-          'Authorization': 'Bearer bb0b198b-1a8f-4675-bdf8-8a865fc5d68a',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          first_name,
-          last_name,
-          mobile: phone,
-          email,
-          postcode,
-          time_of_request,
-          notes: message || 'Contact form submission - no message provided',
-        }),
+      const sheetsResult = await appendToSheet({
+        name,
+        email,
+        phone,
+        postcode,
+        message: message || '',
       })
 
-      if (vapiResponse.ok) {
+      if (sheetsResult.success) {
         console.log('✅ Form submission saved to Google Sheets')
       } else {
-        console.error('❌ Failed to save to Google Sheets:', await vapiResponse.text())
+        console.error('❌ Failed to save to Google Sheets:', sheetsResult.error)
       }
-    } catch (vapiError) {
-      console.error('❌ Error sending to Google Sheets:', vapiError)
+    } catch (sheetsError) {
+      console.error('❌ Error sending to Google Sheets:', sheetsError)
       // Don't fail the request if Google Sheets fails
     }
 

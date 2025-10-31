@@ -1,0 +1,80 @@
+import { google } from 'googleapis';
+
+// Google Sheets configuration
+const SPREADSHEET_ID = '1uKmU_phI7b6TArPSW7Ks5PV-snggG5KDy5QumIcuRdk';
+const SHEET_NAME = 'Sheet1'; // Change this if your tab has a different name
+
+/**
+ * Append a row to the Google Sheet
+ */
+export async function appendToSheet(data: {
+  name: string;
+  email: string;
+  phone: string;
+  postcode: string;
+  message: string;
+}) {
+  try {
+    // Check if credentials are configured
+    if (!process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL || !process.env.GOOGLE_PRIVATE_KEY) {
+      console.warn('⚠️ Google Sheets credentials not configured. Skipping Google Sheets submission.');
+      return { success: false, error: 'Credentials not configured' };
+    }
+
+    // Create auth client
+    const auth = new google.auth.GoogleAuth({
+      credentials: {
+        client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+        private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+      },
+      scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+    });
+
+    const sheets = google.sheets({ version: 'v4', auth });
+
+    // Split name into first and last
+    const nameParts = data.name.trim().split(' ');
+    const firstName = nameParts[0] || data.name;
+    const lastName = nameParts.slice(1).join(' ') || '';
+
+    // Format timestamp (UK format: DD/MM/YYYY HH:mm)
+    const timestamp = new Date().toLocaleString('en-GB', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false
+    }).replace(',', '');
+
+    // Prepare row data
+    // Adjust the order of columns to match your Google Sheet headers
+    const rowData = [
+      timestamp,           // A: Timestamp
+      firstName,           // B: First Name
+      lastName,            // C: Last Name
+      data.email,          // D: Email
+      data.phone,          // E: Phone
+      data.postcode,       // F: Postcode
+      data.message || '',  // G: Message/Notes
+      'Website Contact Form', // H: Source
+    ];
+
+    // Append the row
+    const response = await sheets.spreadsheets.values.append({
+      spreadsheetId: SPREADSHEET_ID,
+      range: `${SHEET_NAME}!A:H`, // Adjust range based on your columns
+      valueInputOption: 'USER_ENTERED',
+      requestBody: {
+        values: [rowData],
+      },
+    });
+
+    console.log('✅ Successfully added row to Google Sheets:', response.data.updates?.updatedRows);
+    return { success: true, response: response.data };
+
+  } catch (error) {
+    console.error('❌ Error appending to Google Sheets:', error);
+    return { success: false, error: error instanceof Error ? error.message : 'Unknown error' };
+  }
+}
