@@ -130,6 +130,17 @@ export default function VapiTextChat() {
             transform: translateY(-10px);
           }
         }
+
+        @keyframes gentlePulse {
+          0%, 100% {
+            transform: scale(1);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(140, 198, 63, 0.2);
+          }
+          50% {
+            transform: scale(1.03);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(140, 198, 63, 0.4);
+          }
+        }
       `}</style>
 
       {/* Widget Container */}
@@ -164,7 +175,8 @@ export default function VapiTextChat() {
               padding: isMobile ? '8px 12px' : '10px 14px',
               borderRadius: '12px',
               fontSize: isMobile ? '11px' : '12px',
-              fontWeight: 400,
+              fontWeight: 500,
+              fontFamily: 'var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
               whiteSpace: 'normal',
               width: isMobile ? '180px' : '200px',
               lineHeight: '1.4',
@@ -173,7 +185,8 @@ export default function VapiTextChat() {
               border: '1px solid rgba(140, 198, 63, 0.2)',
               zIndex: 10001,
               cursor: 'pointer',
-              transition: 'all 0.3s ease'
+              transition: 'all 0.3s ease',
+              animation: 'gentlePulse 3s ease-in-out infinite'
             }}>
             Talk to Sophie<br />about your project
             {/* Speech bubble arrow */}
