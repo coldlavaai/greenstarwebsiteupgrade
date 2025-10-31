@@ -2,7 +2,7 @@ import { google } from 'googleapis';
 
 // Google Sheets configuration
 const SPREADSHEET_ID = '1uKmU_phI7b6TArPSW7Ks5PV-snggG5KDy5QumIcuRdk';
-const SHEET_NAME = 'Sheet1'; // Change this if your tab has a different name
+const SHEET_NAME = 'Sheet One'; // Changed to match actual tab name
 
 /**
  * Append a row to the Google Sheet
