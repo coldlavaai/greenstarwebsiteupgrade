@@ -87,7 +87,7 @@ const Gallery = ({ data }: GalleryProps) => {
   // Pin 3 favorite projects and rotate the other 3 every 30 minutes
   const projects = useMemo(() => {
     // These are our 3 favorite "pride of place" projects - always shown
-    const pinnedIndexes = [8, 12, 5]; // greenstar-9, greenstar-13, greenstar-6
+    const pinnedIndexes = [11, 14, 23]; // greenstar-12, greenstar-15, greenstar-24
     const pinnedProjects = pinnedIndexes.map(i => allProjects[i]);
 
     // Get remaining projects (excluding pinned ones)
