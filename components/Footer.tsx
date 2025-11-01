@@ -65,8 +65,8 @@ const Footer = ({ data }: FooterProps) => {
     href: link.url,
     label: link.platform,
   })) || [
-    { icon: Facebook, href: '#', label: 'Facebook' },
-    { icon: Instagram, href: '#', label: 'Instagram' },
+    { icon: Facebook, href: 'https://www.facebook.com/profile.php?id=61572185340265', label: 'Facebook' },
+    { icon: Instagram, href: 'https://www.instagram.com/greenstar_solar/', label: 'Instagram' },
   ];
 
   return (
