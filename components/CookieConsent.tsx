@@ -7,6 +7,12 @@ export default function CookieConsent() {
   const [showBanner, setShowBanner] = useState(false);
 
   useEffect(() => {
+    // Check if hideConsent parameter is present (for iframe embeds)
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('hideConsent') === 'true') {
+      return; // Don't show banner in iframe previews
+    }
+
     // Check if user has already made a choice
     const consent = localStorage.getItem('cookie-consent');
     if (!consent) {
