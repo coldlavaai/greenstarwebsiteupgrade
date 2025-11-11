@@ -79,7 +79,10 @@ export default defineConfig({
 
             S.divider(),
 
-            // DBR Dashboard
+            // DBR Dashboard - TEMPORARILY DISABLED (missing dbrLead schema - causing Studio crash)
+            // TODO: Create dbrLead schema at sanity/schemas/dbrLead.ts to re-enable this dashboard
+            // The actual DBR workflow in n8n + Google Sheets is UNAFFECTED by this change
+            /*
             S.listItem()
               .title('🔥 DBR Dashboard (Database Recovery)')
               .child(
@@ -183,6 +186,7 @@ export default defineConfig({
                       ),
                   ])
               ),
+            */
 
             S.divider(),
 
